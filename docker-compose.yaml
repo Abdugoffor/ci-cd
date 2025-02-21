@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: "nginx:stable-alpine"
+    ports:
+      - "8010:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./src:/var/www/laravel
+    depends_on:
+      - postgres
+      - php
+
+  php:
+    build:
+      context: dockerfiles
+      dockerfile: php.Dockerfile
+    volumes:
+      - ./src:/var/www/laravel
+    depends_on:
+      - postgres
+    environment:
+      - PHP_EXTENSION=pdo_pgsql,pgsql
+
+  postgres:
+    image: postgres:15
+    restart: always
+    ports:
+      - "5433:5432"
+    env_file:
+      - env/postgres.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  composer:
+    build:
+      context: dockerfiles
+      dockerfile: composer.Dockerfile
+    volumes:
+      - ./src:/var/www/laravel
+
+  artisan:
+    build:
+      context: dockerfiles
+      dockerfile: php.Dockerfile
+    volumes:
+      - ./src:/var/www/laravel
+    depends_on:
+      - postgres
+    entrypoint: ["php", "/var/www/laravel/artisan"]
+
+volumes:
+  pgdata:
