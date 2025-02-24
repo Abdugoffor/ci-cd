@@ -9,14 +9,17 @@ use App\Http\Controllers\IndexController;
 use App\Http\Middleware\LangMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [IndexController::class, 'index'])->name('home');
-Route::get('/application/{application}', [IndexController::class, 'application'])->name('application');
-Route::post('/application', [ApplicationController::class, 'store'])->name('application.store');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('loginSubmit');
 Route::get('/registr', [RegistrController::class, 'index'])->name('registr');
 Route::post('/registr', [RegistrController::class, 'registr'])->name('registrSubmit');
+
+Route::get('/', [IndexController::class, 'index'])->name('home');
+Route::get('/application/{application}', [IndexController::class, 'application'])->name('application');
+Route::post('/applications', [ApplicationController::class, 'store'])->name('application.store');
+Route::get('/applications-additional/{application}', [ApplicationController::class, 'createAdditional'])->name('application.additional');
+Route::post('/applications-additional/{application}', [ApplicationController::class, 'storeAdditional'])->name('application.store.additional');
 
 Route::get('/verify-email', [EmailVerifyController::class, 'showVerifyForm'])->name('verify.email');
 Route::post('/verify-email', [EmailVerifyController::class, 'verifyEmailCode'])->name('verify.email.post');

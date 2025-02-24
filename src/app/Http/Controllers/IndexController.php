@@ -12,7 +12,7 @@ class IndexController extends Controller
     }
     public function application(Tournament $application)
     {
-        return view('application', ['application' => $application]);
+        return view('applications.application', ['application' => $application]);
     }
 
     
