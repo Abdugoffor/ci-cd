@@ -2,37 +2,25 @@
 @section('title', 'Login')
 @section('content')
     <!-- Register form -->
-    <form class="login-form" action="{{ route('loginSubmit') }}" method="POST">
+    <form class="login-form" action="{{ route('verify.code.post') }}" method="POST">
         @csrf
         <div class="card mb-0">
             <div class="card-body">
                 <div class="text-center mb-3">
                     <i class="icon-reading icon-2x text-secondary border-secondary border-3 rounded-pill p-3 mb-3 mt-1"></i>
-                    <h5 class="mb-0">Login to your account</h5>
+                    <h5 class="mb-0">Code to your account {{ auth()->user()->name }}</h5>
                     <span class="d-block text-muted">Enter your credentials below</span>
                 </div>
-
                 <div class="form-group form-group-feedback form-group-feedback-left">
-                    <input type="email" class="form-control" name="email" value="{{ old('email') }}"
-                        placeholder="Email">
-                    <div class="form-control-feedback">
-                        <i class="icon-mention text-muted"></i>
-                    </div>
-                    @error('email')
-                        <p style="color: red;">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="form-group form-group-feedback form-group-feedback-left">
-                    <input type="password" class="form-control" name="password" placeholder="Password">
+                    <input type="number" name="code" class="form-control" placeholder="Code">
                     <div class="form-control-feedback">
                         <i class="icon-lock2 text-muted"></i>
                     </div>
-                    @error('password')
-                        <p style="color: red;">{{ $message }}</p>
-                    @enderror
                 </div>
-
+                @error('code')
+                    <p style="color: red;">{{ $message }}</p>
+                @enderror
+                
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
                 </div>
