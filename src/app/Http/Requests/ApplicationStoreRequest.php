@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EmailCodeRequest extends FormRequest
+class ApplicationStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +21,12 @@ class EmailCodeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => 'required|numeric',
+            'tournament_id' => 'required|exists:tournaments,id',
+            'first_name'    => 'required|max:255',
+            'last_name'     => 'required|max:255',
+            'date_of_birth' => 'required|date',
+            'gender'        => 'required',
+            'email'         => 'required|email',
         ];
     }
 }

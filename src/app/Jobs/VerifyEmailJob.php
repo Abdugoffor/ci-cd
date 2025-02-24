@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Jobs;
 
 use App\Mail\VerifyEmail;
@@ -14,9 +13,11 @@ class VerifyEmailJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
+    public $email;
     public $verificationCode;
-    public function __construct($verificationCode)
+    public function __construct($email, $verificationCode)
     {
+        $this->email            = $email;
         $this->verificationCode = $verificationCode;
     }
 
@@ -25,6 +26,6 @@ class VerifyEmailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to(auth()->user()->email)->send(new VerifyEmail($this->verificationCode));
+        Mail::to($this->email)->send(new VerifyEmail($this->verificationCode));
     }
 }

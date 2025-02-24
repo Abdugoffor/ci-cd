@@ -1,21 +1,17 @@
 <?php
 
+use App\Http\Controllers\Admin\TournamentController;
+use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\Auth\EmailVerifyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrController;
-use App\Http\Controllers\Auth\EmailVerifyController;
-use Illuminate\Auth\Events\Login;
+use App\Http\Controllers\IndexController;
+use App\Http\Middleware\LangMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/admin', function () {
-    return view('layouts.admin');
-})->name('admin');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [IndexController::class, 'index'])->name('home');
+Route::get('/application/{application}', [IndexController::class, 'application'])->name('application');
+Route::post('/application', [ApplicationController::class, 'store'])->name('application.store');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('loginSubmit');
@@ -28,3 +24,6 @@ Route::post('/verify-email', [EmailVerifyController::class, 'verifyEmailCode'])-
 Route::get('/verify-code', [EmailVerifyController::class, 'codeForm'])->name('verify.code');
 Route::post('/verify-code', [EmailVerifyController::class, 'verifyCode'])->name('verify.code.post');
 
+Route::prefix('dashboard')->middleware(LangMiddleware::class)->group(function () {
+    Route::resource('/tournament', TournamentController::class);
+});

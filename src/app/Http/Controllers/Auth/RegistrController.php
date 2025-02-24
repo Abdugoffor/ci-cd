@@ -26,10 +26,10 @@ class RegistrController extends Controller
 
         $verificationCode = rand(100000, 999999);
 
-        cache()->put('email_verification_' . $user->email, $verificationCode, now()->addMinutes(3));
+        cache()->put('email_verification_' . $user->email, $verificationCode, now()->addMinutes(5));
 
         dispatch(new VerifyEmailJob($verificationCode));
-        
+
         return redirect()->route('verify.code');
     }
 }

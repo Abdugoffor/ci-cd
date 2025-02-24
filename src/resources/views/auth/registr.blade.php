@@ -8,7 +8,7 @@
             <div class="card-body">
                 <div class="text-center mb-3">
                     <i class="icon-plus3 icon-2x text-success border-success border-3 rounded-pill p-3 mb-3 mt-1"></i>
-                    <h5 class="mb-0">Register to your account: {{ __('lang.hello') }}</h5>
+                    <h5 class="mb-0">Register to your account:</h5>
                     <span class="d-block text-muted">Enter your credentials below</span>
                 </div>
 

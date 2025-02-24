@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('tournaments', function (Blueprint $table) {
             $table->id();
             $table->jsonb('name');
-            $table->string('country', 3);
+            $table->foreignId('country_id')->constrained('countries')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            $table->dateTime('registration_start');
-            $table->dateTime('registration_deadline');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->date('registration_start');
+            $table->date('registration_end');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->string('logo')->nullable();
+            $table->enum('status', ['pending', 'ongoing', 'completed', 'canceled'])->default('pending');
             $table->timestamps();
             $table->softDeletes();
         });

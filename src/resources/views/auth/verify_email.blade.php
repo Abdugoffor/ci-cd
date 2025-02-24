@@ -8,9 +8,10 @@
             <div class="card-body">
                 <div class="text-center mb-3">
                     <i class="icon-reading icon-2x text-secondary border-secondary border-3 rounded-pill p-3 mb-3 mt-1"></i>
-                    <h5 class="mb-0">Code to your account {{ auth()->user()->name }}</h5>
+                    <h5 class="mb-0">Code to your account</h5>
                     <span class="d-block text-muted">Enter your credentials below</span>
                 </div>
+                <input type="hidden" name="email" value="{{ $email }}" id="">
                 <div class="form-group form-group-feedback form-group-feedback-left">
                     <input type="number" name="code" class="form-control" placeholder="Code">
                     <div class="form-control-feedback">
@@ -20,7 +21,7 @@
                 @error('code')
                     <p style="color: red;">{{ $message }}</p>
                 @enderror
-                
+
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
                 </div>
