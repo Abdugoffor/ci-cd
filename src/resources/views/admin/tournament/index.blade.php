@@ -66,7 +66,7 @@
                                     <th>Оконч</th>
                                     <th>Статус</th>
                                     <th>Участники</th>
-                                    <th></th>
+                                    <th>History</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -108,10 +108,34 @@
                                         <td>
                                             <span class="badge badge-teal badge-pill ml-auto">
                                                 {{ $model->status }}
+                                                <div class="list-icons ml-2">
+                                                    <div class="dropdown">
+                                                        <a href="#" class="list-icons-item" data-toggle="dropdown"><i
+                                                                class="icon-menu7"></i></a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a href="{{ route('status.update', [$model->id, 'pending']) }}"
+                                                                class="dropdown-item">
+                                                                {{-- <i class="icon-pencil3 mr-2 text-success"></i> --}}
+                                                                pending</a>
+                                                            <a href="{{ route('status.update', [$model->id, 'ongoing']) }}"
+                                                                class="dropdown-item">
+                                                                {{-- <i class="icon-pencil3 mr-2 text-success"></i> --}}
+                                                                ongoing</a>
+                                                            <a href="{{ route('status.update', [$model->id, 'completed']) }}"
+                                                                class="dropdown-item">
+                                                                {{-- <i class="icon-pencil3 mr-2 text-success"></i> --}}
+                                                                ompleted</a>
+                                                            <a href="{{ route('status.update', [$model->id, 'canceled']) }}"
+                                                                class="dropdown-item">
+                                                                {{-- <i class="icon-pencil3 mr-2 text-success"></i> --}}
+                                                                canceled</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </span>
                                         </td>
                                         <td>
-                                            <h6 class="mb-0">12</h6>
+                                            <h6 class="mb-0">{{ $model->participants()->count() }}</h6>
                                             <div class="font-size-sm text-muted line-height-1">участники</div>
                                         </td>
                                         <td class="text-center">
@@ -133,9 +157,57 @@
                                                                 Удалить
                                                             </button>
                                                         </form>
-                                                        {{-- <a href="#" class="dropdown-item"><i
-                                                                class="icon-checkmark3 text-success"></i>
-                                                            Resolve issue</a> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#exampleModal">
+                                                Launch demo modal
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @if ($model->histories->count() > 0)
+                                                                <ul class="list-group">
+                                                                    @foreach ($model->histories as $history)
+                                                                        <li class="list-group-item">
+                                                                            <strong>Amal:</strong> {{ $history->action }}
+                                                                            <br>
+                                                                            <strong>O'zgarishlar:</strong>
+                                                                            @if (is_array($history->changes))
+                                                                                <pre>{{ json_encode($history->changes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</pre>
+                                                                            @else
+                                                                                {{ $history->changes }}
+                                                                            @endif
+                                                                            <br>
+                                                                            <small>{{ $history->created_at }}</small>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            @else
+                                                                <p>Hech qanday tarix topilmadi.</p>
+                                                            @endif
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Save
+                                                                changes</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

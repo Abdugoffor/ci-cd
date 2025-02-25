@@ -15,19 +15,22 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Name</label>
                             <div class="col-lg-3">
-                                <input type="text" class="form-control" name="uz" value="{{ old('uz') }}" placeholder="UZ">
+                                <input type="text" class="form-control" name="uz" value="{{ old('uz') }}"
+                                    placeholder="UZ">
                                 @error('uz')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-lg-3">
-                                <input type="text" class="form-control" name="ru" value="{{ old('ru') }}" placeholder="RU">
+                                <input type="text" class="form-control" name="ru" value="{{ old('ru') }}"
+                                    placeholder="RU">
                                 @error('ru')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-lg-3">
-                                <input type="text" class="form-control" name="en" value="{{ old('en') }}" placeholder="EN">
+                                <input type="text" class="form-control" name="en" value="{{ old('en') }}"
+                                    placeholder="EN">
                                 @error('en')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
@@ -64,7 +67,8 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Registration start</label>
                             <div class="col-lg-10">
-                                <input class="form-control" type="date" name="registration_start" value="{{ old('registration_start') }}">
+                                <input class="form-control" type="date" name="registration_start"
+                                    value="{{ old('registration_start') }}">
                                 @error('registration_start')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
@@ -73,7 +77,8 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Registration end</label>
                             <div class="col-lg-10">
-                                <input class="form-control" type="date" value="{{ old('registration_end') }}" name="registration_end">
+                                <input class="form-control" type="date" value="{{ old('registration_end') }}"
+                                    name="registration_end">
                                 @error('registration_end')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
@@ -82,7 +87,8 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Tournament Start Date</label>
                             <div class="col-lg-10">
-                                <input class="form-control" type="date" value="{{ old('start_date') }}" name="start_date">
+                                <input class="form-control" type="date" value="{{ old('start_date') }}"
+                                    name="start_date">
                                 @error('start_date')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
@@ -93,6 +99,16 @@
                             <div class="col-lg-10">
                                 <input class="form-control" type="date" value="{{ old('end_date') }}" name="end_date">
                                 @error('end_date')
+                                    <p style="color: red;">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">Описание</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" name="description" data-dashlane-rid="ee64733f76cd7a08"
+                                    data-dashlane-classification="other"></textarea>
+                                @error('description')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
                             </div>

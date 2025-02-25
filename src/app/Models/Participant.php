@@ -1,17 +1,19 @@
 <?php
 namespace App\Models;
 
+use App\Traits\HasHistory;
 use Illuminate\Database\Eloquent\Model;
 
 class Participant extends Model
 {
+    use HasHistory;
     protected $fillable = [
         'tournament_id',
-        'first_name',                 // Ism (pasportdagidek)
-        'last_name',                  // Familiya (pasportdagidek)
-        'date_of_birth',              // Tug‘ilgan sana (YYYY-MM-DD)
-        'gender',                     // Jins (Erkak - M / Ayol - F)
-        'email',                      // Elektron pochta
+        'first_name',    // Ism (pasportdagidek)
+        'last_name',     // Familiya (pasportdagidek)
+        'date_of_birth', // Tug‘ilgan sana (YYYY-MM-DD)
+        'gender',        // Jins (Erkak - M / Ayol - F)
+        'email',         // Elektron pochta
         'email_verified_at',
 
         'fide_id',
@@ -30,6 +32,25 @@ class Participant extends Model
         'departure_details',          // Ketish ma’lumotlari
         'accommodation_details',      // Mehmonxona va yashash ma’lumotlari
         'pcr_test_details',           // PCR testi ma’lumotlari
+        'status',
     ];
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'arrival_details'   => 'datetime',
+        'departure_details' => 'datetime',
+    ];
+    public function tournament()
+    {
+        return $this->belongsTo(Tournament::class, 'tournament_id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+    public function accreditationCategory()
+    {
+        return $this->belongsTo(AccreditationCategory::class, 'accreditation_category_id');
+    }
 
 }

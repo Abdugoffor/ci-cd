@@ -36,19 +36,11 @@
 
         <div class="d-flex justify-content-end align-items-center ml-auto">
             <ul class="navbar-nav flex-row">
-                {{-- @if (!userCheck()) --}}
-                    <li class="nav-item">
-                        <a href="/" class="navbar-nav-link">
-                            <span class="d-none d-lg-inline-block ml-2">Home</span>
-                        </a>
-                    </li>
-                    {{-- <li class="nav-item">
-                        <a href="{{ route('login') }}" class="navbar-nav-link">
-                            <i class="icon-user-lock"></i>
-                            <span class="d-none d-lg-inline-block ml-2">Login</span>
-                        </a>
-                    </li> --}}
-                {{-- @endif --}}
+                <li class="nav-item">
+                    <a href="/" class="navbar-nav-link">
+                        <span class="d-none d-lg-inline-block ml-2">Home</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

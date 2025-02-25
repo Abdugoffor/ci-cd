@@ -12,8 +12,11 @@ class IndexController extends Controller
     }
     public function application(Tournament $application)
     {
-        return view('applications.application', ['application' => $application]);
+        if ($application->status == 'pending') {
+            return view('applications.application', ['application' => $application]);
+        }
+        return redirect('/');
     }
 
-    
+
 }

@@ -31,6 +31,6 @@ class EmailVerifyController extends Controller
 
         $model->update(['email_verified_at' => now()]);
 
-        return redirect()->route('application.additional', ['application' => $model->id]);
+        return redirect()->route('application.additional');
     }
 }

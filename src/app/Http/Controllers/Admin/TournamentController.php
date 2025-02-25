@@ -28,7 +28,7 @@ class TournamentController extends Controller
         if ($request->hasFile('logo')) {
             $file       = $request->file('logo');
             $extensions = $file->getClientOriginalExtension();
-            $filename   = time() . Str::random(40) . '.' . $extensions;
+            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
             $file->move(public_path('uploaded'), $filename);
             $data['logo'] = 'uploaded/' . $filename;
         }
@@ -76,6 +76,13 @@ class TournamentController extends Controller
     public function destroy(Tournament $tournament)
     {
         $tournament->delete();
+        return back();
+    }
+    public function statusUpdate(Tournament $tournament, string $status)
+    {
+        if (in_array($status, ['pending', 'ongoing', 'completed', 'canceled'])) {
+            $tournament->update(['status' => $status]);
+        }
         return back();
     }
 

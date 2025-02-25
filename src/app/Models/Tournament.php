@@ -1,15 +1,17 @@
 <?php
 namespace App\Models;
 
+use App\Traits\HasHistory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tournament extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasHistory;
 
     protected $fillable = [
         "name",
+        'description',
         "country_id",
         "category_id",
         "registration_start",
@@ -21,6 +23,7 @@ class Tournament extends Model
     ];
     protected $casts = [
         'name'               => 'array',
+        'description'        => 'array',
         'registration_start' => 'date',
         'registration_end'   => 'date',
         'start_date'         => 'date',
@@ -34,5 +37,10 @@ class Tournament extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, "category_id");
+    }
+
+    public function participants()
+    {
+        return $this->hasMany(Participant::class, "tournament_id");
     }
 }

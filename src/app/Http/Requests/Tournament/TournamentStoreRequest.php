@@ -30,7 +30,8 @@ class TournamentStoreRequest extends FormRequest
             'registration_end'   => 'required|date',
             'start_date'         => 'required|date',
             'end_date'           => 'required|date',
-            'logo'               => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'logo'               => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'description'        => 'required|string',
         ];
     }
 }

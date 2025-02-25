@@ -1,14 +1,12 @@
 @extends('layouts.auth')
-@section('title', 'Register')
+@section('title', 'Application-create')
 @section('content')
     <div class="content">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Participant Registration</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('application.store.additional', $application->id) }}" method="POST"
-                    enctype="multipart/form-data">
+                <form action="{{ route('application.store.additional') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <fieldset class="mb-3">
                         <legend class="text-uppercase font-size-sm font-weight-bold">Регистрация участника</legend>
@@ -30,7 +28,7 @@
                                     @foreach ($accreditationCategories as $category)
                                         <option value="{{ $category->id }}"
                                             {{ old('accreditation_category_id') == $category->id ? 'selected' : '' }}>
-                                            {{ $category->name['ru'] }}</option>
+                                            {{ $category->name['uz'] }}</option>
                                     @endforeach
                                 </select>
                                 @error('accreditation_category_id')
@@ -44,7 +42,7 @@
                             <div class="col-lg-10">
                                 <select name="country_id" class="form-control">
                                     @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}">{{ $country->label_ru }}</option>
+                                        <option value="{{ $country->id }}">{{ $country->label_en }}</option>
                                     @endforeach
                                 </select>
                                 @error('country_id')
@@ -140,9 +138,51 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">Дата прибытия</label>
+                            <div class="col-lg-10">
+                                <input type="date" class="form-control" name="arrival_details"
+                                    value="{{ old('arrival_details') }}">
+                                    @error('arrival_details')
+                                        <p style="color: red;">{{ $message }}</p>
+                                    @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">Дата отъезда</label>
+                            <div class="col-lg-10">
+                                <input type="date" class="form-control" name="departure_details"
+                                    value="{{ old('departure_details') }}">
+                                @error('departure_details')
+                                    <p style="color: red;">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">Детали проживания</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" name="accommodation_details">{{ old('accommodation_details') }}</textarea>
+                                @error('accommodation_details')
+                                    <p style="color: red;">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">Детали ПЦР-теста</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" name="pcr_test_details"
+                                    value="{{ old('pcr_test_details') }}">
+                                @error('pcr_test_details')
+                                    <p style="color: red;">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="text-right">
-                            <button type="submit" class="btn btn-primary">Отправить <i
-                                    class="icon-paperplane ml-2"></i></button>
+                            <button type="submit" class="btn btn-primary">Отправить заявку</button>
                         </div>
                     </fieldset>
                 </form>

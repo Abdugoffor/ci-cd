@@ -36,6 +36,7 @@
     <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/heatmaps.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/pies.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/bullets.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_pages/components_modals.js') }}"></script>
 </head>
 
 <body>
@@ -340,6 +341,12 @@
                                 <span>Соревнования</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('application.index') }}" class="nav-link">
+                                <i class="icon-list-unordered"></i>
+                                <span>Заявки</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /main navigation -->
@@ -361,7 +368,7 @@
                     <div class="page-header-content header-elements-lg-inline">
                         <div class="page-title d-flex">
                             <h4>
-                                <span class="font-weight-semibold">Соревнования</span>
+                                <span class="font-weight-semibold">@yield('title')</span>
                             </h4>
                             <a href="#" class="header-elements-toggle text-body d-lg-none"><i
                                     class="icon-more"></i></a>
