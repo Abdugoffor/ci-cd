@@ -25,6 +25,7 @@
                                     <th>Дата отъезда</th>
                                     <th>Статус</th>
                                     <th>Посмотреть</th>
+                                    <th>История</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -254,6 +255,9 @@
                                                 </div>
                                             </div>
                                             <!-- /full width modal -->
+                                        </td>
+                                        <td>
+                                            {!! historyCheck($model) !!}
                                         </td>
                                     </tr>
                                 @endforeach

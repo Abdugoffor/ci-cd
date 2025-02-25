@@ -82,8 +82,8 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Registration end</label>
                             <div class="col-lg-10">
-                                <input class="form-control" type="date" value="{{ $tournament->registration_end->format('Y-m-d') }}"
-                                    name="registration_end">
+                                <input class="form-control" type="date"
+                                    value="{{ $tournament->registration_end->format('Y-m-d') }}" name="registration_end">
                                 @error('registration_end')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
@@ -92,8 +92,8 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Tournament Start Date</label>
                             <div class="col-lg-10">
-                                <input class="form-control" type="date" value="{{ $tournament->start_date->format('Y-m-d') }}"
-                                    name="start_date">
+                                <input class="form-control" type="date"
+                                    value="{{ $tournament->start_date->format('Y-m-d') }}" name="start_date">
                                 @error('start_date')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
@@ -102,9 +102,19 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Tournament End Date</label>
                             <div class="col-lg-10">
-                                <input class="form-control" type="date" value="{{ $tournament->end_date->format('Y-m-d') }}"
-                                    name="end_date">
+                                <input class="form-control" type="date"
+                                    value="{{ $tournament->end_date->format('Y-m-d') }}" name="end_date">
                                 @error('end_date')
+                                    <p style="color: red;">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">Описание</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" name="description" 
+                                    data-dashlane-classification="other">{{ $tournament->description }}</textarea>
+                                @error('description')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
                             </div>

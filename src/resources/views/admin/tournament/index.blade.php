@@ -67,6 +67,7 @@
                                     <th>Статус</th>
                                     <th>Участники</th>
                                     <th>History</th>
+                                    <th>История</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -162,55 +163,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#exampleModal">
-                                                Launch demo modal
-                                            </button>
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            @if ($model->histories->count() > 0)
-                                                                <ul class="list-group">
-                                                                    @foreach ($model->histories as $history)
-                                                                        <li class="list-group-item">
-                                                                            <strong>Amal:</strong> {{ $history->action }}
-                                                                            <br>
-                                                                            <strong>O'zgarishlar:</strong>
-                                                                            @if (is_array($history->changes))
-                                                                                <pre>{{ json_encode($history->changes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</pre>
-                                                                            @else
-                                                                                {{ $history->changes }}
-                                                                            @endif
-                                                                            <br>
-                                                                            <small>{{ $history->created_at }}</small>
-                                                                        </li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            @else
-                                                                <p>Hech qanday tarix topilmadi.</p>
-                                                            @endif
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Save
-                                                                changes</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            {!! historyCheck($model) !!}
                                         </td>
                                     </tr>
                                 @endforeach

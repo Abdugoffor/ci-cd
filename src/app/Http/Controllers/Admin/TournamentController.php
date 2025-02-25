@@ -54,7 +54,7 @@ class TournamentController extends Controller
     public function update(TournamentStoreRequest $request, Tournament $tournament)
     {
         $data = $request->all();
-
+        
         if ($request->hasFile('logo')) {
             $file       = $request->file('logo');
             $extensions = $file->getClientOriginalExtension();
