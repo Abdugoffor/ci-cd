@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-@section('title', 'Register')
+@section('title', 'Application-create')
 @section('content')
     <div class="content">
         <div class="card">

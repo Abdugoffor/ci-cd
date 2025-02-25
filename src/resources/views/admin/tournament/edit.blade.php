@@ -1,12 +1,9 @@
 @extends('layouts.admin')
-@section('title', 'Login')
+@section('title', 'Соревнования')
 @section('content')
     <!-- Content area -->
     <div class="content">
         <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">Tournament create</h5>
-            </div>
 
             <div class="card-body">
 
@@ -124,7 +121,7 @@
                         </div>
                     </fieldset>
                     <div class="text-right">
-                        <button type="submit" class="btn btn-primary">Submit <i class="icon-paperplane ml-2"></i></button>
+                        <button type="submit" class="btn btn-primary">Изменить</button>
                     </div>
                 </form>
             </div>

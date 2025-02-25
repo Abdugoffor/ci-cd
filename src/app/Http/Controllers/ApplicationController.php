@@ -19,8 +19,8 @@ class ApplicationController extends Controller
         cache()->put('email_verification_' . $models->email, $verificationCode, now()->addMinutes(5));
 
         dispatch(new VerifyEmailJob($models->email, $verificationCode));
-
-        return view('auth.verify_email', ['email' => $models->email]);
+        session()->put('email', $models->email);
+        return view('auth.verify_email');
     }
     public function createAdditional(Participant $application)
     {

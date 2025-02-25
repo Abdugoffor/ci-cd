@@ -17,14 +17,14 @@ class EmailVerifyController extends Controller
     }
     public function verifyCode(EmailCodeRequest $request)
     {
-        $code = $request->code;
+        $code  = $request->code;
         $email = $request->email;
 
         $cachedCode = cache()->get('email_verification_' . $email);
 
-        $model = Participant::where('email', $email)->first();
+        $model = Participant::where('email', $email)->orderBy('id', 'desc')->first();
 
-        if ($cachedCode != $code || !$model) {
+        if ($cachedCode != $code || ! $model) {
 
             return redirect()->back()->withErrors(['code' => __('lang.invalid_code')]);
         }

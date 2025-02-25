@@ -11,8 +11,7 @@
                     enctype="multipart/form-data">
                     @csrf
                     <fieldset class="mb-3">
-                        <legend class="text-uppercase font-size-sm font-weight-bold">Participant Registration</legend>
-
+                        <legend class="text-uppercase font-size-sm font-weight-bold">Регистрация участника</legend>
 
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">FIDE ID</label>
@@ -23,14 +22,15 @@
                                 @enderror
                             </div>
                         </div>
+
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Participant Type</label>
+                            <label class="col-form-label col-lg-2">Тип участника</label>
                             <div class="col-lg-10">
                                 <select name="accreditation_category_id" class="form-control">
                                     @foreach ($accreditationCategories as $category)
                                         <option value="{{ $category->id }}"
                                             {{ old('accreditation_category_id') == $category->id ? 'selected' : '' }}>
-                                            {{ $category->name['en'] }}</option>
+                                            {{ $category->name['ru'] }}</option>
                                     @endforeach
                                 </select>
                                 @error('accreditation_category_id')
@@ -39,13 +39,12 @@
                             </div>
                         </div>
 
-
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Country</label>
+                            <label class="col-form-label col-lg-2">Страна</label>
                             <div class="col-lg-10">
                                 <select name="country_id" class="form-control">
                                     @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}">{{ $country->label_en }}</option>
+                                        <option value="{{ $country->id }}">{{ $country->label_ru }}</option>
                                     @endforeach
                                 </select>
                                 @error('country_id')
@@ -55,7 +54,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Passport Number</label>
+                            <label class="col-form-label col-lg-2">Номер паспорта</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control" name="passport_number"
                                     value="{{ old('passport_number') }}">
@@ -66,7 +65,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Passport Issue Date</label>
+                            <label class="col-form-label col-lg-2">Дата выдачи паспорта</label>
                             <div class="col-lg-10">
                                 <input type="date" class="form-control" name="passport_issue_date"
                                     value="{{ old('passport_issue_date') }}">
@@ -77,7 +76,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Passport Expiry Date</label>
+                            <label class="col-form-label col-lg-2">Дата окончания паспорта</label>
                             <div class="col-lg-10">
                                 <input type="date" class="form-control" name="passport_expiry_date"
                                     value="{{ old('passport_expiry_date') }}">
@@ -88,7 +87,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Passport Issuing Authority</label>
+                            <label class="col-form-label col-lg-2">Орган выдачи паспорта</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control" name="passport_issuing_authority"
                                     value="{{ old('passport_issuing_authority') }}">
@@ -99,7 +98,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Passport Copy</label>
+                            <label class="col-form-label col-lg-2">Копия паспорта</label>
                             <div class="col-lg-10">
                                 <input type="file" class="form-control" name="passport_copy">
                                 @error('passport_copy')
@@ -108,19 +107,8 @@
                             </div>
                         </div>
 
-                        {{-- <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Citizenship</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" name="citizenship"
-                                    value="{{ old('citizenship') }}">
-                                @error('citizenship')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div> --}}
-
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Phone</label>
+                            <label class="col-form-label col-lg-2">Телефон</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
                                 @error('phone')
@@ -130,7 +118,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Photo</label>
+                            <label class="col-form-label col-lg-2">Фото</label>
                             <div class="col-lg-10">
                                 <input type="file" class="form-control" name="photo">
                                 @error('photo')
@@ -140,11 +128,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Requires Visa?</label>
+                            <label class="col-form-label col-lg-2">Требуется виза?</label>
                             <div class="col-lg-10">
                                 <select name="requires_visa" class="form-control">
-                                    <option value="1" {{ old('requires_visa') == '1' ? 'selected' : '' }}>Yes</option>
-                                    <option value="0" {{ old('requires_visa') == '0' ? 'selected' : '' }}>No</option>
+                                    <option value="1" {{ old('requires_visa') == '1' ? 'selected' : '' }}>Да</option>
+                                    <option value="0" {{ old('requires_visa') == '0' ? 'selected' : '' }}>Нет</option>
                                 </select>
                                 @error('requires_visa')
                                     <p style="color: red;">{{ $message }}</p>
@@ -152,36 +140,8 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Arrival Details</label>
-                            <div class="col-lg-10">
-                                <textarea class="form-control" name="arrival_details">{{ old('arrival_details') }}</textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Departure Details</label>
-                            <div class="col-lg-10">
-                                <textarea class="form-control" name="departure_details">{{ old('departure_details') }}</textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Accommodation Details</label>
-                            <div class="col-lg-10">
-                                <textarea class="form-control" name="accommodation_details">{{ old('accommodation_details') }}</textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">PCR Test Details</label>
-                            <div class="col-lg-10">
-                                <textarea class="form-control" name="pcr_test_details">{{ old('pcr_test_details') }}</textarea>
-                            </div>
-                        </div>
-
                         <div class="text-right">
-                            <button type="submit" class="btn btn-primary">Submit <i
+                            <button type="submit" class="btn btn-primary">Отправить <i
                                     class="icon-paperplane ml-2"></i></button>
                         </div>
                     </fieldset>

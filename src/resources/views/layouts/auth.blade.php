@@ -29,7 +29,7 @@
     <!-- Main navbar -->
     <div class="navbar navbar-expand-lg navbar-dark navbar-static">
         <div class="navbar-brand ml-2 ml-lg-0">
-            <a href="index.html" class="d-inline-block">
+            <a href="/" class="d-inline-block">
                 <img src="{{ asset('global_assets/images/logo_light.png') }}" alt="">
             </a>
         </div>
@@ -39,16 +39,15 @@
                 {{-- @if (!userCheck()) --}}
                     <li class="nav-item">
                         <a href="/" class="navbar-nav-link">
-                            <i class="icon-user-plus"></i>
                             <span class="d-none d-lg-inline-block ml-2">Home</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{ route('login') }}" class="navbar-nav-link">
                             <i class="icon-user-lock"></i>
                             <span class="d-none d-lg-inline-block ml-2">Login</span>
                         </a>
-                    </li>
+                    </li> --}}
                 {{-- @endif --}}
             </ul>
         </div>

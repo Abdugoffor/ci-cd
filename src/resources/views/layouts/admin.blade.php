@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Project name</title>
+    <title>@yield('title')</title>
 
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -334,41 +334,10 @@
                 <!-- Main navigation -->
                 <div class="sidebar-section">
                     <ul class="nav nav-sidebar" data-nav-type="accordion">
-
-                        <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Starter
-                                    kit</span></a>
-
-                            <ul class="nav nav-group-sub" data-submenu-title="Starter kit">
-                                <li class="nav-item"><a href="../seed/layout_static.html" class="nav-link">Static
-                                        layout</a></li>
-                                <li class="nav-item"><a href="../seed/layout_no_header.html" class="nav-link">No
-                                        header</a></li>
-                                <li class="nav-item"><a href="../seed/layout_no_footer.html" class="nav-link">No
-                                        footer</a></li>
-                                <li class="nav-item-divider"></li>
-                                <li class="nav-item"><a href="../seed/layout_fixed_header.html"
-                                        class="nav-link">Fixed header</a></li>
-                                <li class="nav-item"><a href="../seed/layout_fixed_footer.html"
-                                        class="nav-link">Fixed footer</a></li>
-                                <li class="nav-item-divider"></li>
-                                <li class="nav-item"><a href="../seed/layout_2_sidebars_1_side.html"
-                                        class="nav-link">2 sidebars on 1 side</a></li>
-                                <li class="nav-item"><a href="../seed/layout_2_sidebars_2_sides.html"
-                                        class="nav-link">2 sidebars on 2 sides</a></li>
-                                <li class="nav-item"><a href="../seed/layout_3_sidebars.html" class="nav-link">3
-                                        sidebars</a></li>
-                                <li class="nav-item-divider"></li>
-                                <li class="nav-item"><a href="../seed/layout_boxed_page.html" class="nav-link">Boxed
-                                        page</a></li>
-                                <li class="nav-item"><a href="../seed/layout_boxed_content.html"
-                                        class="nav-link">Boxed content</a></li>
-                            </ul>
-                        </li>
                         <li class="nav-item">
                             <a href="{{ route('tournament.index') }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
-                                <span>Tournament</span>
+                                <span>Соревнования</span>
                             </a>
                         </li>
                     </ul>
@@ -392,7 +361,7 @@
                     <div class="page-header-content header-elements-lg-inline">
                         <div class="page-title d-flex">
                             <h4>
-                                <span class="font-weight-semibold">Home</span> - Dashboard
+                                <span class="font-weight-semibold">Соревнования</span>
                             </h4>
                             <a href="#" class="header-elements-toggle text-body d-lg-none"><i
                                     class="icon-more"></i></a>

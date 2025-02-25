@@ -41,7 +41,7 @@ class TournamentController extends Controller
 
         Tournament::create($data);
 
-        return redirect()->back();
+        return redirect()->route('tournament.index');
     }
 
     public function edit(Tournament $tournament)
@@ -71,6 +71,12 @@ class TournamentController extends Controller
         $tournament->update($data);
 
         return redirect()->route('tournament.index');
+    }
+
+    public function destroy(Tournament $tournament)
+    {
+        $tournament->delete();
+        return back();
     }
 
 }

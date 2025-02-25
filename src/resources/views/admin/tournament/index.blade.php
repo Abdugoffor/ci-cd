@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Login')
+@section('title', 'Соревнования')
 @section('content')
     <!-- Content area -->
     <div class="content">
@@ -10,9 +10,6 @@
 
                 <!-- Support tickets -->
                 <div class="card">
-                    <div class="card-header header-elements-sm-inline">
-                        <h6 class="card-title">Support tickets</h6>
-                    </div>
 
                     <div class="card-body d-lg-flex align-items-lg-center justify-content-lg-between flex-lg-wrap">
                         <div class="d-flex align-items-center mb-3 mb-lg-0">
@@ -50,7 +47,7 @@
 
                         <div>
                             <a href="{{ route('tournament.create') }}" class="btn btn-teal">
-                                <i class="icon-plus3 icon-1x mr-1"></i> Add
+                                <i class="icon-plus3 icon-1x mr-1"></i> Добавить
                             </a>
                         </div>
                     </div>
@@ -125,10 +122,16 @@
                                                         <a href="{{ route('tournament.edit', $model->id) }}"
                                                             class="dropdown-item"><i
                                                                 class="icon-pencil3 mr-2 text-success"></i>
-                                                            Edit</a>
-                                                        <a href="#" class="dropdown-item"><i
-                                                                class="icon-cross2 text-danger"></i> Close
-                                                            issue</a>
+                                                            Изменить</a>
+                                                        <form action="{{ route('tournament.destroy', $model->id) }}"
+                                                            method="post">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit" class="dropdown-item">
+                                                                <i class="icon-cross2 text-danger"></i>
+                                                                Удалить
+                                                            </button>
+                                                        </form>
                                                         {{-- <a href="#" class="dropdown-item"><i
                                                                 class="icon-checkmark3 text-success"></i>
                                                             Resolve issue</a> --}}

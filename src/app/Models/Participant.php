@@ -12,6 +12,7 @@ class Participant extends Model
         'date_of_birth',              // Tug‘ilgan sana (YYYY-MM-DD)
         'gender',                     // Jins (Erkak - M / Ayol - F)
         'email',                      // Elektron pochta
+        'email_verified_at',
 
         'fide_id',
         'accreditation_category_id',
