@@ -99,6 +99,7 @@
                                             {{ $model->registration_end->format('d-m-Y') }}
                                         </td>
                                         <td>
+
                                             {{ $model->start_date->format('d-m-Y') }}
                                         </td>
                                         <td>
