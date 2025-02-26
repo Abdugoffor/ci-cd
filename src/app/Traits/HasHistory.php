@@ -33,7 +33,6 @@ trait HasHistory
             'user_id'    => Auth::id(),
             'changes'    => $changes,
             'action'     => $action,
-            'user_id'    => Auth::id(),
         ]);
     }
 

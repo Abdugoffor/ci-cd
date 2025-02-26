@@ -57,7 +57,7 @@
                             <thead>
                                 <tr>
                                     <th>№</th>
-                                    <th>Название{{ getTranslation('add') }}</th>
+                                    <th>{{ getTranslation('name') }}</th>
                                     <th>{{ getTranslation('competition-type') }}</th>
                                     <th>{{ getTranslation('country') }}</th>
                                     <th>{{ getTranslation('start-of-registration') }}</th>

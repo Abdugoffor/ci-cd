@@ -18,14 +18,14 @@ class LangMiddleware
     {
         $availableLocales = ['uz', 'ru', 'en'];
 
-        $locale = Session::get('locale', 'en');
+        $locale = Session::get('locale');
 
         if (! in_array($locale, $availableLocales)) {
             $locale = 'ru';
             Session::put('locale', $locale);
         }
 
-        App::setLocale('uz');
+        App::setLocale($locale);
 
         return $next($request);
     }

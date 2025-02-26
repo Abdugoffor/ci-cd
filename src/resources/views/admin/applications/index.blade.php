@@ -14,18 +14,18 @@
                             <thead>
                                 <tr>
                                     <th>№</th>
-                                    <th>Имя</th>
-                                    <th>Тип</th>
-                                    <th>Дата рождения</th>
-                                    <th>Пол</th>
-                                    <th>Почта</th>
-                                    <th>Требуется виза</th>
-                                    <th>Оконч регистрации</th>
-                                    <th>Дата прибытия</th>
-                                    <th>Дата отъезда</th>
-                                    <th>Статус</th>
-                                    <th>Посмотреть</th>
-                                    <th>История</th>
+                                    <th>{{ getTranslation('name') }}</th>
+                                    <th>{{ getTranslation('type') }}</th>
+                                    <th>{{ getTranslation('birth-date') }}</th>
+                                    <th>{{ getTranslation('gender') }}</th>
+                                    <th>{{ getTranslation('email') }}</th>
+                                    <th>{{ getTranslation('visa-required') }}</th>
+                                    <th>{{ getTranslation('registration-end') }}</th>
+                                    <th>{{ getTranslation('arrival-date') }}</th>
+                                    <th>{{ getTranslation('departure-date') }}</th>
+                                    <th>{{ getTranslation('status') }}</th>
+                                    <th>{{ getTranslation('view') }}</th>
+                                    <th>{{ getTranslation('history') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -122,7 +122,8 @@
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Заявка</h5>
+                                                            <h5 class="modal-title">{{ getTranslation('application') }}
+                                                            </h5>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal">&times;</button>
                                                         </div>
@@ -133,113 +134,135 @@
                                                                     <table class="table table-bordered">
                                                                         <tbody>
                                                                             <tr>
-                                                                                <th>Имя</th>
+                                                                                <th>{{ getTranslation('name') }}</th>
                                                                                 <td>{{ $model->first_name }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Фамилия</th>
+                                                                                <th>{{ getTranslation('last-name') }}</th>
                                                                                 <td>{{ $model->last_name }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Дата рождения</th>
+                                                                                <th>{{ getTranslation('birth-date') }}</th>
                                                                                 <td>{{ $model->date_of_birth }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Пол</th>
+                                                                                <th>{{ getTranslation('gender') }}</th>
                                                                                 <td>{{ $model->gender }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Email</th>
+                                                                                <th>{{ getTranslation('email') }}</th>
                                                                                 <td>{{ $model->email }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Email подтвержден</th>
+                                                                                <th>{{ getTranslation('email-confirmed') }}
+                                                                                </th>
                                                                                 <td>{{ $model->email_verified_at ? $model->email_verified_at->format('d-m-Y, H:i') : '' }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>FIDE ID</th>
+                                                                                <th>{{ getTranslation('fide-id') }}</th>
                                                                                 <td>{{ $model->fide_id }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Категория аккредитации</th>
+                                                                                <th>{{ getTranslation('accreditation-category') }}
+                                                                                </th>
                                                                                 <td>{{ $model->accreditation_category_id }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Гражданство</th>
+                                                                                <th>{{ getTranslation('citizenship') }}
+                                                                                </th>
                                                                                 <td>{{ $model->citizenship }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Номер паспорта</th>
+                                                                                <th>{{ getTranslation('passport-number') }}
+                                                                                </th>
                                                                                 <td>{{ $model->passport_number }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Дата выдачи паспорта</th>
+                                                                                <th>{{ getTranslation('passport-issue-date') }}
+                                                                                </th>
                                                                                 <td>{{ $model->passport_issue_date }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Срок действия паспорта</th>
+                                                                                <th>{{ getTranslation('Passport-validity-period') }}
+                                                                                </th>
                                                                                 <td>{{ $model->passport_expiry_date }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Орган выдачи паспорта</th>
+                                                                                <th>{{ getTranslation('passport-issuing-authority') }}
+                                                                                </th>
                                                                                 <td>{{ $model->passport_issuing_authority }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Копия паспорта</th>
+                                                                                <th>{{ getTranslation('copy-of-passport') }}
+                                                                                </th>
                                                                                 <td>
                                                                                     @if ($model->passport_copy)
                                                                                         <a href="{{ asset($model->passport_copy) }}"
-                                                                                            target="_blank">Смотреть</a>
+                                                                                            target="_blank">{{ getTranslation('view') }}</a>
                                                                                     @else
-                                                                                        Нет данных
+                                                                                        {{ getTranslation('no-data') }}
                                                                                     @endif
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Телефон</th>
+                                                                                <th>
+                                                                                    {{ getTranslation('phone') }}
+                                                                                </th>
                                                                                 <td>{{ $model->phone }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Фото</th>
+                                                                                <th>
+                                                                                    {{ getTranslation('photo') }}
+                                                                                </th>
                                                                                 <td>
                                                                                     @if ($model->photo)
                                                                                         <img src="{{ asset($model->photo) }}"
                                                                                             alt="Фото" width="100">
                                                                                     @else
-                                                                                        Нет фото
+                                                                                        {{ getTranslation('no-photo') }}
                                                                                     @endif
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Виза требуется?</th>
+                                                                                <th>{{ getTranslation('passport-number') }}
+                                                                                    Виза требуется?</th>
                                                                                 <td>
                                                                                     {{ $model->requires_visa ? 'Да' : 'Нет' }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Дата прибытия</th>
+                                                                                <th>{{ getTranslation('passport-number') }}
+                                                                                    Дата прибытия
+                                                                                </th>
                                                                                 <td>{{ optional($model->arrival_details)->format('d-m-Y') }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Дата отъезда</th>
+                                                                                <th>{{ getTranslation('passport-number') }}
+                                                                                    Дата отъезда
+                                                                                </th>
                                                                                 <td>{{ optional($model->departure_details)->format('d-m-Y') }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Детали проживания</th>
+                                                                                <th>{{ getTranslation('passport-number') }}
+                                                                                    Детали проживания
+                                                                                </th>
                                                                                 <td>{{ $model->accommodation_details }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Детали ПЦР-теста</th>
+                                                                                <th>{{ getTranslation('passport-number') }}
+                                                                                    Детали ПЦР-теста</th>
                                                                                 <td>{{ $model->pcr_test_details }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Статус</th>
+                                                                                <th>{{ getTranslation('passport-number') }}
+                                                                                    Статус
+                                                                                </th>
                                                                                 <td>{{ $model->status }}</td>
                                                                             </tr>
                                                                         </tbody>
