@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Container\Attributes\Auth;
-use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -17,6 +15,7 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
         Auth()->attempt($request->only('email', 'password'));
-        return redirect()->route('admin');
+        isActive();
+        return redirect()->route('tournaments.index');
     }
 }

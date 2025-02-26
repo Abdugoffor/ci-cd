@@ -7,7 +7,7 @@
 
             <div class="card-body">
 
-                <form action="{{ route('tournament.update', $tournament->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('tournaments.update', $tournament->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <fieldset class="mb-3">
@@ -15,26 +15,30 @@
 
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Name</label>
-                            <div class="col-lg-3">
-                                <input type="text" class="form-control" name="uz"
-                                    value="{{ $tournament->name['uz'] }}" placeholder="UZ">
-                                @error('uz')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-lg-3">
-                                <input type="text" class="form-control" name="ru"
-                                    value="{{ $tournament->name['ru'] }}" placeholder="RU">
-                                @error('ru')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-lg-3">
-                                <input type="text" class="form-control" name="en"
-                                    value="{{ $tournament->name['en'] }}" placeholder="EN">
-                                @error('en')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
+                            <div class="card-body">
+                                <ul class="nav nav-tabs">
+                                    @foreach (getLanguage() as $model)
+                                        <li class="nav-item">
+                                            <a href="#basic-tab1{{ $model->id }}"
+                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
+                                                data-toggle="tab">{{ $model->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <div class="tab-content">
+                                    @foreach (getLanguage() as $model)
+                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                            id="basic-tab1{{ $model->id }}">
+                                            <input type="text" class="form-control" name="name[{{ $model->slug }}]"
+                                                value="{{ $tournament->name[$model->slug] ?? '' }}"
+                                                placeholder="{{ $model->name }}">
+                                            @error($model->slug)
+                                                <p style="color: red;">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
 
@@ -111,12 +115,33 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Описание</label>
-                            <div class="col-lg-10">
-                                <textarea class="form-control" name="description" 
-                                    data-dashlane-classification="other">{{ $tournament->description }}</textarea>
-                                @error('description')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
+
+                            <div class="card-body">
+                                <ul class="nav nav-tabs">
+                                    @foreach (getLanguage() as $model)
+                                        <li class="nav-item">
+                                            <a href="#basic-tab12{{ $model->id }}"
+                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
+                                                data-toggle="tab">{{ $model->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <div class="tab-content">
+                                    @foreach (getLanguage() as $model)
+                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                            id="basic-tab12{{ $model->id }}">
+                                            <textarea class="form-control" name="description[{{ $model->slug }}]" data-dashlane-classification="other"
+                                                placeholder="{{ $model->name }}">{{ $tournament->description[$model->slug] ?? '' }}</textarea>
+                                            @error('description')
+                                                <p style="color:red;">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    @endforeach
+                                </div>
+
                             </div>
                         </div>
                         <div class="form-group row">

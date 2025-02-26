@@ -6,6 +6,7 @@ use App\Http\Requests\Tournament\TournamentStoreRequest;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Tournament;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class TournamentController extends Controller
@@ -24,7 +25,6 @@ class TournamentController extends Controller
     public function store(TournamentStoreRequest $request)
     {
         $data = $request->all();
-
         if ($request->hasFile('logo')) {
             $file       = $request->file('logo');
             $extensions = $file->getClientOriginalExtension();
@@ -33,15 +33,9 @@ class TournamentController extends Controller
             $data['logo'] = 'uploaded/' . $filename;
         }
 
-        $data['name'] = [
-            'uz' => $request->input('uz'),
-            'ru' => $request->input('ru'),
-            'en' => $request->input('en'),
-        ];
-
         Tournament::create($data);
 
-        return redirect()->route('tournament.index');
+        return redirect()->route('tournaments.index');
     }
 
     public function edit(Tournament $tournament)
@@ -51,10 +45,10 @@ class TournamentController extends Controller
         return view('admin.tournament.edit', ['categories' => $categories, 'countries' => $countries, 'tournament' => $tournament]);
     }
 
-    public function update(TournamentStoreRequest $request, Tournament $tournament)
+    public function update(Request $request, Tournament $tournament)
     {
         $data = $request->all();
-        
+
         if ($request->hasFile('logo')) {
             $file       = $request->file('logo');
             $extensions = $file->getClientOriginalExtension();
@@ -62,15 +56,9 @@ class TournamentController extends Controller
             $file->move(public_path('uploaded'), $filename);
             $data['logo'] = 'uploaded/' . $filename;
         }
-
-        $data['name'] = [
-            'uz' => $request->input('uz'),
-            'ru' => $request->input('ru'),
-            'en' => $request->input('en'),
-        ];
         $tournament->update($data);
 
-        return redirect()->route('tournament.index');
+        return redirect()->route('tournaments.index');
     }
 
     public function destroy(Tournament $tournament)

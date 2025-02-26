@@ -113,8 +113,10 @@
 
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-light" data-toggle="modal"
-                                                data-target="#modal_full{{ $model->id }}">Посмотреть</i></button>
+                                            <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                                                data-target="#modal_full{{ $model->id }}">
+                                                <i class="icon-eye8"></i>
+                                            </button>
                                             <!-- Full width modal -->
                                             <div id="modal_full{{ $model->id }}" class="modal fade" tabindex="-1">
                                                 <div class="modal-dialog modal-lg">

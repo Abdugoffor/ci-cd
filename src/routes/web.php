@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\ApplicationController as AdminAppController;
+use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\TournamentController;
+use App\Http\Controllers\Admin\TranslationController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\Auth\EmailVerifyController;
 use App\Http\Controllers\Auth\LoginController;
@@ -29,8 +32,16 @@ Route::post('/verify-email', [EmailVerifyController::class, 'verifyEmailCode'])-
 Route::get('/verify-code', [EmailVerifyController::class, 'codeForm'])->name('verify.code');
 Route::post('/verify-code', [EmailVerifyController::class, 'verifyCode'])->name('verify.code.post');
 
-Route::prefix('dashboard')->middleware(LangMiddleware::class)->group(function () {
-    Route::resource('/tournament', TournamentController::class);
+Route::prefix('dashboard')->middleware(['auth', LangMiddleware::class])->group(function () {
+
+    Route::resource('/tournaments', TournamentController::class);
+    Route::resource('/users', UserController::class);
+    Route::resource('/languages', LanguageController::class);
+    Route::resource('/translations', TranslationController::class);
+
+    Route::get('/language-status/{language}', [LanguageController::class, 'status'])->name('language.status');
+
+    Route::get('/users-status/{user}', [UserController::class, 'status'])->name('users.status');
     Route::get('/tournament/{tournament}/{status}', [TournamentController::class, 'statusUpdate'])->name('status.update');
     Route::get('/applications', [AdminAppController::class, 'index'])->name('application.index');
     Route::get('/applications-status/{participant}/{ststus}', [AdminAppController::class, 'status'])->name('application.status');

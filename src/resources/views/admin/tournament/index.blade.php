@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Соревнования')
+@section('title', getTranslation('competitions'))
 @section('content')
     <!-- Content area -->
     <div class="content">
@@ -46,8 +46,8 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('tournament.create') }}" class="btn btn-teal">
-                                <i class="icon-plus3 icon-1x mr-1"></i> Добавить
+                            <a href="{{ route('tournaments.create') }}" class="btn btn-teal">
+                                <i class="icon-plus3 icon-1x mr-1"></i>{{ getTranslation('add') }}
                             </a>
                         </div>
                     </div>
@@ -57,17 +57,17 @@
                             <thead>
                                 <tr>
                                     <th>№</th>
-                                    <th>Название</th>
-                                    <th>Тип соревнования</th>
-                                    <th>Страна</th>
-                                    <th>Начало регистрации</th>
-                                    <th>Оконч регистрации</th>
-                                    <th>Начало</th>
-                                    <th>Оконч</th>
-                                    <th>Статус</th>
-                                    <th>Участники</th>
-                                    <th>History</th>
-                                    <th>История</th>
+                                    <th>Название{{ getTranslation('add') }}</th>
+                                    <th>{{ getTranslation('competition-type') }}</th>
+                                    <th>{{ getTranslation('country') }}</th>
+                                    <th>{{ getTranslation('start-of-registration') }}</th>
+                                    <th>{{ getTranslation('registration-completed') }}</th>
+                                    <th>{{ getTranslation('start') }}</th>
+                                    <th>{{ getTranslation('finished') }}</th>
+                                    <th>{{ getTranslation('status') }}</th>
+                                    <th>{{ getTranslation('participants') }}</th>
+                                    <th>{{ getTranslation('function') }}</th>
+                                    <th>{{ getTranslation('history') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -137,7 +137,9 @@
                                         </td>
                                         <td>
                                             <h6 class="mb-0">{{ $model->participants()->count() }}</h6>
-                                            <div class="font-size-sm text-muted line-height-1">участники</div>
+                                            <div class="font-size-sm text-muted line-height-1">
+                                                {{ getTranslation('participants') }}
+                                            </div>
                                         </td>
                                         <td class="text-center">
                                             <div class="list-icons">
@@ -145,17 +147,17 @@
                                                     <a href="#" class="list-icons-item" data-toggle="dropdown"><i
                                                             class="icon-menu7"></i></a>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a href="{{ route('tournament.edit', $model->id) }}"
+                                                        <a href="{{ route('tournaments.edit', $model->id) }}"
                                                             class="dropdown-item"><i
                                                                 class="icon-pencil3 mr-2 text-success"></i>
-                                                            Изменить</a>
-                                                        <form action="{{ route('tournament.destroy', $model->id) }}"
+                                                                {{ getTranslation('change') }}</a>
+                                                        <form action="{{ route('tournaments.destroy', $model->id) }}"
                                                             method="post">
                                                             @method('DELETE')
                                                             @csrf
                                                             <button type="submit" class="dropdown-item">
                                                                 <i class="icon-cross2 text-danger"></i>
-                                                                Удалить
+                                                                {{ getTranslation('delete') }}
                                                             </button>
                                                         </form>
                                                     </div>

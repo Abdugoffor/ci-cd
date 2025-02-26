@@ -1,10 +1,15 @@
 <?php
 
-if (!function_exists('slug')) {
+use App\Models\Language;
+use App\Models\Translation;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+
+if (! function_exists('slug')) {
     function slug(string $data)
     {
         $cyrillicAlphabet = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я'];
-        $latinAlphabet = ['a', 'b', 'v', 'g', 'd', 'e', 'yo', 'j', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'ts', 'ch', 'sh', 'sch', '', 'y', '', 'e', 'yu', 'ya'];
+        $latinAlphabet    = ['a', 'b', 'v', 'g', 'd', 'e', 'yo', 'j', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'ts', 'ch', 'sh', 'sch', '', 'y', '', 'e', 'yu', 'ya'];
 
         $str = str_replace($cyrillicAlphabet, $latinAlphabet, strtolower(trim($data)));
         $str = preg_replace('/[^\w\d\-\ ]/', '', $str);
@@ -12,31 +17,38 @@ if (!function_exists('slug')) {
         return preg_replace('/\-{2,}/', '-', $str);
     }
 }
-if (!function_exists('isVerified')) {
-    function isVerified()
+if (! function_exists('isActive')) {
+    function isActive()
     {
-        if (auth()->check()) {
-            if (auth()->user()->email_verified_at) {
-                return true;
+        if (Auth::check()) {
+            if (! Auth::user()->status) {
+                Auth::logout();
             }
         }
-        return false;
     }
 }
-if (!function_exists('userCheck')) {
-    function userCheck()
+
+if (! function_exists('checkRole')) {
+    function checkRole(string $role)
     {
-        if (auth()->check()) {
+        if (Auth::user()->status && Auth::user()->role == $role) {
             return true;
         }
         return false;
     }
 }
 
-if (!function_exists('historyCheck')) {
+if (! function_exists('getLanguage')) {
+    function getLanguage()
+    {
+        return Language::where('is_active', true)->get();
+    }
+}
+
+if (! function_exists('historyCheck')) {
     function historyCheck($model)
     {
-        if (!$model || !$model->histories()->count()) {
+        if (! $model || ! $model->histories()->count()) {
             return ''; // Agar tarix bo'lmasa, hech narsa qaytarmaydi
         }
 
@@ -59,7 +71,7 @@ if (!function_exists('historyCheck')) {
                                 <div class="list-feed">';
 
         foreach ($model->histories as $history) {
-            $userName = optional($history->user)->name ?: '';
+            $userName  = optional($history->user)->name ?: '';
             $createdAt = $history->created_at->format('d-M-Y, H:i');
             $html .= '<div class="list-feed-item">
                         <a href="#">' . $userName . '<br> ' . $history->action . ', ' . $createdAt . '</a>';
@@ -69,7 +81,7 @@ if (!function_exists('historyCheck')) {
 
                 foreach ($changes as $key => $value) {
                     if ($key !== 'logo' && $key !== 'updated_at') {
-                        $formattedKey = ucfirst(str_replace('_', ' ', $key));
+                        $formattedKey   = ucfirst(str_replace('_', ' ', $key));
                         $formattedValue = is_array($value) ? implode(', ', $value) : $value;
                         $html .= '<li>' . $formattedKey . ': <span>' . $formattedValue . '</span></li>';
                     }
@@ -83,5 +95,20 @@ if (!function_exists('historyCheck')) {
 
         $html .= '</div></div></div></div></div></div><!-- /right panel -->';
         return $html;
+    }
+}
+
+if (! function_exists('getTranslation')) {
+    function getTranslation($slug)
+    {
+        $translation = Translation::where('slug', $slug)->first();
+
+        if ($translation) {
+            if ($translation->name[App::getLocale()]) {
+                return $translation->name[App::getLocale()];
+            }
+            return $translation->default;
+        }
+        return null;
     }
 }

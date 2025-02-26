@@ -7,38 +7,42 @@
 
             <div class="card-body">
 
-                <form action="{{ route('tournament.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('tournaments.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <fieldset class="mb-3">
                         <legend class="text-uppercase font-size-sm font-weight-bold">Basic inputs</legend>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Name</label>
-                            <div class="col-lg-3">
-                                <input type="text" class="form-control" name="uz" value="{{ old('uz') }}"
-                                    placeholder="UZ">
-                                @error('uz')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-lg-3">
-                                <input type="text" class="form-control" name="ru" value="{{ old('ru') }}"
-                                    placeholder="RU">
-                                @error('ru')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-lg-3">
-                                <input type="text" class="form-control" name="en" value="{{ old('en') }}"
-                                    placeholder="EN">
-                                @error('en')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
+                            <label class="col-form-label col-lg-2">{{ getTranslation('name') }}</label>
+                            <div class="card-body">
+                                <ul class="nav nav-tabs">
+                                    @foreach (getLanguage() as $model)
+                                        <li class="nav-item">
+                                            <a href="#basic-tab1{{ $model->id }}"
+                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
+                                                data-toggle="tab">{{ $model->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <div class="tab-content">
+                                    @foreach (getLanguage() as $model)
+                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                            id="basic-tab1{{ $model->id }}">
+                                            <input type="text" class="form-control" name="name[{{ $model->slug }}]"
+                                                value="{{ old($model->slug) }}" placeholder="{{ $model->name }}">
+                                            @error($model->slug)
+                                                <p style="color: red;">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    @endforeach
+                                </div>
+
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Category</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('category') }}</label>
                             <div class="col-lg-10">
                                 <select name="category_id" id="" class="form-control">
                                     @foreach ($categories as $category)
@@ -51,7 +55,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Country</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('country') }}</label>
                             <div class="col-lg-10">
                                 <select name="country_id" id="" class="form-control">
                                     @foreach ($countries as $country)
@@ -65,7 +69,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Registration start</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('start-of-registration') }}</label>
                             <div class="col-lg-10">
                                 <input class="form-control" type="date" name="registration_start"
                                     value="{{ old('registration_start') }}">
@@ -75,7 +79,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Registration end</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('registration-completed') }}</label>
                             <div class="col-lg-10">
                                 <input class="form-control" type="date" value="{{ old('registration_end') }}"
                                     name="registration_end">
@@ -85,7 +89,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Tournament Start Date</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('start') }}</label>
                             <div class="col-lg-10">
                                 <input class="form-control" type="date" value="{{ old('start_date') }}"
                                     name="start_date">
@@ -95,7 +99,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Tournament End Date</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('finished') }}</label>
                             <div class="col-lg-10">
                                 <input class="form-control" type="date" value="{{ old('end_date') }}" name="end_date">
                                 @error('end_date')
@@ -104,17 +108,37 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Описание</label>
-                            <div class="col-lg-10">
-                                <textarea class="form-control" name="description" data-dashlane-rid="ee64733f76cd7a08"
-                                    data-dashlane-classification="other"></textarea>
-                                @error('description')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
+                            <label class="col-form-label col-lg-2">{{ getTranslation('description') }}</label>
+                            <div class="card-body">
+                                <ul class="nav nav-tabs">
+                                    @foreach (getLanguage() as $model)
+                                        <li class="nav-item">
+                                            <a href="#basic-tab12{{ $model->id }}"
+                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
+                                                data-toggle="tab">{{ $model->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <div class="tab-content">
+                                    @foreach (getLanguage() as $model)
+                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                            id="basic-tab12{{ $model->id }}">
+                                            <textarea class="form-control" name="description[{{ $model->slug }}]" data-dashlane-classification="other"
+                                                placeholder="{{ $model->name }}"></textarea>
+                                            @error('description')
+                                                <p style="color:red;">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    @endforeach
+                                </div>
+
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Logo</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('logo') }}</label>
                             <div class="col-lg-10">
                                 <input class="form-control" type="file" name="logo">
                                 @error('logo')
@@ -124,7 +148,7 @@
                         </div>
                     </fieldset>
                     <div class="text-right">
-                        <button type="submit" class="btn btn-primary">Добавить</button>
+                        <button type="submit" class="btn btn-primary">{{ getTranslation('add') }}</button>
                     </div>
                 </form>
             </div>

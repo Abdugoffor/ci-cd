@@ -3,10 +3,11 @@ namespace App\Models;
 
 use App\Traits\HasHistory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Participant extends Model
 {
-    use HasHistory;
+    use HasHistory, SoftDeletes;
     protected $fillable = [
         'tournament_id',
         'first_name',    // Ism (pasportdagidek)

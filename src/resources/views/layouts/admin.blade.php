@@ -12,7 +12,7 @@
     <link href="{{ asset('global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
-    
+
     <!-- Core JS files -->
     <script src="{{ asset('global_assets/js/main/jquery.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
@@ -26,17 +26,17 @@
 
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script>
-    <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/streamgraph.js') }}"></script>
+    {{-- <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/streamgraph.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/sparklines.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/lines.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/areas.js') }}"></script>
-    <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/donuts.js') }}"></script>
-    <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/bars.js') }}"></script>
-    <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/progress.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/donuts.js') }}"></script> --}}
+    {{-- <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/bars.js') }}"></script> --}}
+    {{-- <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/progress.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/heatmaps.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/pies.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/light/bullets.js') }}"></script>
-    <script src="{{ asset('global_assets/js/demo_pages/components_modals.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_pages/components_modals.js') }}"></script> --}}
 </head>
 
 <body>
@@ -336,7 +336,7 @@
                 <div class="sidebar-section">
                     <ul class="nav nav-sidebar" data-nav-type="accordion">
                         <li class="nav-item">
-                            <a href="{{ route('tournament.index') }}" class="nav-link">
+                            <a href="{{ route('tournaments.index') }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>Соревнования</span>
                             </a>
@@ -345,6 +345,24 @@
                             <a href="{{ route('application.index') }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>Заявки</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('users.index') }}" class="nav-link">
+                                <i class="icon-list-unordered"></i>
+                                <span>Пользователи</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('languages.index') }}" class="nav-link">
+                                <i class="icon-list-unordered"></i>
+                                <span>Языки</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('translations.index') }}" class="nav-link">
+                                <i class="icon-list-unordered"></i>
+                                <span>Переводы</span>
                             </a>
                         </li>
                     </ul>

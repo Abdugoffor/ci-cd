@@ -21,11 +21,11 @@ class LangMiddleware
         $locale = Session::get('locale', 'en');
 
         if (! in_array($locale, $availableLocales)) {
-            $locale = 'uz';
+            $locale = 'ru';
             Session::put('locale', $locale);
         }
 
-        App::setLocale($locale);
+        App::setLocale('uz');
 
         return $next($request);
     }

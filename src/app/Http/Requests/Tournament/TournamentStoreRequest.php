@@ -20,18 +20,25 @@ class TournamentStoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'uz'                 => 'required|string|max:255',
-            'ru'                 => 'required|string|max:255',
-            'en'                 => 'required|string|max:255',
-            'country_id'         => 'required|exists:countries,id',
+        $languages = getLanguage()->where('is_active', true)->pluck('slug')->toArray();
+
+        $rules = [
             'category_id'        => 'required|exists:categories,id',
-            'registration_start' => 'required|date',
-            'registration_end'   => 'required|date',
-            'start_date'         => 'required|date',
-            'end_date'           => 'required|date',
+            'country_id'         => 'required|exists:countries,id',
+            'registration_start' => 'nullable|date',
+            'registration_end'   => 'nullable|date|after_or_equal:registration_start',
+            'start_date'         => 'nullable|date',
+            'end_date'           => 'nullable|date|after_or_equal:start_date',
+            'name'               => 'required|array',
+            'description'        => 'required|array',
             'logo'               => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'description'        => 'required|string',
         ];
+
+        foreach ($languages as $lang) {
+            $rules["name.$lang"]        = 'required|string|max:255';
+            $rules["description.$lang"] = 'required|string';
+        }
+
+        return $rules;
     }
 }

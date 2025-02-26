@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\LanguageRequest;
+use App\Models\Language;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
+class LanguageController extends Controller
+{
+    public function index()
+    {
+        $models = Language::paginate(10);
+        return view('admin.languages.index', data: ['models' => $models]);
+    }
+    public function create()
+    {
+        return view('admin.languages.create');
+    }
+    public function store(LanguageRequest $request)
+    {
+        $data = $request->all();
+
+        $data['slug'] = slug($data['name']);
+
+        Language::create($data);
+
+        return redirect()->route('languages.index');
+    }
+
+    public function edit(Language $language)
+    {
+        return view('admin.languages.edit', ['model' => $language]);
+    }
+
+    public function update(LanguageRequest $request, Language $language)
+    {
+        $data = $request->all();
+
+        $language->update($data);
+
+        return redirect()->route('languages.index');
+    }
+
+    public function destroy(Language $language)
+    {
+        $language->delete();
+        return redirect()->route('languages.index');
+    }
+    public function status(Language $language)
+    {
+        $language->update(['is_active' => ! $language->is_active]);
+        return back();
+    }
+}

@@ -38,6 +38,7 @@ return new class extends Migration
             $table->text('pcr_test_details')->nullable();
             $table->enum('status', ['pending', 'approved', 'canceled'])->default('pending');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
