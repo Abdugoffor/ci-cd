@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TranslationRequest;
+use App\Http\Requests\TranslationUpdateRequest;
 use App\Models\Language;
 use App\Models\Translation;
 
@@ -34,7 +35,7 @@ class TranslationController extends Controller
         return view('admin.translations.edit', ['model' => $translation]);
     }
 
-    public function update(TranslationRequest $request, Translation $translation)
+    public function update(TranslationUpdateRequest $request, Translation $translation)
     {
         $arrays = $this->validatedData($request->all());
 

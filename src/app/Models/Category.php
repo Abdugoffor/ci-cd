@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Category extends Model
 {
     use SoftDeletes, HasHistory;
-    protected $fillable = ["name", "slug"];
+    protected $fillable = ["name", "description", "slug", 'default'];
     protected $casts    = [
-        'name' => 'array',
+        'name'        => 'array',
+        'description' => 'array',
     ];
 
     public function tournaments()

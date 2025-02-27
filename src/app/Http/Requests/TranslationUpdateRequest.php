@@ -1,10 +1,9 @@
 <?php
 namespace App\Http\Requests;
 
-use App\Models\Translation;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TranslationRequest extends FormRequest
+class TranslationUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,7 +20,7 @@ class TranslationRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules     = [];
+        $rules = [];
 
         $languages = getLanguage();
 
@@ -29,16 +28,7 @@ class TranslationRequest extends FormRequest
             $rules[$language->slug] = 'required|string';
         }
 
-        $rules['default'] = [
-            'required',
-            'string',
-            function ($attribute, $value, $fail) {
-                $slug = slug($value);
-                if (Translation::where('slug', $slug)->exists()) {
-                    $fail("The generated slug '{$slug}' has already been taken.");
-                }
-            },
-        ];
+        $rules['default'] = ['required', 'string'];
 
         return $rules;
 

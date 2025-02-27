@@ -4,6 +4,7 @@ use App\Models\Language;
 use App\Models\Translation;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 if (! function_exists('slug')) {
     function slug(string $data)
@@ -49,7 +50,7 @@ if (! function_exists('historyCheck')) {
     function historyCheck($model)
     {
         if (! $model || ! $model->histories()->count()) {
-            return ''; // Agar tarix bo'lmasa, hech narsa qaytarmaydi
+            return '';
         }
 
         $html = '<!-- Button trigger modal -->
@@ -101,14 +102,43 @@ if (! function_exists('historyCheck')) {
 if (! function_exists('getTranslation')) {
     function getTranslation($slug)
     {
-        $translation = Translation::where('slug', $slug)->first();
+        return Cache::remember("menyu.{$slug}_" . App::getLocale(), now()->addMinutes(180), function () use ($slug) {
+            $translation = Translation::where('slug', $slug)->first();
 
-        if ($translation) {
-            if ($translation->name[App::getLocale()]) {
-                return $translation->name[App::getLocale()];
+            if ($translation) {
+                return $translation->name[App::getLocale()] ?? $translation->default;
             }
-            return $translation->default;
+
+            return null;
+        });
+    }
+}
+
+if (! function_exists('validateTranslation')) {
+    function validateTranslation($col)
+    {
+        $languages = getLanguage()->pluck('slug')->toArray();
+
+        $rules = [];
+
+        foreach ($languages as $lang) {
+            $rules["$col.$lang"] = 'required|string';
         }
-        return null;
+
+        return $rules;
+    }
+}
+
+if (! function_exists('getLocale')) {
+    function getLocale($model)
+    {
+        $lang = App::getLocale();
+        if ($lang) {
+            if ($model[$lang]) {
+
+                return $model[$lang];
+            }
+        }
+        return $model['default'];
     }
 }

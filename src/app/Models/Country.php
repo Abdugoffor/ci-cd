@@ -8,7 +8,7 @@ class Country extends Model
 {
     use HasHistory;
     protected $fillable = [
-        'code', 'code3', 'codeNumeric', 'postCode', 'active', 'label_nl', 'label_en', 'label_es', 'label_fr', 'domain',
+        'name', 'default', 'code', 'code3', 'codeNumeric', 'postCode', 'active', 'label_nl', 'label_en', 'label_es', 'label_fr', 'domain',
     ];
 
     public function tournaments()

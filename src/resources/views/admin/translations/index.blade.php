@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Переводы')
+@section('title', getTranslation('translations'))
 @section('content')
     <!-- Content area -->
     <div class="content">
@@ -22,7 +22,7 @@
 
                         <div>
                             <a href="{{ route('translations.create') }}" class="btn btn-teal">
-                                <i class="icon-plus3 icon-1x mr-1"></i> Добавить
+                                <i class="icon-plus3 icon-1x mr-1"></i> {{ getTranslation('add') }}
                             </a>
                         </div>
                     </div>
@@ -31,9 +31,9 @@
                             <thead>
                                 <tr>
                                     <th>№</th>
-                                    <th>Стандартный</th>
-                                    <th>Функция</th>
-                                    <th>История</th>
+                                    <th>{{ getTranslation('standard') }}</th>
+                                    <th>{{ getTranslation('function') }}</th>
+                                    <th>{{ getTranslation('history') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,45 +48,6 @@
                                                     <i class="icon-pencil3"></i>
                                                 </a>
 
-                                                {{-- <button type="button" class="btn btn-sm btn-outline-danger ml-2"
-                                                    data-toggle="modal" data-target="#modal_full{{ $model->id }}"><i
-                                                        class="icon-trash"></i>
-                                                </button> --}}
-                                                <!-- Full width modal -->
-                                                <div id="modal_full{{ $model->id }}" class="modal fade" tabindex="-1">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Языки</h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal">&times;</button>
-                                                            </div>
-
-                                                            <form action="{{ route('languages.destroy', $model->id) }}"
-                                                                method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <div class="modal-body">
-                                                                    <div class="row">
-                                                                        <div class="col-12">
-                                                                            <h3>Хотите удалить?</h3>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal"
-                                                                        data-dashlane-label="true">Закрыть</button>
-                                                                    <button type="submit" class="btn btn-danger"
-                                                                        data-dashlane-label="true">Подтвердить</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /full width modal -->
                                             </div>
                                         </td>
                                         <td>

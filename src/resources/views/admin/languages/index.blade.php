@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Языки')
+@section('title', getTranslation('language'))
 @section('content')
     <!-- Content area -->
     <div class="content">
@@ -22,7 +22,7 @@
 
                         <div>
                             <a href="{{ route('languages.create') }}" class="btn btn-teal">
-                                <i class="icon-plus3 icon-1x mr-1"></i> Добавить
+                                <i class="icon-plus3 icon-1x mr-1"></i>{{ getTranslation('add') }}
                             </a>
                         </div>
                     </div>
@@ -31,10 +31,10 @@
                             <thead>
                                 <tr>
                                     <th>№</th>
-                                    <th>Имя</th>
-                                    <th>Статус</th>
-                                    <th>Функция</th>
-                                    <th>История</th>
+                                    <th>{{ getTranslation('name') }}</th>
+                                    <th>{{ getTranslation('status') }}</th>
+                                    <th>{{ getTranslation('function') }}</th>
+                                    <th>{{ getTranslation('history') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,7 +45,7 @@
                                         <td>
                                             <a href="{{ route('language.status', $model->id) }}"
                                                 class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
-                                                {{ $model->is_active ? 'актив' : 'не активен' }}
+                                                {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
                                         </td>
                                         <td>
@@ -64,7 +64,7 @@
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title">Языки</h5>
+                                                                <h5 class="modal-title">{{ getTranslation('language') }}</h5>
                                                                 <button type="button" class="close"
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
@@ -76,7 +76,7 @@
                                                                 <div class="modal-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            <h3>Хотите удалить?</h3>
+                                                                            <h3>{{ getTranslation('do-you-want-to-delete') }}?</h3>
                                                                         </div>
                                                                     </div>
 
@@ -85,9 +85,9 @@
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
                                                                         data-dismiss="modal"
-                                                                        data-dashlane-label="true">Закрыть</button>
+                                                                        data-dashlane-label="true">{{ getTranslation('close') }}</button>
                                                                     <button type="submit" class="btn btn-danger"
-                                                                        data-dashlane-label="true">Подтвердить</button>
+                                                                        data-dashlane-label="true">{{ getTranslation('confirm') }}</button>
                                                                 </div>
                                                             </form>
                                                         </div>

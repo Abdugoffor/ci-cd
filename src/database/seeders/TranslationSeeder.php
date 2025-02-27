@@ -13,8 +13,8 @@ class TranslationSeeder extends Seeder
     {
         $translations = [
             [
-                'slug' => 'competitions',
-                'name' => json_encode([
+                'slug'    => 'competitions',
+                'name'    => json_encode([
                     'uz' => 'Musobaqalar',
                     'ru' => 'Соревнования',
                     'en' => 'Competitions',
@@ -22,8 +22,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Competitions',
             ],
             [
-                'slug' => 'add',
-                'name' => json_encode([
+                'slug'    => 'add',
+                'name'    => json_encode([
                     'uz' => "Qo'shish",
                     'ru' => 'Добавить',
                     'en' => 'Add',
@@ -31,8 +31,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Add',
             ],
             [
-                'slug' => 'competition-type',
-                'name' => json_encode([
+                'slug'    => 'competition-type',
+                'name'    => json_encode([
                     'uz' => "Musobaqaning turi",
                     'ru' => 'Тип соревнования',
                     'en' => 'Competition type',
@@ -40,8 +40,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Competition type',
             ],
             [
-                'slug' => 'country',
-                'name' => json_encode([
+                'slug'    => 'country',
+                'name'    => json_encode([
                     'uz' => "Mamlakat",
                     'ru' => 'Страна',
                     'en' => 'Country',
@@ -49,8 +49,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Country',
             ],
             [
-                'slug' => 'start-of-registration',
-                'name' => json_encode([
+                'slug'    => 'start-of-registration',
+                'name'    => json_encode([
                     'uz' => "Ro'yxatdan o'tish boshlanishi",
                     'ru' => 'Начало регистрации',
                     'en' => 'Start of registration',
@@ -58,8 +58,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Start of registration',
             ],
             [
-                'slug' => 'registration-completed',
-                'name' => json_encode([
+                'slug'    => 'registration-completed',
+                'name'    => json_encode([
                     'uz' => "Roʻyxatdan oʻtish tugallandi",
                     'ru' => 'Оконч регистрации',
                     'en' => 'Registration completed',
@@ -67,8 +67,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Registration completed',
             ],
             [
-                'slug' => 'start',
-                'name' => json_encode([
+                'slug'    => 'start',
+                'name'    => json_encode([
                     'uz' => "Boshlash",
                     'ru' => 'Начало',
                     'en' => 'Start',
@@ -76,8 +76,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Start',
             ],
             [
-                'slug' => 'finished',
-                'name' => json_encode([
+                'slug'    => 'finished',
+                'name'    => json_encode([
                     'uz' => "Tugallandi",
                     'ru' => 'Оконч',
                     'en' => 'Finished',
@@ -85,8 +85,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Finished',
             ],
             [
-                'slug' => 'status',
-                'name' => json_encode([
+                'slug'    => 'status',
+                'name'    => json_encode([
                     'uz' => "Status",
                     'ru' => 'Статус',
                     'en' => 'Status',
@@ -94,8 +94,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Status',
             ],
             [
-                'slug' => 'participants',
-                'name' => json_encode([
+                'slug'    => 'participants',
+                'name'    => json_encode([
                     'uz' => "Ishtirokchilar",
                     'ru' => 'Участники',
                     'en' => 'Participants',
@@ -103,8 +103,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Participants',
             ],
             [
-                'slug' => 'function',
-                'name' => json_encode([
+                'slug'    => 'function',
+                'name'    => json_encode([
                     'uz' => "Funktsiya",
                     'ru' => 'Функции',
                     'en' => 'Functions',
@@ -112,8 +112,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Funktsiya',
             ],
             [
-                'slug' => 'history',
-                'name' => json_encode([
+                'slug'    => 'history',
+                'name'    => json_encode([
                     'uz' => "Tarix",
                     'ru' => 'История',
                     'en' => 'History',
@@ -121,8 +121,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'History',
             ],
             [
-                'slug' => 'name',
-                'name' => json_encode([
+                'slug'    => 'name',
+                'name'    => json_encode([
                     'uz' => "Ism",
                     'ru' => 'Имя',
                     'en' => 'Name',
@@ -130,8 +130,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Name',
             ],
             [
-                'slug' => 'category',
-                'name' => json_encode([
+                'slug'    => 'category',
+                'name'    => json_encode([
                     'uz' => "Turkum",
                     'ru' => 'Категория',
                     'en' => 'Category',
@@ -139,8 +139,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Category',
             ],
             [
-                'slug' => 'description',
-                'name' => json_encode([
+                'slug'    => 'description',
+                'name'    => json_encode([
                     'uz' => "Tavsif",
                     'ru' => 'Описание',
                     'en' => 'Description',
@@ -148,8 +148,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Description',
             ],
             [
-                'slug' => 'logo',
-                'name' => json_encode([
+                'slug'    => 'logo',
+                'name'    => json_encode([
                     'uz' => "Logotip",
                     'ru' => 'Логотип',
                     'en' => 'Logo',
@@ -157,8 +157,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Logo',
             ],
             [
-                'slug' => 'change',
-                'name' => json_encode([
+                'slug'    => 'change',
+                'name'    => json_encode([
                     'uz' => "O'zgartirish",
                     'ru' => 'Изменить',
                     'en' => 'Change',
@@ -166,17 +166,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Change',
             ],
             [
-                'slug' => 'change',
-                'name' => json_encode([
-                    'uz' => "O'zgartirish",
-                    'ru' => 'Изменить',
-                    'en' => 'Change',
-                ], JSON_UNESCAPED_UNICODE),
-                'default' => 'Change',
-            ],
-            [
-                'slug' => 'delete',
-                'name' => json_encode([
+                'slug'    => 'delete',
+                'name'    => json_encode([
                     'uz' => "Oʻchirish",
                     'ru' => 'Удалить',
                     'en' => 'Delete',
@@ -184,8 +175,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Delete',
             ],
             [
-                'slug' => 'standard',
-                'name' => json_encode([
+                'slug'    => 'standard',
+                'name'    => json_encode([
                     'uz' => "Standart",
                     'ru' => 'Стандартный',
                     'en' => 'Standard',
@@ -193,8 +184,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Standard',
             ],
             [
-                'slug' => 'type',
-                'name' => json_encode([
+                'slug'    => 'type',
+                'name'    => json_encode([
                     'uz' => "Turi",
                     'ru' => 'Тип',
                     'en' => 'Type',
@@ -202,8 +193,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Type',
             ],
             [
-                'slug' => 'applications',
-                'name' => json_encode([
+                'slug'    => 'applications',
+                'name'    => json_encode([
                     'uz' => "Arizalar",
                     'ru' => 'Заявки',
                     'en' => 'Applications',
@@ -211,8 +202,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Applications',
             ],
             [
-                'slug' => 'birth-date',
-                'name' => json_encode([
+                'slug'    => 'birth-date',
+                'name'    => json_encode([
                     'uz' => "Tug'ilgan sana",
                     'ru' => 'Дата рождения',
                     'en' => 'Birth date',
@@ -220,8 +211,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Birth date',
             ],
             [
-                'slug' => 'gender',
-                'name' => json_encode([
+                'slug'    => 'gender',
+                'name'    => json_encode([
                     'uz' => 'Jinsi',
                     'ru' => 'Пол',
                     'en' => 'Gender',
@@ -229,8 +220,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Gender',
             ],
             [
-                'slug' => 'email',
-                'name' => json_encode([
+                'slug'    => 'email',
+                'name'    => json_encode([
                     'uz' => 'Elektron pochta',
                     'ru' => 'Почта',
                     'en' => 'Email',
@@ -238,8 +229,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Email',
             ],
             [
-                'slug' => 'visa-required',
-                'name' => json_encode([
+                'slug'    => 'visa-required',
+                'name'    => json_encode([
                     'uz' => 'Viza talab qilinadi',
                     'ru' => 'Требуется виза',
                     'en' => 'Visa required',
@@ -247,8 +238,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Visa required',
             ],
             [
-                'slug' => 'registration-end',
-                'name' => json_encode([
+                'slug'    => 'registration-end',
+                'name'    => json_encode([
                     'uz' => "Ro'yxatdan o'tish tugash sanasi",
                     'ru' => 'Оконч регистрации',
                     'en' => 'Registration end',
@@ -256,8 +247,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Registration end',
             ],
             [
-                'slug' => 'arrival-date',
-                'name' => json_encode([
+                'slug'    => 'arrival-date',
+                'name'    => json_encode([
                     'uz' => 'Kelish sanasi',
                     'ru' => 'Дата прибытия',
                     'en' => 'Arrival date',
@@ -265,8 +256,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Arrival date',
             ],
             [
-                'slug' => 'departure-date',
-                'name' => json_encode([
+                'slug'    => 'departure-date',
+                'name'    => json_encode([
                     'uz' => 'Jo‘nab ketish sanasi',
                     'ru' => 'Дата отъезда',
                     'en' => 'Departure date',
@@ -274,8 +265,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Departure date',
             ],
             [
-                'slug' => 'view',
-                'name' => json_encode([
+                'slug'    => 'view',
+                'name'    => json_encode([
                     'uz' => 'Ko‘rish',
                     'ru' => 'Посмотреть',
                     'en' => 'View',
@@ -283,8 +274,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'View',
             ],
             [
-                'slug' => 'application',
-                'name' => json_encode([
+                'slug'    => 'application',
+                'name'    => json_encode([
                     'uz' => 'Ariza',
                     'ru' => 'Заявка',
                     'en' => 'Application',
@@ -292,8 +283,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Application',
             ],
             [
-                'slug' => 'application',
-                'name' => json_encode([
+                'slug'    => 'application',
+                'name'    => json_encode([
                     'uz' => 'Ariza',
                     'ru' => 'Заявка',
                     'en' => 'Application',
@@ -301,8 +292,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Application',
             ],
             [
-                'slug' => 'last-name',
-                'name' => json_encode([
+                'slug'    => 'last-name',
+                'name'    => json_encode([
                     'uz' => 'Familiya',
                     'ru' => 'Фамилия',
                     'en' => 'Last name',
@@ -310,8 +301,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Last name',
             ],
             [
-                'slug' => 'email-confirmed',
-                'name' => json_encode([
+                'slug'    => 'email-confirmed',
+                'name'    => json_encode([
                     'uz' => 'Email tasdiqlandi',
                     'ru' => 'Email подтвержден',
                     'en' => 'Email confirmed',
@@ -319,8 +310,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Email confirmed',
             ],
             [
-                'slug' => 'fide-id',
-                'name' => json_encode([
+                'slug'    => 'fide-id',
+                'name'    => json_encode([
                     'uz' => 'FIDE ID',
                     'ru' => 'FIDE ID',
                     'en' => 'FIDE ID',
@@ -328,8 +319,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'FIDE ID',
             ],
             [
-                'slug' => 'accreditation-category',
-                'name' => json_encode([
+                'slug'    => 'accreditation-category',
+                'name'    => json_encode([
                     'uz' => 'Akkreditatsiya toifasi',
                     'ru' => 'Категория аккредитации',
                     'en' => 'Accreditation category',
@@ -337,8 +328,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Accreditation category',
             ],
             [
-                'slug' => 'citizenship',
-                'name' => json_encode([
+                'slug'    => 'citizenship',
+                'name'    => json_encode([
                     'uz' => 'Fuqarolik',
                     'ru' => 'Гражданство',
                     'en' => 'Citizenship',
@@ -346,8 +337,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Citizenship',
             ],
             [
-                'slug' => 'passport-number',
-                'name' => json_encode([
+                'slug'    => 'passport-number',
+                'name'    => json_encode([
                     'uz' => 'Pasport raqami',
                     'ru' => 'Номер паспорта',
                     'en' => 'Passport number',
@@ -355,8 +346,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Passport number',
             ],
             [
-                'slug' => 'passport-issue-date',
-                'name' => json_encode([
+                'slug'    => 'passport-issue-date',
+                'name'    => json_encode([
                     'uz' => 'Pasport berilgan sana',
                     'ru' => 'Дата выдачи паспорта',
                     'en' => 'Passport issue date',
@@ -364,8 +355,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Passport issue date',
             ],
             [
-                'slug' => 'passport-validity-period',
-                'name' => json_encode([
+                'slug'    => 'passport-validity-period',
+                'name'    => json_encode([
                     'uz' => 'Pasportning amal qilish muddati',
                     'ru' => 'Срок действия паспорта',
                     'en' => 'Passport validity period',
@@ -373,8 +364,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Passport validity period',
             ],
             [
-                'slug' => 'passport-issuing-authority',
-                'name' => json_encode([
+                'slug'    => 'passport-issuing-authority',
+                'name'    => json_encode([
                     'uz' => 'Pasport beruvchi organ',
                     'ru' => 'Орган выдачи паспорта',
                     'en' => 'Passport issuing authority',
@@ -382,8 +373,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Passport issuing authority',
             ],
             [
-                'slug' => 'copy-of-passport',
-                'name' => json_encode([
+                'slug'    => 'copy-of-passport',
+                'name'    => json_encode([
                     'uz' => 'Pasport beruvchi organ',
                     'ru' => 'Копия паспорта',
                     'en' => 'Copy of passport',
@@ -391,8 +382,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Copy of passport',
             ],
             [
-                'slug' => 'no-data',
-                'name' => json_encode([
+                'slug'    => 'no-data',
+                'name'    => json_encode([
                     'uz' => 'Maʼlumot yoʻq',
                     'ru' => 'Нет данных',
                     'en' => 'No data',
@@ -400,8 +391,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'No data',
             ],
             [
-                'slug' => 'phone',
-                'name' => json_encode([
+                'slug'    => 'phone',
+                'name'    => json_encode([
                     'uz' => 'Telefon',
                     'ru' => 'Телефон',
                     'en' => 'Phone',
@@ -409,8 +400,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Phone',
             ],
             [
-                'slug' => 'photo',
-                'name' => json_encode([
+                'slug'    => 'photo',
+                'name'    => json_encode([
                     'uz' => 'Fotosurat',
                     'ru' => 'Фото',
                     'en' => 'Photo',
@@ -418,8 +409,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Photo',
             ],
             [
-                'slug' => 'no-photo',
-                'name' => json_encode([
+                'slug'    => 'no-photo',
+                'name'    => json_encode([
                     'uz' => 'Fotosurat yo‘q',
                     'ru' => 'Фото отсутствует',
                     'en' => 'No photo',
@@ -427,8 +418,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'No photo',
             ],
             [
-                'slug' => 'visa-required',
-                'name' => json_encode([
+                'slug'    => 'visa-required',
+                'name'    => json_encode([
                     'uz' => 'Viza talab qilinadi',
                     'ru' => 'Виза требуется',
                     'en' => 'Visa required',
@@ -436,8 +427,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Visa required',
             ],
             [
-                'slug' => 'yes',
-                'name' => json_encode([
+                'slug'    => 'yes',
+                'name'    => json_encode([
                     'uz' => 'Ha',
                     'ru' => 'Да',
                     'en' => 'Yes',
@@ -445,8 +436,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Yes',
             ],
             [
-                'slug' => 'no',
-                'name' => json_encode([
+                'slug'    => 'no',
+                'name'    => json_encode([
                     'uz' => 'Yo‘q',
                     'ru' => 'Нет',
                     'en' => 'No',
@@ -454,8 +445,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'No',
             ],
             [
-                'slug' => 'arrival-date',
-                'name' => json_encode([
+                'slug'    => 'arrival-date',
+                'name'    => json_encode([
                     'uz' => 'Kelish sanasi',
                     'ru' => 'Дата прибытия',
                     'en' => 'Arrival date',
@@ -463,8 +454,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Arrival date',
             ],
             [
-                'slug' => 'departure-date',
-                'name' => json_encode([
+                'slug'    => 'departure-date',
+                'name'    => json_encode([
                     'uz' => 'Jo‘nab ketish sanasi',
                     'ru' => 'Дата отъезда',
                     'en' => 'Departure date',
@@ -472,8 +463,8 @@ class TranslationSeeder extends Seeder
                 'default' => 'Departure date',
             ],
             [
-                'slug' => 'accommodation-details',
-                'name' => json_encode([
+                'slug'    => 'accommodation-details',
+                'name'    => json_encode([
                     'uz' => 'Yashash joyi tafsilotlari',
                     'ru' => 'Детали проживания',
                     'en' => 'Accommodation details',
@@ -481,13 +472,230 @@ class TranslationSeeder extends Seeder
                 'default' => 'Accommodation details',
             ],
             [
-                'slug' => 'pcr-test-details',
-                'name' => json_encode([
+                'slug'    => 'pcr-test-details',
+                'name'    => json_encode([
                     'uz' => 'PCR test tafsilotlari',
                     'ru' => 'Детали ПЦР-теста',
                     'en' => 'PCR test details',
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'PCR test details',
+            ],
+            [
+                'slug'    => 'reason-for-cancellation',
+                'name'    => json_encode([
+                    'uz' => 'Bekor qilish sababi',
+                    'ru' => 'Причина отмены',
+                    'en' => 'Reason for cancellation',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Reason for cancellation',
+            ],
+            [
+                'slug'    => 'close',
+                'name'    => json_encode([
+                    'uz' => 'Yopish',
+                    'ru' => 'Закрыть',
+                    'en' => 'Close',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Close',
+            ],
+            [
+                'slug'    => 'confirm',
+                'name'    => json_encode([
+                    'uz' => 'Tasdiqlash',
+                    'ru' => 'Подтвердить',
+                    'en' => 'Confirm',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Confirm',
+            ],
+            [
+                'slug'    => 'acceptance',
+                'name'    => json_encode([
+                    'uz' => 'Qabul qilish',
+                    'ru' => 'Принятие',
+                    'en' => 'Acceptance',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Acceptance',
+            ],
+            [
+                'slug'    => 'canceled',
+                'name'    => json_encode([
+                    'uz' => 'Qabul qilish',
+                    'ru' => 'Отменено',
+                    'en' => 'Canceled',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Canceled',
+            ],
+            // test
+            [
+                'slug'    => 'role',
+                'name'    => json_encode([
+                    'uz' => 'Qabul qilish',
+                    'ru' => 'Роль',
+                    'en' => 'Role',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Role',
+            ],
+            [
+                'slug'    => 'users',
+                'name'    => json_encode([
+                    'uz' => 'Qabul qilish',
+                    'ru' => 'Пользователи',
+                    'en' => 'Users',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Users',
+            ],
+            [
+                'slug'    => 'do-you-want-to-delete',
+                'name'    => json_encode([
+                    'uz' => 'Qabul qilish',
+                    'ru' => 'Хотите удалить',
+                    'en' => 'Do you want to delete',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Do you want to delete',
+            ],
+            [
+                'slug'    => 'assets',
+                'name'    => json_encode([
+                    'uz' => 'Qabul qilish',
+                    'ru' => 'актив',
+                    'en' => 'assets',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'assets',
+            ],
+            [
+                'slug'    => 'not-active',
+                'name'    => json_encode([
+                    'uz' => 'Qabul qilish',
+                    'ru' => 'не активен',
+                    'en' => 'not active',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'not active',
+            ],
+            [
+                'slug'    => 'password',
+                'name'    => json_encode([
+                    'uz' => 'Qabul qilish',
+                    'ru' => 'Пароль',
+                    'en' => 'password',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'password',
+            ],
+            [
+                'slug'    => 'password_conf',
+                'name'    => json_encode([
+                    'uz' => 'Qabul qilish',
+                    'ru' => 'Пароль подтвержденный',
+                    'en' => 'Password conf',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Password conf',
+            ],
+            [
+                'slug'    => 'language',
+                'name'    => json_encode([
+                    'uz' => 'Qabul qilish',
+                    'ru' => 'Языки',
+                    'en' => 'Language',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Language',
+            ],
+            [
+                'slug'    => 'translations',
+                'name'    => json_encode([
+                    'uz' => 'Qabul qilish',
+                    'ru' => 'Переводы',
+                    'en' => 'Translations',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Translations',
+            ],
+            [
+                'slug'    => 'standard',
+                'name'    => json_encode([
+                    'uz' => 'Qabul qilish',
+                    'ru' => 'Стандартный',
+                    'en' => 'Standard',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Standard',
+            ],
+            [
+                'slug'    => 'hotels',
+                'name'    => json_encode([
+                    'uz' => 'hotels',
+                    'ru' => 'hotels',
+                    'en' => 'hotels',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'hotels',
+            ],
+            [
+                'slug'    => 'contacts',
+                'name'    => json_encode([
+                    'uz' => 'contacts',
+                    'ru' => 'contacts',
+                    'en' => 'contacts',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'contacts',
+            ],
+            [
+                'slug'    => 'path',
+                'name'    => json_encode([
+                    'uz' => 'path',
+                    'ru' => 'path',
+                    'en' => 'path',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'path',
+            ],
+            [
+                'slug'    => 'img',
+                'name'    => json_encode([
+                    'uz' => 'path',
+                    'ru' => 'path',
+                    'en' => 'path',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'path',
+            ],
+            [
+                'slug'    => 'title',
+                'name'    => json_encode([
+                    'uz' => 'title',
+                    'ru' => 'title',
+                    'en' => 'title',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'title',
+            ],
+            [
+                'slug'    => 'text',
+                'name'    => json_encode([
+                    'uz' => 'text',
+                    'ru' => 'text',
+                    'en' => 'text',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'text',
+            ],
+            [
+                'slug'    => 'rating',
+                'name'    => json_encode([
+                    'uz' => 'rating',
+                    'ru' => 'rating',
+                    'en' => 'rating',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'rating',
+            ],
+            [
+                'slug'    => 'location',
+                'name'    => json_encode([
+                    'uz' => 'location',
+                    'ru' => 'location',
+                    'en' => 'location',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'location',
+            ],
+            [
+                'slug'    => 'news',
+                'name'    => json_encode([
+                    'uz' => 'news',
+                    'ru' => 'news',
+                    'en' => 'news',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'news',
             ],
         ];
 

@@ -78,8 +78,8 @@
                             <ul class="media-list">
                                 <li class="media">
                                     <div class="mr-3">
-                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}" width="36"
-                                            height="36" class="rounded-circle" alt="">
+                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
+                                            width="36" height="36" class="rounded-circle" alt="">
                                     </div>
                                     <div class="media-body">
                                         <a href="#" class="media-title font-weight-semibold">Jordana Ansley</a>
@@ -91,8 +91,8 @@
 
                                 <li class="media">
                                     <div class="mr-3">
-                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}" width="36"
-                                            height="36" class="rounded-circle" alt="">
+                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
+                                            width="36" height="36" class="rounded-circle" alt="">
                                     </div>
                                     <div class="media-body">
                                         <a href="#" class="media-title font-weight-semibold">Will Brason</a>
@@ -104,8 +104,8 @@
 
                                 <li class="media">
                                     <div class="mr-3">
-                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}" width="36"
-                                            height="36" class="rounded-circle" alt="">
+                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
+                                            width="36" height="36" class="rounded-circle" alt="">
                                     </div>
                                     <div class="media-body">
                                         <a href="#" class="media-title font-weight-semibold">Hanna Walden</a>
@@ -117,8 +117,8 @@
 
                                 <li class="media">
                                     <div class="mr-3">
-                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}" width="36"
-                                            height="36" class="rounded-circle" alt="">
+                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
+                                            width="36" height="36" class="rounded-circle" alt="">
                                     </div>
                                     <div class="media-body">
                                         <a href="#" class="media-title font-weight-semibold">Dori Laperriere</a>
@@ -130,8 +130,8 @@
 
                                 <li class="media">
                                     <div class="mr-3">
-                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}" width="36"
-                                            height="36" class="rounded-circle" alt="">
+                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
+                                            width="36" height="36" class="rounded-circle" alt="">
                                     </div>
                                     <div class="media-body">
                                         <a href="#" class="media-title font-weight-semibold">Vanessa
@@ -170,8 +170,8 @@
                         <ul class="media-list">
                             <li class="media">
                                 <div class="mr-3 position-relative">
-                                    <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}" width="36"
-                                        height="36" class="rounded-circle" alt="">
+                                    <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
+                                        width="36" height="36" class="rounded-circle" alt="">
                                 </div>
 
                                 <div class="media-body">
@@ -189,8 +189,8 @@
 
                             <li class="media">
                                 <div class="mr-3 position-relative">
-                                    <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}" width="36"
-                                        height="36" class="rounded-circle" alt="">
+                                    <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
+                                        width="36" height="36" class="rounded-circle" alt="">
                                 </div>
 
                                 <div class="media-body">
@@ -272,6 +272,25 @@
                     data-toggle="dropdown">
                     <img src="global_assets/images/placeholders/placeholder.jpg" class="rounded-pill mr-lg-2"
                         height="34" alt="">
+                    <span class="d-none d-lg-inline-block">{{ app()->getLocale() }}</span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right">
+                    @foreach ($languages as $language)
+                        <a
+                            href="{{ route('change.language', $language->slug) }}"class="dropdown-item {{ app()->getLocale() == $language->slug ? 'active' : '' }}">
+                            {{ $language->name }}
+                        </a>
+                    @endforeach
+                </div>
+            </li>
+
+            <li class="nav-item nav-item-dropdown-lg dropdown dropdown-user h-100">
+                <a href="#"
+                    class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100"
+                    data-toggle="dropdown">
+                    <img src="global_assets/images/placeholders/placeholder.jpg" class="rounded-pill mr-lg-2"
+                        height="34" alt="">
                     <span class="d-none d-lg-inline-block">Victoria</span>
                 </a>
 
@@ -304,8 +323,8 @@
                     <div class="sidebar-section-body">
                         <div class="media">
                             <a href="#" class="mr-3">
-                                <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}" class="rounded-circle"
-                                    alt="">
+                                <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
+                                    class="rounded-circle" alt="">
                             </a>
 
                             <div class="media-body">
@@ -338,31 +357,55 @@
                         <li class="nav-item">
                             <a href="{{ route('tournaments.index') }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
-                                <span>Соревнования</span>
+                                <span>{{ getTranslation('competitions') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('application.index') }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
-                                <span>Заявки</span>
+                                <span>{{ getTranslation('applications') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
-                                <span>Пользователи</span>
+                                <span>{{ getTranslation('users') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('languages.index') }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
-                                <span>Языки</span>
+                                <span>{{ getTranslation('language') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('translations.index') }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
-                                <span>Переводы</span>
+                                <span>{{ getTranslation('translations') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('categories.index') }}" class="nav-link">
+                                <i class="icon-list-unordered"></i>
+                                <span>{{ getTranslation('category') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('hotels.index') }}" class="nav-link">
+                                <i class="icon-list-unordered"></i>
+                                <span>{{ getTranslation('hotels') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('contacts.index') }}" class="nav-link">
+                                <i class="icon-list-unordered"></i>
+                                <span>{{ getTranslation('contacts') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('news.index') }}" class="nav-link">
+                                <i class="icon-list-unordered"></i>
+                                <span>{{ getTranslation('news') }}</span>
                             </a>
                         </li>
                     </ul>
@@ -390,17 +433,6 @@
                             </h4>
                             <a href="#" class="header-elements-toggle text-body d-lg-none"><i
                                     class="icon-more"></i></a>
-                        </div>
-
-                        <div class="header-elements d-none">
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn btn-link btn-float text-body"><i
-                                        class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
-                                <a href="#" class="btn btn-link btn-float text-body"><i
-                                        class="icon-calculator text-primary"></i> <span>Invoices</span></a>
-                                <a href="#" class="btn btn-link btn-float text-body"><i
-                                        class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>
-                            </div>
                         </div>
                     </div>
                 </div>

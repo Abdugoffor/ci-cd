@@ -16,13 +16,12 @@ class LangMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $availableLocales = ['uz', 'ru', 'en'];
 
-        $locale = Session::get('locale');
+        $locale = Session::get('lang');
 
-        if (! in_array($locale, $availableLocales)) {
-            $locale = 'ru';
-            Session::put('locale', $locale);
+        if (! $locale) {
+            $locale = 'en';
+            Session::put('lang', $locale);
         }
 
         App::setLocale($locale);

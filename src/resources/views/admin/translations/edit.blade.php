@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Переводы')
+@section('title', getTranslation('translations'))
 @section('content')
     <!-- Content area -->
     <div class="content">
@@ -11,13 +11,14 @@
                     @csrf
                     @method('PUT')
                     <fieldset class="mb-3">
-                        <legend class="text-uppercase font-size-sm font-weight-bold">Basic inputs</legend>
+                        <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('translations') }}
+                        </legend>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Стандартный</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('standard') }}</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control" name="default" value="{{ $model->default }}"
-                                    placeholder="Стандартный">
+                                    placeholder="{{ getTranslation('standard') }}">
                                 @error('default')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
@@ -53,7 +54,7 @@
 
                     </fieldset>
                     <div class="text-right">
-                        <button type="submit" class="btn btn-primary">Изменить</button>
+                        <button type="submit" class="btn btn-primary">{{ getTranslation('change') }}</button>
                     </div>
                 </form>
             </div>

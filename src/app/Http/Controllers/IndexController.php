@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Language;
 use App\Models\Tournament;
+use Illuminate\Support\Facades\App;
 
 class IndexController extends Controller
 {
@@ -17,6 +19,17 @@ class IndexController extends Controller
         }
         return redirect('/');
     }
+    public function changeLanguage($lang)
+    {
+        $lang = Language::where('slug', $lang)->where('is_active', true)->first();
 
+        if ($lang) {
+
+            session()->put('lang', $lang->slug);
+
+            App::setLocale($lang->slug);
+        }
+        return back();
+    }
 
 }

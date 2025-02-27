@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('hotels', function (Blueprint $table) {
             $table->id();
-            $table->jsonb('name');
+            $table->jsonb('title');
             $table->jsonb('description');
-            $table->string('slug');
-            $table->string('default');
+            $table->jsonb('text');
+            $table->string('photo')->nullable();
+            $table->string('rating')->nullable();
+            $table->string('location')->nullable();
+            $table->string('phone')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('hotels');
     }
 };

@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('label_es', 75)->nullable();
             $table->string('label_fr', 75)->nullable();
             $table->string('postCode', 75)->nullable();
+            $table->jsonb('name')->nullable();
+            $table->string('default')->nullable();
             $table->boolean('active');
             $table->timestamps();
         });

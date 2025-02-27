@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Языки')
+@section('title', getTranslation('language'))
 @section('content')
     <!-- Content area -->
     <div class="content">
@@ -10,13 +10,13 @@
                 <form action="{{ route('languages.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <fieldset class="mb-3">
-                        <legend class="text-uppercase font-size-sm font-weight-bold">Basic inputs</legend>
+                        <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('language') }}</legend>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Имя</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('name') }}</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                    placeholder="Имя">
+                                    placeholder="{{ getTranslation('name') }}">
                                 @error('name')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
@@ -25,7 +25,7 @@
 
                     </fieldset>
                     <div class="text-right">
-                        <button type="submit" class="btn btn-primary">Добавить</button>
+                        <button type="submit" class="btn btn-primary">{{ getTranslation('add') }}</button>
                     </div>
                 </form>
             </div>

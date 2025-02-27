@@ -30,8 +30,8 @@
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab1{{ $model->id }}">
                                             <input type="text" class="form-control" name="name[{{ $model->slug }}]"
-                                                value="{{ old($model->slug) }}" placeholder="{{ $model->name }}">
-                                            @error($model->slug)
+                                                value="{{ old('name.' . $model->slug) }}" placeholder="{{ $model->name }}">
+                                            @error('name.' . $model->slug)
                                                 <p style="color: red;">{{ $message }}</p>
                                             @enderror
                                         </div>
@@ -126,7 +126,7 @@
                                             id="basic-tab12{{ $model->id }}">
                                             <textarea class="form-control" name="description[{{ $model->slug }}]" data-dashlane-classification="other"
                                                 placeholder="{{ $model->name }}"></textarea>
-                                            @error('description')
+                                            @error('description.' . $model->slug)
                                                 <p style="color:red;">
                                                     {{ $message }}
                                                 </p>

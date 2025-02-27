@@ -25,6 +25,7 @@ class TournamentController extends Controller
     public function store(TournamentStoreRequest $request)
     {
         $data = $request->all();
+        dd($data);
         if ($request->hasFile('logo')) {
             $file       = $request->file('logo');
             $extensions = $file->getClientOriginalExtension();

@@ -18,6 +18,7 @@ class AccreditationCategorySeeder extends Seeder
                 'en' => 'Player',
             ],
             'slug' => 'player',
+            'default' => 'player',
         ]);
 
         AccreditationCategory::create([
@@ -27,6 +28,7 @@ class AccreditationCategorySeeder extends Seeder
                 'en' => 'FIDE',
             ],
             'slug' => 'fide',
+            'default' => 'fide',
         ]);
 
         AccreditationCategory::create([
@@ -36,6 +38,7 @@ class AccreditationCategorySeeder extends Seeder
                 'en' => 'Media',
             ],
             'slug' => 'media',
+            'default' => 'media',
         ]);
 
         AccreditationCategory::create([
@@ -45,6 +48,7 @@ class AccreditationCategorySeeder extends Seeder
                 'en' => 'Broadcast',
             ],
             'slug' => 'broadcast',
+            'default' => 'broadcast',
         ]);
 
         AccreditationCategory::create([
@@ -54,6 +58,7 @@ class AccreditationCategorySeeder extends Seeder
                 'en' => 'Org. Committee',
             ],
             'slug' => 'org-committee',
+            'default' => 'org-committee',
         ]);
 
         AccreditationCategory::create([
@@ -63,6 +68,7 @@ class AccreditationCategorySeeder extends Seeder
                 'en' => 'Personnel',
             ],
             'slug' => 'personnel',
+            'default' => 'personnel',
         ]);
 
         AccreditationCategory::create([
@@ -72,6 +78,7 @@ class AccreditationCategorySeeder extends Seeder
                 'en' => 'Volunteer',
             ],
             'slug' => 'volunteer',
+            'default' => 'volunteer',
         ]);
 
         AccreditationCategory::create([
@@ -81,6 +88,7 @@ class AccreditationCategorySeeder extends Seeder
                 'en' => 'Arbiter',
             ],
             'slug' => 'arbiter',
+            'default' => 'arbiter',
         ]);
 
         AccreditationCategory::create([
@@ -90,6 +98,7 @@ class AccreditationCategorySeeder extends Seeder
                 'en' => 'Safety & Security',
             ],
             'slug' => 'safety-security',
+            'default' => 'safety-security',
         ]);
 
         AccreditationCategory::create([
@@ -99,6 +108,7 @@ class AccreditationCategorySeeder extends Seeder
                 'en' => 'VIP',
             ],
             'slug' => 'vip',
+            'default' => 'vip',
         ]);
 
         AccreditationCategory::create([
@@ -108,6 +118,7 @@ class AccreditationCategorySeeder extends Seeder
                 'en' => 'Marketing Partner',
             ],
             'slug' => 'marketing-partner',
+            'default' => 'marketing-partner',
         ]);
 
         AccreditationCategory::create([
@@ -117,6 +128,7 @@ class AccreditationCategorySeeder extends Seeder
                 'en' => 'Hospitality',
             ],
             'slug' => 'hospitality',
+            'default' => 'hospitality',
         ]);
 
         AccreditationCategory::create([
@@ -126,6 +138,7 @@ class AccreditationCategorySeeder extends Seeder
                 'en' => 'Accompanying Person',
             ],
             'slug' => 'accompanying-person',
+            'default' => 'accompanying-person',
         ]);
     }
 }

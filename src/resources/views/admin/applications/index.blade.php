@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Заявки')
+@section('title', getTranslation('applications'))
 @section('content')
     <!-- Content area -->
     <div class="content">
@@ -66,13 +66,13 @@
                                                             <!-- Qabul qilish tugmasi -->
                                                             <a href="{{ route('application.status', [$model->id, 'approved']) }}"
                                                                 class="dropdown-item">
-                                                                <i class="icon-checkmark3 text-success"></i> Acceptance
+                                                                <i class="icon-checkmark3 text-success"></i>{{ getTranslation('acceptance') }}
                                                             </a>
                                                             <!-- Canceled tugmasi: Modalni ochadi -->
                                                             <span href="#" class="dropdown-item canceled-btn"
                                                                 data-toggle="modal"
                                                                 data-target="#cancelModal{{ $model->id }}">
-                                                                <i class="icon-cross2 text-danger"></i> Canceled
+                                                                <i class="icon-cross2 text-danger"></i>{{ getTranslation('canceled') }}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -84,7 +84,7 @@
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Причина отмены:
+                                                            <h5 class="modal-title">{{ getTranslation('reason-for-cancellation') }}:
                                                                 {{ $model->first_name }}</h5>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal">&times;</button>
@@ -95,16 +95,18 @@
                                                             @csrf
                                                             <div class="modal-body">
                                                                 <div class="form-group">
-                                                                    <label>Причина отмены:</label>
+                                                                    <label>
+                                                                        {{ getTranslation('reason-for-cancellation') }}:
+                                                                    </label>
                                                                     <textarea name="cancel_reason" class="form-control" required></textarea>
                                                                 </div>
                                                             </div>
 
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Закрыть</button>
+                                                                    data-dismiss="modal">{{ getTranslation('close') }}</button>
                                                                 <button type="submit"
-                                                                    class="btn btn-danger">Подтвердить</button>
+                                                                    class="btn btn-danger">{{ getTranslation('confirm') }}</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -227,41 +229,46 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>{{ getTranslation('passport-number') }}
-                                                                                    Виза требуется?</th>
+                                                                                <th>
+                                                                                    {{ getTranslation('visa-required') }}?
+                                                                                </th>
                                                                                 <td>
                                                                                     {{ $model->requires_visa ? 'Да' : 'Нет' }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>{{ getTranslation('passport-number') }}
-                                                                                    Дата прибытия
+                                                                                <th>
+                                                                                    {{ getTranslation('arrival-date') }}
+
                                                                                 </th>
                                                                                 <td>{{ optional($model->arrival_details)->format('d-m-Y') }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>{{ getTranslation('passport-number') }}
-                                                                                    Дата отъезда
+                                                                                <th>
+                                                                                    {{ getTranslation('departure-date') }}
+
                                                                                 </th>
                                                                                 <td>{{ optional($model->departure_details)->format('d-m-Y') }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>{{ getTranslation('passport-number') }}
-                                                                                    Детали проживания
+                                                                                <th>{{ getTranslation('accommodation-details') }}
+
                                                                                 </th>
                                                                                 <td>{{ $model->accommodation_details }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>{{ getTranslation('passport-number') }}
-                                                                                    Детали ПЦР-теста</th>
+                                                                                <th>
+                                                                                    {{ getTranslation('pcr-test-details') }}
+                                                                                </th>
                                                                                 <td>{{ $model->pcr_test_details }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>{{ getTranslation('passport-number') }}
-                                                                                    Статус
+                                                                                <th>
+                                                                                    {{ getTranslation('status') }}
+
                                                                                 </th>
                                                                                 <td>{{ $model->status }}</td>
                                                                             </tr>
@@ -274,7 +281,7 @@
 
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-primary"
-                                                                data-dismiss="modal">Закрыть</button>
+                                                                data-dismiss="modal">{{ getTranslation('close') }}</button>
                                                         </div>
                                                     </div>
                                                 </div>
