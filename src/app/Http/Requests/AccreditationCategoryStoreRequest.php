@@ -3,7 +3,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryStoreRequest extends FormRequest
+class AccreditationCategoryStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,11 +21,10 @@ class CategoryStoreRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name'        => 'required|array',
-            'description' => 'required|array',
+            'name' => 'required|array',
         ];
 
-        $rules = array_merge($rules, validateTranslation('name'), validateTranslation('description'));
+        $rules = array_merge($rules, validateTranslation('name'));
 
         return $rules;
     }

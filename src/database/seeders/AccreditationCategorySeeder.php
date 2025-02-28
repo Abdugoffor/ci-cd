@@ -16,9 +16,9 @@ class AccreditationCategorySeeder extends Seeder
                 'uz' => 'Oʻyinchi',
                 'ru' => 'Игрок',
                 'en' => 'Player',
+                'default' => 'player',
             ],
             'slug' => 'player',
-            'default' => 'player',
         ]);
 
         AccreditationCategory::create([
@@ -26,9 +26,9 @@ class AccreditationCategorySeeder extends Seeder
                 'uz' => 'FIDE',
                 'ru' => 'FIDE',
                 'en' => 'FIDE',
+                'default' => 'fide',
             ],
             'slug' => 'fide',
-            'default' => 'fide',
         ]);
 
         AccreditationCategory::create([
@@ -36,9 +36,9 @@ class AccreditationCategorySeeder extends Seeder
                 'uz' => 'OAV',
                 'ru' => 'СМИ',
                 'en' => 'Media',
+                'default' => 'media',
             ],
             'slug' => 'media',
-            'default' => 'media',
         ]);
 
         AccreditationCategory::create([
@@ -46,9 +46,9 @@ class AccreditationCategorySeeder extends Seeder
                 'uz' => 'Translyatsiya',
                 'ru' => 'Трансляция',
                 'en' => 'Broadcast',
+                'default' => 'broadcast',
             ],
             'slug' => 'broadcast',
-            'default' => 'broadcast',
         ]);
 
         AccreditationCategory::create([
@@ -56,9 +56,9 @@ class AccreditationCategorySeeder extends Seeder
                 'uz' => 'Tashkiliy qo‘mita',
                 'ru' => 'Орг. комитет',
                 'en' => 'Org. Committee',
+                'default' => 'org-committee',
             ],
             'slug' => 'org-committee',
-            'default' => 'org-committee',
         ]);
 
         AccreditationCategory::create([
@@ -66,9 +66,9 @@ class AccreditationCategorySeeder extends Seeder
                 'uz' => 'Xodimlar',
                 'ru' => 'Персонал',
                 'en' => 'Personnel',
+                'default' => 'personnel',
             ],
             'slug' => 'personnel',
-            'default' => 'personnel',
         ]);
 
         AccreditationCategory::create([
@@ -76,9 +76,9 @@ class AccreditationCategorySeeder extends Seeder
                 'uz' => 'Ko‘ngilli',
                 'ru' => 'Волонтёр',
                 'en' => 'Volunteer',
+                'default' => 'volunteer',
             ],
             'slug' => 'volunteer',
-            'default' => 'volunteer',
         ]);
 
         AccreditationCategory::create([
@@ -86,9 +86,9 @@ class AccreditationCategorySeeder extends Seeder
                 'uz' => 'Boshqaruvchi',
                 'ru' => 'Арбитр',
                 'en' => 'Arbiter',
+                'default' => 'arbiter',
             ],
             'slug' => 'arbiter',
-            'default' => 'arbiter',
         ]);
 
         AccreditationCategory::create([
@@ -96,9 +96,9 @@ class AccreditationCategorySeeder extends Seeder
                 'uz' => 'Xavfsizlik xizmati',
                 'ru' => 'Безопасность',
                 'en' => 'Safety & Security',
+                'default' => 'safety-security',
             ],
             'slug' => 'safety-security',
-            'default' => 'safety-security',
         ]);
 
         AccreditationCategory::create([
@@ -106,9 +106,9 @@ class AccreditationCategorySeeder extends Seeder
                 'uz' => 'VIP',
                 'ru' => 'VIP',
                 'en' => 'VIP',
+                'default' => 'vip',
             ],
             'slug' => 'vip',
-            'default' => 'vip',
         ]);
 
         AccreditationCategory::create([
@@ -116,9 +116,9 @@ class AccreditationCategorySeeder extends Seeder
                 'uz' => 'Marketing hamkori',
                 'ru' => 'Маркетинговый партнер',
                 'en' => 'Marketing Partner',
+                'default' => 'marketing-partner',
             ],
             'slug' => 'marketing-partner',
-            'default' => 'marketing-partner',
         ]);
 
         AccreditationCategory::create([
@@ -126,9 +126,9 @@ class AccreditationCategorySeeder extends Seeder
                 'uz' => 'Mehmonxona xizmati',
                 'ru' => 'Гостеприимство',
                 'en' => 'Hospitality',
+                'default' => 'hospitality',
             ],
             'slug' => 'hospitality',
-            'default' => 'hospitality',
         ]);
 
         AccreditationCategory::create([
@@ -136,9 +136,10 @@ class AccreditationCategorySeeder extends Seeder
                 'uz' => 'Hamrohlik qiluvchi shaxs',
                 'ru' => 'Сопровождающее лицо',
                 'en' => 'Accompanying Person',
+                'default' => 'accompanying-person',
             ],
             'slug' => 'accompanying-person',
-            'default' => 'accompanying-person',
         ]);
+
     }
 }

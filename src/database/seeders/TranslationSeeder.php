@@ -697,6 +697,24 @@ class TranslationSeeder extends Seeder
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'news',
             ],
+            [
+                'slug'    => 'accreditation-categories',
+                'name'    => json_encode([
+                    'uz' => 'accreditation-categories',
+                    'ru' => 'accreditation-categories',
+                    'en' => 'accreditation-categories',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'accreditation-categories',
+            ],
+            [
+                'slug'    => 'search',
+                'name'    => json_encode([
+                    'uz' => 'search',
+                    'ru' => 'поиск',
+                    'en' => 'search',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'search',
+            ],
         ];
 
         Translation::insert($translations);

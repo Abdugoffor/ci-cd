@@ -24,10 +24,10 @@ class NewsStoreRequest extends FormRequest
             'title'       => 'required|array',
             'description' => 'required|array',
             'text'        => 'required|array',
-            'img'         => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'photo'       => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
         ];
 
-        $rules = array_merge($rules, validateTranslation('name'), validateTranslation('description'), validateTranslation('text'));
+        $rules = array_merge($rules, validateTranslation('title'), validateTranslation('description'), validateTranslation('text'));
 
         return $rules;
     }

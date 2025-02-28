@@ -44,9 +44,9 @@
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
-                                        <td>{{ getLocale($model->title) }}</td>
-                                        <td>{{ getLocale($model->description) }}</td>
-                                        <td>{{ substr(getLocale($model->text), 0, 20) }}...</td>
+                                        <td>{{ substr(getLocale($model->title), 0, 30) }} ...</td>
+                                        <td>{{ substr(getLocale($model->description), 0, 30) }} ...</td>
+                                        <td>{{ substr(getLocale($model->text), 0, 30) }} ...</td>
                                         <td><img src="{{ asset($model->photo) }}" width="100px" alt=""></td>
                                         <td>
                                             <a href="{{ route('news.status', $model->id) }}"

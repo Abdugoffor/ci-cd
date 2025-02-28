@@ -18,6 +18,7 @@ if (! function_exists('slug')) {
         return preg_replace('/\-{2,}/', '-', $str);
     }
 }
+
 if (! function_exists('isActive')) {
     function isActive()
     {
@@ -54,49 +55,66 @@ if (! function_exists('historyCheck')) {
         }
 
         $html = '<!-- Button trigger modal -->
-            <a href="#" class="btn bg-transparent border-warning text-warning rounded-pill border-2 btn-icon mr-3"
-                data-toggle="modal" data-target="#panel_right' . $model->id . '">
-                <i class="icon-history"></i>
-            </a>
-            <!-- Right panel -->
-            <div id="panel_right' . $model->id . '" class="modal modal-right fade" tabindex="-1">
-                <div class="modal-dialog modal-xl modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header bg-transparent border-0 align-items-center">
-                            <h5 class="modal-title font-weight-semibold">История</h5>
-                            <button type="button" class="btn btn-icon btn-light btn-sm border-0 rounded-pill ml-auto"
-                                data-dismiss="modal"><i class="icon-cross2"></i></button>
-                        </div>
-                        <div class="modal-body p-0">
-                            <div class="card card-body border-top-teal">
-                                <div class="list-feed">';
+        <a href="#" class="btn bg-transparent border-warning text-warning rounded-pill border-2 btn-icon mr-3"
+            data-toggle="modal" data-target="#panel_right' . $model->id . '">
+            <i class="icon-history"></i>
+        </a>
+        <!-- Right panel -->
+        <div id="panel_right' . $model->id . '" class="modal modal-right fade" tabindex="-1">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent border-0 align-items-center">
+                        <h5 class="modal-title font-weight-semibold">' . getTranslation('history') . '</h5>
+                        <button type="button" class="btn btn-icon btn-light btn-sm border-0 rounded-pill ml-auto"
+                            data-dismiss="modal"><i class="icon-cross2"></i></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="card card-body border-top-teal">
+                            <div class="list-feed">';
 
         foreach ($model->histories as $history) {
             $userName  = optional($history->user)->name ?: '';
             $createdAt = $history->created_at->format('d-M-Y, H:i');
+
             $html .= '<div class="list-feed-item">
-                        <a href="#">' . $userName . '<br> ' . $history->action . ', ' . $createdAt . '</a>';
+                    <a href="#" class="text-default">' . $userName . '</a> <br>
+                    <span class="text-muted">' . $history->action . ', ' . $createdAt . '</span>
+                    <ul class="list-unstyled mt-2">';
 
-            if (is_array($history->changes) || is_object($history->changes)) {
-                $changes = is_string($history->changes) ? json_decode($history->changes, true) : $history->changes;
+            // JSON obyektlarini normal ko‘rinishda chiqarish
+            $changes = is_string($history->changes) ? json_decode($history->changes, true) : $history->changes;
 
+            if (is_array($changes)) {
                 foreach ($changes as $key => $value) {
                     if ($key !== 'logo' && $key !== 'updated_at') {
-                        $formattedKey   = ucfirst(str_replace('_', ' ', $key));
-                        $formattedValue = is_array($value) ? implode(', ', $value) : $value;
+                        $formattedKey = ucfirst(str_replace('_', ' ', $key));
+
+                        // Agar qiymat JSON formatida bo‘lsa, uni to‘g‘ri chiqarish
+                        if (is_string($value) && $jsonDecoded = json_decode($value, true)) {
+                            $value = $jsonDecoded;
+                        }
+
+                        // Agar massiv bo‘lsa, uni yaxshi formatda chiqarish
+                        if (is_array($value)) {
+                            $formattedValue = implode('', array_map(fn($lang, $val) => "<strong><br>$lang</strong>: $val", array_keys($value), $value));
+                        } else {
+                            $formattedValue = $value;
+                        }
+
                         $html .= '<li>' . $formattedKey . ': <span>' . $formattedValue . '</span></li>';
                     }
                 }
             } else {
-                $html .= '<p>' . $history->changes . '</p>';
+                $html .= '<li>' . $history->changes . '</li>';
             }
 
-            $html .= '</div>';
+            $html .= '</ul></div>';
         }
 
         $html .= '</div></div></div></div></div></div><!-- /right panel -->';
         return $html;
     }
+
 }
 
 if (! function_exists('getTranslation')) {
@@ -111,6 +129,20 @@ if (! function_exists('getTranslation')) {
 
             return null;
         });
+    }
+}
+
+if (! function_exists('getLocale')) {
+    function getLocale($model)
+    {
+        $lang = App::getLocale();
+        if ($lang) {
+            if (isset($model[$lang])) {
+
+                return $model[$lang];
+            }
+        }
+        return $model['default'];
     }
 }
 
@@ -129,16 +161,13 @@ if (! function_exists('validateTranslation')) {
     }
 }
 
-if (! function_exists('getLocale')) {
-    function getLocale($model)
+if (! function_exists('cacheClear')) {
+    function cacheClear($slug)
     {
-        $lang = App::getLocale();
-        if ($lang) {
-            if ($model[$lang]) {
+        $languages = getLanguage();
 
-                return $model[$lang];
-            }
+        foreach ($languages as $lang) {
+            Cache::forget("menyu.{$slug}_{$lang->slug}");
         }
-        return $model['default'];
     }
 }

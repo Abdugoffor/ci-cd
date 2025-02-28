@@ -4,13 +4,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Models\Category;
+use App\Traits\SearchColumTranslations;
 
 class CategoryController extends Controller
 {
+    protected $searhcModel = Category::class;
+    protected $path = "categories";
+
+    use SearchColumTranslations;
     public function index()
     {
-        $models = Category::paginate(10);
-        return view('admin.categories.index', data: ['models' => $models]);
+        $models = Category::orderByDesc('id')->paginate(10);
+        return view(view: 'admin.categories.index', data: ['models' => $models]);
     }
     public function create()
     {
@@ -20,7 +25,11 @@ class CategoryController extends Controller
     {
         $data = $request->all();
 
-        $data['slug'] = slug($data['default']);
+        $data['name']['default'] = reset($data['name']);
+
+        $data['description']['default'] = reset($data['description']);
+
+        $data['slug'] = slug($data['name']['default']);
 
         Category::create($data);
 
@@ -50,4 +59,5 @@ class CategoryController extends Controller
         $category->update(['is_active' => ! $category->is_active]);
         return back();
     }
+
 }

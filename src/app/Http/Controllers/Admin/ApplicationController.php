@@ -5,14 +5,19 @@ use App\Http\Controllers\Controller;
 use App\Jobs\ApporveEmailJob;
 use App\Models\ApplicationCancellation;
 use App\Models\Participant;
+use App\Traits\SearchColumTranslations;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
+    protected $searhcModel = Participant::class;
+    protected $path = "applications";
+    use SearchColumTranslations;
+
     public function index()
     {
         $models = Participant::orderBy('id', 'desc')->paginate(perPage: 10);
-        
+
         return view("admin.applications.index", ['models' => $models]);
     }
     public function status(Participant $participant, string $status)

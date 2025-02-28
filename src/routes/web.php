@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AccreditationCategoryController;
 use App\Http\Controllers\Admin\ApplicationController as AdminAppController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
@@ -46,15 +47,23 @@ Route::middleware(LangMiddleware::class)->group(function () {
         Route::resource('/languages', LanguageController::class);
         Route::resource('/translations', TranslationController::class);
         Route::resource('/categories', CategoryController::class);
+        Route::resource('/accreditation-categories', AccreditationCategoryController::class);
         Route::resource('/news', NewsController::class);
         Route::resource('/hotels', HotelController::class);
         Route::resource('/contacts', ContactController::class);
 
+        Route::get('/accreditation-categories-status/{category}', [AccreditationCategoryController::class, 'status'])->name('accreditation-categories.status');
+        Route::get('/categories-status/{category}', [CategoryController::class, 'status'])->name('categories.status');
         Route::get('/news-status/{hotel}', [NewsController::class, 'status'])->name('news.status');
         Route::get('/hotels-status/{hotel}', [HotelController::class, 'status'])->name('hotels.status');
         Route::get('/contacts-status/{contacts}', [ContactController::class, 'status'])->name('contacts.status');
         Route::get('/language-status/{language}', [LanguageController::class, 'status'])->name('language.status');
         Route::get('/users-status/{user}', [UserController::class, 'status'])->name('users.status');
+
+        Route::get('/users-search', [UserController::class, 'search'])->name('users.search');
+        Route::get('/accreditation-categories-search', [AccreditationCategoryController::class, 'search'])->name('accreditation-categories.search');
+        Route::get('/categories-search', [CategoryController::class, 'search'])->name('categories.search');
+        Route::get('/applications-search', [AdminAppController::class, 'search'])->name('application.search');
 
         Route::get('/tournament/{tournament}/{status}', [TournamentController::class, 'statusUpdate'])->name('status.update');
         Route::get('/applications', [AdminAppController::class, 'index'])->name('application.index');

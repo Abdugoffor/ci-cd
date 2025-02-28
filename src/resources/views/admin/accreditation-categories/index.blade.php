@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', getTranslation('users'))
+@section('title', getTranslation('accreditation-categories'))
 @section('content')
     <!-- Content area -->
     <div class="content">
@@ -21,7 +21,7 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('users.create') }}" class="btn btn-teal">
+                            <a href="{{ route('accreditation-categories.create') }}" class="btn btn-teal">
                                 <i class="icon-plus3 icon-1x mr-1"></i>{{ getTranslation('add') }}
                             </a>
                         </div>
@@ -32,27 +32,17 @@
                                 <tr>
                                     <th>№</th>
                                     <th>{{ getTranslation('name') }}</th>
-                                    <th>{{ getTranslation('role') }}</th>
-                                    <th>{{ getTranslation('email') }}</th>
                                     <th>{{ getTranslation('status') }}</th>
                                     <th>{{ getTranslation('function') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
                                 </tr>
-                                <form action="{{ route('users.search') }}" method="get">
+                                <form action="{{ route('categories.search') }}" method="get">
                                     @csrf
                                     <tr>
                                         <th></th>
                                         <th>
                                             <input type="text" class="form-control" name="name"
                                                 placeholder="{{ getTranslation('name') }}">
-                                        </th>
-                                        <th>
-                                            <input type="text" class="form-control" name="email"
-                                                placeholder="{{ getTranslation('email') }}">
-                                        </th>
-                                        <th>
-                                            <input type="text" class="form-control" name="email"
-                                                placeholder="{{ getTranslation('email') }}">
                                         </th>
                                         <th>
                                             <select class="form-control custom-select" name="is_active" id="select_date">
@@ -73,22 +63,16 @@
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
-                                        <td>{{ $model->name }}</td>
+                                        <td>{{ getLocale($model->name) }}</td>
                                         <td>
-                                            {{ $model->role }}
-                                        </td>
-                                        <td>
-                                            {{ $model->email }}
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('users.status', $model->id) }}"
-                                                class="badge badge-{{ $model->status ? 'primary' : 'danger' }}">
-                                                {{ $model->status ? getTranslation('assets') : getTranslation('not-active') }}
+                                            <a href="{{ route('accreditation-categories.status', $model->id) }}"
+                                                class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
+                                                {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('users.edit', $model->id) }}"
+                                                <a href="{{ route('accreditation-categories.edit', $model->id) }}"
                                                     class="btn btn-sm btn-outline-success">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
@@ -102,12 +86,14 @@
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title">{{ getTranslation('users') }}</h5>
+                                                                <h5 class="modal-title">{{ getTranslation('language') }}
+                                                                </h5>
                                                                 <button type="button" class="close"
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
 
-                                                            <form action="{{ route('users.destroy', $model->id) }}"
+                                                            <form
+                                                                action="{{ route('accreditation-categories.destroy', $model->id) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')

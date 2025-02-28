@@ -33,9 +33,34 @@
                                     <th>№</th>
                                     <th>{{ getTranslation('name') }}</th>
                                     <th>{{ getTranslation('description') }}</th>
+                                    <th>{{ getTranslation('status') }}</th>
                                     <th>{{ getTranslation('function') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
                                 </tr>
+                                <form action="{{ route('categories.search') }}" method="get">
+                                    @csrf
+                                    <tr>
+                                        <th></th>
+                                        <th>
+                                            <input type="text" class="form-control" name="name"
+                                                placeholder="{{ getTranslation('name') }}">
+                                        </th>
+                                        <th><input type="text" class="form-control" name="description"
+                                                placeholder="{{ getTranslation('description') }}"></th>
+                                        <th>
+                                            <select class="form-control custom-select" name="is_active" id="select_date">
+                                                <option></option>
+                                                <option value="true">
+                                                    {{ getTranslation('assets') }}
+                                                </option>
+                                                <option value="false">
+                                                    {{ getTranslation('not-active') }}</option>
+                                            </select>
+                                        </th>
+                                        <th></th>
+                                        <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                    </tr>
+                                </form>
                             </thead>
                             <tbody>
                                 @foreach ($models as $model)
@@ -43,6 +68,12 @@
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ getLocale($model->name) }}</td>
                                         <td>{{ getLocale($model->description) }}</td>
+                                        <td>
+                                            <a href="{{ route('categories.status', $model->id) }}"
+                                                class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
+                                                {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
+                                            </a>
+                                        </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
                                                 <a href="{{ route('categories.edit', $model->id) }}"

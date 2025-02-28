@@ -5,10 +5,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserStoreRequest;
 use App\Http\Requests\User\UserUpdateRequest;
 use App\Models\User;
+use App\Traits\SearchColum;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    protected $searhcModel = User::class;
+    protected $path        = "users";
+
+    use SearchColum;
     public function index()
     {
         $models = User::orderByDesc('id')->paginate(10);

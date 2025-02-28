@@ -32,7 +32,7 @@
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab1{{ $model->id }}">
                                             <input type="text" class="form-control" name="title[{{ $model->slug }}]"
-                                                value="{{ $hotel->title[$model->slug] }}"
+                                                value="{{ $hotel->title[$model->slug] ?? $hotel->title['default'] }}"
                                                 placeholder="{{ $model->name }}">
                                             @error('title.' . $model->slug)
                                                 <p style="color: red;">{{ $message }}</p>
@@ -62,7 +62,7 @@
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab12{{ $model->id }}">
                                             <textarea class="form-control" name="description[{{ $model->slug }}]" data-dashlane-classification="other"
-                                                placeholder="{{ $model->name }}">{{ $hotel->description[$model->slug] }}</textarea>
+                                                placeholder="{{ $model->name }}">{{ $hotel->description[$model->slug] ?? $hotel->description['default'] }}</textarea>
                                             @error('description.' . $model->slug)
                                                 <p style="color:red;">
                                                     {{ $message }}
@@ -93,7 +93,7 @@
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab123{{ $model->id }}">
                                             <textarea class="form-control" name="text[{{ $model->slug }}]" data-dashlane-classification="other"
-                                                placeholder="{{ $model->name }}">{{ $hotel->text[$model->slug] }}</textarea>
+                                                placeholder="{{ $model->name }}">{{ $hotel->text[$model->slug] ?? $hotel->text['default'] }}</textarea>
                                             @error('text.' . $model->slug)
                                                 <p style="color:red;">
                                                     {{ $message }}

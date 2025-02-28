@@ -1,14 +1,18 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsStoreRequest;
 use App\Models\News;
-use Illuminate\Http\Request;
+use App\Traits\SearchColumTranslations;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
+    protected $searhcModel = News::class;
+    protected $path = "news";
+
+    use SearchColumTranslations;
     public function index()
     {
         $models = News::orderByDesc('id')->paginate(10);
@@ -22,27 +26,64 @@ class NewsController extends Controller
     {
         $data = $request->all();
 
+        $data['title']['default'] = reset($data['title']);
+
+        $data['description']['default'] = reset($data['description']);
+
+        $data['text']['default'] = reset($data['text']);
+
+        if ($request->hasFile('photo')) {
+
+            $file       = $request->file('photo');
+            $extensions = $file->getClientOriginalExtension();
+            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
+            $file->move(public_path('uploaded'), $filename);
+            $data['photo'] = 'uploaded/' . $filename;
+        }
+
         News::create($data);
 
         return redirect()->route('news.index');
     }
 
-    public function edit(News $news)
+    public function edit(int $news)
     {
-        return view('admin.news.edit', ['category' => $news]);
+        $news = News::findOrFail($news);
+        return view('admin.news.edit', ['news' => $news]);
     }
 
-    public function update(NewsStoreRequest $request, News $news)
+    public function update(NewsStoreRequest $request, int $news)
     {
         $data = $request->all();
+
+        $news = News::findOrFail($news);
+
+        if ($request->hasFile('photo')) {
+            $file       = $request->file('photo');
+            $extensions = $file->getClientOriginalExtension();
+            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
+            $file->move(public_path('uploaded'), $filename);
+            $data['photo'] = 'uploaded/' . $filename;
+        }
+
         $news->update($data);
 
         return redirect()->route('news.index');
     }
 
-    public function destroy(News $news)
+    public function destroy(int $news)
     {
+        $news = News::findOrFail($news);
         $news->delete();
+
         return redirect()->route('news.index');
+    }
+    public function status(int $news)
+    {
+        $news = News::findOrFail($news);
+
+        $news->update(['is_active' => ! $news->is_active]);
+
+        return back();
     }
 }

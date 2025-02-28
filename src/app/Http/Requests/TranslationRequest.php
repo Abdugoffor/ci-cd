@@ -21,13 +21,6 @@ class TranslationRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules     = [];
-
-        $languages = getLanguage();
-
-        foreach ($languages as $language) {
-            $rules[$language->slug] = 'required|string';
-        }
 
         $rules['default'] = [
             'required',
@@ -39,6 +32,12 @@ class TranslationRequest extends FormRequest
                 }
             },
         ];
+
+        $rules = [
+            'name' => 'required|array',
+        ];
+
+        $rules = array_merge($rules, validateTranslation('name'));
 
         return $rules;
 

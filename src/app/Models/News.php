@@ -12,12 +12,13 @@ class News extends Model
         'title',
         'description',
         'text',
-        'img',
+        'photo',
         'is_active',
     ];
     protected $casts = [
         'title'       => 'array',
         'description' => 'array',
         'text'        => 'array',
+        'is_active'   => 'boolean',
     ];
 }

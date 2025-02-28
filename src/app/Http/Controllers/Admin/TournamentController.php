@@ -6,11 +6,16 @@ use App\Http\Requests\Tournament\TournamentStoreRequest;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Tournament;
+use App\Traits\SearchColumTranslations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class TournamentController extends Controller
 {
+    protected $searhcModel = Tournament::class;
+    protected $path = "tournament";
+
+    use SearchColumTranslations;
     public function index()
     {
         $models = Tournament::orderByDesc('id')->paginate(10);
@@ -24,8 +29,10 @@ class TournamentController extends Controller
     }
     public function store(TournamentStoreRequest $request)
     {
-        $data = $request->all();
-        dd($data);
+        $data                           = $request->all();
+        $data['name']['default']        = reset($data['name']);
+        $data['description']['default'] = reset($data['description']);
+
         if ($request->hasFile('logo')) {
             $file       = $request->file('logo');
             $extensions = $file->getClientOriginalExtension();

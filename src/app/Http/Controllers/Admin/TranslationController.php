@@ -6,9 +6,14 @@ use App\Http\Requests\TranslationRequest;
 use App\Http\Requests\TranslationUpdateRequest;
 use App\Models\Language;
 use App\Models\Translation;
+use App\Traits\SearchColumTranslations;
 
 class TranslationController extends Controller
 {
+    protected $searhcModel = Translation::class;
+    protected $path = "translations";
+
+    use SearchColumTranslations;
     public function index()
     {
         $models = Translation::orderByDesc('id')->paginate(10);
@@ -21,11 +26,11 @@ class TranslationController extends Controller
     }
     public function store(TranslationRequest $request)
     {
-        $arrays = $this->validatedData($request->all());
+        $data = $request->all();
 
-        $arrays['slug'] = slug($request->default);
+        $data['slug'] = slug($request->default);
 
-        Translation::create($arrays);
+        Translation::create($data);
 
         return redirect()->route('translations.index');
     }
@@ -37,28 +42,20 @@ class TranslationController extends Controller
 
     public function update(TranslationUpdateRequest $request, Translation $translation)
     {
-        $arrays = $this->validatedData($request->all());
+        $data = $request->all();
 
-        $translation->update($arrays);
+        $translation->update($data);
+
+        cacheClear($translation->slug);
 
         return redirect()->route('translations.index');
     }
 
-    public function destroy(Translation $language)
+    public function destroy(Translation $translation)
     {
-        $language->delete();
+        cacheClear($translation->slug);
+        $translation->delete();
         return redirect()->route('translations.index');
-    }
-
-    public function validatedData($data)
-    {
-        $translation = getLanguage()->pluck(value: 'slug')->toArray();
-
-        $arrays['default'] = $data['default'];
-
-        $arrays['name'] = array_intersect_key($data, array_flip($translation));
-
-        return $arrays;
     }
 
 }

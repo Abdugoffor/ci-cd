@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Соревнования')
+@section('title', getTranslation('competitions'))
 @section('content')
     <!-- Content area -->
     <div class="content">
@@ -11,10 +11,11 @@
                     @csrf
                     @method('PUT')
                     <fieldset class="mb-3">
-                        <legend class="text-uppercase font-size-sm font-weight-bold">Basic inputs</legend>
+                        <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('competitions') }}
+                        </legend>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Name</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('name') }}</label>
                             <div class="card-body">
                                 <ul class="nav nav-tabs">
                                     @foreach (getLanguage() as $model)
@@ -31,7 +32,7 @@
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab1{{ $model->id }}">
                                             <input type="text" class="form-control" name="name[{{ $model->slug }}]"
-                                                value="{{ $tournament->name[$model->slug] ?? '' }}"
+                                                value="{{ $tournament->name[$model->slug] ?? $tournament->name['default'] }}"
                                                 placeholder="{{ $model->name }}">
                                             @error($model->slug)
                                                 <p style="color: red;">{{ $message }}</p>
@@ -43,13 +44,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Category</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('category') }}</label>
                             <div class="col-lg-10">
                                 <select name="category_id" id="" class="form-control">
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}"
                                             {{ $tournament->category_id == $category->id ? 'selected' : '' }}>
-                                            {{ $category->name['uz'] }}</option>
+                                            {{ $category->name[app()->getLocale()] }}</option>
                                     @endforeach
                                 </select>
                                 @error('category_id')
@@ -58,7 +59,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Country</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('country') }}</label>
                             <div class="col-lg-10">
                                 <select name="country_id" id="" class="form-control">
                                     @foreach ($countries as $country)
@@ -74,7 +75,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Registration start</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('start-of-registration') }}</label>
                             <div class="col-lg-10">
                                 <input class="form-control" type="date" name="registration_start"
                                     value="{{ $tournament->registration_start->format('Y-m-d') }}">
@@ -84,7 +85,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Registration end</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('registration-completed') }}</label>
                             <div class="col-lg-10">
                                 <input class="form-control" type="date"
                                     value="{{ $tournament->registration_end->format('Y-m-d') }}" name="registration_end">
@@ -94,7 +95,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Tournament Start Date</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('start') }}</label>
                             <div class="col-lg-10">
                                 <input class="form-control" type="date"
                                     value="{{ $tournament->start_date->format('Y-m-d') }}" name="start_date">
@@ -104,7 +105,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Tournament End Date</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('finished') }}</label>
                             <div class="col-lg-10">
                                 <input class="form-control" type="date"
                                     value="{{ $tournament->end_date->format('Y-m-d') }}" name="end_date">
@@ -114,7 +115,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Описание</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('description') }}</label>
 
                             <div class="card-body">
                                 <ul class="nav nav-tabs">
@@ -132,8 +133,8 @@
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab12{{ $model->id }}">
                                             <textarea class="form-control" name="description[{{ $model->slug }}]" data-dashlane-classification="other"
-                                                placeholder="{{ $model->name }}">{{ $tournament->description[$model->slug] ?? '' }}</textarea>
-                                            @error('description')
+                                                placeholder="{{ $model->name }}">{{ $tournament->description[$model->slug] ?? $tournament->description['default'] }}</textarea>
+                                            @error('description.' . $model->slug)
                                                 <p style="color:red;">
                                                     {{ $message }}
                                                 </p>
@@ -145,7 +146,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Logo</label>
+                            <label class="col-form-label col-lg-2">{{ getTranslation('logo') }}</label>
                             <div class="col-lg-10">
                                 <input class="form-control" type="file" value="{{ $tournament->logo }}" name="logo">
                                 <img src="{{ asset($tournament->logo) }}" width="100px" class="m-1" alt="">
@@ -156,7 +157,7 @@
                         </div>
                     </fieldset>
                     <div class="text-right">
-                        <button type="submit" class="btn btn-primary">Изменить</button>
+                        <button type="submit" class="btn btn-primary">{{ getTranslation('change') }}</button>
                     </div>
                 </form>
             </div>

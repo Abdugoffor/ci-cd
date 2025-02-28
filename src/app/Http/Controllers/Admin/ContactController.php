@@ -4,10 +4,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactStoreRequest;
 use App\Models\Contact;
+use App\Traits\SearchColumTranslations;
 use Illuminate\Support\Str;
 
 class ContactController extends Controller
 {
+    protected $searhcModel = Contact::class;
+    protected $path = "contacts";
+
+    use SearchColumTranslations;
     public function index()
     {
         $models = Contact::orderByDesc('id')->paginate(10);
@@ -20,6 +25,9 @@ class ContactController extends Controller
     public function store(ContactStoreRequest $request)
     {
         $data = $request->all();
+
+        $data['title']['default'] = reset($data['title']);
+
         if ($request->hasFile('photo')) {
             $file       = $request->file('photo');
             $extensions = $file->getClientOriginalExtension();

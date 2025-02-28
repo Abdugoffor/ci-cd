@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Соревнования')
+@section('title', getTranslation('competitions'))
 @section('content')
     <!-- Content area -->
     <div class="content">
@@ -10,7 +10,7 @@
                 <form action="{{ route('tournaments.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <fieldset class="mb-3">
-                        <legend class="text-uppercase font-size-sm font-weight-bold">Basic inputs</legend>
+                        <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('competitions') }}</legend>
 
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('name') }}</label>
@@ -46,7 +46,7 @@
                             <div class="col-lg-10">
                                 <select name="category_id" id="" class="form-control">
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name['uz'] }}</option>
+                                        <option value="{{ $category->id }}">{{ $category->name[app()->getLocale()] }}</option>
                                     @endforeach
                                 </select>
                                 @error('category_id')

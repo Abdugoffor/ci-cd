@@ -4,10 +4,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HotelStoreRequest;
 use App\Models\Hotel;
+use App\Traits\SearchColumTranslations;
 use Illuminate\Support\Str;
 
 class HotelController extends Controller
 {
+    protected $searhcModel = Hotel::class;
+    protected $path = "hotels";
+
+    use SearchColumTranslations;
     public function index()
     {
         $models = Hotel::orderByDesc('id')->paginate(10);
@@ -20,6 +25,12 @@ class HotelController extends Controller
     public function store(HotelStoreRequest $request)
     {
         $data = $request->all();
+
+        $data['title']['default'] = reset($data['title']);
+
+        $data['description']['default'] = reset($data['description']);
+
+        $data['text']['default'] = reset($data['text']);
 
         if ($request->hasFile('photo')) {
             $file       = $request->file('photo');

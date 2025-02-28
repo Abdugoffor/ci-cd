@@ -27,7 +27,7 @@
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script>
 
-    <!-- Theme JS files -->
+    <!-- Theme JS ckeditor files -->
     <script src="{{ asset('global_assets/js/plugins/editors/ckeditor/ckeditor.js') }}"></script>
 
     <script src="{{ asset('global_assets/js/demo_pages/editor_ckeditor_default.js') }}"></script>
@@ -271,8 +271,7 @@
 
                 <div class="dropdown-menu dropdown-menu-right">
                     @foreach ($languages as $language)
-                        <a
-                            href="{{ route('change.language', $language->slug) }}"class="dropdown-item {{ app()->getLocale() == $language->slug ? 'active' : '' }}">
+                        <a href="{{ route('change.language', $language->slug) }}"class="dropdown-item {{ app()->getLocale() == $language->slug ? 'active' : '' }}">
                             {{ $language->name }}
                         </a>
                     @endforeach
@@ -400,6 +399,12 @@
                             <a href="{{ route('news.index') }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('news') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('accreditation-categories.index') }}" class="nav-link">
+                                <i class="icon-list-unordered"></i>
+                                <span>{{ getTranslation('accreditation-categories') }}</span>
                             </a>
                         </li>
                     </ul>

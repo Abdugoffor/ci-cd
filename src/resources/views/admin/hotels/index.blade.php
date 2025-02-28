@@ -48,13 +48,13 @@
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>
-                                            {{ getLocale($model->title) }}
+                                            {{ substr(getLocale($model->title), 0, 30) }} ...
                                         </td>
                                         <td>
-                                            {{ getLocale($model->description) }}
+                                            {{ substr(getLocale($model->description), 0, 30) }} ...
                                         </td>
                                         <td>
-                                            {{ substr(getLocale($model->text), 0, 20) }}...
+                                            {{ substr(getLocale($model->text), 0, 30) }} ...
                                         </td>
                                         <td>
                                             <img src="{{ asset($model->photo) }}" width="100px" alt="">

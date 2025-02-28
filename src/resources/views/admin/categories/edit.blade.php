@@ -13,18 +13,6 @@
                     <fieldset class="mb-3">
                         <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('category') }}
                         </legend>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('standard') }}</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" name="default" value="{{ $category->default ?? '' }}"
-                                    placeholder="{{ getTranslation('standard') }}">
-                                @error('default')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
-
-                            </div>
-                        </div>
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('name') }}</label>
                             <div class="card-body">
@@ -43,7 +31,7 @@
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab1{{ $model->id }}">
                                             <input type="text" class="form-control" name="name[{{ $model->slug }}]"
-                                                value="{{ $category->name[$model->slug] ?? '' }}"
+                                                value="{{ $category->name[$model->slug] ?? $category->name['default'] }}"
                                                 placeholder="{{ $model->name }}">
                                             @error('description.' . $model->slug)
                                                 <p style="color: red;">{{ $message }}</p>
@@ -73,7 +61,7 @@
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab12{{ $model->id }}">
                                             <textarea class="form-control" name="description[{{ $model->slug }}]" data-dashlane-classification="other"
-                                                placeholder="{{ $model->name }}">{{ $category->description[$model->slug] ?? '' }}</textarea>
+                                                placeholder="{{ $model->name }}">{{ $category->description[$model->slug] ?? $category->description['default'] }}</textarea>
                                             @error('description.' . $model->slug)
                                                 <p style="color:red;">
                                                     {{ $message }}

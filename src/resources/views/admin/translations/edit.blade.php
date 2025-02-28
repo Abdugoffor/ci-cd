@@ -37,10 +37,11 @@
                                         @foreach (getLanguage() as $language)
                                             <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                                 id="basic-tab1{{ $language->id }}">
-                                                <input type="text" class="form-control" name="{{ $language->slug }}"
+                                                <input type="text" class="form-control"
+                                                    name="name[{{ $language->slug }}]"
                                                     value="{{ $model->name[$language->slug] ?? '' }}"
                                                     placeholder="{{ $language->name }}">
-                                                @error($language->slug)
+                                                @error('name.' . $language->slug)
                                                     <p style="color: red;">{{ $message }}</p>
                                                 @enderror
                                             </div>
