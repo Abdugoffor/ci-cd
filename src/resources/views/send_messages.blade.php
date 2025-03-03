@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Tasdiqlash</title>
 </head>
+
 <body>
-    <p>Hurmatli foydalanuvchi,</p>
-    <strong>{{ $text }}</strong></p>
+
+    <p>Rahmat!</p>
 
 </body>
 </html>

@@ -8,7 +8,6 @@
             <div class="col-xl-12">
                 <!-- Support tickets -->
                 <div class="card">
-
                     <div class="table-responsive">
                         <table class="table text-nowrap">
                             <thead>
@@ -63,9 +62,6 @@
                                                 <option value="pending">
                                                     {{ getTranslation('pending') }}
                                                 </option>
-                                                <option value="ongoing">
-                                                    {{ getTranslation('ongoing') }}
-                                                </option>
                                                 <option value="approved">
                                                     {{ getTranslation('approved') }}
                                                 </option>
@@ -109,8 +105,8 @@
                                                             <!-- Qabul qilish tugmasi -->
                                                             <a href="{{ route('application.status', [$model->id, 'approved']) }}"
                                                                 class="dropdown-item">
-                                                                <i
-                                                                    class="icon-checkmark3 text-success"></i>{{ getTranslation('acceptance') }}
+                                                                <i class="icon-checkmark3 text-success"></i>
+                                                                {{ getTranslation('acceptance') }}
                                                             </a>
                                                             <!-- Canceled tugmasi: Modalni ochadi -->
                                                             <span href="#" class="dropdown-item canceled-btn"

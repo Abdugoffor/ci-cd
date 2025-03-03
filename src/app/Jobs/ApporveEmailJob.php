@@ -4,28 +4,32 @@ namespace App\Jobs;
 use App\Mail\ApporveEmail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class ApporveEmailJob implements ShouldQueue
 {
-    use Queueable;
+    use InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * Create a new job instance.
-     */
     public $email;
-    public $text = 'sizni arizangiz tasdiqlandi !';
-    public function __construct($email, $text = null)
+    public $qrPath;
+
+    public function __construct($email, $qrPath)
     {
-        $this->email = $email;
-        $this->text  = $text;
+        $this->email  = $email;
+        $this->qrPath = $qrPath;
     }
 
-    /**
-     * Execute the job.
-     */
-    public function handle(): void
+    public function handle()
     {
-        Mail::to($this->email)->send(new ApporveEmail($this->text));
+        // Mail::to($this->email)->send(new ApporveEmail(public_path($this->qrPath)));
+        if (file_exists(public_path($this->qrPath))) {
+            Mail::to($this->email)->send(new ApporveEmail($this->qrPath));
+        } else {
+            Log::error('Fayl topilmadi: ' . public_path($this->qrPath));
+        }
     }
+
 }

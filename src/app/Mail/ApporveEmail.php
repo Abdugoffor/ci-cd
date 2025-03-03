@@ -3,50 +3,26 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Queue\SerializesModels;
 
 class ApporveEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public $text;
-    public function __construct($text)
+    public $qrCodePath;
+
+    public function __construct($qrCodePath)
     {
-        $this->text = $text;
+        $this->qrCodePath = $qrCodePath;
     }
 
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
+    public function build()
     {
-        return new Envelope(
-            subject: 'Apporve Email',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
-    {
-        return new Content(
-            view: 'send_messages',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
+        return $this->subject('Tasdiqlash Emaili')
+            ->view('send_messages')
+            ->attach(Attachment::fromPath(public_path($this->qrCodePath))
+                    ->as('qrcode.svg')
+                    ->withMime('image/svg+xml'));
     }
 }

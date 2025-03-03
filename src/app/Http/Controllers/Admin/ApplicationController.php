@@ -7,6 +7,8 @@ use App\Models\AccreditationCategory;
 use App\Models\ApplicationCancellation;
 use App\Models\Participant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ApplicationController extends Controller
 {
@@ -20,10 +22,27 @@ class ApplicationController extends Controller
     public function status(Participant $participant, string $status)
     {
         if ($status == 'approved') {
-            $participant->update(['status' => $status]);
-        }
+            $qk_code = $participant->id . '$' . Str::random(70);
 
-        dispatch(new ApporveEmailJob($participant->email));
+            $participant->update([
+                'status'  => $status,
+                'qk_code' => $qk_code,
+            ]);
+
+            $qrCodePath = 'qrcodes/qk_code_' . time() . '_' . $participant->id . '.svg';
+
+            if (! file_exists(public_path('qrcodes'))) {
+                mkdir(public_path('qrcodes'), 0777, true);
+            }
+
+            file_put_contents(public_path($qrCodePath), QrCode::format('svg')->size(300)->generate($qk_code));
+
+            if (file_exists(public_path($qrCodePath))) {
+
+                dispatch(new ApporveEmailJob($participant->email, $qrCodePath));
+            }
+
+        }
 
         return back();
     }
@@ -67,7 +86,6 @@ class ApplicationController extends Controller
         if ($request->filled('updated_at')) {
             $models->whereDate('updated_at', $request->updated_at);
         }
-
 
         if ($request->filled('status')) {
             $models->orWhere('status', $request->status);

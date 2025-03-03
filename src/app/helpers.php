@@ -135,14 +135,18 @@ if (! function_exists('getTranslation')) {
 if (! function_exists('getLocale')) {
     function getLocale($model)
     {
-        $lang = App::getLocale();
-        if ($lang) {
-            if (isset($model[$lang])) {
-
-                return $model[$lang];
-            }
+        if (! $model || ! is_array($model)) {
+            return '';
         }
-        return $model['default'];
+
+        $lang = App::getLocale();
+
+        if ($lang && isset($model[$lang])) {
+            return $model[$lang];
+        }
+
+        return $model['default'] ?? '';
+
     }
 }
 

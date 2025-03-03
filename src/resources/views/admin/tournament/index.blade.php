@@ -116,20 +116,20 @@
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <a href="{{ route('status.update', [$model->id, 'pending']) }}"
                                                                 class="dropdown-item">
-                                                                {{-- <i class="icon-pencil3 mr-2 text-success"></i> --}}
-                                                                pending</a>
+                                                                {{ getTranslation('pending') }}
+                                                            </a>
                                                             <a href="{{ route('status.update', [$model->id, 'ongoing']) }}"
                                                                 class="dropdown-item">
-                                                                {{-- <i class="icon-pencil3 mr-2 text-success"></i> --}}
-                                                                ongoing</a>
+                                                                {{ getTranslation('ongoing') }}
+                                                            </a>
                                                             <a href="{{ route('status.update', [$model->id, 'completed']) }}"
                                                                 class="dropdown-item">
-                                                                {{-- <i class="icon-pencil3 mr-2 text-success"></i> --}}
-                                                                ompleted</a>
+                                                                {{ getTranslation('completed') }}
+                                                            </a>
                                                             <a href="{{ route('status.update', [$model->id, 'canceled']) }}"
                                                                 class="dropdown-item">
-                                                                {{-- <i class="icon-pencil3 mr-2 text-success"></i> --}}
-                                                                canceled</a>
+                                                                {{ getTranslation('canceled') }}
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>

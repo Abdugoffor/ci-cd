@@ -770,6 +770,15 @@ class TranslationSeeder extends Seeder
                 'default' => 'Canceled',
             ],
             [
+                'slug'    => 'completed',
+                'name'    => json_encode([
+                    'uz' => 'yakunlandi',
+                    'ru' => 'завершенный',
+                    'en' => 'completed',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'completed',
+            ],
+            [
                 'slug'    => 'logout',
                 'name'    => json_encode([
                     'uz' => 'Chiqish',

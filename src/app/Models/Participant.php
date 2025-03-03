@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Traits\HasHistory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Schema;
 
 class Participant extends Model
 {
@@ -33,6 +34,7 @@ class Participant extends Model
         'departure_details',          // Ketish ma’lumotlari
         'accommodation_details',      // Mehmonxona va yashash ma’lumotlari
         'pcr_test_details',           // PCR testi ma’lumotlari
+        'qk_code',
         'status',
     ];
     protected $casts = [
@@ -40,6 +42,12 @@ class Participant extends Model
         'arrival_details'   => 'datetime',
         'departure_details' => 'datetime',
     ];
+
+    public static function getTableColumns()
+    {
+        return Schema::getColumnListing((new self)->getTable());
+    }
+
     public function tournament()
     {
         return $this->belongsTo(Tournament::class, 'tournament_id');

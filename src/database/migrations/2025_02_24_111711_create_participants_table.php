@@ -37,6 +37,7 @@ return new class extends Migration
             $table->text('accommodation_details')->nullable();
             $table->text('pcr_test_details')->nullable();
             $table->enum('status', ['pending', 'approved', 'canceled'])->default('pending');
+            $table->string('qk_code')->unique()->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
