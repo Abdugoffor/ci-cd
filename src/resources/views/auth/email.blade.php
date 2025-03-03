@@ -2,7 +2,7 @@
 @section('title', 'Login')
 @section('content')
     <!-- Register form -->
-    <form class="login-form" action="{{ route('loginSubmit') }}" method="POST">
+    <form class="login-form" action="{{ route('verify.email.post') }}" method="POST">
         @csrf
         <div class="card mb-0">
             <div class="card-body">
@@ -19,16 +19,6 @@
                         <i class="icon-mention text-muted"></i>
                     </div>
                     @error('email')
-                        <p style="color: red;">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="form-group form-group-feedback form-group-feedback-left">
-                    <input type="password" class="form-control" name="password" placeholder="Password">
-                    <div class="form-control-feedback">
-                        <i class="icon-lock2 text-muted"></i>
-                    </div>
-                    @error('password')
                         <p style="color: red;">{{ $message }}</p>
                     @enderror
                 </div>

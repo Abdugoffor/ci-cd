@@ -55,7 +55,7 @@
 
         <div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
 
-            <ul class="navbar-nav ml-lg-auto">
+            {{-- <ul class="navbar-nav ml-lg-auto">
                 <li class="nav-item dropdown">
                     <a href="#" class="navbar-nav-link" data-toggle="dropdown">
                         <i class="icon-people"></i>
@@ -144,121 +144,10 @@
                         </div>
                     </div>
                 </li>
-            </ul>
+            </ul> --}}
         </div>
 
         <ul class="navbar-nav flex-row order-1 order-lg-2 flex-1 flex-lg-0 justify-content-end align-items-center">
-            <li class="nav-item nav-item-dropdown-lg dropdown">
-                <a href="#" class="navbar-nav-link navbar-nav-link-toggler" data-toggle="dropdown">
-                    <i class="icon-bubbles4"></i>
-                    <span class="badge badge-warning badge-pill ml-auto ml-lg-0">2</span>
-                </a>
-
-                <div class="dropdown-menu dropdown-menu-right dropdown-content wmin-lg-350">
-                    <div class="dropdown-content-header">
-                        <span class="font-weight-semibold">Messages</span>
-                        <a href="#" class="text-body"><i class="icon-compose"></i></a>
-                    </div>
-
-                    <div class="dropdown-content-body dropdown-scrollable">
-                        <ul class="media-list">
-                            <li class="media">
-                                <div class="mr-3 position-relative">
-                                    <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
-                                        width="36" height="36" class="rounded-circle" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="media-title">
-                                        <a href="#">
-                                            <span class="font-weight-semibold">James Alexander</span>
-                                            <span class="text-muted float-right font-size-sm">04:58</span>
-                                        </a>
-                                    </div>
-
-                                    <span class="text-muted">who knows, maybe that would be the best thing for
-                                        me...</span>
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3 position-relative">
-                                    <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
-                                        width="36" height="36" class="rounded-circle" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="media-title">
-                                        <a href="#">
-                                            <span class="font-weight-semibold">Margo Baker</span>
-                                            <span class="text-muted float-right font-size-sm">12:16</span>
-                                        </a>
-                                    </div>
-
-                                    <span class="text-muted">That was something he was unable to do because...</span>
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="global_assets/images/placeholders/placeholder.jpg" width="36"
-                                        height="36" class="rounded-circle" alt="">
-                                </div>
-                                <div class="media-body">
-                                    <div class="media-title">
-                                        <a href="#">
-                                            <span class="font-weight-semibold">Jeremy Victorino</span>
-                                            <span class="text-muted float-right font-size-sm">22:48</span>
-                                        </a>
-                                    </div>
-
-                                    <span class="text-muted">But that would be extremely strained and
-                                        suspicious...</span>
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="global_assets/images/placeholders/placeholder.jpg" width="36"
-                                        height="36" class="rounded-circle" alt="">
-                                </div>
-                                <div class="media-body">
-                                    <div class="media-title">
-                                        <a href="#">
-                                            <span class="font-weight-semibold">Beatrix Diaz</span>
-                                            <span class="text-muted float-right font-size-sm">Tue</span>
-                                        </a>
-                                    </div>
-
-                                    <span class="text-muted">What a strenuous career it is that I've chosen...</span>
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="global_assets/images/placeholders/placeholder.jpg" width="36"
-                                        height="36" class="rounded-circle" alt="">
-                                </div>
-                                <div class="media-body">
-                                    <div class="media-title">
-                                        <a href="#">
-                                            <span class="font-weight-semibold">Richard Vango</span>
-                                            <span class="text-muted float-right font-size-sm">Mon</span>
-                                        </a>
-                                    </div>
-
-                                    <span class="text-muted">Other travelling salesmen live a life of luxury...</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="dropdown-content-footer justify-content-center p-0">
-                        <a href="#" class="btn btn-light btn-block border-0 rounded-top-0" data-popup="tooltip"
-                            title="Load more"><i class="icon-menu7"></i></a>
-                    </div>
-                </div>
-            </li>
 
             <li class="nav-item nav-item-dropdown-lg dropdown dropdown-user h-100">
                 <a href="#"
@@ -271,7 +160,8 @@
 
                 <div class="dropdown-menu dropdown-menu-right">
                     @foreach ($languages as $language)
-                        <a href="{{ route('change.language', $language->slug) }}"class="dropdown-item {{ app()->getLocale() == $language->slug ? 'active' : '' }}">
+                        <a
+                            href="{{ route('change.language', $language->slug) }}"class="dropdown-item {{ app()->getLocale() == $language->slug ? 'active' : '' }}">
                             {{ $language->name }}
                         </a>
                     @endforeach
@@ -284,17 +174,19 @@
                     data-toggle="dropdown">
                     <img src="global_assets/images/placeholders/placeholder.jpg" class="rounded-pill mr-lg-2"
                         height="34" alt="">
-                    <span class="d-none d-lg-inline-block">Victoria</span>
+                    <span class="d-none d-lg-inline-block">{{ auth()->user()->name ?? 'User' }}</span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="#" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
-                    <a href="#" class="dropdown-item"><i class="icon-coins"></i> My balance</a>
-                    <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span
-                            class="badge badge-primary badge-pill ml-auto">58</span></a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
-                    <a href="#" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
+                    <a href="{{ route('profile.edit') }}" class="dropdown-item"><i class="icon-user-plus"></i> My
+                        profile</a>
+                    <form action="{{ route('profile.logout') }}" method="post">
+                        @csrf
+                        <button class="dropdown-item">
+                            <i class="icon-switch2"></i>
+                            <span>{{ getTranslation('logout') }}</span>
+                        </button>
+                    </form>
                 </div>
             </li>
         </ul>
@@ -360,6 +252,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('categories.index') }}" class="nav-link">
+                                <i class="icon-list-unordered"></i>
+                                <span>{{ getTranslation('category') }}</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('accreditation-categories.index') }}" class="nav-link">
+                                <i class="icon-list-unordered"></i>
+                                <span>{{ getTranslation('accreditation-categories') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('users.index') }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('users') }}</span>
@@ -377,10 +282,11 @@
                                 <span>{{ getTranslation('translations') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('categories.index') }}" class="nav-link">
+                            <a href="{{ route('contacts.index') }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('category') }}</span>
+                                <span>{{ getTranslation('contacts') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -390,21 +296,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('contacts.index') }}" class="nav-link">
-                                <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('contacts') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ route('news.index') }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('news') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('accreditation-categories.index') }}" class="nav-link">
-                                <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('accreditation-categories') }}</span>
                             </a>
                         </li>
                     </ul>

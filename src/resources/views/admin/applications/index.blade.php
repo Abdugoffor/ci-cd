@@ -15,49 +15,92 @@
                                 <tr>
                                     <th>№</th>
                                     <th>{{ getTranslation('name') }}</th>
+                                    <th>{{ getTranslation('fide-id') }}</th>
                                     <th>{{ getTranslation('type') }}</th>
                                     <th>{{ getTranslation('birth-date') }}</th>
-                                    <th>{{ getTranslation('gender') }}</th>
                                     <th>{{ getTranslation('email') }}</th>
-                                    <th>{{ getTranslation('visa-required') }}</th>
                                     <th>{{ getTranslation('registration-end') }}</th>
-                                    <th>{{ getTranslation('arrival-date') }}</th>
-                                    <th>{{ getTranslation('departure-date') }}</th>
                                     <th>{{ getTranslation('status') }}</th>
                                     <th>{{ getTranslation('view') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
                                 </tr>
+                                <form action="{{ route('application.search') }}" method="get">
+                                    @csrf
+                                    <tr>
+                                        <th></th>
+                                        <th>
+                                            <input type="text" class="form-control" name="first_name"
+                                                placeholder="{{ getTranslation('name') }}">
+                                        </th>
+                                        <th>
+                                            <input type="text" class="form-control" name="fide_id"
+                                                placeholder="{{ getTranslation('fide-id') }}">
+                                        </th>
+                                        <th>
+                                            <select class="form-control custom-select" name="accreditation_category_id"
+                                                id="select_date">
+                                                <option></option>
+                                                @foreach ($accreditationCategories as $categories)
+                                                    <option value="{{ $categories->id }}">
+                                                        {{ getLocale(optional($categories)->name) }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <input type="date" class="form-control" name="date_of_birth">
+                                        </th>
+                                        <th>
+                                            <input type="text" class="form-control" name="email"
+                                                placeholder="{{ getTranslation('email') }}">
+                                        </th>
+                                        <th>
+                                            <input type="date" class="form-control" name="updated_at">
+                                        </th>
+                                        <th>
+                                            <select class="form-control custom-select" name="status" id="select_date">
+                                                <option></option>
+                                                <option value="pending">
+                                                    {{ getTranslation('pending') }}
+                                                </option>
+                                                <option value="ongoing">
+                                                    {{ getTranslation('ongoing') }}
+                                                </option>
+                                                <option value="approved">
+                                                    {{ getTranslation('approved') }}
+                                                </option>
+                                                <option value="canceled">
+                                                    {{ getTranslation('canceled') }}
+                                                </option>
+                                            </select>
+                                        </th>
+                                        <th></th>
+                                        <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                    </tr>
+                                </form>
                             </thead>
                             <tbody>
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ $model->first_name }}</td>
-                                        <td>{{ optional($model->accreditationCategory)->name['uz'] ?? '' }}</td>
+                                        <td>{{ $model->fide_id }}</td>
                                         <td>
-                                            {{ $model->date_of_birth }}
+                                            {{ getLocale(optional($model->accreditationCategory)->name) }}
                                         </td>
                                         <td>
-                                            {{ $model->gender }}
+                                            {{ $model->date_of_birth }}
                                         </td>
                                         <td>
                                             {{ $model->email }}
                                         </td>
                                         <td>
-                                            {{ $model->requires_visa ? 'Да' : 'Нет' }}
-                                        </td>
-                                        <td>
                                             {{ $model->email_verified_at ? $model->email_verified_at->format('d-m-Y, H:i') : '' }}
                                         </td>
                                         <td>
-                                            {{ $model->arrival_details ? $model->arrival_details->format('d-m-Y') : '' }}
-                                        </td>
-                                        <td>
-                                            {{ $model->departure_details ? $model->departure_details->format('d-m-Y') : '' }}
-                                        </td>
-                                        <td>
                                             <span class="badge badge-teal badge-pill ml-auto">
-                                                {{ $model->status }}
+                                                {{ getTranslation($model->status == 'pending' ? 'pending' : ($model->status == 'approved' ? 'approved' : 'canceled')) }}
+
                                                 <div class="list-icons ml-2">
                                                     <div class="dropdown">
                                                         <a href="#" class="list-icons-item" data-toggle="dropdown"><i
@@ -66,13 +109,15 @@
                                                             <!-- Qabul qilish tugmasi -->
                                                             <a href="{{ route('application.status', [$model->id, 'approved']) }}"
                                                                 class="dropdown-item">
-                                                                <i class="icon-checkmark3 text-success"></i>{{ getTranslation('acceptance') }}
+                                                                <i
+                                                                    class="icon-checkmark3 text-success"></i>{{ getTranslation('acceptance') }}
                                                             </a>
                                                             <!-- Canceled tugmasi: Modalni ochadi -->
                                                             <span href="#" class="dropdown-item canceled-btn"
                                                                 data-toggle="modal"
                                                                 data-target="#cancelModal{{ $model->id }}">
-                                                                <i class="icon-cross2 text-danger"></i>{{ getTranslation('canceled') }}
+                                                                <i
+                                                                    class="icon-cross2 text-danger"></i>{{ getTranslation('canceled') }}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -84,7 +129,8 @@
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">{{ getTranslation('reason-for-cancellation') }}:
+                                                            <h5 class="modal-title">
+                                                                {{ getTranslation('reason-for-cancellation') }}:
                                                                 {{ $model->first_name }}</h5>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal">&times;</button>

@@ -3,7 +3,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\EmailCodeRequest;
+use App\Jobs\SendPassword;
 use App\Models\Participant;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class EmailVerifyController extends Controller
 {
@@ -11,10 +16,23 @@ class EmailVerifyController extends Controller
     {
         return view('auth.email');
     }
+
+    public function verifyEmailCode(Request $request)
+    {
+        $email            = $request->email;
+        $user             = User::where('email', $email)->first();
+        $verificationCode = Str::random(8);
+        if ($user) {
+            $user->update(['password' => Hash::make($verificationCode)]);
+            dispatch(new SendPassword($email, $verificationCode));
+        }
+        return redirect()->route('login');
+    }
     public function codeForm()
     {
         return view('auth.verify_email');
     }
+
     public function verifyCode(EmailCodeRequest $request)
     {
         $code  = $request->code;

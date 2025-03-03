@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->string('logo')->nullable();
             $table->jsonb('description')->nullable();
-            $table->enum('status', ['pending', 'ongoing', 'completed', 'canceled'])->default('pending');
+            $table->enum('status', ['pending', 'ongoing', 'approved', 'canceled'])->default('pending');
             $table->timestamps();
             $table->softDeletes();
         });

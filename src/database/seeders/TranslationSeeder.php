@@ -619,18 +619,18 @@ class TranslationSeeder extends Seeder
             [
                 'slug'    => 'hotels',
                 'name'    => json_encode([
-                    'uz' => 'hotels',
-                    'ru' => 'hotels',
-                    'en' => 'hotels',
+                    'uz' => 'Mehmonxonalar',
+                    'ru' => 'Отели',
+                    'en' => 'Hotels',
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'hotels',
             ],
             [
                 'slug'    => 'contacts',
                 'name'    => json_encode([
-                    'uz' => 'contacts',
-                    'ru' => 'contacts',
-                    'en' => 'contacts',
+                    'uz' => 'Aloqalar',
+                    'ru' => 'Контакты',
+                    'en' => 'Contacts',
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'contacts',
             ],
@@ -691,18 +691,18 @@ class TranslationSeeder extends Seeder
             [
                 'slug'    => 'news',
                 'name'    => json_encode([
-                    'uz' => 'news',
-                    'ru' => 'news',
-                    'en' => 'news',
+                    'uz' => 'Yangiliklar',
+                    'ru' => 'Новости',
+                    'en' => 'News',
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'news',
             ],
             [
                 'slug'    => 'accreditation-categories',
                 'name'    => json_encode([
-                    'uz' => 'accreditation-categories',
-                    'ru' => 'accreditation-categories',
-                    'en' => 'accreditation-categories',
+                    'uz' => 'Akkreditatsiya toifalari',
+                    'ru' => 'Категории аккредитации',
+                    'en' => 'Accreditation categories',
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'accreditation-categories',
             ],
@@ -715,6 +715,69 @@ class TranslationSeeder extends Seeder
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'search',
             ],
+            [
+                'slug'    => 'M',
+                'name'    => json_encode([
+                    'uz' => 'Мужчина',
+                    'ru' => 'Мужчина',
+                    'en' => 'Мужчина',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Мужчина',
+            ],
+            [
+                'slug'    => 'L',
+                'name'    => json_encode([
+                    'uz' => 'Женщина',
+                    'ru' => 'Женщина',
+                    'en' => 'Женщина',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Женщина',
+            ],
+            [
+                'slug'    => 'pending',
+                'name'    => json_encode([
+                    'uz' => 'Kutilmoqda',
+                    'ru' => 'Ожидается',
+                    'en' => 'Pending',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Pending',
+            ],
+            [
+                'slug'    => 'ongoing',
+                'name'    => json_encode([
+                    'uz' => 'Davom etmoqda',
+                    'ru' => 'В процессе',
+                    'en' => 'Ongoing',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'ongoing',
+            ],
+            [
+                'slug'    => 'approved',
+                'name'    => json_encode([
+                    'uz' => 'Tasdiqlangan',
+                    'ru' => 'Подтверждено',
+                    'en' => 'Approved',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Approved',
+            ],
+            [
+                'slug'    => 'canceled',
+                'name'    => json_encode([
+                    'uz' => 'Bekor qilingan',
+                    'ru' => 'Отменено',
+                    'en' => 'Canceled',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Canceled',
+            ],
+            [
+                'slug'    => 'logout',
+                'name'    => json_encode([
+                    'uz' => 'Chiqish',
+                    'ru' => 'Выход',
+                    'en' => 'Logout',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'logout',
+            ]
         ];
 
         Translation::insert($translations);

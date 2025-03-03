@@ -11,9 +11,9 @@ use App\Http\Controllers\Admin\TournamentController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\EmailVerifyController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegistrController;
 use App\Http\Controllers\IndexController;
 use App\Http\Middleware\CheckEmailSession;
 use App\Http\Middleware\LangMiddleware;
@@ -22,10 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(LangMiddleware::class)->group(function () {
 
     Route::get('/', [IndexController::class, 'index'])->name('home');
-    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::get('/admin', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('loginSubmit');
-    Route::get('/registr', [RegistrController::class, 'index'])->name('registr');
-    Route::post('/registr', [RegistrController::class, 'registr'])->name('registrSubmit');
 
     Route::get('/application/{application}', [IndexController::class, 'application'])->name('application');
     Route::post('/applications', [ApplicationController::class, 'store'])->name('application.store');
@@ -41,6 +39,10 @@ Route::middleware(LangMiddleware::class)->group(function () {
     Route::get('/lang/{lang}', [IndexController::class, 'changeLanguage'])->name('change.language');
 
     Route::prefix('dashboard')->middleware(['auth'])->group(function () {
+
+        Route::get('/profile', [AuthController::class, 'edit'])->name('profile.edit');
+        Route::post('/profile', [AuthController::class, 'update'])->name('profile.update');
+        Route::post('/profile/logout', [AuthController::class, 'logout'])->name('profile.logout');
 
         Route::resource('/tournaments', TournamentController::class);
         Route::resource('/users', UserController::class);

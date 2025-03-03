@@ -125,7 +125,7 @@
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab12{{ $model->id }}">
                                             <textarea class="form-control" name="description[{{ $model->slug }}]" data-dashlane-classification="other"
-                                                placeholder="{{ $model->name }}"></textarea>
+                                                placeholder="{{ $model->name }}">{{ old('description.' . $model->slug) }}</textarea>
                                             @error('description.' . $model->slug)
                                                 <p style="color:red;">
                                                     {{ $message }}
