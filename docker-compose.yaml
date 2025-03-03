@@ -49,16 +49,16 @@ services:
     depends_on:
       - postgres
     entrypoint: ["php", "/var/www/laravel/artisan"]
-  setup:
-    build:
-      context: dockerfiles
-      dockerfile: php.Dockerfile
-    volumes:
-      - ./src:/var/www/laravel
-    depends_on:
-      - postgres
-      - composer
-    entrypoint: ["sh", "-c", "php artisan migrate --force && php artisan db:seed --force"]
+  # setup:
+  #   build:
+  #     context: dockerfiles
+  #     dockerfile: php.Dockerfile
+  #   volumes:
+  #     - ./src:/var/www/laravel
+  #   depends_on:
+  #     - postgres
+  #     - composer
+  #   entrypoint: ["sh", "-c", "php artisan migrate --force && php artisan db:seed --force"]
 
 volumes:
   pgdata:
