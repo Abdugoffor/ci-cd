@@ -6,7 +6,6 @@ use App\Http\Requests\NewsStoreRequest;
 use App\Models\Menyu;
 use App\Models\News;
 use App\Traits\SearchColumTranslations;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class NewsController extends Controller
@@ -37,20 +36,13 @@ class NewsController extends Controller
         $data['text']['default'] = reset($data['text']);
 
         if ($request->hasFile('photo')) {
-            try {
-                $file       = $request->file('photo');
-                $extensions = $file->getClientOriginalExtension();
-                $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
-                $file->move(public_path('uploaded'), $filename);
-                $data['photo'] = 'uploaded/' . $filename;
-            } catch (\Exception $e) {
-                Log::error('Fayl yuklashda xatolik: ' . $e->getMessage(), [
-                    'file' => $request->file('photo')->getClientOriginalName(),
-                    'size' => $request->file('photo')->getSize(),
-                    'path' => public_path('uploaded'),
-                ]);
-                // return redirect()->back()->withErrors(['photo' => 'Fayl yuklashda xatolik: ' . $e->getMessage()]);
-            }
+            
+            $file       = $request->file('photo');
+            $extensions = $file->getClientOriginalExtension();
+            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
+            $file->move(public_path('uploaded'), $filename);
+            $data['photo'] = 'uploaded/' . $filename;
+
         }
 
         News::create($data);

@@ -15,6 +15,10 @@ RUN apk add --no-cache \
 # Установка Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# PHP konfiguratsiyasini o‘zgartirish (php.ini sozlamalarini o‘rnatish)
+RUN echo "upload_max_filesize = 50M" >> /usr/local/etc/php/php.ini \
+    && echo "post_max_size = 50M" >> /usr/local/etc/php/php.ini
+
 # Установка рабочего каталога
 WORKDIR /var/www/laravel
 
