@@ -9,17 +9,17 @@
 
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-    <link href="{{ url('global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ secure_asset('global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ secure_asset('assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
-    <script src="{{ asset('global_assets/js/main/jquery.min.js') }}"></script>
-    <script src="{{ asset('global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ secure_asset('global_assets/js/main/jquery.min.js') }}"></script>
+    <script src="{{ secure_asset('global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
-    <script src="assets/js/app.js"></script>
+    <script src="{{ secure_asset('assets/js/app.js') }}"></script>
     <!-- /theme JS files -->
 
 </head>
@@ -30,7 +30,7 @@
     <div class="navbar navbar-expand-lg navbar-dark navbar-static">
         <div class="navbar-brand ml-2 ml-lg-0">
             <a href="/" class="d-inline-block">
-                <img src="{{ asset('global_assets/images/logo_light.png') }}" alt="">
+                <img src="{{ secure_asset('global_assets/images/logo_light.png') }}" alt="">
             </a>
         </div>
 
@@ -38,8 +38,7 @@
             <ul class="navbar-nav flex-row">
                 <li class="nav-item">
                     <a href="/" class="navbar-nav-link">
-                        <span class="d-none d-lg-inline-block ml-2">Home / <h1>{{ config('app.url') }}
-                        </h1></span>
+                        <span class="d-none d-lg-inline-block ml-2">Home
                     </a>
                 </li>
             </ul>
