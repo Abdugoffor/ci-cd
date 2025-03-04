@@ -14,6 +14,7 @@ php artisan migrate
 php artisan db:seed
 
 # Очистка и кеширование конфигурации
+php artisan optimize:clear
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
