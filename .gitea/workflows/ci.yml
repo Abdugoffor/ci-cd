@@ -19,11 +19,11 @@ jobs:
       
       - name: Verify Laravel Directory fide_php
         run: |
-          docker exec fide_php ls -lah /var/www/
-          docker exec fide_php ls -lah /var/www/laravel      
+          docker exec shaxmat_fide-fide_php-1 ls -lah /var/www/
+          docker exec shaxmat_fide-fide_php-1 ls -lah /var/www/laravel      
 
       - name: Verify Laravel Directory fide_nginx
         run: |
-          docker exec fide_nginx ls -lah /var/www/
-          docker exec fide_nginx ls -lah /var/www/laravel              
+          docker exec shaxmat_fide-fide_nginx-1 ls -lah /var/www/
+          docker exec shaxmat_fide-fide_nginx-1 ls -lah /var/www/laravel              
 
