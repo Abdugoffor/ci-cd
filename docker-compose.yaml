@@ -1,44 +1,38 @@
-# networks:
-#   traefik-network:
-#     external: true
+networks:
+  traefik-network:
+    external: true
 
 
 services:
   fide_nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
     image: "nginx:stable-alpine"
+    networks:
+      - traefik-network
     ports:
       - "8010:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./src:/var/www/laravel
-    # build:
-    #   context: .
-    #   dockerfile: nginx/Dockerfile
-    # image: "nginx:stable-alpine"
-    # networks:
-    #   - traefik-network
-    # ports:
-    #   - "8010:80"
-    # volumes:
-    #   - fide_project:/var/www/laravel
+      - fide_project:/var/www/laravel
     depends_on:
       - fide_postgres
       - fide_php
-    # labels:
-    #   - "traefik.enable=true"
-    #   - "traefik.http.routers.fide_nginx.rule=Host(`api.uzchess.sriss.uz`)"
-    #   - "traefik.http.routers.fide_nginx.entryPoints=web"
-    #   - "traefik.http.routers.fide_nginx.service=fide_nginx"
-    #   - "traefik.http.services.fide_nginx.loadbalancer.server.port=80"
-    #   - "traefik.http.middlewares.compresstraefik.compress=true"
-    #   - "traefik.docker.network=traefik-network"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fide_nginx.rule=Host(`api.uzchess.sriss.uz`)"
+      - "traefik.http.routers.fide_nginx.entryPoints=web"
+      - "traefik.http.routers.fide_nginx.service=fide_nginx"
+      - "traefik.http.services.fide_nginx.loadbalancer.server.port=80"
+      - "traefik.http.middlewares.compresstraefik.compress=true"
+      - "traefik.docker.network=traefik-network"
 
   fide_php:
     build:
       context: .
       dockerfile: dockerfiles/php.Dockerfile
-    # networks:
-    #   - traefik-network
+    networks:
+      - traefik-network
     volumes:
       - fide_project:/var/www/laravel
 
@@ -50,8 +44,8 @@ services:
       - env/postgres.env
     volumes:
       - pgdata:/var/lib/postgresql/data
-    # networks:
-    #   - traefik-network 
+    networks:
+      - traefik-network 
 
 volumes:
   pgdata:
