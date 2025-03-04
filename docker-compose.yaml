@@ -6,14 +6,16 @@ networks:
 
 services:
   fide_nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
     image: "nginx:stable-alpine"
     networks:
       - traefik-network
     ports:
       - "8010:80"
     volumes:
-      - ./nginx/:/etc/nginx/conf.d/
-      - ./src:/var/www/laravel
+      - fide_project:/var/www/laravel
     depends_on:
       - fide_postgres
       - fide_php
@@ -33,7 +35,8 @@ services:
     networks:
       - traefik-network
     volumes:
-      - ./src:/var/www/laravel
+      - fide_project:/var/www/laravel
+
 
   fide_postgres:
     image: postgres:15
@@ -45,3 +48,4 @@ services:
 
 volumes:
   pgdata:
+  fide_project:
