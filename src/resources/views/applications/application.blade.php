@@ -8,7 +8,7 @@
 
             <div class="card-body">
 
-                <form action="{{ route('application.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('application.store', [], false) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <fieldset class="mb-3">
                         <legend class="text-uppercase font-size-sm font-weight-bold">Регистрация участника</legend>

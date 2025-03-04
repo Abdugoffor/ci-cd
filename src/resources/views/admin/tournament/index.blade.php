@@ -46,7 +46,7 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('tournaments.create') }}" class="btn btn-teal">
+                            <a href="{{ route('tournaments.create', [], false) }}" class="btn btn-teal">
                                 <i class="icon-plus3 icon-1x mr-1"></i>{{ getTranslation('add') }}
                             </a>
                         </div>
@@ -114,19 +114,19 @@
                                                         <a href="#" class="list-icons-item" data-toggle="dropdown"><i
                                                                 class="icon-menu7"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                            <a href="{{ route('status.update', [$model->id, 'pending']) }}"
+                                                            <a href="{{ route('status.update', [$model->id, 'pending'], false) }}"
                                                                 class="dropdown-item">
                                                                 {{ getTranslation('pending') }}
                                                             </a>
-                                                            <a href="{{ route('status.update', [$model->id, 'ongoing']) }}"
+                                                            <a href="{{ route('status.update', [$model->id, 'ongoing'], false) }}"
                                                                 class="dropdown-item">
                                                                 {{ getTranslation('ongoing') }}
                                                             </a>
-                                                            <a href="{{ route('status.update', [$model->id, 'completed']) }}"
+                                                            <a href="{{ route('status.update', [$model->id, 'completed'], false) }}"
                                                                 class="dropdown-item">
                                                                 {{ getTranslation('completed') }}
                                                             </a>
-                                                            <a href="{{ route('status.update', [$model->id, 'canceled']) }}"
+                                                            <a href="{{ route('status.update', [$model->id, 'canceled'], false) }}"
                                                                 class="dropdown-item">
                                                                 {{ getTranslation('canceled') }}
                                                             </a>
@@ -147,11 +147,12 @@
                                                     <a href="#" class="list-icons-item" data-toggle="dropdown"><i
                                                             class="icon-menu7"></i></a>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a href="{{ route('tournaments.edit', $model->id) }}"
+                                                        <a href="{{ route('tournaments.edit', $model->id, false) }}"
                                                             class="dropdown-item"><i
                                                                 class="icon-pencil3 mr-2 text-success"></i>
-                                                                {{ getTranslation('change') }}</a>
-                                                        <form action="{{ route('tournaments.destroy', $model->id) }}"
+                                                            {{ getTranslation('change') }}</a>
+                                                        <form
+                                                            action="{{ route('tournaments.destroy', $model->id, false) }}"
                                                             method="post">
                                                             @method('DELETE')
                                                             @csrf

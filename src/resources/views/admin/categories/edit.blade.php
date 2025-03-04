@@ -7,7 +7,7 @@
 
             <div class="card-body">
 
-                <form action="{{ route('categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('categories.update', $category->id, false) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <fieldset class="mb-3">

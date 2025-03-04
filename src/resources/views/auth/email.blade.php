@@ -2,7 +2,7 @@
 @section('title', 'Login')
 @section('content')
     <!-- Register form -->
-    <form class="login-form" action="{{ route('verify.email.post') }}" method="POST">
+    <form class="login-form" action="{{ route('verify.email.post', [], false) }}" method="POST">
         @csrf
         <div class="card mb-0">
             <div class="card-body">

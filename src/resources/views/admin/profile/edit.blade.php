@@ -7,7 +7,7 @@
 
             <div class="card-body">
 
-                <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('profile.update',  false) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <fieldset class="mb-3">
                         <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('users') }}</legend>

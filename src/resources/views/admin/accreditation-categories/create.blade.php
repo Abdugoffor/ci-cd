@@ -7,7 +7,7 @@
 
             <div class="card-body">
 
-                <form action="{{ route('accreditation-categories.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('accreditation-categories.store', [], false) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <fieldset class="mb-3">
                         <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('accreditation-categories') }}

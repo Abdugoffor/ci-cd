@@ -162,7 +162,7 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     @foreach ($languages as $language)
                         <a
-                            href="{{ route('change.language', $language->slug) }}"class="dropdown-item {{ app()->getLocale() == $language->slug ? 'active' : '' }}">
+                            href="{{ route('change.language', $language->slug, false) }}"class="dropdown-item {{ app()->getLocale() == $language->slug ? 'active' : '' }}">
                             {{ $language->name }}
                         </a>
                     @endforeach
@@ -182,7 +182,7 @@
                     <a href="{{ route('profile.edit', [], false) }}" class="dropdown-item"><i
                             class="icon-user-plus"></i> My
                         profile</a>
-                    <form action="{{ secure_url(route('profile.logout')) }}" method="post">
+                    <form action="{{ route('profile.logout', [], false) }}" method="post">
                         @csrf
                         <button class="dropdown-item">
                             <i class="icon-switch2"></i>
@@ -242,63 +242,63 @@
                 <div class="sidebar-section">
                     <ul class="nav nav-sidebar" data-nav-type="accordion">
                         <li class="nav-item">
-                            <a href="{{ route('tournaments.index') }}" class="nav-link">
+                            <a href="{{ route('tournaments.index', [], false) }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('competitions') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('application.index') }}" class="nav-link">
+                            <a href="{{ route('application.index', [], false) }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('applications') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('categories.index') }}" class="nav-link">
+                            <a href="{{ route('categories.index', [], false) }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('category') }}</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('accreditation-categories.index') }}" class="nav-link">
+                            <a href="{{ route('accreditation-categories.index', [], false) }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('accreditation-categories') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('users.index') }}" class="nav-link">
+                            <a href="{{ route('users.index', [], false) }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('users') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('languages.index') }}" class="nav-link">
+                            <a href="{{ route('languages.index', [], false) }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('language') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('translations.index') }}" class="nav-link">
+                            <a href="{{ route('translations.index', [], false) }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('translations') }}</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('contacts.index') }}" class="nav-link">
+                            <a href="{{ route('contacts.index', [], false) }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('contacts') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('hotels.index') }}" class="nav-link">
+                            <a href="{{ route('hotels.index', [], false) }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('hotels') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('news.index') }}" class="nav-link">
+                            <a href="{{ route('news.index', [], false) }}" class="nav-link">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('news') }}</span>
                             </a>

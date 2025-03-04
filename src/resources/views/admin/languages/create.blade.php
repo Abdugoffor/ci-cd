@@ -7,7 +7,7 @@
 
             <div class="card-body">
 
-                <form action="{{ route('languages.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('languages.store', [], false) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <fieldset class="mb-3">
                         <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('language') }}</legend>

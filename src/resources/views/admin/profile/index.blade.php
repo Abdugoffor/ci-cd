@@ -21,7 +21,7 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('users.create') }}" class="btn btn-teal">
+                            <a href="{{ route('users.create', [], false) }}" class="btn btn-teal">
                                 <i class="icon-plus3 icon-1x mr-1"></i>{{ getTranslation('add') }}
                             </a>
                         </div>
@@ -38,7 +38,7 @@
                                     <th>{{ getTranslation('function') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
                                 </tr>
-                                <form action="{{ route('users.search') }}" method="get">
+                                <form action="{{ route('users.search', [], false) }}" method="get">
                                     @csrf
                                     <tr>
                                         <th></th>
@@ -81,14 +81,14 @@
                                             {{ $model->email }}
                                         </td>
                                         <td>
-                                            <a href="{{ route('users.status', $model->id) }}"
+                                            <a href="{{ route('users.status', $model->id,  false) }}"
                                                 class="badge badge-{{ $model->status ? 'primary' : 'danger' }}">
                                                 {{ $model->status ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('users.edit', $model->id) }}"
+                                                <a href="{{ route('users.edit', $model->id,  false) }}"
                                                     class="btn btn-sm btn-outline-success">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
@@ -107,7 +107,7 @@
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
 
-                                                            <form action="{{ route('users.destroy', $model->id) }}"
+                                                            <form action="{{ route('users.destroy', $model->id,  false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')

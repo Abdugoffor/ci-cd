@@ -7,7 +7,7 @@
 
             <div class="card-body">
 
-                <form action="{{ route('users.update', $model->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('users.update', $model->id,  false) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <fieldset class="mb-3">

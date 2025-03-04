@@ -21,7 +21,7 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('accreditation-categories.create') }}" class="btn btn-teal">
+                            <a href="{{ route('accreditation-categories.create', [], false) }}" class="btn btn-teal">
                                 <i class="icon-plus3 icon-1x mr-1"></i>{{ getTranslation('add') }}
                             </a>
                         </div>
@@ -36,7 +36,7 @@
                                     <th>{{ getTranslation('function') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
                                 </tr>
-                                <form action="{{ route('categories.search') }}" method="get">
+                                <form action="{{ route('categories.search', [], false) }}" method="get">
                                     @csrf
                                     <tr>
                                         <th></th>
@@ -65,14 +65,14 @@
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ getLocale($model->name) }}</td>
                                         <td>
-                                            <a href="{{ route('accreditation-categories.status', $model->id) }}"
+                                            <a href="{{ route('accreditation-categories.status', $model->id,  false) }}"
                                                 class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('accreditation-categories.edit', $model->id) }}"
+                                                <a href="{{ route('accreditation-categories.edit', $model->id,  false) }}"
                                                     class="btn btn-sm btn-outline-success">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
@@ -93,7 +93,7 @@
                                                             </div>
 
                                                             <form
-                                                                action="{{ route('accreditation-categories.destroy', $model->id) }}"
+                                                                action="{{ route('accreditation-categories.destroy', $model->id,  false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')

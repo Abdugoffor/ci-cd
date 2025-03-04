@@ -16,7 +16,7 @@
                         Category: {{ $model->category->name['en'] }}, <br>
                         Registration start: {{ $model->registration_start->format('d-m-Y') }},
                         Registration end: {{ $model->registration_end->format('d-m-Y') }} <br>
-                        <a href="{{ route('application', $model->id) }}" class="btn btn-primary mt-2">application</a>
+                        <a href="{{ route('application', $model->id, false) }}" class="btn btn-primary mt-2">application</a>
                     </div>
                 </div>
             </div>

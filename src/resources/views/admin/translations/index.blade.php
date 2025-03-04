@@ -21,7 +21,7 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('translations.create') }}" class="btn btn-teal">
+                            <a href="{{ route('translations.create', [], false) }}" class="btn btn-teal">
                                 <i class="icon-plus3 icon-1x mr-1"></i> {{ getTranslation('add') }}
                             </a>
                         </div>
@@ -43,7 +43,7 @@
                                         <td>{{ $model->default }}</td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('translations.edit', $model->id) }}"
+                                                <a href="{{ route('translations.edit', $model->id,false) }}"
                                                     class="btn btn-sm btn-outline-success">
                                                     <i class="icon-pencil3"></i>
                                                 </a>

@@ -21,7 +21,7 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('categories.create') }}" class="btn btn-teal">
+                            <a href="{{ route('categories.create', [], false) }}" class="btn btn-teal">
                                 <i class="icon-plus3 icon-1x mr-1"></i>{{ getTranslation('add') }}
                             </a>
                         </div>
@@ -37,7 +37,7 @@
                                     <th>{{ getTranslation('function') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
                                 </tr>
-                                <form action="{{ route('categories.search') }}" method="get">
+                                <form action="{{ route('categories.search', [], false) }}" method="get">
                                     @csrf
                                     <tr>
                                         <th></th>
@@ -69,14 +69,14 @@
                                         <td>{{ getLocale($model->name) }}</td>
                                         <td>{{ getLocale($model->description) }}</td>
                                         <td>
-                                            <a href="{{ route('categories.status', $model->id) }}"
+                                            <a href="{{ route('categories.status', $model->id,false) }}"
                                                 class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('categories.edit', $model->id) }}"
+                                                <a href="{{ route('categories.edit', $model->id,  false) }}"
                                                     class="btn btn-sm btn-outline-success">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
@@ -96,7 +96,7 @@
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
 
-                                                            <form action="{{ route('categories.destroy', $model->id) }}"
+                                                            <form action="{{ route('categories.destroy', $model->id, false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')

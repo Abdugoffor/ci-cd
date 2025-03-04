@@ -3,7 +3,7 @@
 @section('content')
     <!-- Register form -->
     @if (session()->get('email'))
-        <form class="login-form" action="{{ route('verify.code.post', session()->get('email')) }}" method="POST">
+        <form class="login-form" action="{{ route('verify.code.post', session()->get('email'),  false) }}" method="POST">
             @csrf
             <div class="card mb-0">
                 <div class="card-body">

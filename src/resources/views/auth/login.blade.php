@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="text-center">
-                    <a href="{{ route('verify.email') }}">Forgot password?</a>
+                    <a href="{{ route('verify.email',[], false) }}">Forgot password?</a>
                 </div>
             </div>
         </div>

@@ -21,7 +21,7 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('news.create') }}" class="btn btn-teal">
+                            <a href="{{ route('news.create', [], false) }}" class="btn btn-teal">
                                 <i class="icon-plus3 icon-1x mr-1"></i>{{ getTranslation('add') }}
                             </a>
                         </div>
@@ -49,14 +49,14 @@
                                         <td>{{ substr(getLocale($model->text), 0, 30) }} ...</td>
                                         <td><img src="{{ asset($model->photo) }}" width="100px" alt=""></td>
                                         <td>
-                                            <a href="{{ route('news.status', $model->id) }}"
+                                            <a href="{{ route('news.status', $model->id, false) }}"
                                                 class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('news.edit', $model->id) }}"
+                                                <a href="{{ route('news.edit', $model->id,  false) }}"
                                                     class="btn btn-sm btn-outline-success">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
@@ -76,7 +76,7 @@
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
 
-                                                            <form action="{{ route('news.destroy', $model->id) }}"
+                                                            <form action="{{ route('news.destroy', $model->id,  false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')

@@ -23,7 +23,7 @@
                                     <th>{{ getTranslation('view') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
                                 </tr>
-                                <form action="{{ route('application.search') }}" method="get">
+                                <form action="{{ route('application.search', [], false) }}" method="get">
                                     @csrf
                                     <tr>
                                         <th></th>
@@ -103,7 +103,7 @@
                                                                 class="icon-menu7"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <!-- Qabul qilish tugmasi -->
-                                                            <a href="{{ route('application.status', [$model->id, 'approved']) }}"
+                                                            <a href="{{ route('application.status', [$model->id, 'approved'],  false) }}"
                                                                 class="dropdown-item">
                                                                 <i class="icon-checkmark3 text-success"></i>
                                                                 {{ getTranslation('acceptance') }}
@@ -132,7 +132,7 @@
                                                                 data-dismiss="modal">&times;</button>
                                                         </div>
 
-                                                        <form action="{{ route('application.cancel', $model->id) }}"
+                                                        <form action="{{ route('application.cancel', $model->id, false) }}"
                                                             method="POST">
                                                             @csrf
                                                             <div class="modal-body">
