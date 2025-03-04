@@ -20,17 +20,9 @@ WORKDIR /var/www/laravel
 
 # Копирование файлов проекта
 COPY src/ /var/www/laravel
-# Установка прав на нужные папки
-# RUN chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache && \
-#     chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache
 
-# RUN chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache
-#     chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache
-
-RUN chmod -R 777 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs && \
+RUN chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs && \
     chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs
-
-
 
 # Копируем init.sh и делаем его исполняемым
 COPY dockerfiles/init.sh /usr/local/bin/init.sh

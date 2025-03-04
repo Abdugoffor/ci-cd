@@ -45,6 +45,8 @@ services:
       - env/postgres.env
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - traefik-network 
 
 volumes:
   pgdata:
