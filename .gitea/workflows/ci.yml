@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build and Start Containers
+        run: |
+          docker compose down -v --remove-orphans || true
+          docker compose up --build --force-recreate -d          
+
