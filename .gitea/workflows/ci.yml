@@ -15,5 +15,15 @@ jobs:
       - name: Build and Start Containers
         run: |
           docker compose down -v --remove-orphans || true
-          docker compose up --build --force-recreate -d          
+          docker compose up --build --force-recreate -d 
+      
+      - name: Verify Laravel Directory fide_php
+        run: |
+          docker exec fide_php ls -lah /var/www/
+          docker exec fide_php ls -lah /var/www/laravel      
+
+      - name: Verify Laravel Directory fide_nginx
+        run: |
+          docker exec fide_nginx ls -lah /var/www/
+          docker exec fide_nginx ls -lah /var/www/laravel              
 
