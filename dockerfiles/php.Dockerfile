@@ -1,45 +1,32 @@
 FROM php:8.2-fpm-alpine
 
-# Muhim PHP kengaytmalarini o‘rnatish
+# Установка необходимых расширений PHP
 RUN apk add --no-cache \
     postgresql-dev \
     libpq \
     freetype-dev \
     libjpeg-turbo-dev \
     libpng-dev \
+    dos2unix \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo pdo_pgsql pgsql gd \
     && docker-php-ext-enable gd
 
-# Composer-ni o‘rnatish
+# Установка Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Ish katalogi
+# Установка рабочего каталога
 WORKDIR /var/www/laravel
 
-COPY src/composer.json src/composer.lock ./
-# Laravel loyihasini konteynerga nusxalash
+# Копирование файлов проекта
 COPY src/ /var/www/laravel
+# Установка прав на нужные папки
+RUN chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache && \
+    chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache
 
-RUN composer install --no-dev --optimize-autoloader  
+# Копируем init.sh и делаем его исполняемым
+COPY dockerfiles/init.sh /usr/local/bin/init.sh
+RUN chmod +x /usr/local/bin/init.sh && dos2unix /usr/local/bin/init.sh
 
-COPY src/.env.example ./.env
-
-RUN php artisan key:generate
-    # && php artisan migrate --force \
-    # && php artisan db:seed --force
-
-# Laravel loyihasi uchun ruxsatlarni sozlash
-RUN chown -R www-data:www-data /var/www/laravel \
-    && chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache
-
-# **1️⃣ .env faylini yaratish**
-# RUN cp .env.example .env
-
-# **2️⃣ Composer install va Laravel sozlamalarini bajarish**
-# RUN  php artisan config:cache \
-#     && php artisan route:cache \
-#     && php artisan view:cache
-
-# PHP-FPM ishga tushirish
-CMD ["php-fpm"]
+# Запуск init.sh при старте контейнера
+CMD ["sh", "/usr/local/bin/init.sh"]
