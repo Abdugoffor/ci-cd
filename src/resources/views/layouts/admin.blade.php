@@ -179,7 +179,7 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <a href="{{ route('profile.edit') }}" class="dropdown-item"><i class="icon-user-plus"></i> My
                         profile</a>
-                    <form action="{{ route('profile.logout') }}" method="post">
+                    <form action="{{ secure_url(route('profile.logout')) }}" method="post">
                         @csrf
                         <button class="dropdown-item">
                             <i class="icon-switch2"></i>
