@@ -9,8 +9,8 @@
 
     <!-- Global stylesheets -->
     {{-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css"> --}}
-    <link href="{{ url('global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ url('assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ secure_asset('global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ secure_asset('assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
@@ -52,7 +52,8 @@
                 <img src="{{ asset('global_assets/images/logo_icon_light.png') }}" class="d-sm-none" alt="">
             </a>
         </div>
-
+        <h1>{{ config('app.url') }}
+        </h1>
         <div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
 
             {{-- <ul class="navbar-nav ml-lg-auto">
