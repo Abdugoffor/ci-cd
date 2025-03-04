@@ -25,7 +25,7 @@ class PartnerController extends Controller
     public function store(PartnerStoreRequest $request)
     {
         $data = $request->all();
-
+        
         if ($request->hasFile('photo')) {
             $file       = $request->file('photo');
             $extensions = $file->getClientOriginalExtension();

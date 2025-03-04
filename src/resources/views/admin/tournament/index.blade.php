@@ -83,12 +83,12 @@
                                                     </a>
                                                 </div>
                                                 <div>
-                                                    {{ $model->name['uz'] }}
+                                                    {{ getLocale($model->name) }}
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            {{ $model->category->name['uz'] }}
+                                            {{ getLocale($model->category->name) }}
                                         </td>
                                         <td>
                                             {{ $model->country->label_en }}

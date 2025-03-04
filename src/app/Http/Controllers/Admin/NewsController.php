@@ -28,7 +28,7 @@ class NewsController extends Controller
     public function store(NewsStoreRequest $request)
     {
         $data = $request->all();
-
+        
         $data['title']['default'] = reset($data['title']);
 
         $data['description']['default'] = reset($data['description']);
