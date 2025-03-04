@@ -48,8 +48,10 @@
 
         <div class="navbar-brand text-center text-lg-left">
             <a href="index.html" class="d-inline-block">
-                <img src="{{ secure_asset('global_assets/images/logo_light.png') }}" class="d-none d-sm-block" alt="">
-                <img src="{{ secure_asset('global_assets/images/logo_icon_light.png') }}" class="d-sm-none" alt="">
+                <img src="{{ secure_asset('global_assets/images/logo_light.png') }}" class="d-none d-sm-block"
+                    alt="">
+                <img src="{{ secure_asset('global_assets/images/logo_icon_light.png') }}" class="d-sm-none"
+                    alt="">
             </a>
         </div>
         <div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
@@ -177,7 +179,8 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="{{ route('profile.edit') }}" class="dropdown-item"><i class="icon-user-plus"></i> My
+                    <a href="{{ route('profile.edit', [], false) }}" class="dropdown-item"><i
+                            class="icon-user-plus"></i> My
                         profile</a>
                     <form action="{{ secure_url(route('profile.logout')) }}" method="post">
                         @csrf
