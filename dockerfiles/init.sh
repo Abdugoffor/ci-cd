@@ -19,7 +19,7 @@ php artisan route:cache
 php artisan view:cache
 
 # Установка прав на нужные папки
-chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache
+# chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache
 
 # Запуск PHP-FPM
 php-fpm
