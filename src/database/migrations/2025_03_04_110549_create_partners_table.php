@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('partners', function (Blueprint $table) {
             $table->id();
-            $table->jsonb('title');
-            $table->foreignId('menyu_id')->constrained('menyus')->onDelete('cascade');
-            $table->jsonb('description');
-            $table->jsonb('text');
-            $table->string('photo')->nullable();
+            $table->jsonb('name')->nullable();
+            $table->string('path')->nullable();
+            $table->string('photo');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes();
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('partners');
     }
 };

@@ -9,6 +9,33 @@
 
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+
+    <!--local uchun -->
+    {{-- <link href="{{ asset('global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+
+    <!-- Core JS files -->
+    <script src="{{ asset('global_assets/js/main/jquery.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
+    <!-- /core JS files -->
+
+    <!-- Theme JS files -->
+    <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
+
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script>
+
+    <!-- Theme JS ckeditor files -->
+    <script src="{{ asset('global_assets/js/plugins/editors/ckeditor/ckeditor.js') }}"></script>
+
+    <script src="{{ asset('global_assets/js/demo_pages/editor_ckeditor_default.js') }}"></script> --}}
+
+    <!--server uchun -->
+
     <link href="{{ secure_asset('global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ secure_asset('assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
@@ -56,96 +83,6 @@
         </div>
         <div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
 
-            {{-- <ul class="navbar-nav ml-lg-auto">
-                <li class="nav-item dropdown">
-                    <a href="#" class="navbar-nav-link" data-toggle="dropdown">
-                        <i class="icon-people"></i>
-                        <span class="d-lg-none ml-3">Messages</span>
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-right dropdown-content wmin-lg-300">
-                        <div class="dropdown-content-header">
-                            <span class="font-weight-semibold">Users online</span>
-                            <a href="#" class="text-body"><i class="icon-search4 font-size-base"></i></a>
-                        </div>
-
-                        <div class="dropdown-content-body dropdown-scrollable">
-                            <ul class="media-list">
-                                <li class="media">
-                                    <div class="mr-3">
-                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
-                                            width="36" height="36" class="rounded-circle" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <a href="#" class="media-title font-weight-semibold">Jordana Ansley</a>
-                                        <span class="d-block text-muted font-size-sm">Lead web developer</span>
-                                    </div>
-                                    <div class="ml-3 align-self-center"><span
-                                            class="badge badge-mark border-success"></span></div>
-                                </li>
-
-                                <li class="media">
-                                    <div class="mr-3">
-                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
-                                            width="36" height="36" class="rounded-circle" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <a href="#" class="media-title font-weight-semibold">Will Brason</a>
-                                        <span class="d-block text-muted font-size-sm">Marketing manager</span>
-                                    </div>
-                                    <div class="ml-3 align-self-center"><span
-                                            class="badge badge-mark border-danger"></span></div>
-                                </li>
-
-                                <li class="media">
-                                    <div class="mr-3">
-                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
-                                            width="36" height="36" class="rounded-circle" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <a href="#" class="media-title font-weight-semibold">Hanna Walden</a>
-                                        <span class="d-block text-muted font-size-sm">Project manager</span>
-                                    </div>
-                                    <div class="ml-3 align-self-center"><span
-                                            class="badge badge-mark border-success"></span></div>
-                                </li>
-
-                                <li class="media">
-                                    <div class="mr-3">
-                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
-                                            width="36" height="36" class="rounded-circle" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <a href="#" class="media-title font-weight-semibold">Dori Laperriere</a>
-                                        <span class="d-block text-muted font-size-sm">Business developer</span>
-                                    </div>
-                                    <div class="ml-3 align-self-center"><span
-                                            class="badge badge-mark border-warning"></span></div>
-                                </li>
-
-                                <li class="media">
-                                    <div class="mr-3">
-                                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
-                                            width="36" height="36" class="rounded-circle" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <a href="#" class="media-title font-weight-semibold">Vanessa
-                                            Aurelius</a>
-                                        <span class="d-block text-muted font-size-sm">UX expert</span>
-                                    </div>
-                                    <div class="ml-3 align-self-center"><span
-                                            class="badge badge-mark border-secondary"></span></div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="dropdown-content-footer bg-light">
-                            <a href="#" class="text-body mr-auto">All users</a>
-                            <a href="#" class="text-body"><i class="icon-gear"></i></a>
-                        </div>
-                    </div>
-                </li>
-            </ul> --}}
         </div>
 
         <ul class="navbar-nav flex-row order-1 order-lg-2 flex-1 flex-lg-0 justify-content-end align-items-center">
@@ -242,65 +179,77 @@
                 <div class="sidebar-section">
                     <ul class="nav nav-sidebar" data-nav-type="accordion">
                         <li class="nav-item">
-                            <a href="{{ route('tournaments.index', [], false) }}" class="nav-link">
+                            <a href="{{ route('tournaments.index', [], false) }}" class="nav-link {{ activeMenu('tournaments.index') }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('competitions') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('application.index', [], false) }}" class="nav-link">
+                            <a href="{{ route('application.index', [], false) }}" class="nav-link {{ activeMenu('application.index') }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('applications') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('categories.index', [], false) }}" class="nav-link">
+                            <a href="{{ route('categories.index', [], false) }}" class="nav-link {{ activeMenu('categories.index') }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('category') }}</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('accreditation-categories.index', [], false) }}" class="nav-link">
+                            <a href="{{ route('accreditation-categories.index', [], false) }}" class="nav-link {{ activeMenu('accreditation-categories.index') }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('accreditation-categories') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('users.index', [], false) }}" class="nav-link">
+                            <a href="{{ route('users.index', [], false) }}" class="nav-link {{ activeMenu('users.index') }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('users') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('languages.index', [], false) }}" class="nav-link">
+                            <a href="{{ route('languages.index', [], false) }}" class="nav-link {{ activeMenu('languages.index') }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('language') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('translations.index', [], false) }}" class="nav-link">
+                            <a href="{{ route('translations.index', [], false) }}" class="nav-link {{ activeMenu('translations.index') }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('translations') }}</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('contacts.index', [], false) }}" class="nav-link">
+                            <a href="{{ route('contacts.index', [], false) }}" class="nav-link {{ activeMenu('contacts.index') }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('contacts') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('hotels.index', [], false) }}" class="nav-link">
+                            <a href="{{ route('hotels.index', [], false) }}" class="nav-link {{ activeMenu('hotels.index') }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('hotels') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('news.index', [], false) }}" class="nav-link">
+                            <a href="{{ route('menus.index', [], false) }}" class="nav-link {{ activeMenu('menus.index') }}">
+                                <i class="icon-list-unordered"></i>
+                                <span>{{ getTranslation('menus') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('news.index', [], false) }}" class="nav-link {{ activeMenu('news.index') }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('news') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('partners.index', [], false) }}" class="nav-link {{ activeMenu('partners.index') }}">
+                                <i class="icon-list-unordered"></i>
+                                <span>{{ getTranslation('partners') }}</span>
                             </a>
                         </li>
                     </ul>

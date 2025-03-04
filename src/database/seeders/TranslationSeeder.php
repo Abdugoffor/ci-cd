@@ -132,11 +132,11 @@ class TranslationSeeder extends Seeder
             [
                 'slug'    => 'category',
                 'name'    => json_encode([
-                    'uz' => "Turkum",
-                    'ru' => 'Категория',
-                    'en' => 'Category',
+                    'uz' => "Musobaqa Turkumi",
+                    'ru' => 'Категория соревнования',
+                    'en' => 'Competition category',
                 ], JSON_UNESCAPED_UNICODE),
-                'default' => 'Category',
+                'default' => 'Competition category',
             ],
             [
                 'slug'    => 'description',
@@ -272,15 +272,6 @@ class TranslationSeeder extends Seeder
                     'en' => 'View',
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'View',
-            ],
-            [
-                'slug'    => 'application',
-                'name'    => json_encode([
-                    'uz' => 'Ariza',
-                    'ru' => 'Заявка',
-                    'en' => 'Application',
-                ], JSON_UNESCAPED_UNICODE),
-                'default' => 'Application',
             ],
             [
                 'slug'    => 'application',
@@ -637,38 +628,29 @@ class TranslationSeeder extends Seeder
             [
                 'slug'    => 'path',
                 'name'    => json_encode([
-                    'uz' => 'path',
-                    'ru' => 'path',
-                    'en' => 'path',
+                    'uz' => 'Yo‘l',
+                    'ru' => 'Путь',
+                    'en' => 'Path',
                 ], JSON_UNESCAPED_UNICODE),
-                'default' => 'path',
+                'default' => 'Yo‘l',
             ],
             [
-                'slug'    => 'img',
+                'slug'    => 'Title',
                 'name'    => json_encode([
-                    'uz' => 'path',
-                    'ru' => 'path',
-                    'en' => 'path',
+                    'uz' => 'Sarlavha',
+                    'ru' => 'Заголовок',
+                    'en' => 'Title',
                 ], JSON_UNESCAPED_UNICODE),
-                'default' => 'path',
-            ],
-            [
-                'slug'    => 'title',
-                'name'    => json_encode([
-                    'uz' => 'title',
-                    'ru' => 'title',
-                    'en' => 'title',
-                ], JSON_UNESCAPED_UNICODE),
-                'default' => 'title',
+                'default' => 'Sarlavha',
             ],
             [
                 'slug'    => 'text',
                 'name'    => json_encode([
-                    'uz' => 'text',
-                    'ru' => 'text',
-                    'en' => 'text',
+                    'uz' => 'Matn',
+                    'ru' => 'Текст',
+                    'en' => 'Text',
                 ], JSON_UNESCAPED_UNICODE),
-                'default' => 'text',
+                'default' => 'Text',
             ],
             [
                 'slug'    => 'rating',
@@ -691,12 +673,13 @@ class TranslationSeeder extends Seeder
             [
                 'slug'    => 'news',
                 'name'    => json_encode([
-                    'uz' => 'Yangiliklar',
-                    'ru' => 'Новости',
-                    'en' => 'News',
+                    'uz' => 'Sahifalar',
+                    'ru' => 'Страницы',
+                    'en' => 'Pages',
                 ], JSON_UNESCAPED_UNICODE),
-                'default' => 'news',
+                'default' => 'Pages',
             ],
+
             [
                 'slug'    => 'accreditation-categories',
                 'name'    => json_encode([
@@ -786,9 +769,33 @@ class TranslationSeeder extends Seeder
                     'en' => 'Logout',
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'logout',
-            ]
+            ],
+            [
+                'slug'    => 'menus',
+                'name'    => json_encode([
+                    'uz' => 'Menyular',
+                    'ru' => 'Меню',
+                    'en' => 'Menus',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Menus',
+            ],
+            [
+                'slug'    => 'partners',
+                'name'    => json_encode([
+                    'uz' => 'Hamkorlar',
+                    'ru' => 'Партнёры',
+                    'en' => 'Partners',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Partners',
+            ],
+
         ];
 
         Translation::insert($translations);
+        // try {
+        //     Translation::insert($translations);
+        // } catch (\Exception $e) {
+        //     dd($e->getMessage());
+        // }
     }
 }

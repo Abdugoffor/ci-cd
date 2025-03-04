@@ -33,7 +33,7 @@
                                             <input type="text" class="form-control" name="name[{{ $model->slug }}]"
                                                 value="{{ $category->name[$model->slug] ?? $category->name['default'] }}"
                                                 placeholder="{{ $model->name }}">
-                                            @error('description.' . $model->slug)
+                                            @error('name.' . $model->slug)
                                                 <p style="color: red;">{{ $message }}</p>
                                             @enderror
                                         </div>

@@ -106,6 +106,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label class="col-form-label col-lg-2">{{ getTranslation('menus') }}</label>
+                            <div class="col-lg-10">
+                                <select name="menu_id" id="" class="form-control">
+                                    @foreach ($menus as $menu)
+                                        <option value="{{ $menu->id }}">{{ $menu->name[app()->getLocale()] }}</option>
+                                    @endforeach
+                                </select>
+                                @error('menu_id')
+                                    <p style="color: red;">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('photo') }}</label>
                             <div class="col-lg-10">
                                 <input type="file" class="form-control" name="photo" value="{{ old('photo') }}"

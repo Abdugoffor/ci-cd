@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             CountriesSeeder::class,
             LanguageSeeder::class,
             TranslationSeeder::class,
+            MenyuSeeder::class,
         ]);
     }
 }

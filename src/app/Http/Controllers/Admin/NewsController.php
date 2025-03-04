@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsStoreRequest;
+use App\Models\Menyu;
 use App\Models\News;
 use App\Traits\SearchColumTranslations;
 use Illuminate\Support\Str;
@@ -10,17 +11,19 @@ use Illuminate\Support\Str;
 class NewsController extends Controller
 {
     protected $searhcModel = News::class;
-    protected $path = "news";
+    protected $path        = "news";
 
     use SearchColumTranslations;
     public function index()
     {
         $models = News::orderByDesc('id')->paginate(10);
-        return view('admin.news.index', data: ['models' => $models]);
+        $menus  = Menyu::all();
+        return view('admin.news.index', data: ['models' => $models, 'menus' => $menus]);
     }
     public function create()
     {
-        return view('admin.news.create');
+        $menus = Menyu::all();
+        return view('admin.news.create', ['menus' => $menus]);
     }
     public function store(NewsStoreRequest $request)
     {
@@ -48,14 +51,14 @@ class NewsController extends Controller
 
     public function edit(int $news)
     {
+        $menus = Menyu::all();
         $news = News::findOrFail($news);
-        return view('admin.news.edit', ['news' => $news]);
+        return view('admin.news.edit', ['news' => $news,'menus'=> $menus]);
     }
 
     public function update(NewsStoreRequest $request, int $news)
     {
         $data = $request->all();
-
         $news = News::findOrFail($news);
 
         if ($request->hasFile('photo')) {

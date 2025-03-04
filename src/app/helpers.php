@@ -175,3 +175,10 @@ if (! function_exists('cacheClear')) {
         }
     }
 }
+
+if (! function_exists('activeMenu')) {
+    function activeMenu($route)
+    {
+        return request()->routeIs($route) ? 'active' : '';
+    }
+}

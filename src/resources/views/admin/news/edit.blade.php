@@ -7,7 +7,7 @@
 
             <div class="card-body">
 
-                <form action="{{ route('news.update', $news->id,  false) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('news.update', $news->id, false) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <fieldset class="mb-3">
@@ -103,6 +103,20 @@
                                     @endforeach
                                 </div>
 
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">{{ getTranslation('menus') }}</label>
+                            <div class="col-lg-10">
+                                <select name="menu_id" id="" class="form-control">
+                                    @foreach ($menus as $menu)
+                                        <option value="{{ $menu->id }}">{{ $menu->name[app()->getLocale()] }}</option>
+                                    @endforeach
+                                </select>
+                                @error('menu_id')
+                                    <p style="color: red;">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
 

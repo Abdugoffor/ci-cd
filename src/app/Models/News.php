@@ -12,6 +12,7 @@ class News extends Model
         'title',
         'description',
         'text',
+        'menyu_id',
         'photo',
         'is_active',
     ];
@@ -21,4 +22,8 @@ class News extends Model
         'text'        => 'array',
         'is_active'   => 'boolean',
     ];
+    public function menyu()
+    {
+        return $this->belongsTo(News::class, 'menyu_id', 'id');
+    }
 }
