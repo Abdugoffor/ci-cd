@@ -25,7 +25,7 @@ class NewsStoreRequest extends FormRequest
             'description' => 'required|array',
             'text'        => 'required|array',
             'photo'       => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'menu_id'     => 'required|exists:menyus,id',
+            'menyu_id'     => 'required|exists:menyus,id',
         ];
 
         $rules = array_merge($rules, validateTranslation('title'), validateTranslation('description'), validateTranslation('text'));

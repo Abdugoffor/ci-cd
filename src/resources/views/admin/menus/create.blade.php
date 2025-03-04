@@ -45,7 +45,7 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('path') }}</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" name="path"
+                                <input type="text" class="form-control" name="path" value="{{ old('path') }}"
                                     placeholder="{{ getTranslation('path') }}">
                                     @error('path')
                                         <p style="color: red;">{{ $message }}</p>

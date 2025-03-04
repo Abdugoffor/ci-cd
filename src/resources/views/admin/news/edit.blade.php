@@ -109,12 +109,12 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('menus') }}</label>
                             <div class="col-lg-10">
-                                <select name="menu_id" id="" class="form-control">
+                                <select name="menyu_id" id="" class="form-control">
                                     @foreach ($menus as $menu)
                                         <option value="{{ $menu->id }}">{{ $menu->name[app()->getLocale()] }}</option>
                                     @endforeach
                                 </select>
-                                @error('menu_id')
+                                @error('menyu_id')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
                             </div>

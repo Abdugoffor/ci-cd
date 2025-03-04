@@ -6,6 +6,7 @@ use App\Http\Requests\NewsStoreRequest;
 use App\Models\Menyu;
 use App\Models\News;
 use App\Traits\SearchColumTranslations;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class NewsController extends Controller
@@ -28,7 +29,7 @@ class NewsController extends Controller
     public function store(NewsStoreRequest $request)
     {
         $data = $request->all();
-        
+
         $data['title']['default'] = reset($data['title']);
 
         $data['description']['default'] = reset($data['description']);
@@ -36,12 +37,20 @@ class NewsController extends Controller
         $data['text']['default'] = reset($data['text']);
 
         if ($request->hasFile('photo')) {
-
-            $file       = $request->file('photo');
-            $extensions = $file->getClientOriginalExtension();
-            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
-            $file->move(public_path('uploaded'), $filename);
-            $data['photo'] = 'uploaded/' . $filename;
+            try {
+                $file       = $request->file('photo');
+                $extensions = $file->getClientOriginalExtension();
+                $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
+                $file->move(public_path('uploaded'), $filename);
+                $data['photo'] = 'uploaded/' . $filename;
+            } catch (\Exception $e) {
+                Log::error('Fayl yuklashda xatolik: ' . $e->getMessage(), [
+                    'file' => $request->file('photo')->getClientOriginalName(),
+                    'size' => $request->file('photo')->getSize(),
+                    'path' => public_path('uploaded'),
+                ]);
+                // return redirect()->back()->withErrors(['photo' => 'Fayl yuklashda xatolik: ' . $e->getMessage()]);
+            }
         }
 
         News::create($data);
@@ -52,8 +61,8 @@ class NewsController extends Controller
     public function edit(int $news)
     {
         $menus = Menyu::all();
-        $news = News::findOrFail($news);
-        return view('admin.news.edit', ['news' => $news,'menus'=> $menus]);
+        $news  = News::findOrFail($news);
+        return view('admin.news.edit', ['news' => $news, 'menus' => $menus]);
     }
 
     public function update(NewsStoreRequest $request, int $news)
