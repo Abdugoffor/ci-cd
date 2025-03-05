@@ -18,10 +18,9 @@ php artisan optimize:clear
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
-php artisan queue:work
 
 # Установка прав на нужные папки
 # chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache
-
+nohup php artisan queue:work --daemon > /var/www/laravel/storage/logs/queue.log 2>&1 &
 # Запуск PHP-FPM
 php-fpm
