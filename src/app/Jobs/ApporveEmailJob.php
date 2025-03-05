@@ -23,12 +23,7 @@ class ApporveEmailJob implements ShouldQueue
 
     public function handle()
     {
-        // if (file_exists(public_path($$this->qrPath))) {
-        // Log::info("bor");
         Mail::to($this->email)->send(new ApporveEmail($this->qrPath));
-        // } else {
-        //     // Log::info("file yo'q");
-        // }
     }
 
 }

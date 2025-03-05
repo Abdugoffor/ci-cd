@@ -41,13 +41,10 @@ class ApporveEmail extends Mailable
                 Attachment::fromPath(public_path($this->qrCode))
                     ->as('qrcode.svg')
                     ->withMime('image/svg+xml'),
-
-                // Attachment::fromPath(public_path('uploaded/05-03-20255JgdIl3YIQvYh1yC5BHeUFf9NBC0K4nkjRuBHsmk.jpg'))
-                // ->as('qrcode.jpg')
-                // ->withMime('image/jpeg'),
             ];
         }
         return [];
+
         // return [
         //     Attachment::fromPath(public_path('uploaded/05-03-20255JgdIl3YIQvYh1yC5BHeUFf9NBC0K4nkjRuBHsmk.jpg'))
         //         ->as('qrcode.jpg')

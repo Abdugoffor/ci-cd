@@ -25,11 +25,10 @@ WORKDIR /var/www/laravel
 # Копирование файлов проекта
 COPY src/ /var/www/laravel
 
-RUN mkdir -p /var/www/laravel/public/uploaded && \
-    chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded && \
-    chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded
-
-
+RUN mkdir -p /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes && \
+    chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes && \
+    chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes
+    
 # Копируем init.sh и делаем его исполняемым
 COPY dockerfiles/init.sh /usr/local/bin/init.sh
 RUN chmod +x /usr/local/bin/init.sh && dos2unix /usr/local/bin/init.sh

@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header bg-primary text-white header-elements-inline">
-                        <h6 class="card-title">{{ $model->name['uz'] }}</h6>
+                        <h6 class="card-title">{{ getLocale($model->name) }}</h6>
                     </div>
 
                     <div class="card-body">

@@ -92,7 +92,7 @@ class ApplicationController extends Controller
 
                 // dd(file_get_contents(public_path($qrCodePath)), ($qrCodePath));
 
-                $qrCodePath = file_get_contents(public_path($qrCodePath));
+                // $qrCodePath = file_get_contents(public_path($qrCodePath));
 
                 dispatch(new ApporveEmailJob($participant->email, $qrCodePath));
             }
