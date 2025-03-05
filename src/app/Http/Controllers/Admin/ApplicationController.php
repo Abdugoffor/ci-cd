@@ -2,13 +2,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\ApplicationCancelJob;
 use App\Jobs\ApporveEmailJob;
 use App\Models\AccreditationCategory;
 use App\Models\ApplicationCancellation;
 use App\Models\Participant;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ApplicationController extends Controller
 {
@@ -79,23 +81,26 @@ class ApplicationController extends Controller
                 'qk_code' => $qk_code,
             ]);
 
-            $qrCodePath = 'qrcodes/qk_code_' . time() . '_' . $participant->id . '.svg';
+            $qrCode = QrCode::create($qk_code)
+                ->setSize(300)
+                ->setMargin(5);
+
+            $writer = new PngWriter();
+
+            $result = $writer->write($qrCode);
+
+            $fileName = "qrcode_{$participant->id}.png";
+
+            $filePath = public_path("qrcodes/{$fileName}");
 
             if (! file_exists(public_path('qrcodes'))) {
+
                 mkdir(public_path('qrcodes'), 0777, true);
             }
 
-            file_put_contents(public_path($qrCodePath), QrCode::format('svg')->size(300)->generate($qk_code));
+            file_put_contents($filePath, $result->getString());
 
-            if (file_exists(public_path($qrCodePath))) {
-                // return view('send_messages', ['qrCodePath' => $qrCodePath]);
-
-                // dd(file_get_contents(public_path($qrCodePath)), ($qrCodePath));
-
-                // $qrCodePath = file_get_contents(public_path($qrCodePath));
-
-                dispatch(new ApporveEmailJob($participant->email, $qrCodePath));
-            }
+            dispatch(new ApporveEmailJob($participant->email, $filePath));
 
         }
 
@@ -110,7 +115,7 @@ class ApplicationController extends Controller
 
         $participant->update(['status' => 'canceled']);
 
-        dispatch(new ApporveEmailJob($participant->email, $request->cancel_reason));
+        dispatch(new ApplicationCancelJob($participant->email, $request->cancel_reason));
 
         return back();
     }

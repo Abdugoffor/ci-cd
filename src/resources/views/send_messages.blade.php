@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Tasdiqlash Emaili</title>
+    <title>QR Kod</title>
 </head>
-
 <body>
-    <h2>test uchun </h2>
-    <h2>{{ $qrCode }}</h2>
-    <a href="{{ config('app.url') }}/{{ $qrCode }}" target="_blank">qrCode</a>
+    <h2>Sizning QR kodingiz</h2>
+    <p>QR kod ilova sifatida yuborildi, ilovani oching!</p>
 </body>
-
 </html>

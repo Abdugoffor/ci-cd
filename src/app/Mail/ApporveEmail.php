@@ -35,26 +35,10 @@ class ApporveEmail extends Mailable
 
     public function attachments(): array
     {
-
-        // if (file_exists(public_path($this->qrCode))) {
-        //     return [
-        //         Attachment::fromPath(public_path($this->qrCode))
-        //             ->as('qrcode.svg')
-        //             ->withMime('image/svg+xml'),
-        //     ];
-        // }
-        return [];
-
-        // return [
-        //     Attachment::fromPath(public_path('uploaded/05-03-20255JgdIl3YIQvYh1yC5BHeUFf9NBC0K4nkjRuBHsmk.jpg'))
-        //         ->as('qrcode.jpg')
-        //         ->withMime('image/svg+xml'),
-        // ];
-
-        // return [
-        //     Attachment::fromPath(public_path('uploaded/05-03-20255JgdIl3YIQvYh1yC5BHeUFf9NBC0K4nkjRuBHsmk.jpg'))
-        //         ->as('qrcode.jpg')        // Fayl nomini JPG ga moslashtirdik
-        //         ->withMime('image/jpeg'), // MIME turi JPG uchun
-        // ];
+        return [
+            Attachment::fromPath($this->qrCode)
+                ->as('qrcode.png')
+                ->withMime('image/png'),
+        ];
     }
 }
