@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\HotelController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\MenyuController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\TournamentController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\Admin\UserController;
@@ -16,7 +17,6 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\EmailVerifyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Middleware\CheckEmailSession;
 use App\Http\Middleware\LangMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -46,7 +46,6 @@ Route::middleware(LangMiddleware::class)->group(function () {
         Route::post('/profile', [AuthController::class, 'update'])->name('profile.update');
         Route::post('/profile/logout', [AuthController::class, 'logout'])->name('profile.logout');
 
-
         Route::resource('/tournaments', TournamentController::class);
         Route::resource('/categories', CategoryController::class);
         Route::resource('/accreditation-categories', AccreditationCategoryController::class);
@@ -59,7 +58,6 @@ Route::middleware(LangMiddleware::class)->group(function () {
         Route::resource('/news', NewsController::class);
         Route::resource('/partners', PartnerController::class);
 
-
         Route::get('/accreditation-categories-status/{category}', [AccreditationCategoryController::class, 'status'])->name('accreditation-categories.status');
         Route::get('/categories-status/{category}', [CategoryController::class, 'status'])->name('categories.status');
         Route::get('/news-status/{hotel}', [NewsController::class, 'status'])->name('news.status');
@@ -69,7 +67,6 @@ Route::middleware(LangMiddleware::class)->group(function () {
         Route::get('/users-status/{user}', [UserController::class, 'status'])->name('users.status');
         Route::get('/menus-status/{menyu}', [MenyuController::class, 'status'])->name('menus.status');
         Route::get('/partners-status/{partner}', [PartnerController::class, 'status'])->name('partners.status');
-
 
         Route::get('/users-search', [UserController::class, 'search'])->name('users.search');
         Route::get('/accreditation-categories-search', [AccreditationCategoryController::class, 'search'])->name('accreditation-categories.search');
@@ -83,7 +80,6 @@ Route::middleware(LangMiddleware::class)->group(function () {
         Route::get('/contacts-search', [ContactController::class, 'search'])->name('contacts.search');
         Route::get('/hotels-search', [HotelController::class, 'search'])->name('hotels.search');
         Route::get('/news-search', [NewsController::class, 'search'])->name('news.search');
-
 
         Route::get('/tournament/{tournament}/{status}', [TournamentController::class, 'statusUpdate'])->name('status.update');
         Route::get('/applications', [AdminAppController::class, 'index'])->name('application.index');

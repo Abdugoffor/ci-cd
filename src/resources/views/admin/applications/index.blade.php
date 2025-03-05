@@ -82,7 +82,7 @@
                                         <td>{{ $model->first_name }}</td>
                                         <td>{{ $model->fide_id }}</td>
                                         <td>
-                                            {{ getLocale($model->accreditationCategory->name) }}
+                                            {{ $model->accreditationCategory ? getLocale($model->accreditationCategory->name) : '' }}
                                         </td>
                                         <td>
                                             {{ $model->date_of_birth }}

@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Tasdiqlash</title>
+    <title>Tasdiqlash Emaili</title>
 </head>
 
 <body>
-
-    <p>Rahmat!</p>
-
+    <h2>test uchun 123</h2>
+    <img src="{{ asset($qrCode) }}" alt="test">
 </body>
+
 </html>

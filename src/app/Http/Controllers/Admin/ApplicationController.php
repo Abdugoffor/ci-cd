@@ -88,6 +88,11 @@ class ApplicationController extends Controller
             file_put_contents(public_path($qrCodePath), QrCode::format('svg')->size(300)->generate($qk_code));
 
             if (file_exists(public_path($qrCodePath))) {
+                // return view('send_messages', ['qrCodePath' => $qrCodePath]);
+
+                // dd(file_get_contents(public_path($qrCodePath)), ($qrCodePath));
+
+                $qrCodePath = file_get_contents(public_path($qrCodePath));
 
                 dispatch(new ApporveEmailJob($participant->email, $qrCodePath));
             }
@@ -109,6 +114,5 @@ class ApplicationController extends Controller
 
         return back();
     }
-
 
 }
