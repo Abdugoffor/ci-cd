@@ -36,13 +36,13 @@ class ApporveEmail extends Mailable
     public function attachments(): array
     {
 
-        if (file_exists(public_path($this->qrCode))) {
-            return [
-                Attachment::fromPath(public_path($this->qrCode))
-                    ->as('qrcode.svg')
-                    ->withMime('image/svg+xml'),
-            ];
-        }
+        // if (file_exists(public_path($this->qrCode))) {
+        //     return [
+        //         Attachment::fromPath(public_path($this->qrCode))
+        //             ->as('qrcode.svg')
+        //             ->withMime('image/svg+xml'),
+        //     ];
+        // }
         return [];
 
         // return [
