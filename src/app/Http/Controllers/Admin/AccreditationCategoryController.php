@@ -4,19 +4,37 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AccreditationCategoryStoreRequest;
 use App\Models\AccreditationCategory;
-use App\Traits\SearchColumTranslations;
+use Illuminate\Http\Request;
 
 class AccreditationCategoryController extends Controller
 {
-    protected $searhcModel = AccreditationCategory::class;
-    protected $path = "accreditation-categories";
-
-    use SearchColumTranslations;
-
     public function index()
     {
         $models = AccreditationCategory::orderByDesc('id')->paginate(10);
-        return view(view: 'admin.accreditation-categories.index', data: ['models' => $models]);
+        return view('admin.accreditation-categories.index', ['models' => $models]);
+    }
+
+    public function search(Request $request)
+    {
+        $name = $request->input('name');
+
+        $is_active = $request->input('is_active');
+
+        $query = AccreditationCategory::query();
+
+        if (! empty($name)) {
+            $query->where("name->" . app()->getLocale(), 'LIKE', "%{$name}%");
+        }
+
+        if ($is_active !== null && $is_active !== '') {
+            $query->where('is_active', filter_var($is_active, FILTER_VALIDATE_BOOLEAN));
+        }
+
+        $models = $query->paginate(10);
+
+        $models->appends($request->only('name', 'is_active'));
+
+        return view('admin.accreditation-categories.index', ['models' => $models]);
     }
     public function create()
     {

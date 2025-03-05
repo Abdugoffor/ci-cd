@@ -42,6 +42,52 @@
                                     <th>{{ getTranslation('function') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
                                 </tr>
+                                <form action="{{ route('hotels.search', [], false) }}" method="get">
+                                    <tr>
+                                        <th></th>
+                                        <th>
+                                            <input type="text" class="form-control" name="title"
+                                                placeholder="{{ getTranslation('title') }}"
+                                                value="{{ old('title', request('title')) }}">
+                                        </th>
+                                        <th>
+                                            <input type="text" class="form-control" name="description"
+                                                placeholder="{{ getTranslation('description') }}"
+                                                value="{{ old('description', request('description')) }}">
+                                        </th>
+                                        <th>
+                                            <input type="text" class="form-control" name="text"
+                                                placeholder="{{ getTranslation('text') }}"
+                                                value="{{ old('text', request('text')) }}">
+                                        </th>
+                                        <th></th>
+                                        <th>
+                                            <input type="number" class="form-control" name="rating"
+                                                placeholder="{{ getTranslation('rating') }}"
+                                                value="{{ old('rating', request('rating')) }}">
+                                        </th>
+                                        <th></th>
+                                        <th>
+                                            <input type="number" class="form-control" name="phone"
+                                                placeholder="{{ getTranslation('phone') }}"
+                                                value="{{ old('phone', request('phone')) }}">
+                                        </th>
+                                        <th>
+                                            <select class="form-control custom-select" name="is_active" id="select_date">
+                                                <option value=""></option>
+                                                <option value="true"
+                                                    {{ old('is_active', request('is_active')) === 'true' ? 'selected' : '' }}>
+                                                    {{ getTranslation('assets') }}
+                                                </option>
+                                                <option value="false"
+                                                    {{ old('is_active', request('is_active')) === 'false' ? 'selected' : '' }}>
+                                                    {{ getTranslation('not-active') }}
+                                                </option>
+                                            </select>
+                                        </th>
+                                        <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                    </tr>
+                                </form>
                             </thead>
                             <tbody>
                                 @foreach ($models as $model)
@@ -60,6 +106,9 @@
                                             <img src="{{ asset($model->photo) }}" width="100px" alt="">
                                         </td>
                                         <td>
+                                            {{ $model->rating }}
+                                        </td>
+                                        <td>
                                             <a href="{{ $model->location }}" target="_blank">
                                                 {{ getTranslation('location') }}
                                             </a>
@@ -68,17 +117,14 @@
                                             <a href="{{ $model->phone }}" target="_blank">{{ $model->phone }}</a>
                                         </td>
                                         <td>
-                                            {{ $model->phone }}
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('hotels.status', $model->id,  false) }}"
+                                            <a href="{{ route('hotels.status', $model->id, false) }}"
                                                 class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('hotels.edit', $model->id,  false) }}"
+                                                <a href="{{ route('hotels.edit', $model->id, false) }}"
                                                     class="btn btn-sm btn-outline-success">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
@@ -98,7 +144,7 @@
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
 
-                                                            <form action="{{ route('hotels.destroy', $model->id,  false) }}"
+                                                            <form action="{{ route('hotels.destroy', $model->id, false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')

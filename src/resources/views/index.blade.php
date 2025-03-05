@@ -13,7 +13,7 @@
                         <img src="{{ asset($model->logo) }}" class="rounded-pill" alt="" width="200px"><br>
 
                         Country: {{ $model->country->label_en }}, <br>
-                        Category: {{ $model->category->name['en'] }}, <br>
+                        Category: {{ getLocale(($model->category->name)) }}, <br>
                         Registration start: {{ $model->registration_start->format('d-m-Y') }},
                         Registration end: {{ $model->registration_end->format('d-m-Y') }} <br>
                         <a href="{{ route('application', $model->id, false) }}" class="btn btn-primary mt-2">application</a>

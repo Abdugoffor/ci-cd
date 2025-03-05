@@ -13,36 +13,15 @@
 
                     <div class="card-body d-lg-flex align-items-lg-center justify-content-lg-between flex-lg-wrap">
                         <div class="d-flex align-items-center mb-3 mb-lg-0">
-                            {{-- <div id="tickets-status"></div> --}}
-                            <div class="ml-3">
-                                <h5 class="font-weight-semibold mb-0">14,327 <span
-                                        class="text-success font-size-sm font-weight-normal"><i class="icon-arrow-up12"></i>
-                                        (+2.9%)</span></h5>
-                                <span class="badge badge-mark border-success mr-1"></span> <span class="text-muted">Jun
-                                    16, 10:00 am</span>
-                            </div>
+
                         </div>
 
                         <div class="d-flex align-items-center mb-3 mb-lg-0">
-                            <a href="#"
-                                class="btn bg-transparent border-indigo text-indigo rounded-pill border-2 btn-icon">
-                                <i class="icon-alarm-add"></i>
-                            </a>
-                            <div class="ml-3">
-                                <h5 class="font-weight-semibold mb-0">1,132</h5>
-                                <span class="text-muted">total tickets</span>
-                            </div>
+
                         </div>
 
                         <div class="d-flex align-items-center mb-3 mb-lg-0">
-                            <a href="#"
-                                class="btn bg-transparent border-indigo text-indigo rounded-pill border-2 btn-icon">
-                                <i class="icon-spinner11"></i>
-                            </a>
-                            <div class="ml-3">
-                                <h5 class="font-weight-semibold mb-0">06:25:00</h5>
-                                <span class="text-muted">response time</span>
-                            </div>
+
                         </div>
 
                         <div>
@@ -69,6 +48,76 @@
                                     <th>{{ getTranslation('function') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
                                 </tr>
+                                <form action="{{ route('tournaments.search', [], false) }}" method="get">
+                                    <tr>
+                                        <th></th>
+                                        <th>
+                                            <input type="text" class="form-control" name="name"
+                                                placeholder="{{ getTranslation('name') }}"
+                                                value="{{ old('name', request('name')) }}">
+                                        </th>
+                                        <th>
+                                            <select class="form-control custom-select" name="category_id"
+                                                id="select_category">
+                                                <option value="">{{ getTranslation('all_categories') }}</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}"
+                                                        {{ old('category_id', request('category_id')) == $category->id ? 'selected' : '' }}>
+                                                        {{ getLocale($category->name) }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <select class="form-control custom-select" name="country_id"
+                                                id="select_country">
+                                                <option></option>
+                                                @foreach ($countries as $country)
+                                                    <option value="{{ $country->id }}"
+                                                        {{ old('country_id', request('country_id')) == $country->id ? 'selected' : '' }}>
+                                                        {{ $country->label_en }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <input type="date" class="form-control" name="registration_start"
+                                                value="{{ old('registration_start', request('registration_start')) }}">
+                                        </th>
+                                        <th>
+                                            <input type="date" class="form-control" name="registration_end"
+                                                value="{{ old('registration_end', request('registration_end')) }}">
+                                        </th>
+                                        <th>
+                                            <input type="date" class="form-control" name="start_date"
+                                                value="{{ old('start_date', request('start_date')) }}">
+                                        </th>
+                                        <th>
+                                            <input type="date" class="form-control" name="end_date"
+                                                value="{{ old('end_date', request('end_date')) }}">
+                                        </th>
+                                        <th>
+                                            <select class="form-control custom-select" name="status" id="select_status">
+                                                <option value="">{{ getTranslation('all_statuses') }}</option>
+                                                <option value="pending"
+                                                    {{ old('status', request('status')) === 'pending' ? 'selected' : '' }}>
+                                                    {{ getTranslation('pending') }}
+                                                </option>
+                                                <option value="approved"
+                                                    {{ old('status', request('status')) === 'approved' ? 'selected' : '' }}>
+                                                    {{ getTranslation('approved') }}
+                                                </option>
+                                                <option value="canceled"
+                                                    {{ old('status', request('status')) === 'canceled' ? 'selected' : '' }}>
+                                                    {{ getTranslation('canceled') }}
+                                                </option>
+                                            </select>
+                                        </th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                    </tr>
+                                </form>
                             </thead>
                             <tbody>
                                 @foreach ($models as $model)

@@ -5,19 +5,40 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserStoreRequest;
 use App\Http\Requests\User\UserUpdateRequest;
 use App\Models\User;
-use App\Traits\SearchColum;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    protected $searhcModel = User::class;
-    protected $path        = "users";
-
-    use SearchColum;
     public function index()
     {
         $models = User::orderByDesc('id')->paginate(10);
         return view('admin.users.index', data: ['models' => $models]);
+    }
+    public function search(Request $request)
+    {
+        $query = User::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', 'LIKE', "%{$request->name}%");
+        }
+
+        if ($request->filled('role')) {
+            $query->where('role', 'LIKE', "%{$request->role}%");
+        }
+
+        if ($request->filled('email')) {
+            $query->where('email', 'LIKE', "%{$request->email}%");
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', filter_var($request->status, FILTER_VALIDATE_BOOLEAN));
+        }
+
+        $models = $query->paginate(10);
+        $models->appends($request->only(['name', 'role', 'email', 'is_active']));
+
+        return view('admin.users.index', ['models' => $models]);
     }
     public function create()
     {

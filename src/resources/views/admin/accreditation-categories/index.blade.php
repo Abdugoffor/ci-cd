@@ -36,22 +36,26 @@
                                     <th>{{ getTranslation('function') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
                                 </tr>
-                                <form action="{{ route('categories.search', [], false) }}" method="get">
+                                <form action="{{ route('accreditation-categories.search', [], false) }}" method="get">
                                     @csrf
                                     <tr>
                                         <th></th>
                                         <th>
                                             <input type="text" class="form-control" name="name"
-                                                placeholder="{{ getTranslation('name') }}">
+                                                placeholder="{{ getTranslation('name') }}"
+                                                value="{{ old('name', request('name')) }}">
                                         </th>
                                         <th>
                                             <select class="form-control custom-select" name="is_active" id="select_date">
-                                                <option></option>
-                                                <option value="true">
+                                                <option value=""></option>
+                                                <option value="true"
+                                                    {{ old('is_active', request('is_active')) === 'true' ? 'selected' : '' }}>
                                                     {{ getTranslation('assets') }}
                                                 </option>
-                                                <option value="false">
-                                                    {{ getTranslation('not-active') }}</option>
+                                                <option value="false"
+                                                    {{ old('is_active', request('is_active')) === 'false' ? 'selected' : '' }}>
+                                                    {{ getTranslation('not-active') }}
+                                                </option>
                                             </select>
                                         </th>
                                         <th></th>
@@ -65,14 +69,14 @@
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ getLocale($model->name) }}</td>
                                         <td>
-                                            <a href="{{ route('accreditation-categories.status', $model->id,  false) }}"
+                                            <a href="{{ route('accreditation-categories.status', $model->id, false) }}"
                                                 class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('accreditation-categories.edit', $model->id,  false) }}"
+                                                <a href="{{ route('accreditation-categories.edit', $model->id, false) }}"
                                                     class="btn btn-sm btn-outline-success">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
@@ -93,7 +97,7 @@
                                                             </div>
 
                                                             <form
-                                                                action="{{ route('accreditation-categories.destroy', $model->id,  false) }}"
+                                                                action="{{ route('accreditation-categories.destroy', $model->id, false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')

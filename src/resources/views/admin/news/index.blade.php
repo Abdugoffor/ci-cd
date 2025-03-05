@@ -33,12 +33,57 @@
                                     <th>№</th>
                                     <th>{{ getTranslation('title') }}</th>
                                     <th>{{ getTranslation('description') }}</th>
-                                    <th>{{ getTranslation('text') }}</th>
+                                    <th>{{ getTranslation('menus') }}</th>
                                     <th>{{ getTranslation('photo') }}</th>
                                     <th>{{ getTranslation('status') }}</th>
                                     <th>{{ getTranslation('function') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
                                 </tr>
+                                <form action="{{ route('news.search', [], false) }}" method="get">
+                                    <tr>
+                                        <th></th>
+                                        <th>
+                                            <input type="text" class="form-control" name="title"
+                                                placeholder="{{ getTranslation('title') }}"
+                                                value="{{ old('title', request('title')) }}">
+                                        </th>
+                                        <th>
+                                            <input type="text" class="form-control" name="description"
+                                                placeholder="{{ getTranslation('description') }}"
+                                                value="{{ old('description', request('description')) }}">
+                                        </th>
+                                        <th>
+                                            <select class="form-control custom-select" name="menyu_id" id="select_menyu">
+                                                <option value=""></option>
+                                                @foreach ($menus as $menu)
+                                                    <option value="{{ $menu->id }}"
+                                                        {{ old('menyu_id', request('menyu_id')) == $menu->id ? 'selected' : '' }}>
+                                                        {{ getLocale($menu->name) }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </th>
+                                        <th>
+                                        </th>
+                                        <th>
+                                            <select class="form-control custom-select" name="is_active" id="select_date">
+                                                <option value="">{{ getTranslation('all') }}</option>
+                                                <option value="true"
+                                                    {{ old('is_active', request('is_active')) === 'true' ? 'selected' : '' }}>
+                                                    {{ getTranslation('assets') }}
+                                                </option>
+                                                <option value="false"
+                                                    {{ old('is_active', request('is_active')) === 'false' ? 'selected' : '' }}>
+                                                    {{ getTranslation('not-active') }}
+                                                </option>
+                                            </select>
+                                        </th>
+                                        <th>
+
+                                        </th>
+                                        <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                    </tr>
+                                </form>
                             </thead>
                             <tbody>
                                 @foreach ($models as $model)
@@ -46,7 +91,7 @@
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ substr(getLocale($model->title), 0, 30) }} ...</td>
                                         <td>{{ substr(getLocale($model->description), 0, 30) }} ...</td>
-                                        <td>{{ substr(getLocale($model->text), 0, 30) }} ...</td>
+                                        <td>{{ getLocale($model->menyu->name) }}</td>
                                         <td><img src="{{ asset($model->photo) }}" width="100px" alt=""></td>
                                         <td>
                                             <a href="{{ route('news.status', $model->id, false) }}"
@@ -56,7 +101,7 @@
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('news.edit', $model->id,  false) }}"
+                                                <a href="{{ route('news.edit', $model->id, false) }}"
                                                     class="btn btn-sm btn-outline-success">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
@@ -76,7 +121,7 @@
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
 
-                                                            <form action="{{ route('news.destroy', $model->id,  false) }}"
+                                                            <form action="{{ route('news.destroy', $model->id, false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')

@@ -19,12 +19,23 @@ trait SearchColumTranslations
 
                 $query->orWhere($field, filter_var($value, FILTER_VALIDATE_BOOLEAN));
             }
+
+            if ($field === 'status') {
+
+                $query->orWhere($field,  "{$value}");
+            }
+
+            if ($field === 'first_name') {
+
+                $query->orWhere($field, 'LIKE', "%{$value}%");
+            }
+
             if ($field === 'email') {
 
                 $query->orWhere($field, 'LIKE', "%{$value}%");
             }
 
-            if ($field === 'first_name') {
+            if ($field === 'fide_id') {
 
                 $query->orWhere($field, 'LIKE', "%{$value}%");
             }

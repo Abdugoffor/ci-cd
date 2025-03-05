@@ -4,19 +4,49 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HotelStoreRequest;
 use App\Models\Hotel;
-use App\Traits\SearchColumTranslations;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class HotelController extends Controller
 {
-    protected $searhcModel = Hotel::class;
-    protected $path = "hotels";
-
-    use SearchColumTranslations;
     public function index()
     {
         $models = Hotel::orderByDesc('id')->paginate(10);
         return view('admin.hotels.index', data: ['models' => $models]);
+    }
+    public function search(Request $request)
+    {
+        $query  = Hotel::query();
+        $locale = app()->getLocale();
+
+        if ($request->filled('title')) {
+            $query->where("title->$locale", 'LIKE', "%{$request->title}%");
+        }
+
+        if ($request->filled('description')) {
+            $query->where("description->$locale", 'LIKE', "%{$request->description}%");
+        }
+
+        if ($request->filled('text')) {
+            $query->where("text->$locale", 'LIKE', "%{$request->text}%");
+        }
+
+        if ($request->filled('rating')) {
+            $query->where('rating', 'LIKE', "%{$request->rating}%");
+        }
+        if ($request->filled('phone')) {
+            $query->where('phone', 'LIKE', "%{$request->phone}%");
+        }
+
+        if ($request->filled('is_active')) {
+            $query->where('is_active', filter_var($request->is_active, FILTER_VALIDATE_BOOLEAN));
+        }
+
+        $models = $query->paginate(10);
+
+        $models->appends($request->only(['title', 'description', 'text', 'rating', 'phone', 'is_active']));
+
+        return view('admin.hotels.index', ['models' => $models]);
     }
     public function create()
     {

@@ -1,22 +1,36 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PartnerStoreRequest;
 use App\Models\Partner;
-use App\Traits\SearchColumTranslations;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class PartnerController extends Controller
 {
-    protected $searhcModel = Partner::class;
-    protected $path        = "partners";
-
-    use SearchColumTranslations;
     public function index()
     {
         $models = Partner::orderByDesc('id')->paginate(10);
         return view(view: 'admin.partners.index', data: ['models' => $models]);
+    }
+    public function search(Request $request)
+    {
+        $query  = Partner::query();
+        $locale = app()->getLocale();
+
+        if ($request->filled('name')) {
+            $query->where("name->$locale", 'LIKE', "%{$request->name}%");
+        }
+
+        if ($request->filled('is_active')) {
+            $query->where('is_active', filter_var($request->is_active, FILTER_VALIDATE_BOOLEAN));
+        }
+
+        $models = $query->paginate(10);
+        $models->appends($request->only(['name', 'is_active']));
+
+        return view('admin.partners.index', ['models' => $models]);
     }
     public function create()
     {
@@ -25,7 +39,7 @@ class PartnerController extends Controller
     public function store(PartnerStoreRequest $request)
     {
         $data = $request->all();
-        
+
         if ($request->hasFile('photo')) {
             $file       = $request->file('photo');
             $extensions = $file->getClientOriginalExtension();

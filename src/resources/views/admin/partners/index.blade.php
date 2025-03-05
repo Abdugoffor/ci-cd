@@ -44,18 +44,23 @@
                                         <th></th>
                                         <th>
                                             <input type="text" class="form-control" name="name"
-                                                placeholder="{{ getTranslation('name') }}">
+                                                placeholder="{{ getTranslation('name') }}"
+                                                value="{{ old('name', request('name')) }}">
                                         </th>
                                         <th></th>
                                         <th></th>
                                         <th>
-                                            <select class="form-control custom-select" name="is_active" id="select_date">
-                                                <option></option>
-                                                <option value="true">
+                                            <select class="form-control custom-select" name="is_active"
+                                                id="select_is_active">
+                                                <option value=""></option>
+                                                <option value="true"
+                                                    {{ old('is_active', request('is_active')) === 'true' ? 'selected' : '' }}>
                                                     {{ getTranslation('assets') }}
                                                 </option>
-                                                <option value="false">
-                                                    {{ getTranslation('not-active') }}</option>
+                                                <option value="false"
+                                                    {{ old('is_active', request('is_active')) === 'false' ? 'selected' : '' }}>
+                                                    {{ getTranslation('not-active') }}
+                                                </option>
                                             </select>
                                         </th>
                                         <th></th>
@@ -77,14 +82,14 @@
                                             <img src="{{ asset($model->photo) }}" width="100px" alt="">
                                         </td>
                                         <td>
-                                            <a href="{{ route('partners.status', $model->id,false) }}"
+                                            <a href="{{ route('partners.status', $model->id, false) }}"
                                                 class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('partners.edit', $model->id,  false) }}"
+                                                <a href="{{ route('partners.edit', $model->id, false) }}"
                                                     class="btn btn-sm btn-outline-success">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
@@ -104,7 +109,8 @@
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
 
-                                                            <form action="{{ route('partners.destroy', $model->id, false) }}"
+                                                            <form
+                                                                action="{{ route('partners.destroy', $model->id, false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')

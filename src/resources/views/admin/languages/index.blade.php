@@ -36,6 +36,33 @@
                                     <th>{{ getTranslation('function') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
                                 </tr>
+                                <form action="{{ route('languages.search', [], false) }}" method="get">
+                                    @csrf
+                                    <tr>
+                                        <th></th>
+                                        <th>
+                                            <input type="text" class="form-control" name="name"
+                                                placeholder="{{ getTranslation('name') }}"
+                                                value="{{ old('name', request('name')) }}">
+                                        </th>
+                                        <th>
+                                            <select class="form-control custom-select" name="is_active" id="select_date">
+                                                <option value="">{{ getTranslation('all') }}</option>
+                                                <option value="true"
+                                                    {{ old('is_active', request('is_active')) === 'true' ? 'selected' : '' }}>
+                                                    {{ getTranslation('assets') }}
+                                                </option>
+                                                <option value="false"
+                                                    {{ old('is_active', request('is_active')) === 'false' ? 'selected' : '' }}>
+                                                    {{ getTranslation('not-active') }}
+                                                </option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                        </th>
+                                        <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                    </tr>
+                                </form>
                             </thead>
                             <tbody>
                                 @foreach ($models as $model)
@@ -43,7 +70,7 @@
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ $model->name }}</td>
                                         <td>
-                                            <a href="{{ route('language.status', $model->id,  false) }}"
+                                            <a href="{{ route('language.status', $model->id, false) }}"
                                                 class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
@@ -55,28 +82,32 @@
                                                     <i class="icon-pencil3"></i>
                                                 </a>
 
-                                                <button type="button" class="btn btn-sm btn-outline-danger ml-2"
+                                                {{-- <button type="button" class="btn btn-sm btn-outline-danger ml-2"
                                                     data-toggle="modal" data-target="#modal_full{{ $model->id }}"><i
                                                         class="icon-trash"></i>
-                                                </button>
+                                                </button> --}}
+
                                                 <!-- Full width modal -->
                                                 <div id="modal_full{{ $model->id }}" class="modal fade" tabindex="-1">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title">{{ getTranslation('language') }}</h5>
+                                                                <h5 class="modal-title">{{ getTranslation('language') }}
+                                                                </h5>
                                                                 <button type="button" class="close"
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
 
-                                                            <form action="{{ route('languages.destroy', $model->id,  false) }}"
+                                                            <form
+                                                                action="{{ route('languages.destroy', $model->id, false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <div class="modal-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            <h3>{{ getTranslation('do-you-want-to-delete') }}?</h3>
+                                                                            <h3>{{ getTranslation('do-you-want-to-delete') }}?
+                                                                            </h3>
                                                                         </div>
                                                                     </div>
 

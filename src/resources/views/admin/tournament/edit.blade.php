@@ -50,7 +50,7 @@
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}"
                                             {{ $tournament->category_id == $category->id ? 'selected' : '' }}>
-                                            {{ $category->name[app()->getLocale()] }}</option>
+                                            {{ getLocale($category->name) }}</option>
                                     @endforeach
                                 </select>
                                 @error('category_id')

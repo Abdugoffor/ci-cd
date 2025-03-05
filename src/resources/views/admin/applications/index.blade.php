@@ -41,7 +41,7 @@
                                                 <option></option>
                                                 @foreach ($accreditationCategories as $categories)
                                                     <option value="{{ $categories->id }}">
-                                                        {{ getLocale(optional($categories)->name) }}
+                                                        {{ getLocale($categories->name) }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -82,7 +82,7 @@
                                         <td>{{ $model->first_name }}</td>
                                         <td>{{ $model->fide_id }}</td>
                                         <td>
-                                            {{ getLocale(optional($model->accreditationCategory)->name) }}
+                                            {{ getLocale($model->accreditationCategory->name) }}
                                         </td>
                                         <td>
                                             {{ $model->date_of_birth }}

@@ -16,11 +16,10 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\EmailVerifyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Middleware\CheckEmailSession;
 use App\Http\Middleware\LangMiddleware;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Types\Relations\Part;
 
 Route::middleware(LangMiddleware::class)->group(function () {
 
@@ -47,7 +46,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
         Route::post('/profile', [AuthController::class, 'update'])->name('profile.update');
         Route::post('/profile/logout', [AuthController::class, 'logout'])->name('profile.logout');
 
-        
+
         Route::resource('/tournaments', TournamentController::class);
         Route::resource('/categories', CategoryController::class);
         Route::resource('/accreditation-categories', AccreditationCategoryController::class);
@@ -78,6 +77,12 @@ Route::middleware(LangMiddleware::class)->group(function () {
         Route::get('/applications-search', [AdminAppController::class, 'search'])->name('application.search');
         Route::get('/menus-search', [MenyuController::class, 'search'])->name('menus.search');
         Route::get('/partners-search', [PartnerController::class, 'search'])->name('partners.search');
+        Route::get('/tournaments-search', [TournamentController::class, 'search'])->name('tournaments.search');
+        Route::get('/languages-search', [LanguageController::class, 'search'])->name('languages.search');
+        Route::get('/translations-search', [TranslationController::class, 'search'])->name('translations.search');
+        Route::get('/contacts-search', [ContactController::class, 'search'])->name('contacts.search');
+        Route::get('/hotels-search', [HotelController::class, 'search'])->name('hotels.search');
+        Route::get('/news-search', [NewsController::class, 'search'])->name('news.search');
 
 
         Route::get('/tournament/{tournament}/{status}', [TournamentController::class, 'statusUpdate'])->name('status.update');

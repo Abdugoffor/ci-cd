@@ -28,7 +28,7 @@
                                     @foreach ($accreditationCategories as $category)
                                         <option value="{{ $category->id }}"
                                             {{ old('accreditation_category_id') == $category->id ? 'selected' : '' }}>
-                                            {{ $category->name['uz'] }}</option>
+                                            {{ getLocale($category->name) }}</option>
                                     @endforeach
                                 </select>
                                 @error('accreditation_category_id')

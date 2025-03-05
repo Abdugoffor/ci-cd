@@ -6,19 +6,32 @@ use App\Http\Requests\TranslationRequest;
 use App\Http\Requests\TranslationUpdateRequest;
 use App\Models\Language;
 use App\Models\Translation;
-use App\Traits\SearchColumTranslations;
+use Illuminate\Http\Request;
 
 class TranslationController extends Controller
 {
-    protected $searhcModel = Translation::class;
-    protected $path = "translations";
-
-    use SearchColumTranslations;
     public function index()
     {
         $models = Translation::orderByDesc('id')->paginate(10);
         return view('admin.translations.index', data: ['models' => $models]);
     }
+
+    public function search(Request $request)
+    {
+        $query  = Translation::query();
+
+        $locale = app()->getLocale();
+
+        if ($request->filled('name')) {
+            $query->where("name->$locale", 'LIKE', "%{$request->name}%");
+        }
+
+        $models = $query->paginate(10);
+        $models->appends($request->only(['name']));
+
+        return view('admin.translations.index', ['models' => $models]);
+    }
+
     public function create()
     {
         $models = Language::all();

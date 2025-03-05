@@ -788,6 +788,15 @@ class TranslationSeeder extends Seeder
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'Partners',
             ],
+            [
+                'slug'    => 'my_profile',
+                'name'    => json_encode([
+                    'uz' => 'Mening profilim',
+                    'ru' => 'Мой профиль',
+                    'en' => 'My profile',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'My profile',
+            ],
 
         ];
 

@@ -44,23 +44,23 @@
                                         <th></th>
                                         <th>
                                             <input type="text" class="form-control" name="name"
-                                                placeholder="{{ getTranslation('name') }}">
+                                                placeholder="{{ getTranslation('name') }}" value="{{ old('name', request('name')) }}">
+                                        </th>
+                                        <th>
+                                            <input type="text" class="form-control" name="role"
+                                                placeholder="{{ getTranslation('role') }}" value="{{ old('role', request('role')) }}">
                                         </th>
                                         <th>
                                             <input type="text" class="form-control" name="email"
-                                                placeholder="{{ getTranslation('email') }}">
+                                                placeholder="{{ getTranslation('email') }}" value="{{ old('role', request('email')) }}">
                                         </th>
                                         <th>
-                                            <input type="text" class="form-control" name="email"
-                                                placeholder="{{ getTranslation('email') }}">
-                                        </th>
-                                        <th>
-                                            <select class="form-control custom-select" name="is_active" id="select_date">
+                                            <select class="form-control custom-select" name="status" id="select_date">
                                                 <option></option>
-                                                <option value="true">
+                                                <option value="true" {{ old('status', request('status')) === 'true' ? 'selected' : '' }}>
                                                     {{ getTranslation('assets') }}
                                                 </option>
-                                                <option value="false">
+                                                <option value="false" {{ old('status', request('status')) === 'false' ? 'selected' : '' }}>
                                                     {{ getTranslation('not-active') }}</option>
                                             </select>
                                         </th>

@@ -38,6 +38,34 @@
                                     <th>{{ getTranslation('function') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
                                 </tr>
+                                <form action="{{ route('contacts.search', [], false) }}" method="get">
+                                    @csrf
+                                    <tr>
+                                        <th></th>
+                                        <th>
+                                            <input type="text" class="form-control" name="title"
+                                                placeholder="{{ getTranslation('title') }}"
+                                                value="{{ old('title', request('title')) }}">
+                                        </th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>
+                                            <select class="form-control custom-select" name="is_active" id="select_date">
+                                                <option value=""></option>
+                                                <option value="true"
+                                                    {{ old('is_active', request('is_active')) === 'true' ? 'selected' : '' }}>
+                                                    {{ getTranslation('assets') }}
+                                                </option>
+                                                <option value="false"
+                                                    {{ old('is_active', request('is_active')) === 'false' ? 'selected' : '' }}>
+                                                    {{ getTranslation('not-active') }}
+                                                </option>
+                                            </select>
+                                        </th>
+                                        <th></th>
+                                        <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                    </tr>
+                                </form>
                             </thead>
                             <tbody>
                                 @foreach ($models as $model)
@@ -55,7 +83,7 @@
                                             <img src="{{ asset($model->photo) }}" width="100px" alt="">
                                         </td>
                                         <td>
-                                            <a href="{{ route('contacts.status', $model->id,  false) }}"
+                                            <a href="{{ route('contacts.status', $model->id, false) }}"
                                                 class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
@@ -82,7 +110,8 @@
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
 
-                                                            <form action="{{ route('contacts.destroy', $model->id,  false) }}"
+                                                            <form
+                                                                action="{{ route('contacts.destroy', $model->id, false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')

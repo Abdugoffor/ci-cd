@@ -1,12 +1,10 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LanguageRequest;
 use App\Models\Language;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class LanguageController extends Controller
 {
@@ -14,6 +12,24 @@ class LanguageController extends Controller
     {
         $models = Language::paginate(10);
         return view('admin.languages.index', data: ['models' => $models]);
+    }
+    public function search(Request $request)
+    {
+        $query = Language::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', 'LIKE', "%{$request->name}%");
+        }
+
+        if ($request->filled('is_active')) {
+            $query->where('is_active', filter_var($request->is_active, FILTER_VALIDATE_BOOLEAN));
+        }
+
+        $models = $query->paginate(10);
+
+        $models->appends($request->only(['name', 'is_active']));
+
+        return view('admin.languages.index', ['models' => $models]);
     }
     public function create()
     {

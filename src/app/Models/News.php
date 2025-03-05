@@ -24,6 +24,6 @@ class News extends Model
     ];
     public function menyu()
     {
-        return $this->belongsTo(News::class, 'menyu_id', 'id');
+        return $this->belongsTo(Menyu::class, 'menyu_id', 'id');
     }
 }

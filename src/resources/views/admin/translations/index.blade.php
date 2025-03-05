@@ -35,15 +35,27 @@
                                     <th>{{ getTranslation('function') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
                                 </tr>
+                                <form action="{{ route('translations.search', [], false) }}" method="get">
+                                    @csrf
+                                    <tr>
+                                        <th></th>
+                                        <th>
+                                            <input type="text" class="form-control" name="name" value="{{ old('name', request('name')) }}"
+                                                placeholder="{{ getTranslation('name') }}">
+                                        </th>
+                                        <th></th>
+                                        <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                    </tr>
+                                </form>
                             </thead>
                             <tbody>
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
-                                        <td>{{ $model->default }}</td>
+                                        <td>{{ getLocale($model->name) }}</td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('translations.edit', $model->id,false) }}"
+                                                <a href="{{ route('translations.edit', $model->id, false) }}"
                                                     class="btn btn-sm btn-outline-success">
                                                     <i class="icon-pencil3"></i>
                                                 </a>

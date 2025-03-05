@@ -5,21 +5,50 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsStoreRequest;
 use App\Models\Menyu;
 use App\Models\News;
-use App\Traits\SearchColumTranslations;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
-    protected $searhcModel = News::class;
-    protected $path        = "news";
-
-    use SearchColumTranslations;
     public function index()
     {
         $models = News::orderByDesc('id')->paginate(10);
         $menus  = Menyu::all();
         return view('admin.news.index', data: ['models' => $models, 'menus' => $menus]);
     }
+    public function search(Request $request)
+    {
+        $query  = News::query();
+        $locale = app()->getLocale();
+
+        if ($request->filled('title')) {
+            $query->where("title->$locale", 'LIKE', "%{$request->title}%");
+        }
+
+        if ($request->filled('description')) {
+            $query->where("description->$locale", 'LIKE', "%{$request->description}%");
+        }
+
+        if ($request->filled('text')) {
+            $query->where("text->$locale", 'LIKE', "%{$request->text}%");
+        }
+
+        if ($request->filled('menyu_id')) {
+            $query->where('menyu_id', $request->menyu_id);
+        }
+
+        if ($request->filled('is_active')) {
+            $query->where('is_active', filter_var($request->is_active, FILTER_VALIDATE_BOOLEAN));
+        }
+
+
+        $models = $query->paginate(10);
+        $models->appends($request->only(['title', 'description', 'text', 'is_active']));
+
+        $menus = Menyu::all();
+        return view('admin.news.index', ['models' => $models, 'menus' => $menus]);
+    }
+
     public function create()
     {
         $menus = Menyu::all();
@@ -36,7 +65,7 @@ class NewsController extends Controller
         $data['text']['default'] = reset($data['text']);
 
         if ($request->hasFile('photo')) {
-            
+
             $file       = $request->file('photo');
             $extensions = $file->getClientOriginalExtension();
             $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;

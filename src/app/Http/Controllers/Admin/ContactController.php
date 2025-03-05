@@ -4,19 +4,32 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactStoreRequest;
 use App\Models\Contact;
-use App\Traits\SearchColumTranslations;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ContactController extends Controller
 {
-    protected $searhcModel = Contact::class;
-    protected $path = "contacts";
-
-    use SearchColumTranslations;
     public function index()
     {
         $models = Contact::orderByDesc('id')->paginate(10);
         return view('admin.contacts.index', data: ['models' => $models]);
+    }
+    public function search(Request $request)
+    {
+        $query = Contact::query();
+
+        if ($request->filled('title')) {
+            $query->where('title', 'LIKE', "%{$request->title}%");
+        }
+
+        if ($request->filled('is_active')) {
+            $query->where('is_active', filter_var($request->is_active, FILTER_VALIDATE_BOOLEAN));
+        }
+
+        $models = $query->paginate(10);
+        $models->appends($request->only(['title', 'is_active']));
+
+        return view('admin.contacts.index', ['models' => $models]);
     }
     public function create()
     {

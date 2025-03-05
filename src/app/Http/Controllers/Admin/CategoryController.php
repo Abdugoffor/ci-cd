@@ -4,18 +4,36 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Models\Category;
-use App\Traits\SearchColumTranslations;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    protected $searhcModel = Category::class;
-    protected $path = "categories";
-
-    use SearchColumTranslations;
     public function index()
     {
         $models = Category::orderByDesc('id')->paginate(10);
-        return view(view: 'admin.categories.index', data: ['models' => $models]);
+        return view('admin.categories.index', ['models' => $models]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = Category::query();
+
+        if ($request->filled('name')) {
+            $query->where("name->" . app()->getLocale(), 'LIKE', "%{$request->name}%");
+        }
+
+        if ($request->filled('description')) {
+            $query->where("description->" . app()->getLocale(), 'LIKE', "%{$request->description}%");
+        }
+
+        if ($request->filled('is_active')) {
+            $query->where('is_active', filter_var($request->is_active, FILTER_VALIDATE_BOOLEAN));
+        }
+
+        $models = $query->paginate(10);
+        $models->appends($request->only(['name', 'description', 'is_active']));
+
+        return view('admin.categories.index', ['models' => $models]);
     }
     public function create()
     {

@@ -19,6 +19,56 @@ class ApplicationController extends Controller
 
         return view("admin.applications.index", ['models' => $models, 'accreditationCategories' => $accreditationCategories]);
     }
+    public function search(Request $request)
+    {
+        $query = Participant::query();
+
+        if ($request->filled('first_name')) {
+            $query->where('first_name', 'LIKE', "%{$request->first_name}%");
+        }
+
+        if ($request->filled('fide_id')) {
+            $query->where('fide_id', 'LIKE', "%{$request->fide_id}%");
+        }
+
+        if ($request->filled('accreditation_category_id')) {
+            $query->where('accreditation_category_id', $request->accreditation_category_id);
+        }
+
+        if ($request->filled('date_of_birth')) {
+            $query->where('date_of_birth', $request->date_of_birth);
+        }
+
+        if ($request->filled('email')) {
+            $query->where('email', 'LIKE', "%{$request->email}%");
+        }
+
+        if ($request->filled('updated_at')) {
+            $query->whereDate('updated_at', $request->updated_at);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $models = $query->paginate(10);
+        $models->appends($request->only([
+            'first_name',
+            'fide_id',
+            'accreditation_category_id',
+            'date_of_birth',
+            'email',
+            'updated_at',
+            'status',
+        ]));
+
+        $accreditationCategories = AccreditationCategory::all();
+
+        return view("admin.applications.index", [
+            'models'                  => $models,
+            'accreditationCategories' => $accreditationCategories,
+        ]);
+    }
     public function status(Participant $participant, string $status)
     {
         if ($status == 'approved') {
@@ -59,45 +109,6 @@ class ApplicationController extends Controller
 
         return back();
     }
-    public function search(Request $request)
-    {
-        $models = Participant::query();
 
-        if ($request->filled('first_name')) {
-            $models->where('first_name', 'like', "%{$request->first_name}%");
-        }
-
-        if ($request->filled('fide_id')) {
-            $models->orWhere('fide_id', 'like', "%{$request->fide_id}%");
-        }
-
-        if ($request->filled('accreditation_category_id')) {
-            $models->orWhere('accreditation_category_id', $request->accreditation_category_id);
-        }
-
-        if ($request->filled('date_of_birth')) {
-            $models->orWhere('date_of_birth', $request->date_of_birth);
-        }
-
-        if ($request->filled('email')) {
-            $models->orWhere('email', 'like', "%{$request->email}%");
-        }
-
-        if ($request->filled('updated_at')) {
-            $models->whereDate('updated_at', $request->updated_at);
-        }
-
-        if ($request->filled('status')) {
-            $models->orWhere('status', $request->status);
-        }
-
-        $models = $models->paginate(10);
-
-        $accreditationCategories = AccreditationCategory::all();
-        return view("admin.applications.index", [
-            'models'                  => $models,
-            'accreditationCategories' => $accreditationCategories,
-        ]);
-    }
 
 }

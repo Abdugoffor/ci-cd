@@ -110,7 +110,7 @@
                             <div class="col-lg-10">
                                 <select name="menyu_id" id="" class="form-control">
                                     @foreach ($menus as $menu)
-                                        <option value="{{ $menu->id }}">{{ $menu->name[app()->getLocale()] }}</option>
+                                        <option value="{{ $menu->id }}">{{ getLocale($menu->name) }}</option>
                                     @endforeach
                                 </select>
                                 @error('menyu_id')

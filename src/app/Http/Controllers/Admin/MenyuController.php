@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MenyuStoreRequest;
 use App\Models\Menyu;
 use App\Traits\SearchColumTranslations;
+use Illuminate\Http\Request;
 
 class MenyuController extends Controller
 {
@@ -17,6 +18,27 @@ class MenyuController extends Controller
         $models = Menyu::orderByDesc('id')->paginate(10);
         return view(view: 'admin.menus.index', data: ['models' => $models]);
     }
+
+    public function search(Request $request)
+    {
+        $query  = Menyu::query();
+        $locale = app()->getLocale();
+
+        if ($request->filled('name')) {
+            $query->where("name->$locale", 'LIKE', "%{$request->name}%");
+        }
+
+        if ($request->filled('is_active')) {
+            $query->where('is_active', filter_var($request->is_active, FILTER_VALIDATE_BOOLEAN));
+        }
+
+        $models = $query->paginate(10);
+
+        $models->appends($request->only(['name', 'is_active']));
+
+        return view('admin.menus.index', ['models' => $models]);
+    }
+
     public function create()
     {
         return view('admin.menus.create');
