@@ -6,9 +6,11 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\HotelController;
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\MenyuController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Controllers\Admin\SkanController;
 use App\Http\Controllers\Admin\TournamentController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\Admin\UserController;
@@ -17,6 +19,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\EmailVerifyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\PresenceController;
 use App\Http\Middleware\CheckEmailSession;
 use App\Http\Middleware\LangMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -46,45 +49,70 @@ Route::middleware(LangMiddleware::class)->group(function () {
         Route::post('/profile', [AuthController::class, 'update'])->name('profile.update');
         Route::post('/profile/logout', [AuthController::class, 'logout'])->name('profile.logout');
 
-        Route::resource('/tournaments', TournamentController::class);
-        Route::resource('/categories', CategoryController::class);
-        Route::resource('/accreditation-categories', AccreditationCategoryController::class);
-        Route::resource('/users', UserController::class);
-        Route::resource('/languages', LanguageController::class);
-        Route::resource('/translations', TranslationController::class);
-        Route::resource('/contacts', ContactController::class);
-        Route::resource('/hotels', HotelController::class);
-        Route::resource('/menus', MenyuController::class);
-        Route::resource('/news', NewsController::class);
-        Route::resource('/partners', PartnerController::class);
+        Route::middleware(['role:admin'])->group(function () {
 
-        Route::get('/accreditation-categories-status/{category}', [AccreditationCategoryController::class, 'status'])->name('accreditation-categories.status');
-        Route::get('/categories-status/{category}', [CategoryController::class, 'status'])->name('categories.status');
-        Route::get('/news-status/{hotel}', [NewsController::class, 'status'])->name('news.status');
-        Route::get('/hotels-status/{hotel}', [HotelController::class, 'status'])->name('hotels.status');
-        Route::get('/contacts-status/{contacts}', [ContactController::class, 'status'])->name('contacts.status');
-        Route::get('/language-status/{language}', [LanguageController::class, 'status'])->name('language.status');
-        Route::get('/users-status/{user}', [UserController::class, 'status'])->name('users.status');
-        Route::get('/menus-status/{menyu}', [MenyuController::class, 'status'])->name('menus.status');
-        Route::get('/partners-status/{partner}', [PartnerController::class, 'status'])->name('partners.status');
+            Route::resource('/users', UserController::class);
+            Route::get('/users-status/{user}', [UserController::class, 'status'])->name('users.status');
+            Route::get('/users-search', [UserController::class, 'search'])->name('users.search');
+        });
 
-        Route::get('/users-search', [UserController::class, 'search'])->name('users.search');
-        Route::get('/accreditation-categories-search', [AccreditationCategoryController::class, 'search'])->name('accreditation-categories.search');
-        Route::get('/categories-search', [CategoryController::class, 'search'])->name('categories.search');
-        Route::get('/applications-search', [AdminAppController::class, 'search'])->name('application.search');
-        Route::get('/menus-search', [MenyuController::class, 'search'])->name('menus.search');
-        Route::get('/partners-search', [PartnerController::class, 'search'])->name('partners.search');
-        Route::get('/tournaments-search', [TournamentController::class, 'search'])->name('tournaments.search');
-        Route::get('/languages-search', [LanguageController::class, 'search'])->name('languages.search');
-        Route::get('/translations-search', [TranslationController::class, 'search'])->name('translations.search');
-        Route::get('/contacts-search', [ContactController::class, 'search'])->name('contacts.search');
-        Route::get('/hotels-search', [HotelController::class, 'search'])->name('hotels.search');
-        Route::get('/news-search', [NewsController::class, 'search'])->name('news.search');
+        Route::middleware(['role:admin,moderator'])->group(function () {
 
-        Route::get('/tournament/{tournament}/{status}', [TournamentController::class, 'statusUpdate'])->name('status.update');
-        Route::get('/applications', [AdminAppController::class, 'index'])->name('application.index');
-        Route::get('/applications-status/{participant}/{ststus}', [AdminAppController::class, 'status'])->name('application.status');
-        Route::post('/applications-cancel/{participant}', [AdminAppController::class, 'cancel'])->name('application.cancel');
+            Route::resource('/tournaments', TournamentController::class);
+            Route::get('/tournament/{tournament}/{status}', [TournamentController::class, 'statusUpdate'])->name('status.update');
+            Route::get('/tournaments-search', [TournamentController::class, 'search'])->name('tournaments.search');
+
+            Route::resource('/accreditation-categories', AccreditationCategoryController::class);
+            Route::get('/accreditation-categories-status/{category}', [AccreditationCategoryController::class, 'status'])->name('accreditation-categories.status');
+            Route::get('/accreditation-categories-search', [AccreditationCategoryController::class, 'search'])->name('accreditation-categories.search');
+
+            Route::resource('/categories', CategoryController::class);
+            Route::get('/categories-status/{category}', [CategoryController::class, 'status'])->name('categories.status');
+            Route::get('/categories-search', [CategoryController::class, 'search'])->name('categories.search');
+
+            Route::resource('/languages', LanguageController::class);
+            Route::get('/language-status/{language}', [LanguageController::class, 'status'])->name('language.status');
+            Route::get('/languages-search', [LanguageController::class, 'search'])->name('languages.search');
+
+            Route::resource('/translations', TranslationController::class);
+            Route::get('/translations-search', [TranslationController::class, 'search'])->name('translations.search');
+
+            Route::resource('/menus', MenyuController::class);
+            Route::get('/menus-status/{menyu}', [MenyuController::class, 'status'])->name('menus.status');
+            Route::get('/menus-search', [MenyuController::class, 'search'])->name('menus.search');
+
+            Route::resource('/hotels', HotelController::class);
+            Route::get('/hotels-status/{hotel}', [HotelController::class, 'status'])->name('hotels.status');
+            Route::get('/hotels-search', [HotelController::class, 'search'])->name('hotels.search');
+
+            Route::resource('/news', NewsController::class);
+            Route::get('/news-status/{hotel}', [NewsController::class, 'status'])->name('news.status');
+            Route::get('/news-search', [NewsController::class, 'search'])->name('news.search');
+
+            Route::resource('/partners', PartnerController::class);
+            Route::get('/partners-status/{partner}', [PartnerController::class, 'status'])->name('partners.status');
+            Route::get('/partners-search', [PartnerController::class, 'search'])->name('partners.search');
+
+            Route::resource('/contacts', ContactController::class);
+            Route::get('/contacts-status/{contacts}', [ContactController::class, 'status'])->name('contacts.status');
+            Route::get('/contacts-search', [ContactController::class, 'search'])->name('contacts.search');
+
+            Route::resource('/media', MediaController::class);
+            Route::get('/media-status/{media}', [MediaController::class, 'status'])->name('media.status');
+
+        });
+
+        Route::middleware(['role:admin,moderator,user'])->group(function () {
+
+            Route::get('/applications', [AdminAppController::class, 'index'])->name('application.index');
+            Route::get('/applications-status/{participant}/{ststus}', [AdminAppController::class, 'status'])->name('application.status');
+            Route::post('/applications-cancel/{participant}', [AdminAppController::class, 'cancel'])->name('application.cancel');
+            Route::get('/applications-search', [AdminAppController::class, 'search'])->name('application.search');
+
+            Route::get('/skan', [SkanController::class, 'index'])->name('skan.index');
+            Route::post('/skan', [SkanController::class, 'store'])->name('skan.store');
+            Route::get('/presence', [PresenceController::class, 'index'])->name('presence.index');
+        });
 
     });
 

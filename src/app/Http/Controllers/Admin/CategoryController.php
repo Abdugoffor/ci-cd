@@ -51,7 +51,7 @@ class CategoryController extends Controller
 
         Category::create($data);
 
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('notification', getTranslation('notification'));
     }
 
     public function edit(Category $category)
@@ -64,7 +64,7 @@ class CategoryController extends Controller
         $data = $request->all();
         $category->update($data);
 
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('notification', getTranslation('notification'));
     }
 
     public function destroy(Category $category)
@@ -75,7 +75,7 @@ class CategoryController extends Controller
     public function status(Category $category)
     {
         $category->update(['is_active' => ! $category->is_active]);
-        return back();
+        return back()->with('notification', getTranslation('notification'));
     }
 
 }

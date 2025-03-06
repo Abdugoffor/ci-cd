@@ -101,7 +101,7 @@ class TournamentController extends Controller
 
         Tournament::create($data);
 
-        return redirect()->route('tournaments.index');
+        return redirect()->route('tournaments.index')->with('notification', getTranslation('notification'));
     }
 
     public function edit(Tournament $tournament)
@@ -124,20 +124,20 @@ class TournamentController extends Controller
         }
         $tournament->update($data);
 
-        return redirect()->route('tournaments.index');
+        return redirect()->route('tournaments.index')->with('notification', getTranslation('notification'));
     }
 
     public function destroy(Tournament $tournament)
     {
         $tournament->delete();
-        return back();
+        return back()->with('notification', getTranslation('notification'));
     }
     public function statusUpdate(Tournament $tournament, string $status)
     {
         if (in_array($status, ['pending', 'ongoing', 'completed', 'canceled'])) {
             $tournament->update(['status' => $status]);
         }
-        return back();
+        return back()->with('notification', getTranslation('notification'));
     }
 
 }

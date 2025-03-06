@@ -76,7 +76,7 @@ class NewsController extends Controller
 
         News::create($data);
 
-        return redirect()->route('news.index');
+        return redirect()->route('news.index')->with('notification', getTranslation('notification'));
     }
 
     public function edit(int $news)
@@ -101,7 +101,7 @@ class NewsController extends Controller
 
         $news->update($data);
 
-        return redirect()->route('news.index');
+        return redirect()->route('news.index')->with('notification', getTranslation('notification'));
     }
 
     public function destroy(int $news)
@@ -109,7 +109,7 @@ class NewsController extends Controller
         $news = News::findOrFail($news);
         $news->delete();
 
-        return redirect()->route('news.index');
+        return redirect()->route('news.index')->with('notification', getTranslation('notification'));
     }
     public function status(int $news)
     {
@@ -117,6 +117,6 @@ class NewsController extends Controller
 
         $news->update(['is_active' => ! $news->is_active]);
 
-        return back();
+        return back()->with('notification', getTranslation('notification'));
     }
 }

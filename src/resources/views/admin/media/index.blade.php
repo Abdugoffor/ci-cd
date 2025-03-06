@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', getTranslation('news'))
+@section('title', getTranslation('media'))
 @section('content')
     <!-- Content area -->
     <div class="content">
@@ -27,7 +27,7 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('news.create', [], false) }}" class="btn btn-teal">
+                            <a href="{{ route('media.create', [], false) }}" class="btn btn-teal">
                                 <i class="icon-plus3 icon-1x mr-1"></i>{{ getTranslation('add') }}
                             </a>
                         </div>
@@ -37,77 +37,50 @@
                             <thead>
                                 <tr>
                                     <th>№</th>
-                                    <th>{{ getTranslation('title') }}</th>
-                                    <th>{{ getTranslation('description') }}</th>
-                                    <th>{{ getTranslation('menus') }}</th>
-                                    <th>{{ getTranslation('photo') }}</th>
+                                    <th>{{ getTranslation('photo') }} 1</th>
+                                    <th>{{ getTranslation('photo') }} 2</th>
+                                    <th>{{ getTranslation('photo') }} 3</th>
+                                    <th>{{ getTranslation('photo') }} 4</th>
+                                    <th>{{ getTranslation('photo') }} 5</th>
+                                    <th>{{ getTranslation('photo') }} 6</th>
                                     <th>{{ getTranslation('status') }}</th>
                                     <th>{{ getTranslation('function') }}</th>
-                                    <th>{{ getTranslation('history') }}</th>
                                 </tr>
-                                <form action="{{ route('news.search', [], false) }}" method="get">
-                                    <tr>
-                                        <th></th>
-                                        <th>
-                                            <input type="text" class="form-control" name="title"
-                                                placeholder="{{ getTranslation('title') }}"
-                                                value="{{ old('title', request('title')) }}">
-                                        </th>
-                                        <th>
-                                            <input type="text" class="form-control" name="description"
-                                                placeholder="{{ getTranslation('description') }}"
-                                                value="{{ old('description', request('description')) }}">
-                                        </th>
-                                        <th>
-                                            <select class="form-control custom-select" name="menyu_id" id="select_menyu">
-                                                <option value=""></option>
-                                                @foreach ($menus as $menu)
-                                                    <option value="{{ $menu->id }}"
-                                                        {{ old('menyu_id', request('menyu_id')) == $menu->id ? 'selected' : '' }}>
-                                                        {{ getLocale($menu->name) }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </th>
-                                        <th>
-                                        </th>
-                                        <th>
-                                            <select class="form-control custom-select" name="is_active" id="select_date">
-                                                <option value="">{{ getTranslation('all') }}</option>
-                                                <option value="true"
-                                                    {{ old('is_active', request('is_active')) === 'true' ? 'selected' : '' }}>
-                                                    {{ getTranslation('assets') }}
-                                                </option>
-                                                <option value="false"
-                                                    {{ old('is_active', request('is_active')) === 'false' ? 'selected' : '' }}>
-                                                    {{ getTranslation('not-active') }}
-                                                </option>
-                                            </select>
-                                        </th>
-                                        <th>
-
-                                        </th>
-                                        <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
-                                    </tr>
-                                </form>
                             </thead>
                             <tbody>
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
-                                        <td>{{ substr(getLocale($model->title), 0, 30) }} ...</td>
-                                        <td>{{ substr(getLocale($model->description), 0, 30) }} ...</td>
-                                        <td>{{ getLocale($model->menyu->name) }}</td>
-                                        <td><img src="{{ asset($model->photo) }}" width="100px" alt=""></td>
                                         <td>
-                                            <a href="{{ route('news.status', $model->id, false) }}"
+                                            <img src="{{ asset($model->photo_1) }}" width="100px" alt="">
+                                        </td>
+                                        <td>
+                                            <img src="{{ asset($model->photo_1) }}" width="100px" alt="">
+                                        </td>
+                                        <td>
+                                            <img src="{{ asset($model->photo_2) }}" width="100px" alt="">
+                                        </td>
+                                        <td>
+                                            <img src="{{ asset($model->photo_3) }}" width="100px" alt="">
+                                        </td>
+                                        <td>
+                                            <img src="{{ asset($model->photo_4) }}" width="100px" alt="">
+                                        </td>
+                                        <td>
+                                            <img src="{{ asset($model->photo_5) }}" width="100px" alt="">
+                                        </td>
+                                        <td>
+                                            <img src="{{ asset($model->photo_6) }}" width="100px" alt="">
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ route('media.status', $model->id, false) }}"
                                                 class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('news.edit', $model->id, false) }}"
+                                                <a href="{{ route('media.edit', $model->id, false) }}"
                                                     class="btn btn-sm btn-outline-success">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
@@ -121,13 +94,13 @@
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title">{{ getTranslation('news') }}
+                                                                <h5 class="modal-title">{{ getTranslation('language') }}
                                                                 </h5>
                                                                 <button type="button" class="close"
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
 
-                                                            <form action="{{ route('news.destroy', $model->id, false) }}"
+                                                            <form action="{{ route('media.destroy', $model->id, false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')
@@ -156,7 +129,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            {!! historyCheck($model) !!}
+                                            {{-- {!! historyCheck($model) !!} --}}
                                         </td>
                                     </tr>
                                 @endforeach

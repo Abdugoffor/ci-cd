@@ -50,7 +50,7 @@ class ContactController extends Controller
         }
         Contact::create($data);
 
-        return redirect()->route('contacts.index');
+        return redirect()->route('contacts.index')->with('notification', getTranslation('notification'));
     }
 
     public function edit(Contact $contact)
@@ -72,7 +72,7 @@ class ContactController extends Controller
 
         $contact->update($data);
 
-        return redirect()->route('contacts.index');
+        return redirect()->route('contacts.index')->with('notification', getTranslation('notification'));
     }
 
     public function destroy(Contact $contact)
@@ -83,6 +83,6 @@ class ContactController extends Controller
     public function status(Contact $contacts)
     {
         $contacts->update(['is_active' => ! $contacts->is_active]);
-        return back();
+        return back()->with('notification', getTranslation('notification'));
     }
 }

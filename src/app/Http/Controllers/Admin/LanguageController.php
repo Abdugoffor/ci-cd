@@ -43,7 +43,7 @@ class LanguageController extends Controller
 
         Language::create($data);
 
-        return redirect()->route('languages.index');
+        return redirect()->route('languages.index')->with('notification', getTranslation('notification'));
     }
 
     public function edit(Language $language)
@@ -57,17 +57,17 @@ class LanguageController extends Controller
 
         $language->update($data);
 
-        return redirect()->route('languages.index');
+        return redirect()->route('languages.index')->with('notification', getTranslation('notification'));
     }
 
     public function destroy(Language $language)
     {
         $language->delete();
-        return redirect()->route('languages.index');
+        return redirect()->route('languages.index')->with('notification', getTranslation('notification'));
     }
     public function status(Language $language)
     {
         $language->update(['is_active' => ! $language->is_active]);
-        return back();
+        return back()->with('notification', getTranslation('notification'));
     }
 }

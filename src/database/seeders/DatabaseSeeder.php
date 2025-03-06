@@ -17,10 +17,19 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name'  => 'admin',
             'email' => 'admin@gmail.com',
+            'role' => 'admin',
         ]);
+
         User::factory()->create([
-            'name'  => 'admin 19',
-            'email' => 'abdugofforqodirov19@gmail.com',
+            'name'  => 'user',
+            'email' => 'user@gmail.com',
+            'role' => 'user',
+        ]);
+
+        User::factory()->create([
+            'name'  => 'moderator',
+            'email' => 'moderator@gmail.com',
+            'role' => 'moderator',
         ]);
 
         $this->call([

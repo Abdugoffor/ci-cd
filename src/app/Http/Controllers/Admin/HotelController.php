@@ -72,7 +72,7 @@ class HotelController extends Controller
 
         Hotel::create($data);
 
-        return redirect()->route('hotels.index');
+        return redirect()->route('hotels.index')->with('notification', getTranslation('notification'));
     }
 
     public function edit(Hotel $hotel)
@@ -94,17 +94,17 @@ class HotelController extends Controller
 
         $hotel->update($data);
 
-        return redirect()->route('hotels.index');
+        return redirect()->route('hotels.index')->with('notification', getTranslation('notification'));
     }
 
     public function destroy(Hotel $hotel)
     {
         $hotel->delete();
-        return redirect()->route('hotels.index');
+        return redirect()->route('hotels.index')->with('notification', getTranslation('notification'));
     }
     public function status(Hotel $hotel)
     {
         $hotel->update(['is_active' => ! $hotel->is_active]);
-        return back();
+        return back()->with('notification', getTranslation('notification'));
     }
 }

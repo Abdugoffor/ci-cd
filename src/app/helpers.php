@@ -30,16 +30,6 @@ if (! function_exists('isActive')) {
     }
 }
 
-if (! function_exists('checkRole')) {
-    function checkRole(string $role)
-    {
-        if (Auth::user()->status && Auth::user()->role == $role) {
-            return true;
-        }
-        return false;
-    }
-}
-
 if (! function_exists('getLanguage')) {
     function getLanguage()
     {
@@ -181,4 +171,12 @@ if (! function_exists('activeMenu')) {
     {
         return request()->routeIs($route) ? 'active' : '';
     }
+}
+
+if (! function_exists('hasRole')) {
+    function hasRole(array $roles): bool
+    {
+        return Auth::check() && in_array(Auth::user()->role, $roles);
+    }
+
 }

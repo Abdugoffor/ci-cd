@@ -797,14 +797,64 @@ class TranslationSeeder extends Seeder
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'My profile',
             ],
+            [
+                'slug'    => 'notification',
+                'name'    => json_encode([
+                    'uz' => 'Amal muvaffaqiyatli bajarildi!',
+                    'ru' => 'Действие успешно выполнено!',
+                    'en' => 'The action was successfully completed!',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'The action was successfully completed!',
+            ],
+            [
+                'slug'    => 'scanner',
+                'name'    => json_encode([
+                    'uz' => 'Skaner',
+                    'ru' => 'Сканнер',
+                    'en' => 'Scanner',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Scanner',
+            ],
+            [
+                'slug'    => 'qk_code',
+                'name'    => json_encode([
+                    'uz' => 'QR Kod',
+                    'ru' => 'QR-код',
+                    'en' => 'QR Code',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'QR Code',
+            ],
+            [
+                'slug'    => 'scanner_messages',
+                'name'    => json_encode([
+                    'uz' => 'Bunday qatnashuvchi mavjud emas!',
+                    'ru' => 'Такого участника не существует!',
+                    'en' => 'Such a participant does not exist!',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Such a participant does not exist!',
+            ],
+            [
+                'slug'    => 'media',
+                'name'    => json_encode([
+                    'uz' => 'Media fayllar',
+                    'ru' => 'Медиа-файлы',
+                    'en' => 'Media Files',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Медиа-файлы',
+            ],
+            [
+                'slug'    => 'presence',
+                'name'    => json_encode([
+                    'uz' => 'Davomat',
+                    'ru' => 'Посещаемость',
+                    'en' => 'Presence',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Посещаемость',
+            ],
 
         ];
 
         Translation::insert($translations);
-        // try {
-        //     Translation::insert($translations);
-        // } catch (\Exception $e) {
-        //     dd($e->getMessage());
-        // }
+
     }
 }

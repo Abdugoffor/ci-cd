@@ -47,7 +47,7 @@ class UserController extends Controller
     public function store(UserStoreRequest $request)
     {
         User::create($request->all());
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('notification', getTranslation('notification'));
     }
 
     public function edit(User $user)
@@ -63,17 +63,17 @@ class UserController extends Controller
             $data['password'] = Hash::make($request->password);
         }
         $user->update($data);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('notification', getTranslation('notification'));
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('notification', getTranslation('notification'));
     }
     public function status(User $user)
     {
         $user->update(['status' => ! $user->status]);
-        return back();
+        return back()->with('notification', getTranslation('notification'));
     }
 }

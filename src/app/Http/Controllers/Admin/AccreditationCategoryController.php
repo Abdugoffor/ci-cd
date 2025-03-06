@@ -50,7 +50,7 @@ class AccreditationCategoryController extends Controller
 
         AccreditationCategory::create($data);
 
-        return redirect()->route('accreditation-categories.index');
+        return redirect()->route('accreditation-categories.index')->with('notification', getTranslation('notification'));
     }
 
     public function edit(AccreditationCategory $accreditation_category)
@@ -63,17 +63,17 @@ class AccreditationCategoryController extends Controller
         $data = $request->all();
         $accreditation_category->update($data);
 
-        return redirect()->route('accreditation-categories.index');
+        return redirect()->route('accreditation-categories.index')->with('notification', getTranslation('notification'));
     }
 
     public function destroy(AccreditationCategory $accreditation_category)
     {
         $accreditation_category->delete();
-        return redirect()->route('accreditation-categories.index');
+        return redirect()->route('accreditation-categories.index')->with('notification', getTranslation('notification'));
     }
     public function status(AccreditationCategory $category)
     {
         $category->update(['is_active' => ! $category->is_active]);
-        return back();
+        return back()->with('notification',getTranslation('notification'));
     }
 }

@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 
     <!--local uchun -->
-    {{-- <link href="{{ asset('global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
@@ -27,13 +27,13 @@
     <script src="{{ asset('global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
 
     <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
+    <script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script>
 
     <!-- Theme JS ckeditor files -->
 
     <!--server uchun -->
 
-    <link href="{{ secure_asset('global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    {{-- <link href="{{ secure_asset('global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ secure_asset('assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
@@ -49,7 +49,7 @@
     <script src="{{ secure_asset('global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
 
     <script src="{{ secure_asset('assets/js/app.js') }}"></script>
-    <script src="{{ secure_asset('global_assets/js/demo_pages/dashboard.js') }}"></script>
+    <script src="{{ secure_asset('global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
 </head>
 
 <body>
@@ -104,7 +104,7 @@
                     data-toggle="dropdown">
                     {{-- <img src="global_assets/images/placeholders/placeholder.jpg" class="rounded-pill mr-lg-2"
                         height="34" alt=""> --}}
-                    <span class="d-none d-lg-inline-block">{{ auth()->user()->name ?? 'User' }}</span>
+                    <span class="d-none d-lg-inline-block">{{ auth()->user()->role ?? 'User' }}</span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
@@ -171,92 +171,126 @@
                 <!-- Main navigation -->
                 <div class="sidebar-section">
                     <ul class="nav nav-sidebar" data-nav-type="accordion">
-                        <li class="nav-item">
-                            <a href="{{ route('tournaments.index', [], false) }}"
-                                class="nav-link {{ activeMenu('tournaments.index') }}">
-                                <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('competitions') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('application.index', [], false) }}"
-                                class="nav-link {{ activeMenu('application.index') }}">
-                                <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('applications') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('categories.index', [], false) }}"
-                                class="nav-link {{ activeMenu('categories.index') }}">
-                                <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('category') }}</span>
-                            </a>
-                        </li>
+                        @if (hasRole(['admin', 'moderator']))
+                            <li class="nav-item">
+                                <a href="{{ route('tournaments.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('tournaments.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('competitions') }}</span>
+                                </a>
+                            </li>
+                        @endif
 
-                        <li class="nav-item">
-                            <a href="{{ route('accreditation-categories.index', [], false) }}"
-                                class="nav-link {{ activeMenu('accreditation-categories.index') }}">
-                                <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('accreditation-categories') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('users.index', [], false) }}"
-                                class="nav-link {{ activeMenu('users.index') }}">
-                                <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('users') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('languages.index', [], false) }}"
-                                class="nav-link {{ activeMenu('languages.index') }}">
-                                <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('language') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('translations.index', [], false) }}"
-                                class="nav-link {{ activeMenu('translations.index') }}">
-                                <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('translations') }}</span>
-                            </a>
-                        </li>
+                        @if (hasRole(['admin', 'moderator', 'user']))
+                            <li class="nav-item">
+                                <a href="{{ route('application.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('application.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('applications') }}</span>
+                                </a>
+                            </li>
+                        @endif
 
-                        <li class="nav-item">
-                            <a href="{{ route('contacts.index', [], false) }}"
-                                class="nav-link {{ activeMenu('contacts.index') }}">
-                                <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('contacts') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('hotels.index', [], false) }}"
-                                class="nav-link {{ activeMenu('hotels.index') }}">
-                                <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('hotels') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('menus.index', [], false) }}"
-                                class="nav-link {{ activeMenu('menus.index') }}">
-                                <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('menus') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('news.index', [], false) }}"
-                                class="nav-link {{ activeMenu('news.index') }}">
-                                <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('news') }}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('partners.index', [], false) }}"
-                                class="nav-link {{ activeMenu('partners.index') }}">
-                                <i class="icon-list-unordered"></i>
-                                <span>{{ getTranslation('partners') }}</span>
-                            </a>
-                        </li>
+                        @if (hasRole(['admin', 'moderator']))
+                            <li class="nav-item">
+                                <a href="{{ route('categories.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('categories.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('category') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('accreditation-categories.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('accreditation-categories.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('accreditation-categories') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('languages.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('languages.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('language') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('translations.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('translations.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('translations') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('contacts.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('contacts.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('contacts') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('hotels.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('hotels.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('hotels') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('menus.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('menus.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('menus') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('news.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('news.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('news') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('partners.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('partners.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('partners') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('media.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('media.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('media') }}</span>
+                                </a>
+                            </li>
+                        @endif
+
+                        @if (hasRole(['admin']))
+                            <li class="nav-item">
+                                <a href="{{ route('users.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('users.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('users') }}</span>
+                                </a>
+                            </li>
+                        @endif
+
+                        @if (hasRole(['admin', 'moderator', 'user']))
+                            <li class="nav-item">
+                                <a href="{{ route('skan.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('skan.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('scanner') }}</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('presence.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('presence.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('presence') }}</span>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
                 <!-- /main navigation -->
@@ -302,7 +336,8 @@
                     <div class="navbar-collapse collapse" id="navbar-footer">
                         <ul class="navbar-nav ml-lg-auto">
                             <li class="nav-item">
-                                <a href="https://uzinfocom.uz" target="_blank" class="navbar-nav-link font-weight-semibold">
+                                <a href="https://uzinfocom.uz" target="_blank"
+                                    class="navbar-nav-link font-weight-semibold">
                                     <span class="text-pink">uzinfocom</span>
                                 </a>
                             </li>

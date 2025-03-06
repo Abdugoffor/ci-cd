@@ -45,7 +45,7 @@ class TranslationController extends Controller
 
         Translation::create($data);
 
-        return redirect()->route('translations.index');
+        return redirect()->route('translations.index')->with('notification', getTranslation('notification'));
     }
 
     public function edit(Translation $translation)
@@ -61,14 +61,14 @@ class TranslationController extends Controller
 
         cacheClear($translation->slug);
 
-        return redirect()->route('translations.index');
+        return redirect()->route('translations.index')->with('notification', getTranslation('notification'));
     }
 
     public function destroy(Translation $translation)
     {
         cacheClear($translation->slug);
         $translation->delete();
-        return redirect()->route('translations.index');
+        return redirect()->route('translations.index')->with('notification', getTranslation('notification'));
     }
 
 }

@@ -210,7 +210,8 @@
                                                                             <tr>
                                                                                 <th>{{ getTranslation('accreditation-category') }}
                                                                                 </th>
-                                                                                <td>{{ $model->accreditation_category_id }}
+                                                                                <td>
+                                                                                    {{ $model->accreditationCategory ? getLocale($model->accreditationCategory->name) : '' }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>

@@ -6,7 +6,12 @@
         <!-- Dashboard content -->
         <div class="row">
             <div class="col-xl-12">
-                <!-- Support tickets -->
+                @if (session('notification'))
+                    <div class="alert bg-teal text-white alert-rounded alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+                        <span class="font-weight-semibold">{{ session('notification') }}</span>
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-body d-lg-flex align-items-lg-center justify-content-lg-between flex-lg-wrap">
                         <div class="d-flex align-items-center mb-3 mb-lg-0">
@@ -81,10 +86,10 @@
                                                     <i class="icon-pencil3"></i>
                                                 </a>
 
-                                                <button type="button" class="btn btn-sm btn-outline-danger ml-2"
+                                                {{-- <button type="button" class="btn btn-sm btn-outline-danger ml-2"
                                                     data-toggle="modal" data-target="#modal_full{{ $model->id }}"><i
                                                         class="icon-trash"></i>
-                                                </button>
+                                                </button> --}}
                                                 <!-- Full width modal -->
                                                 <div id="modal_full{{ $model->id }}" class="modal fade" tabindex="-1">
                                                     <div class="modal-dialog">

@@ -6,9 +6,12 @@
         <!-- Dashboard content -->
         <div class="row">
             <div class="col-xl-12">
-
-
-                <!-- Support tickets -->
+                @if (session('notification'))
+                    <div class="alert bg-teal text-white alert-rounded alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+                        <span class="font-weight-semibold">{{ session('notification') }}</span>
+                    </div>
+                @endif
                 <div class="card">
 
                     <div class="card-body d-lg-flex align-items-lg-center justify-content-lg-between flex-lg-wrap">

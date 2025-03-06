@@ -61,5 +61,8 @@ class Participant extends Model
     {
         return $this->belongsTo(AccreditationCategory::class, 'accreditation_category_id');
     }
-
+    public function presences()
+    {
+        return $this->hasMany(Presence::class, 'participant_id');
+    }
 }

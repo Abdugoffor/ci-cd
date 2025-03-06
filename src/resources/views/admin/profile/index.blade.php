@@ -7,6 +7,12 @@
         <div class="row">
             <div class="col-xl-12">
                 <!-- Support tickets -->
+                @if (session('notification'))
+                    <div class="alert bg-teal text-white alert-rounded alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+                        <span class="font-weight-semibold">{{ session('notification') }}</span>
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-body d-lg-flex align-items-lg-center justify-content-lg-between flex-lg-wrap">
                         <div class="d-flex align-items-center mb-3 mb-lg-0">
@@ -81,14 +87,14 @@
                                             {{ $model->email }}
                                         </td>
                                         <td>
-                                            <a href="{{ route('users.status', $model->id,  false) }}"
+                                            <a href="{{ route('users.status', $model->id, false) }}"
                                                 class="badge badge-{{ $model->status ? 'primary' : 'danger' }}">
                                                 {{ $model->status ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('users.edit', $model->id,  false) }}"
+                                                <a href="{{ route('users.edit', $model->id, false) }}"
                                                     class="btn btn-sm btn-outline-success">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
@@ -107,7 +113,7 @@
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
 
-                                                            <form action="{{ route('users.destroy', $model->id,  false) }}"
+                                                            <form action="{{ route('users.destroy', $model->id, false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')

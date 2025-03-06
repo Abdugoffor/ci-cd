@@ -7,6 +7,12 @@
         <div class="row">
             <div class="col-xl-12">
                 <!-- Support tickets -->
+                @if (session('notification'))
+                    <div class="alert bg-teal text-white alert-rounded alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+                        <span class="font-weight-semibold">{{ session('notification') }}</span>
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-body d-lg-flex align-items-lg-center justify-content-lg-between flex-lg-wrap">
                         <div class="d-flex align-items-center mb-3 mb-lg-0">
@@ -44,23 +50,28 @@
                                         <th></th>
                                         <th>
                                             <input type="text" class="form-control" name="name"
-                                                placeholder="{{ getTranslation('name') }}" value="{{ old('name', request('name')) }}">
+                                                placeholder="{{ getTranslation('name') }}"
+                                                value="{{ old('name', request('name')) }}">
                                         </th>
                                         <th>
                                             <input type="text" class="form-control" name="role"
-                                                placeholder="{{ getTranslation('role') }}" value="{{ old('role', request('role')) }}">
+                                                placeholder="{{ getTranslation('role') }}"
+                                                value="{{ old('role', request('role')) }}">
                                         </th>
                                         <th>
                                             <input type="text" class="form-control" name="email"
-                                                placeholder="{{ getTranslation('email') }}" value="{{ old('role', request('email')) }}">
+                                                placeholder="{{ getTranslation('email') }}"
+                                                value="{{ old('role', request('email')) }}">
                                         </th>
                                         <th>
                                             <select class="form-control custom-select" name="status" id="select_date">
                                                 <option></option>
-                                                <option value="true" {{ old('status', request('status')) === 'true' ? 'selected' : '' }}>
+                                                <option value="true"
+                                                    {{ old('status', request('status')) === 'true' ? 'selected' : '' }}>
                                                     {{ getTranslation('assets') }}
                                                 </option>
-                                                <option value="false" {{ old('status', request('status')) === 'false' ? 'selected' : '' }}>
+                                                <option value="false"
+                                                    {{ old('status', request('status')) === 'false' ? 'selected' : '' }}>
                                                     {{ getTranslation('not-active') }}</option>
                                             </select>
                                         </th>

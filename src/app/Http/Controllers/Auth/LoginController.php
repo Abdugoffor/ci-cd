@@ -15,7 +15,9 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
         Auth()->attempt($request->only('email', 'password'));
+
         isActive();
-        return redirect()->route('tournaments.index');
+
+        return redirect()->route('application.index');
     }
 }

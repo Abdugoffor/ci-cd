@@ -51,7 +51,7 @@ class MenyuController extends Controller
 
         Menyu::create($data);
 
-        return redirect()->route('menus.index');
+        return redirect()->route('menus.index')->with('notification', getTranslation('notification'));
     }
 
     public function edit(Menyu $menu)
@@ -64,17 +64,17 @@ class MenyuController extends Controller
         $data = $request->all();
         $menu->update($data);
 
-        return redirect()->route('menus.index');
+        return redirect()->route('menus.index')->with('notification', getTranslation('notification'));
     }
 
     public function destroy(Menyu $menu)
     {
         $menu->delete();
-        return redirect()->route('menus.index');
+        return redirect()->route('menus.index')->with('notification', getTranslation('notification'));
     }
     public function status(Menyu $menyu)
     {
         $menyu->update(['is_active' => ! $menyu->is_active]);
-        return back();
+        return back()->with('notification', getTranslation('notification'));
     }
 }

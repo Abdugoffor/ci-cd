@@ -17,7 +17,8 @@ class ApplicationController extends Controller
     public function index()
     {
         $accreditationCategories = AccreditationCategory::all();
-        $models                  = Participant::orderBy('id', 'desc')->paginate(perPage: 10);
+
+        $models = Participant::orderBy('id', 'desc')->paginate(perPage: 10);
 
         return view("admin.applications.index", ['models' => $models, 'accreditationCategories' => $accreditationCategories]);
     }
@@ -74,12 +75,18 @@ class ApplicationController extends Controller
     public function status(Participant $participant, string $status)
     {
         if ($status == 'approved') {
-            $qk_code = $participant->id . '$' . Str::random(70);
 
-            $participant->update([
-                'status'  => $status,
-                'qk_code' => $qk_code,
-            ]);
+            if ($participant->status != $status) {
+
+                $qk_code = $participant->id . Str::random(70);
+
+                $participant->update([
+                    'status'  => $status,
+                    'qk_code' => $qk_code,
+                ]);
+            }
+
+            $qk_code = $participant->qk_code;
 
             $qrCode = QrCode::create($qk_code)
                 ->setSize(300)
@@ -113,7 +120,10 @@ class ApplicationController extends Controller
             'cancel_reason'  => $request->cancel_reason,
         ]);
 
-        $participant->update(['status' => 'canceled']);
+        $participant->update([
+            'status'  => 'canceled',
+            'qk_code' => null,
+        ]);
 
         dispatch(new ApplicationCancelJob($participant->email, $request->cancel_reason));
 

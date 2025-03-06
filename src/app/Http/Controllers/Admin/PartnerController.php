@@ -52,7 +52,7 @@ class PartnerController extends Controller
 
         Partner::create($data);
 
-        return redirect()->route('partners.index');
+        return redirect()->route('partners.index')->with('notification', getTranslation('notification'));
     }
 
     public function edit(Partner $partner)
@@ -63,7 +63,7 @@ class PartnerController extends Controller
     public function update(PartnerStoreRequest $request, Partner $partner)
     {
         $data = $request->all();
-        // dd($data);
+
         if ($request->hasFile('photo')) {
             $file       = $request->file('photo');
             $extensions = $file->getClientOriginalExtension();
@@ -74,17 +74,17 @@ class PartnerController extends Controller
 
         $partner->update($data);
 
-        return redirect()->route('partners.index');
+        return redirect()->route('partners.index')->with('notification', getTranslation('notification'));
     }
 
     public function destroy(Partner $partner)
     {
         $partner->delete();
-        return redirect()->route('partners.index');
+        return redirect()->route('partners.index')->with('notification', getTranslation('notification'));
     }
     public function status(Partner $partner)
     {
         $partner->update(['is_active' => ! $partner->is_active]);
-        return back();
+        return back()->with('notification', getTranslation('notification'));
     }
 }
