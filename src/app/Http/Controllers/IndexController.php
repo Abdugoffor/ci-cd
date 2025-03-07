@@ -49,7 +49,7 @@ class IndexController extends Controller
         //         'message' => 'So‘rov yuborishda xatolik yuz berdi',
         //         'error'   => $e->getMessage(),
         //     ], 500);
-        // }
+        // }3 878 994,00
 
         if ($application->status == 'pending') {
             return view('applications.application', ['application' => $application]);
