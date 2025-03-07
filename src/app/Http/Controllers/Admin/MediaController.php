@@ -18,7 +18,7 @@ class MediaController extends Controller
             unlink(public_path($existingPath));
         }
 
-        $filename = time() . '_' . Str::random(40) . '.' . $file->getClientOriginalExtension();
+        $filename = date('d-m-Y') . Str::random(40) . '.' . $file->getClientOriginalExtension();
 
         $file->move(public_path('uploaded'), $filename);
 
@@ -57,6 +57,11 @@ class MediaController extends Controller
     public function edit(Media $medium)
     {
         return view("admin.media.edit", ["media" => $medium]);
+    }
+
+    public function show(Media $medium)
+    {
+        return view("admin.media.show", ["model" => $medium]);
     }
 
     public function update(MediaUpdateRequest $request, Media $medium)

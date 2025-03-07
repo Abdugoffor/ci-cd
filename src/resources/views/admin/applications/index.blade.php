@@ -20,8 +20,7 @@
                                     <th>{{ getTranslation('email') }}</th>
                                     <th>{{ getTranslation('registration-end') }}</th>
                                     <th>{{ getTranslation('status') }}</th>
-                                    <th>{{ getTranslation('view') }}</th>
-                                    <th>{{ getTranslation('history') }}</th>
+                                    <th>{{ getTranslation('function') }}</th>
                                 </tr>
                                 <form action="{{ route('application.search', [], false) }}" method="get">
                                     @csrf
@@ -70,7 +69,6 @@
                                                 </option>
                                             </select>
                                         </th>
-                                        <th></th>
                                         <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
                                     </tr>
                                 </form>
@@ -85,7 +83,7 @@
                                             {{ $model->accreditationCategory ? getLocale($model->accreditationCategory->name) : '' }}
                                         </td>
                                         <td>
-                                            {{ $model->date_of_birth }}
+                                            {{ $model->date_of_birth->format('d-m-Y') }}
                                         </td>
                                         <td>
                                             {{ $model->email }}
@@ -103,7 +101,7 @@
                                                                 class="icon-menu7"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <!-- Qabul qilish tugmasi -->
-                                                            <a href="{{ route('application.status', [$model->id, 'approved'],  false) }}"
+                                                            <a href="{{ route('application.status', [$model->id, 'approved'], false) }}"
                                                                 class="dropdown-item">
                                                                 <i class="icon-checkmark3 text-success"></i>
                                                                 {{ getTranslation('acceptance') }}
@@ -157,10 +155,15 @@
 
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                                            <a href="{{ route('application.show', $model->id, false) }}"
+                                                class="btn btn-outline-info mr-2">
+                                                <i class="icon-eye8"></i>
+                                            </a>
+                                            {!! historyCheck($model) !!}
+                                            {{-- <button type="button" class="btn btn-outline-info" data-toggle="modal"
                                                 data-target="#modal_full{{ $model->id }}">
                                                 <i class="icon-eye8"></i>
-                                            </button>
+                                            </button> --}}
                                             <!-- Full width modal -->
                                             <div id="modal_full{{ $model->id }}" class="modal fade" tabindex="-1">
                                                 <div class="modal-dialog modal-lg">
@@ -313,7 +316,8 @@
                                                                                     {{ getTranslation('status') }}
 
                                                                                 </th>
-                                                                                <td>{{ $model->status }}</td>
+                                                                                <td>{{ getTranslation($model->status) }}
+                                                                                </td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -330,9 +334,6 @@
                                                 </div>
                                             </div>
                                             <!-- /full width modal -->
-                                        </td>
-                                        <td>
-                                            {!! historyCheck($model) !!}
                                         </td>
                                     </tr>
                                 @endforeach

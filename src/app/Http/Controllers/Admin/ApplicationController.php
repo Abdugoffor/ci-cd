@@ -111,7 +111,11 @@ class ApplicationController extends Controller
 
         }
 
-        return back();
+        return back()->with('notification', getTranslation('notification'));
+    }
+    public function show(Participant $participant)
+    {
+        return view('admin.applications.show', ['model' => $participant]);
     }
     public function cancel(Request $request, Participant $participant)
     {
@@ -127,7 +131,7 @@ class ApplicationController extends Controller
 
         dispatch(new ApplicationCancelJob($participant->email, $request->cancel_reason));
 
-        return back();
+        return back()->with('notification', getTranslation('notification'));
     }
 
 }

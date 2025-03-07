@@ -72,7 +72,11 @@
                                                 placeholder="{{ getTranslation('rating') }}"
                                                 value="{{ old('rating', request('rating')) }}">
                                         </th>
-                                        <th></th>
+                                        <th>
+                                            <input type="text" class="form-control" name="location"
+                                                placeholder="{{ getTranslation('location') }}"
+                                                value="{{ old('location', request('location')) }}">
+                                        </th>
                                         <th>
                                             <input type="number" class="form-control" name="phone"
                                                 placeholder="{{ getTranslation('phone') }}"
@@ -115,12 +119,10 @@
                                             {{ $model->rating }}
                                         </td>
                                         <td>
-                                            <a href="{{ $model->location }}" target="_blank">
-                                                {{ getTranslation('location') }}
-                                            </a>
+                                            {{ $model->location }}
                                         </td>
                                         <td>
-                                            <a href="{{ $model->phone }}" target="_blank">{{ $model->phone }}</a>
+                                            <a href="tel:{{ $model->phone }}" target="_blank">{{ $model->phone }}</a>
                                         </td>
                                         <td>
                                             <a href="{{ route('hotels.status', $model->id, false) }}"
@@ -130,8 +132,13 @@
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
+                                                <a href="{{ route('hotels.show', $model->id, false) }}"
+                                                    class="btn btn-outline-info">
+                                                    <i class="icon-eye8"></i>
+                                                </a>
+
                                                 <a href="{{ route('hotels.edit', $model->id, false) }}"
-                                                    class="btn btn-sm btn-outline-success">
+                                                    class="btn btn-sm btn-outline-success ml-2">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
 

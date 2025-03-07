@@ -47,9 +47,7 @@
                                     <th>{{ getTranslation('start') }}</th>
                                     <th>{{ getTranslation('finished') }}</th>
                                     <th>{{ getTranslation('status') }}</th>
-                                    <th>{{ getTranslation('participants') }}</th>
                                     <th>{{ getTranslation('function') }}</th>
-                                    <th>{{ getTranslation('history') }}</th>
                                 </tr>
                                 <form action="{{ route('tournaments.search', [], false) }}" method="get">
                                     <tr>
@@ -116,8 +114,6 @@
                                                 </option>
                                             </select>
                                         </th>
-                                        <th></th>
-                                        <th></th>
                                         <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
                                     </tr>
                                 </form>
@@ -160,7 +156,7 @@
                                         </td>
                                         <td>
                                             <span class="badge badge-teal badge-pill ml-auto">
-                                                {{ $model->status }}
+                                                {{ getTranslation($model->status) }}
                                                 <div class="list-icons ml-2">
                                                     <div class="dropdown">
                                                         <a href="#" class="list-icons-item" data-toggle="dropdown"><i
@@ -188,36 +184,55 @@
                                             </span>
                                         </td>
                                         <td>
-                                            <h6 class="mb-0">{{ $model->participants()->count() }}</h6>
-                                            <div class="font-size-sm text-muted line-height-1">
-                                                {{ getTranslation('participants') }}
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="list-icons">
-                                                <div class="dropdown">
-                                                    <a href="#" class="list-icons-item" data-toggle="dropdown"><i
-                                                            class="icon-menu7"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a href="{{ route('tournaments.edit', $model->id, false) }}"
-                                                            class="dropdown-item"><i
-                                                                class="icon-pencil3 mr-2 text-success"></i>
-                                                            {{ getTranslation('change') }}</a>
-                                                        <form
-                                                            action="{{ route('tournaments.destroy', $model->id, false) }}"
+                                            <a href="{{ route('tournaments.show', $model->id, false) }}"
+                                                class="btn btn-outline-info">
+                                                <i class="icon-eye8"></i>
+                                            </a>
+                                            <a href="{{ route('tournaments.edit', $model->id, false) }}"
+                                                class="btn btn-sm btn-outline-success ml-1">
+                                                <i class="icon-pencil3"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-outline-danger ml-1"
+                                                data-toggle="modal" data-target="#modal_full{{ $model->id }}"><i
+                                                    class="icon-trash"></i>
+                                            </button>
+                                            <!-- Full width modal -->
+                                            <div id="modal_full{{ $model->id }}" class="modal fade" tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">{{ getTranslation('competitions') }}
+                                                            </h5>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
+                                                        </div>
+
+                                                        <form action="{{ route('tournaments.destroy', $model->id, false) }}"
                                                             method="post">
-                                                            @method('DELETE')
                                                             @csrf
-                                                            <button type="submit" class="dropdown-item">
-                                                                <i class="icon-cross2 text-danger"></i>
-                                                                {{ getTranslation('delete') }}
-                                                            </button>
+                                                            @method('DELETE')
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <h3>{{ getTranslation('do-you-want-to-delete') }}?
+                                                                        </h3>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal"
+                                                                    data-dashlane-label="true">{{ getTranslation('close') }}</button>
+                                                                <button type="submit" class="btn btn-danger"
+                                                                    data-dashlane-label="true">{{ getTranslation('confirm') }}</button>
+                                                            </div>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </td>
-                                        <td>
+                                            <!-- /full width modal -->
                                             {!! historyCheck($model) !!}
                                         </td>
                                     </tr>

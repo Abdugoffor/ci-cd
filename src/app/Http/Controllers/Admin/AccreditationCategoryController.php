@@ -57,6 +57,10 @@ class AccreditationCategoryController extends Controller
     {
         return view('admin.accreditation-categories.edit', ['category' => $accreditation_category]);
     }
+    public function show(AccreditationCategory $accreditation_category)
+    {
+        return view('admin.accreditation-categories.show', ['model' => $accreditation_category]);
+    }
 
     public function update(AccreditationCategoryStoreRequest $request, AccreditationCategory $accreditation_category)
     {

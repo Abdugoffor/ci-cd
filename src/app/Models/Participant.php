@@ -10,7 +10,14 @@ class Participant extends Model
 {
     use HasHistory, SoftDeletes;
     protected $fillable = [
+        // 'fide_id',
+        // 'first_name',    // Ism (pasportdagidek)
+        // 'country_id',                 // Fuqaroligi (mamlakati)
+        // 'gender',        // Jins (Erkak - M / Ayol - F)
+        // 'date_of_birth', // Tug‘ilgan sana (YYYY-MM-DD)
+
         'tournament_id',
+        'fide_id',
         'first_name',    // Ism (pasportdagidek)
         'last_name',     // Familiya (pasportdagidek)
         'date_of_birth', // Tug‘ilgan sana (YYYY-MM-DD)
@@ -18,7 +25,6 @@ class Participant extends Model
         'email',         // Elektron pochta
         'email_verified_at',
 
-        'fide_id',
         'accreditation_category_id',
         'country_id',                 // Fuqaroligi (mamlakati)
         'passport_number',            // Pasport seria
@@ -26,7 +32,6 @@ class Participant extends Model
         'passport_expiry_date',       // Pasport amal qilish muddati
         'passport_issuing_authority', // Pasportni bergan tashkilot (Ichki ishlar vazirligi)
         'passport_copy',              // Pasport nusxasi (JPEG yoki PDF formatda yuklanishi kerak)
-        'citizenship',                // Fuqaroligi (O‘zbekiston, Rossiya va h.k.)
         'phone',                      // Telefon raqami
         'photo',                      // Akkreditatsiya uchun rasm (JPEG formatda)
         'requires_visa',              // Viza kerakmi? (Ha - 1 / Yo‘q - 0)
@@ -41,6 +46,7 @@ class Participant extends Model
         'email_verified_at' => 'datetime',
         'arrival_details'   => 'datetime',
         'departure_details' => 'datetime',
+        'date_of_birth'     => 'date',
     ];
 
     public static function getTableColumns()
@@ -64,5 +70,9 @@ class Participant extends Model
     public function presences()
     {
         return $this->hasMany(Presence::class, 'participant_id');
+    }
+    public function playerInfo()
+    {
+        return $this->hasOne(PlayerInfo::class, 'participant_id');
     }
 }

@@ -22,7 +22,7 @@ class PresenceController extends Controller
 
             $date = $request->input('date');
 
-            $query->where('date', $date);
+            $query->whereDate('created_at', $date);
         }
 
         $models = $query->orderByDesc('id')->paginate(10);

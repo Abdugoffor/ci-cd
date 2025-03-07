@@ -52,6 +52,10 @@ class TranslationController extends Controller
     {
         return view('admin.translations.edit', ['model' => $translation]);
     }
+    public function show(Translation $translation)
+    {
+        return view('admin.translations.show', ['model' => $translation]);
+    }
 
     public function update(TranslationUpdateRequest $request, Translation $translation)
     {

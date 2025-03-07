@@ -54,6 +54,10 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->with('notification', getTranslation('notification'));
     }
 
+    public function show(Category $category)
+    {
+        return view('admin.categories.show', ['model' => $category]);
+    }
     public function edit(Category $category)
     {
         return view('admin.categories.edit', ['category' => $category]);

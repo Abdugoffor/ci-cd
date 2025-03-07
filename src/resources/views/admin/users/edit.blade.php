@@ -3,11 +3,16 @@
 @section('content')
     <!-- Content area -->
     <div class="content">
-        <div class="card">
+        <div class="d-inline-flex gap-2">
+            <a href="{{ route('users.index', [], false) }}" class="btn btn-sm btn-outline-success">
+                {{ getTranslation('back') }}
+            </a>
+        </div>
+        <div class="card mt-2">
 
             <div class="card-body">
 
-                <form action="{{ route('users.update', $model->id,  false) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('users.update', $model->id, false) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <fieldset class="mb-3">
@@ -50,7 +55,8 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('password') }}</label>
                             <div class="col-lg-10">
-                                <input type="password" class="form-control" name="password" placeholder="{{ getTranslation('password') }}">
+                                <input type="password" class="form-control" name="password"
+                                    placeholder="{{ getTranslation('password') }}">
                                 @error('password')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror

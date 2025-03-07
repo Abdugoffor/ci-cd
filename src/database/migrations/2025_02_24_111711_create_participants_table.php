@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['player', 'guest'])->default('guest');
             $table->integer('accreditation_category_id')->nullable();
             $table->foreignId('tournament_id')->constrained('tournaments')->onDelete('cascade');
             $table->string('fide_id')->nullable()->unique();
@@ -25,7 +26,6 @@ return new class extends Migration
             $table->date('passport_expiry_date')->nullable();
             $table->string('passport_issuing_authority')->nullable();
             $table->string('passport_copy')->nullable();
-            $table->string('citizenship')->nullable();
             $table->bigInteger('country_id')->nullable();
             $table->string('email');
             $table->dateTime('email_verified_at')->nullable();

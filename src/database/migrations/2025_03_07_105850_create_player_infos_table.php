@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('presences', function (Blueprint $table) {
+        Schema::create('player_infos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('participant_id')->constrained('participants')->onDelete('cascade');
+            $table->date('birthyear')->nullable();
+            $table->string('title')->nullable();
+            $table->bigInteger('standard_rating')->nullable();
+            $table->bigInteger('blitz_rating')->nullable();
+            $table->bigInteger('rapid_rating')->nullable();
+            $table->string('image_file')->nullable();
             $table->timestamps();
         });
     }
@@ -23,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('presences');
+        Schema::dropIfExists('player_infos');
     }
 };

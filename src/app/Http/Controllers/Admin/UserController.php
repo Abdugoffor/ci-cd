@@ -50,6 +50,10 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('notification', getTranslation('notification'));
     }
 
+    public function show(User $user)
+    {
+        return view('admin.users.show', ['model' => $user]);
+    }
     public function edit(User $user)
     {
         return view('admin.users.edit', ['model' => $user]);
@@ -73,6 +77,7 @@ class UserController extends Controller
     }
     public function status(User $user)
     {
+        // dd(!$user->status);
         $user->update(['status' => ! $user->status]);
         return back()->with('notification', getTranslation('notification'));
     }

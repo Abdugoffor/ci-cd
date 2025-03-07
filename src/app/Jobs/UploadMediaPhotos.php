@@ -19,7 +19,7 @@ class UploadMediaPhotos implements ShouldQueue
 
     public function __construct($files)
     {
-        $this->files = $files; 
+        $this->files = $files;
     }
 
     public function handle()
@@ -32,7 +32,7 @@ class UploadMediaPhotos implements ShouldQueue
                 if (isset($this->files[$field])) {
                     $file      = $this->files[$field];
                     $extension = $file->getClientOriginalExtension();
-                    $filename  = time() . '_' . Str::random(40) . '.' . $extension;
+                    $filename  = date('d-m-Y') . Str::random(40) . '.' . $extension;
                     $file->move(public_path('uploaded'), $filename);
                     $data[$field] = 'uploaded/' . $filename;
                     Log::info("Rasm yuklandi ($field): " . $data[$field]);

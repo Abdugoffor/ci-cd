@@ -107,12 +107,17 @@
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
+                                                <a href="{{ route('news.show', $model->id, false) }}"
+                                                    class="btn btn-outline-info">
+                                                    <i class="icon-eye8"></i>
+                                                </a>
+
                                                 <a href="{{ route('news.edit', $model->id, false) }}"
-                                                    class="btn btn-sm btn-outline-success">
+                                                    class="btn btn-sm btn-outline-success ml-1">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
 
-                                                <button type="button" class="btn btn-sm btn-outline-danger ml-2"
+                                                <button type="button" class="btn btn-sm btn-outline-danger ml-1"
                                                     data-toggle="modal" data-target="#modal_full{{ $model->id }}"><i
                                                         class="icon-trash"></i>
                                                 </button>

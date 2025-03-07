@@ -37,51 +37,40 @@ class ApplicationController extends Controller
     public function storeAdditional(ApplicationAdditionRequest $request)
     {
         try {
-            // Email orqali oxirgi Participant modelini olish
             $model = Participant::where('email', session()->get('email'))
                 ->orderBy('id', 'desc')
                 ->first();
 
             if (! $model) {
-                Log::warning("Participant topilmadi: " . session()->get('email'));
                 return redirect('/')->with('error', 'Foydalanuvchi topilmadi.');
             }
 
             $data = $request->all();
 
-            // Passport nusxasini yuklash
             if ($request->hasFile('passport_copy') && $request->file('passport_copy')->isValid()) {
                 $file      = $request->file('passport_copy');
                 $extension = $file->getClientOriginalExtension();
-                $filename  = time() . '_' . Str::random(40) . '.' . $extension;
+                $filename  = date('d-m-Y') . '_' . Str::random(40) . '.' . $extension;
 
-                // Faylni public/uploaded papkasiga ko‘chirish
                 $file->move(public_path('uploaded'), $filename);
                 $data['passport_copy'] = 'uploaded/' . $filename;
-                Log::info("Passport nusxasi yuklandi: " . public_path('uploaded/' . $filename));
             }
 
-            // Rasmni yuklash
             if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
                 $file      = $request->file('photo');
                 $extension = $file->getClientOriginalExtension();
-                $filename  = time() . '_' . Str::random(40) . '.' . $extension;
+                $filename  = date('d-m-Y') . '_' . Str::random(40) . '.' . $extension;
 
-                // Faylni public/uploaded papkasiga ko‘chirish
                 $file->move(public_path('uploaded'), $filename);
                 $data['photo'] = 'uploaded/' . $filename;
-                Log::info("Rasm yuklandi: " . public_path('uploaded/' . $filename));
             }
 
-            // Modelni yangilash
             $model->update($data);
-            Log::info("Participant yangilandi: " . $model->id);
 
-            return redirect('/')->with('success', 'Ma’lumotlar muvaffaqiyatli yangilandi.');
+            return redirect('/')->with('notification',getTranslation('notification'));
 
         } catch (Exception $e) {
-            Log::error("Ma’lumotlarni saqlashda xatolik: " . $e->getMessage());
-            return redirect('/')->with('error', 'Xatolik yuz berdi: ' . $e->getMessage());
+            return redirect('/')->with('notification',$e->getMessage());
         }
     }
 

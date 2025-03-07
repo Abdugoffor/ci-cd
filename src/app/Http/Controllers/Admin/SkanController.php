@@ -24,7 +24,6 @@ class SkanController extends Controller
 
             Presence::create([
                 'participant_id' => $participant->id,
-                'date'           => date('Y-m-d'),
             ]);
 
             return view('admin.skan.index', ['participant' => $participant]);

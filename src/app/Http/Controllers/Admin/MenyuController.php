@@ -54,6 +54,10 @@ class MenyuController extends Controller
         return redirect()->route('menus.index')->with('notification', getTranslation('notification'));
     }
 
+    public function show(Menyu $menu)
+    {
+        return view('admin.menus.show', ['model' => $menu]);
+    }
     public function edit(Menyu $menu)
     {
         return view('admin.menus.edit', ['menu' => $menu]);

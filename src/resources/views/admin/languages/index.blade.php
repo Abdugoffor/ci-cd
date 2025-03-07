@@ -83,8 +83,12 @@
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
+                                                <a href="{{ route('languages.show', $model->id, false) }}"
+                                                    class="btn btn-outline-info">
+                                                    <i class="icon-eye8"></i>
+                                                </a>
                                                 <a href="{{ route('languages.edit', $model->id, false) }}"
-                                                    class="btn btn-sm btn-outline-success">
+                                                    class="btn btn-sm btn-outline-success ml-2">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
 

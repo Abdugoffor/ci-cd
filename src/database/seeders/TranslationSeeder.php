@@ -851,6 +851,24 @@ class TranslationSeeder extends Seeder
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'Посещаемость',
             ],
+            [
+                'slug'    => 'back',
+                'name'    => json_encode([
+                    'uz' => 'Orqaga',
+                    'ru' => 'Назад',
+                    'en' => 'Back',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Назад',
+            ],
+            [
+                'slug'    => 'created',
+                'name'    => json_encode([
+                    'uz' => 'Yaratilgan',
+                    'ru' => 'Создано в',
+                    'en' => 'Created at',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Создано в',
+            ],
 
         ];
 

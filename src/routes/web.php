@@ -64,6 +64,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
 
             Route::resource('/accreditation-categories', AccreditationCategoryController::class);
             Route::get('/accreditation-categories-status/{category}', [AccreditationCategoryController::class, 'status'])->name('accreditation-categories.status');
+            Route::get('/accreditation-categories-show/{accreditation_category}', [AccreditationCategoryController::class, 'show'])->name('accreditation-categories.show');
             Route::get('/accreditation-categories-search', [AccreditationCategoryController::class, 'search'])->name('accreditation-categories.search');
 
             Route::resource('/categories', CategoryController::class);
@@ -98,7 +99,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
             Route::get('/contacts-search', [ContactController::class, 'search'])->name('contacts.search');
 
             Route::resource('/media', MediaController::class);
-            Route::get('/media-status/{media}', [MediaController::class, 'status'])->name('media.status');
+            Route::get('/media-status/{medium}', [MediaController::class, 'status'])->name('media.status');
 
         });
 
@@ -107,6 +108,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
             Route::get('/applications', [AdminAppController::class, 'index'])->name('application.index');
             Route::get('/applications-status/{participant}/{ststus}', [AdminAppController::class, 'status'])->name('application.status');
             Route::post('/applications-cancel/{participant}', [AdminAppController::class, 'cancel'])->name('application.cancel');
+            Route::get('/applications-show/{participant}', [AdminAppController::class, 'show'])->name('application.show');
             Route::get('/applications-search', [AdminAppController::class, 'search'])->name('application.search');
 
             Route::get('/skan', [SkanController::class, 'index'])->name('skan.index');

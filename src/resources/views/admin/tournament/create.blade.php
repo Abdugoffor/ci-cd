@@ -3,14 +3,20 @@
 @section('content')
     <!-- Content area -->
     <div class="content">
-        <div class="card">
+        <div class="d-inline-flex gap-2">
+            <a href="{{ route('tournaments.index', [], false) }}" class="btn btn-sm btn-outline-success">
+                {{ getTranslation('back') }}
+            </a>
+        </div>
+        <div class="card mt-2">
 
             <div class="card-body">
 
                 <form action="{{ route('tournaments.store', [], false) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <fieldset class="mb-3">
-                        <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('competitions') }}</legend>
+                        <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('competitions') }}
+                        </legend>
 
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('name') }}</label>
@@ -30,7 +36,8 @@
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab1{{ $model->id }}">
                                             <input type="text" class="form-control" name="name[{{ $model->slug }}]"
-                                                value="{{ old('name.' . $model->slug) }}" placeholder="{{ $model->name }}">
+                                                value="{{ old('name.' . $model->slug) }}"
+                                                placeholder="{{ $model->name }}">
                                             @error('name.' . $model->slug)
                                                 <p style="color: red;">{{ $message }}</p>
                                             @enderror

@@ -110,6 +110,10 @@ class TournamentController extends Controller
         $countries  = Country::all();
         return view('admin.tournament.edit', ['categories' => $categories, 'countries' => $countries, 'tournament' => $tournament]);
     }
+    public function show(Tournament $tournament)
+    {
+        return view('admin.tournament.show', ['model' => $tournament]);
+    }
 
     public function update(Request $request, Tournament $tournament)
     {
@@ -118,7 +122,7 @@ class TournamentController extends Controller
         if ($request->hasFile('logo')) {
             $file       = $request->file('logo');
             $extensions = $file->getClientOriginalExtension();
-            $filename   = time() . Str::random(40) . '.' . $extensions;
+            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
             $file->move(public_path('uploaded'), $filename);
             $data['logo'] = 'uploaded/' . $filename;
         }

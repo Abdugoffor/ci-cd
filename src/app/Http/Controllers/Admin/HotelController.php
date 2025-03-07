@@ -37,6 +37,9 @@ class HotelController extends Controller
         if ($request->filled('phone')) {
             $query->where('phone', 'LIKE', "%{$request->phone}%");
         }
+        if ($request->filled('location')) {
+            $query->where('location', 'LIKE', "%{$request->location}%");
+        }
 
         if ($request->filled('is_active')) {
             $query->where('is_active', filter_var($request->is_active, FILTER_VALIDATE_BOOLEAN));
@@ -73,6 +76,11 @@ class HotelController extends Controller
         Hotel::create($data);
 
         return redirect()->route('hotels.index')->with('notification', getTranslation('notification'));
+    }
+
+    public function show(Hotel $hotel)
+    {
+        return view('admin.hotels.show', ['model' => $hotel]);
     }
 
     public function edit(Hotel $hotel)

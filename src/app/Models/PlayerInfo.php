@@ -3,10 +3,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Presence extends Model
+class PlayerInfo extends Model
 {
     protected $fillable = [
         'participant_id',
+        'birthyear',
+        'title',
+        'standard_rating',
+        'blitz_rating',
+        'rapid_rating',
+        'image_file',
     ];
 
     public function participant()

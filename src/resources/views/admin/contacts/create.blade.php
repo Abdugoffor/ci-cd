@@ -3,10 +3,13 @@
 @section('content')
     <!-- Content area -->
     <div class="content">
-        <div class="card">
-
+        <div class="d-inline-flex gap-2">
+            <a href="{{ route('contacts.index', [], false) }}" class="btn btn-sm btn-outline-success">
+                {{ getTranslation('back') }}
+            </a>
+        </div>
+        <div class="card mt-2">
             <div class="card-body">
-
                 <form action="{{ route('contacts.store', [], false) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <fieldset class="mb-3">

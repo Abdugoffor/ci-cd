@@ -55,6 +55,10 @@ class PartnerController extends Controller
         return redirect()->route('partners.index')->with('notification', getTranslation('notification'));
     }
 
+    public function show(Partner $partner)
+    {
+        return view('admin.partners.show', ['model' => $partner]);
+    }
     public function edit(Partner $partner)
     {
         return view('admin.partners.edit', ['partner' => $partner]);

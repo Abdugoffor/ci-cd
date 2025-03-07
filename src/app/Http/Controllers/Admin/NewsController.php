@@ -79,6 +79,11 @@ class NewsController extends Controller
         return redirect()->route('news.index')->with('notification', getTranslation('notification'));
     }
 
+    public function show(int $news)
+    {
+        $news  = News::findOrFail($news);
+        return view('admin.news.show', ['model' => $news]);
+    }
     public function edit(int $news)
     {
         $menus = Menyu::all();

@@ -57,6 +57,10 @@ class ContactController extends Controller
     {
         return view('admin.contacts.edit', ['contact' => $contact]);
     }
+    public function show(Contact $contact)
+    {
+        return view('admin.contacts.show', ['model' => $contact]);
+    }
 
     public function update(ContactStoreRequest $request, Contact $contact)
     {

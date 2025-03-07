@@ -50,6 +50,10 @@ class LanguageController extends Controller
     {
         return view('admin.languages.edit', ['model' => $language]);
     }
+    public function show(Language $language)
+    {
+        return view('admin.languages.show', ['model' => $language]);
+    }
 
     public function update(LanguageRequest $request, Language $language)
     {

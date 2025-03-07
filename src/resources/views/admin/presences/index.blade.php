@@ -45,10 +45,9 @@
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ $model->participant->first_name }}</td>
                                         <td>
-                                            {{ $model->date }}
+                                            {{ $model->created_at->format('Y-m-d, H:i') }}
                                         </td>
                                         <td>
-                                            {{ $model->created_at->format('Y-m-d, H:i') }}
                                         </td>
                                     </tr>
                                 @endforeach
