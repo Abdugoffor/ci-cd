@@ -11,45 +11,45 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 
     <!--local uchun -->
-    {{-- <link href="{{ asset('global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
-    <script src="{{ asset('global_assets/js/main/jquery.min.js') }}"></script>
-    <script src="{{ asset('global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/main/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
-    <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
-    <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
-    <script src="{{ asset('global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
 
-    <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
+    <script src="{{ asset('admin/assets/js/app.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script>
 
     <!-- Theme JS ckeditor files -->
 
     <!--server uchun -->
 
-    <link href="{{ secure_asset('global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ secure_asset('assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    {{-- <link href="{{ secure_asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ secure_asset('admin/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
-    <script src="{{ secure_asset('global_assets/js/main/jquery.min.js') }}"></script>
-    <script src="{{ secure_asset('global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ secure_asset('admin/global_assets/js/main/jquery.min.js') }}"></script>
+    <script src="{{ secure_asset('admin/global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
-    <script src="{{ secure_asset('global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
-    <script src="{{ secure_asset('global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
-    <script src="{{ secure_asset('global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
-    <script src="{{ secure_asset('global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
+    <script src="{{ secure_asset('admin/global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
+    <script src="{{ secure_asset('admin/global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
+    <script src="{{ secure_asset('admin/global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
+    <script src="{{ secure_asset('admin/global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
 
-    <script src="{{ secure_asset('assets/js/app.js') }}"></script>
-    <script src="{{ secure_asset('global_assets/js/demo_pages/dashboard.js') }}"></script>
+    <script src="{{ secure_asset('admin/assets/js/app.js') }}"></script>
+    <script src="{{ secure_asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
 </head>
 
 <body>
@@ -67,9 +67,9 @@
 
         <div class="navbar-brand text-center text-lg-left">
             <a href="index.html" class="d-inline-block">
-                {{-- <img src="{{ secure_asset('global_assets/images/logo_light.png') }}" class="d-none d-sm-block"
+                {{-- <img src="{{ secure_asset('admin/global_assets/images/logo_light.png') }}" class="d-none d-sm-block"
                     alt="">
-                <img src="{{ secure_asset('global_assets/images/logo_icon_light.png') }}" class="d-sm-none"
+                <img src="{{ secure_asset('admin/global_assets/images/logo_icon_light.png') }}" class="d-sm-none"
                     alt=""> --}}
             </a>
         </div>
@@ -140,7 +140,7 @@
                     <div class="sidebar-section-body">
                         <div class="media">
                             <a href="#" class="mr-3">
-                                {{-- <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
+                                {{-- <img src="{{ asset('admin/global_assets/images/placeholders/placeholder.jpg') }}"
                                     class="rounded-circle" alt=""> --}}
                             </a>
 

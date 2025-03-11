@@ -1,10 +1,11 @@
 <?php
 namespace App\Providers;
 
+use App\Models\Menyu;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,12 @@ class AppServiceProvider extends ServiceProvider
         View::composer('layouts.admin', function ($view) {
             $view->with('languages', getLanguage());
         });
+
+        View::composer('layouts.client', function ($view) {
+            $menus = Menyu::where('is_active', true)->orderByDesc('id')->limit(5)->get();
+            $view->with('menus', $menus);
+        });
+
         Paginator::useBootstrapFive();
         Paginator::useBootstrapFour();
     }

@@ -17,19 +17,19 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name'  => 'admin',
             'email' => 'admin@gmail.com',
-            'role' => 'admin',
+            'role'  => 'admin',
         ]);
 
         User::factory()->create([
             'name'  => 'user',
             'email' => 'user@gmail.com',
-            'role' => 'user',
+            'role'  => 'user',
         ]);
 
         User::factory()->create([
             'name'  => 'moderator',
             'email' => 'moderator@gmail.com',
-            'role' => 'moderator',
+            'role'  => 'moderator',
         ]);
 
         $this->call([
@@ -39,6 +39,9 @@ class DatabaseSeeder extends Seeder
             LanguageSeeder::class,
             TranslationSeeder::class,
             MenyuSeeder::class,
+            NewsSeeder::class,
+            HotelSeeder::class,
+            TurnirSeeder::class,
         ]);
     }
 }

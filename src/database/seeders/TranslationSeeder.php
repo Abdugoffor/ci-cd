@@ -869,6 +869,78 @@ class TranslationSeeder extends Seeder
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'Создано в',
             ],
+            [
+                'slug'    => 'code_verifay',
+                'name'    => json_encode([
+                    'uz' => 'Tasdiq kodi',
+                    'ru' => 'Код подтверждения',
+                    'en' => 'Verification Code',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Verification Code',
+            ],
+            [
+                'slug'    => 'i_agree',
+                'name'    => json_encode([
+                    'uz' => 'Men FIDE 46-Shaxmat Olimpiadasining Shartlari va Maxfiylik siyosatiga, shu jumladan akkreditatsiya va tadbirda ishtirok etish uchun shaxsiy ma’lumotlarimni qayta ishlashga roziman.',
+                    'ru' => 'Я согласен с Условиями и положениями и Политикой конфиденциальности 46-й Шахматной Олимпиады ФИДЕ, включая обработку моих персональных данных для аккредитации и участия в мероприятии.',
+                    'en' => 'I agree to the Terms & Conditions and Privacy Policy of the 46th FIDE Chess Olympiad, including the processing of my personal data for accreditation and event participation.',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Я согласен с Условиями и положениями и Политикой конфиденциальности 46-й Шахматной Олимпиады ФИДЕ, включая обработку моих персональных данных для аккредитации и участия в мероприятии.',
+            ],
+            [
+                'slug'    => 'personal_info',
+                'name'    => json_encode([
+                    'uz' => 'Shaxsiy ma`lumot',
+                    'ru' => 'Персональная информация',
+                    'en' => 'Personal Information',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Personal Information',
+            ],
+            [
+                'slug'    => 'register_for_accreditation',
+                'name'    => json_encode([
+                    'uz' => 'Akkreditatsiya Pass uchun ro`yxatdan o`ting',
+                    'ru' => 'Зарегистрироваться для получения аккредитационного пропуска',
+                    'en' => 'Register for Accreditation Pass',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Register for Accreditation Pass',
+            ],
+            [
+                'slug'    => 'in_passport',
+                'name'    => json_encode([
+                    'uz' => 'Pasportdagi kabi',
+                    'ru' => 'как в паспорте',
+                    'en' => 'as in Passport',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'as in Passport',
+            ],
+            [
+                'slug'    => 'latest_news',
+                'name'    => json_encode([
+                    'uz' => 'So`ngi yangiliklar',
+                    'ru' => 'Последние новости',
+                    'en' => 'Latest News',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Latest News',
+            ],
+            [
+                'slug'    => 'hotel_title',
+                'name'    => json_encode([
+                    'uz' => 'Наслаждайтесь своим пребыванием и исследуйте древний Самарканд',
+                    'ru' => 'Последние новости',
+                    'en' => 'Enjoy Your Stay & Explore Ancient Samarkand',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Mehmonxonangizdan rohatlaning va Qadimiy Samarqand bilan tanishing',
+            ],
+            [
+                'slug'    => 'hotel_description',
+                'name'    => json_encode([
+                    'uz' => 'Samarqand go‘zalligini his qilib, tadbir o‘tkaziladigan joy yaqinidagi yuqori baholangan mehmonxonalarda qolib, tashrifingizdan unumli foydalaning.',
+                    'ru' => 'Получите максимум удовольствия от своего визита, остановившись в лучших отелях недалеко от места проведения мероприятия и любуясь красотами Самарканда.',
+                    'en' => 'Make the most of your visit, by staying at top-rated hotels near the event venue while experiencing the beauty of Samarkand.',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Make the most of your visit, by staying at top-rated hotels near the event venue while experiencing the beauty of Samarkand.',
+            ],
 
         ];
 

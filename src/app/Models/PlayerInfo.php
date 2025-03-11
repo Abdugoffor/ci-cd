@@ -7,6 +7,7 @@ class PlayerInfo extends Model
 {
     protected $fillable = [
         'participant_id',
+        'name',
         'birthyear',
         'title',
         'standard_rating',

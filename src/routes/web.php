@@ -14,11 +14,11 @@ use App\Http\Controllers\Admin\SkanController;
 use App\Http\Controllers\Admin\TournamentController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\Client\ApplicationController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\EmailVerifyController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Client\IndexController;
 use App\Http\Controllers\PresenceController;
 use App\Http\Middleware\CheckEmailSession;
 use App\Http\Middleware\LangMiddleware;
@@ -27,19 +27,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(LangMiddleware::class)->group(function () {
 
     Route::get('/', [IndexController::class, 'index'])->name('home');
-    Route::get('/admin', [LoginController::class, 'index'])->name('login');
-    Route::post('/login', [LoginController::class, 'login'])->name('loginSubmit');
 
-    Route::get('/application/{application}', [IndexController::class, 'application'])->name('application');
+    Route::get('/application/{tournament}', [ApplicationController::class, 'application'])->name('application');
     Route::post('/applications', [ApplicationController::class, 'store'])->name('application.store');
-    Route::get('/applications-additional', [ApplicationController::class, 'createAdditional'])->middleware(CheckEmailSession::class)->name('application.additional');
-    Route::post('/applications-additional', [ApplicationController::class, 'storeAdditional'])->middleware(CheckEmailSession::class)->name('application.store.additional');
+    Route::get('/applications-additional/{model}', [ApplicationController::class, 'createAdditional'])->middleware(CheckEmailSession::class)->name('application.additional');
+    Route::post('/applications-additional/{model}', [ApplicationController::class, 'storeAdditional'])->middleware(CheckEmailSession::class)->name('application.store.additional');
 
     Route::get('/verify-email', [EmailVerifyController::class, 'showVerifyForm'])->name('verify.email');
     Route::post('/verify-email', [EmailVerifyController::class, 'verifyEmailCode'])->name('verify.email.post');
 
     Route::get('/verify-code', [EmailVerifyController::class, 'codeForm'])->name('verify.code');
-    Route::post('/verify-code', [EmailVerifyController::class, 'verifyCode'])->name('verify.code.post');
+    Route::post('/verify-code/{participant}', [EmailVerifyController::class, 'verifyCode'])->name('verify.code.post');
+
+    Route::get('/admin-dashboard', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'login'])->name('loginSubmit');
 
     Route::get('/lang/{lang}', [IndexController::class, 'changeLanguage'])->name('change.language');
 

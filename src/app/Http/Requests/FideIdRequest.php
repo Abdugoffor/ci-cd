@@ -1,10 +1,9 @@
 <?php
-
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EmailCodeRequest extends FormRequest
+class FideIdRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +21,7 @@ class EmailCodeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => 'required|numeric',
-            // 'email' => 'required|email|exists:participants,email',
+            'fide_id' => 'nullable|numeric',
         ];
     }
 }

@@ -19,13 +19,19 @@ class EmailVerifyController extends Controller
 
     public function verifyEmailCode(Request $request)
     {
-        $email            = $request->email;
-        $user             = User::where('email', $email)->first();
+        $email = $request->email;
+
+        $user = User::where('email', $email)->first();
+
         $verificationCode = Str::random(8);
+
         if ($user) {
+
             $user->update(['password' => Hash::make($verificationCode)]);
+
             dispatch(new SendPassword($email, $verificationCode));
         }
+
         return redirect()->route('login');
     }
     public function codeForm()
@@ -33,22 +39,21 @@ class EmailVerifyController extends Controller
         return view('auth.verify_email');
     }
 
-    public function verifyCode(EmailCodeRequest $request)
+    public function verifyCode(EmailCodeRequest $request, Participant $participant)
     {
-        $code  = $request->code;
-        $email = $request->email;
+        $code = $request->code;
+
+        $email = $participant->email;
 
         $cachedCode = cache()->get('email_verification_' . $email);
 
-        $model = Participant::where('email', $email)->orderBy('id', 'desc')->first();
-
-        if ($cachedCode != $code || ! $model) {
-
+        if ($cachedCode != $code) {
+            dd($cachedCode, $code);
             return redirect()->back()->withErrors(['code' => __('lang.invalid_code')]);
         }
 
-        $model->update(['email_verified_at' => now()]);
+        $participant->update(['email_verified_at' => now()]);
 
-        return redirect()->route('application.additional');
+        return redirect()->route('application.additional', ['model' => $participant]);
     }
 }

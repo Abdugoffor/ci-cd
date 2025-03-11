@@ -14,9 +14,9 @@ class CheckEmailSession
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! $request->session()->has('email')) {
-            return redirect('/');
-        }
+        // if (! $request->session()->has('email')) {
+        //     return redirect('/');
+        // }
         return $next($request);
     }
 }

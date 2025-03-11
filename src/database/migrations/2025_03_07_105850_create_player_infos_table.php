@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('player_infos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('participant_id')->constrained('participants')->onDelete('cascade');
+            $table->string('name')->nullable();
             $table->date('birthyear')->nullable();
             $table->string('title')->nullable();
             $table->bigInteger('standard_rating')->nullable();

@@ -52,7 +52,7 @@
                         <tr>
                             <th>{{ getTranslation('citizenship') }}
                             </th>
-                            <td>{{ $model->citizenship }}</td>
+                            <td>{{ $model->country->label_en }}</td>
                         </tr>
                         <tr>
                             <th>{{ getTranslation('passport-number') }}
@@ -114,7 +114,7 @@
                                 {{ getTranslation('visa-required') }}?
                             </th>
                             <td>
-                                {{ $model->requires_visa ? 'Да' : 'Нет' }}
+                                {{ $model->requires_visa ? getTranslation('yes') : getTranslation('no') }}
                             </td>
                         </tr>
                         <tr>
