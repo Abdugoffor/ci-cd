@@ -2,7 +2,6 @@ networks:
   traefik-network:
     external: true
 
-
 services:
   fide_nginx:
     build:
