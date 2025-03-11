@@ -1,0 +1,17 @@
+name: prod_CI
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  build:
+    runs-on: [prod]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build and Start Containers
+        run: |
+          docker compose -f compose.prod.yaml up --build --force-recreate -d 2>&1 | awk '!seen[$0]++'          
