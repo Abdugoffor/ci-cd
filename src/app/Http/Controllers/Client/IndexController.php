@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Hotel;
 use App\Models\Language;
 use App\Models\News;
+use App\Models\Partner;
 use App\Models\Tournament;
 use Illuminate\Support\Facades\App;
 
@@ -12,13 +13,15 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $model  = Tournament::where('status', 'pending')->orderByDesc('id')->first();
+        $model = Tournament::where('status', 'pending')->orderByDesc('id')->first();
 
-        $news   = News::where('is_active', true)->orderByDesc('id')->limit(3)->get();
+        $news = News::where('is_active', true)->orderByDesc('id')->limit(3)->get();
 
         $hotels = Hotel::where('is_active', true)->orderByDesc('id')->limit(10)->get();
 
-        return view("client.index", ['model' => $model, 'news' => $news, 'hotels' => $hotels]);
+        $partners = Partner::where('is_active', true)->orderByDesc('id')->limit(10)->get();
+
+        return view("client.index", ['model' => $model, 'news' => $news, 'hotels' => $hotels, 'partners' => $partners]);
     }
 
     public function changeLanguage($lang)

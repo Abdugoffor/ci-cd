@@ -9,8 +9,8 @@
                 <div>
                     <img src="{{ asset('client/assets/register-page/chess-logo.svg') }}" alt="chess-logo" />
                     <div class="register-logo-text">
-                        <span>46th FIDE CHESS OLYMPIAD</span>
-                        <strong>SAMARKAND 2025</strong>
+                        <span>{{ getLocale($tournament->name) }}</span>
+                        <strong>{{ getLocale($tournament->description) }}</strong>
                     </div>
                 </div>
             </div>
@@ -21,15 +21,17 @@
                     <div class="input-group">
                         <div class="input-wrapper">
                             <input type="hidden" name="tournament_id" value="{{ $tournament->id }}" id="">
-                            <label for="first-name" class="input-label">{{ getTranslation('name') }} <span>({{ getTranslation('in_passport') }})</span></label>
-                            <input type="text" id="first-name" name="first_name" class="input-text"
+                            <label for="first-name" class="input-label">{{ getTranslation('name') }}
+                                <span>({{ getTranslation('in_passport') }})</span></label>
+                            <input type="text" id="first-name" name="first_name" value="{{ old('first_name') }}" class="input-text"
                                 placeholder="{{ getTranslation('name') }}" />
                             @error('first_name')
                                 <p style="color: red; font-size: 12px;">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="input-wrapper">
-                            <label for="last-name" class="input-label">{{ getTranslation('last-name') }}<span>({{ getTranslation('in_passport') }})</span></label>
+                            <label for="last-name"
+                                class="input-label">{{ getTranslation('last-name') }}<span>({{ getTranslation('in_passport') }})</span></label>
                             <input type="text" id="last-name" name="last_name" value="{{ old('last_name') }}"
                                 class="input-text" placeholder="{{ getTranslation('last-name') }}" />
                             @error('last_name')
@@ -39,8 +41,8 @@
                         <div class="input-wrapper">
                             <label for="date-of-birth" class="input-label">{{ getTranslation('birth-date') }}</label>
                             <div class="date-container" onclick="openDatePicker('date_of_birth')">
-                                <input type="date" id="date_of_birth" name="date_of_birth"
-                                     class="date-input" onchange="updateDate('date_of_birth')" />
+                                <input type="date" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth') }}" class="date-input"
+                                    onchange="updateDate('date_of_birth')" />
                                 <span id="date_of_birthPlaceholder" class="placeholder">DD/MM/YYYY</span>
                                 <img src="{{ asset('client/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
@@ -57,13 +59,13 @@
                             <div>
                                 <label class="radio-label">
                                     <input type="radio" name="gender" value="M"
-                                    {{ old('gender', optional(session('player'))['sex'] ?? '') == 'M' ? 'checked' : '' }}/>
+                                        {{ old('gender', optional(session('player'))['sex'] ?? '') == 'M' ? 'checked' : '' }} />
                                     <span class="custom-radio"></span>
                                     Male
                                 </label>
                                 <label class="radio-label">
                                     <input type="radio" name="gender" value="F"
-                                        {{ old('gender', optional(session('player'))['sex'] ?? '') == 'L' ? 'checked' : '' }}/>
+                                        {{ old('gender', optional(session('player'))['sex'] ?? '') == 'L' ? 'checked' : '' }} />
                                     <span class="custom-radio"></span>
                                     Female
                                 </label>
@@ -97,7 +99,8 @@
                     </label>
                     <label for="terms">{{ getTranslation('i_agree') }}.</label>
                 </div>
-                <button type="submit" class="btn btn-form">{{ getTranslation('add') }}</button>
+                {{-- <button type="submit" class="btn btn-form">{{ getTranslation('add') }}</button> --}}
+                <button type="submit" class="btn">{{ getTranslation('add') }}</button>
             </form>
         </section>
     </main>

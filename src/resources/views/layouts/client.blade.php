@@ -13,8 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    {{-- <link rel="stylesheet" href="{{ asset('client/css/style.css') }}" /> --}}
-    <link rel="stylesheet" href="{{ secure_asset('client/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('client/css/style.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ secure_asset('client/css/style.css') }}" /> --}}
 </head>
 
 <body>
@@ -42,16 +42,21 @@
             </button>
             <ul class="nav-list">
                 @foreach ($menus as $menu)
-                    <a href="#">
+                    <a href="{{ route('page.index', $menu->id, false) }}">
                         <li class="nav-item">{{ getLocale($menu->name) }}</li>
                     </a>
                 @endforeach
                 <li class="nav-item lang-selector">
-                    <button class="lang-btn">EN</button>
+                    <button class="lang-btn">{{ app()->getLocale() }}</button>
                     <ul class="lang-dropdown">
-                        <li><a href="?lang=en" class="active">EN</a></li>
-                        <li><a href="?lang=ru">RU</a></li>
-                        <li><a href="?lang=uz">UZ</a></li>
+                        @foreach ($languages as $language)
+                            <li>
+                                <a href="{{ route('change.language', $language->slug, false) }}"
+                                    class="{{ app()->getLocale() == $language->slug ? 'active' : '' }}">
+                                    {{ $language->slug }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </li>
             </ul>
@@ -59,23 +64,21 @@
                 <ul class="nav-list">
                     <li class="nav-item lang-selector">
                         <ul class="lang-dropdown">
-                            <li><a href="?lang=en" class="active">EN</a></li>
-                            <li><a href="?lang=ru">RU</a></li>
-                            <li><a href="?lang=uz">UZ</a></li>
+                            @foreach ($languages as $language)
+                                <li>
+                                    <a href="{{ route('change.language', $language->slug, false) }}"
+                                        class="{{ app()->getLocale() == $language->slug ? 'active' : '' }}">
+                                        {{ $language->slug }}
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </li>
-                    <a href="#">
-                        <li class="nav-item">About</li>
-                    </a>
-                    <a href="#">
-                        <li class="nav-item">Schedule</li>
-                    </a>
-                    <a href="#">
-                        <li class="nav-item">Participants</li>
-                    </a>
-                    <a href="#">
-                        <li class="nav-item">Tickets</li>
-                    </a>
+                    @foreach ($menus as $menu)
+                        <a href="{{ route('page.index', $menu->id, false) }}">
+                            <li class="nav-item">{{ getLocale($menu->name) }}</li>
+                        </a>
+                    @endforeach
                 </ul>
             </div>
         </nav>
@@ -101,7 +104,7 @@
             <div class="footer-nav">
                 <ul>
                     @foreach ($menus as $menu)
-                        <a href="#">
+                        <a href="{{ route('page.index', $menu->id, false) }}">
                             <li class="nav-item">{{ getLocale($menu->name) }}</li>
                         </a>
                     @endforeach
@@ -115,8 +118,8 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    {{-- <script src="{{ asset('client/js/main.js') }}"></script> --}}
-    <script src="{{ secure_asset('client/js/main.js') }}"></script>
+    <script src="{{ asset('client/js/main.js') }}"></script>
+    {{-- <script src="{{ secure_asset('client/js/main.js') }}"></script> --}}
 </body>
 
 </html>

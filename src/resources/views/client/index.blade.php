@@ -15,7 +15,8 @@
                     <div class="info-block">
                         <img src="{{ asset('client/assets/header_banner/calendar.svg') }}" alt="calendar" />
                         <div class="info-block__content">
-                            <div>{{ $model->registration_start->format('d-M') }}, {{ $model->registration_end->format('d-M') }}</div>
+                            <div>{{ $model->registration_start->format('d-M') }},
+                                {{ $model->registration_end->format('d-M') }}</div>
                             <span>September</span>
                         </div>
                     </div>
@@ -79,24 +80,11 @@
             <div class="container">
                 <div class="swiper sponsors-slider">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="{{ asset('client/assets/sponsors/fide.svg') }}" alt="FIDE" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="{{ asset('client/assets/sponsors/tech-manidra.svg') }}" alt="Tech Mahindra" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="{{ asset('client/assets/sponsors/silk-road.svg') }}" alt="Silk Road" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="{{ asset('client/assets/sponsors/fide.svg') }}" alt="FIDE" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="{{ asset('client/assets/sponsors/tech-manidra.svg') }}" alt="Tech Mahindra" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="{{ asset('client/assets/sponsors/silk-road.svg') }}" alt="Silk Road" />
-                        </div>
+                        @foreach ($partners as $partner)
+                            <div class="swiper-slide">
+                                <img src="{{ asset($partner->photo) }}" alt="FIDE" />
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -116,7 +104,7 @@
                             </span>
                             <div class="news-card__date">
                                 <span>{{ $new->created_at->format('d-M-Y') }}</span>
-                                <a href="" class="more">Read more</a>
+                                <a href="{{ route('news.latest', $new->id, false) }}" class="more">Read more</a>
                             </div>
                         </div>
                     </div>
@@ -188,7 +176,9 @@
                                         </p>
                                     </div>
                                     <div class="hotel-card__overlay">
-                                        <button class="book-now">BOOK NOW</button>
+                                        <a href="{{ route('hotel.index', $hotel->id, false) }}" class="book-now">
+                                            BOOK NOW
+                                        </a>
                                     </div>
                                 </div>
                             </div>

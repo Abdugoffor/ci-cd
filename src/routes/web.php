@@ -14,11 +14,14 @@ use App\Http\Controllers\Admin\SkanController;
 use App\Http\Controllers\Admin\TournamentController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Client\ApplicationController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\EmailVerifyController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Client\ApplicationController;
+use App\Http\Controllers\Client\HotelController as ClientHotelController;
 use App\Http\Controllers\Client\IndexController;
+use App\Http\Controllers\Client\NewsController as ClientNewsController;
+use App\Http\Controllers\Client\PageController;
 use App\Http\Controllers\PresenceController;
 use App\Http\Middleware\CheckEmailSession;
 use App\Http\Middleware\LangMiddleware;
@@ -29,20 +32,27 @@ Route::middleware(LangMiddleware::class)->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('home');
 
     Route::get('/application/{tournament}', [ApplicationController::class, 'application'])->name('application');
+    Route::get('/applications-verify-email/{model}', [ApplicationController::class, 'applicationVerifyEmail'])->name('application.verify.email');
     Route::post('/applications', [ApplicationController::class, 'store'])->name('application.store');
+
+
     Route::get('/applications-additional/{model}', [ApplicationController::class, 'createAdditional'])->middleware(CheckEmailSession::class)->name('application.additional');
     Route::post('/applications-additional/{model}', [ApplicationController::class, 'storeAdditional'])->middleware(CheckEmailSession::class)->name('application.store.additional');
 
-    Route::get('/verify-email', [EmailVerifyController::class, 'showVerifyForm'])->name('verify.email');
-    Route::post('/verify-email', [EmailVerifyController::class, 'verifyEmailCode'])->name('verify.email.post');
-
-    Route::get('/verify-code', [EmailVerifyController::class, 'codeForm'])->name('verify.code');
-    Route::post('/verify-code/{participant}', [EmailVerifyController::class, 'verifyCode'])->name('verify.code.post');
+    Route::get('/page/{page}', [PageController::class, 'index'])->name('page.index');
+    Route::get('/hotel/{hotel}', [ClientHotelController::class, 'index'])->name('hotel.index');
+    Route::get('/news-latest/{currentNews}', [ClientNewsController::class, 'index'])->name('news.latest');
 
     Route::get('/admin-dashboard', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('loginSubmit');
 
     Route::get('/lang/{lang}', [IndexController::class, 'changeLanguage'])->name('change.language');
+
+    Route::get('/verify-email', [EmailVerifyController::class, 'showVerifyForm'])->name('verify.email');
+    Route::post('/verify-email', [EmailVerifyController::class, 'verifyEmailCode'])->name('verify.email.post');
+
+    Route::get('/verify-code', [EmailVerifyController::class, 'codeForm'])->name('verify.code');
+    Route::get('/verify-code/{participant}', [EmailVerifyController::class, 'verifyCode'])->name('verify.code.post');
 
     Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 

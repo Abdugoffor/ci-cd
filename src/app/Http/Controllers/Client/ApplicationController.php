@@ -77,6 +77,17 @@ class ApplicationController extends Controller
 
         dispatch(new VerifyEmailJob($model->email, $verificationCode));
 
+        return redirect()->route('application.verify.email', ['model' => $model->id]);
+
+    }
+
+    public function applicationVerifyEmail(Participant $model)
+    {
+        if (session()->get('model_id') != $model->id) {
+
+            return redirect('/');
+        }
+
         return view('client.verify_email', ['model' => $model]);
     }
     public function createAdditional(Participant $model)
@@ -97,6 +108,13 @@ class ApplicationController extends Controller
     public function storeAdditional(ApplicationAdditionRequest $request, Participant $model)
     {
         $data = $request->all();
+        // $file = $request->file('passport_copy');
+        // dd([
+        //     'is_valid' => $file->isValid(),
+        //     'size' => $file->getSize(), // Hajmi baytlarda (1MB = 1048576 byte)
+        //     'max_allowed' => 5120 * 1024, // Laravel 5MB limit (baytlarda)
+        //     'mime_type' => $file->getMimeType(),
+        // ]);
 
         if ($request->hasFile('passport_copy') && $request->file('passport_copy')->isValid()) {
 

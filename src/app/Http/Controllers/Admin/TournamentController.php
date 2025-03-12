@@ -24,8 +24,11 @@ class TournamentController extends Controller
     public function search(Request $request)
     {
         $categories = Category::all();
+
         $countries  = Country::all();
+
         $query      = Tournament::query();
+
         $locale     = app()->getLocale();
 
         if ($request->filled('name')) {

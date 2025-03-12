@@ -16,8 +16,9 @@ RUN apk add --no-cache \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # PHP konfiguratsiyasini o‘zgartirish (php.ini sozlamalarini o‘rnatish)
-RUN echo "upload_max_filesize = 50M" >> /usr/local/etc/php/php.ini \
-    && echo "post_max_size = 50M" >> /usr/local/etc/php/php.ini
+RUN echo "upload_max_filesize = 100M" >> /usr/local/etc/php/php.ini \
+    && echo "post_max_size = 100M" >> /usr/local/etc/php/php.ini \
+    **&& echo "upload_tmp_dir = /tmp" >> /usr/local/etc/php/php.ini**
 
 # Установка рабочего каталога
 WORKDIR /var/www/laravel
@@ -27,8 +28,9 @@ COPY src/ /var/www/laravel
 
 RUN mkdir -p /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes && \
     chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes && \
-    chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes
-    
+    chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes \
+    **&& mkdir -p /tmp && chmod 777 /tmp**
+
 # Копируем init.sh и делаем его исполняемым
 COPY dockerfiles/init.sh /usr/local/bin/init.sh
 RUN chmod +x /usr/local/bin/init.sh && dos2unix /usr/local/bin/init.sh

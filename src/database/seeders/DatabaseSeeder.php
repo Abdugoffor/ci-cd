@@ -42,6 +42,7 @@ class DatabaseSeeder extends Seeder
             NewsSeeder::class,
             HotelSeeder::class,
             TurnirSeeder::class,
+            PartnerSeeder::class,
         ]);
     }
 }

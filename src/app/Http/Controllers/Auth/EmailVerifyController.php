@@ -2,7 +2,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\EmailCodeRequest;
 use App\Jobs\SendPassword;
 use App\Models\Participant;
 use App\Models\User;
@@ -39,16 +38,19 @@ class EmailVerifyController extends Controller
         return view('auth.verify_email');
     }
 
-    public function verifyCode(EmailCodeRequest $request, Participant $participant)
+    public function verifyCode(Request $request, Participant $participant)
     {
-        $code = $request->code;
+        $request->validate([
+            'code' => 'required|numeric',
+        ]);
 
-        $email = $participant->email;
+        $code       = $request->code;
+
+        $email      = $participant->email;
 
         $cachedCode = cache()->get('email_verification_' . $email);
 
         if ($cachedCode != $code) {
-            dd($cachedCode, $code);
             return redirect()->back()->withErrors(['code' => __('lang.invalid_code')]);
         }
 
@@ -56,4 +58,5 @@ class EmailVerifyController extends Controller
 
         return redirect()->route('application.additional', ['model' => $participant]);
     }
+
 }

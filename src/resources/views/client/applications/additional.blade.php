@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <form action="{{ route('application.store.additional', $model->id, false) }}" method="POST"
+            <form action="{{ route('application.store.additional', $model->id) }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
 
@@ -33,7 +33,7 @@
                         <label for="last-name" class="input-label">{{ getTranslation('passport-issue-date') }}</label>
 
                         <div class="date-container" onclick="openDatePicker('passport_issue_date')">
-                            <input type="date" id="passport_issue_date" name="passport_issue_date" class="date-input"
+                            <input type="date" id="passport_issue_date" value="{{ old('passport_issue_date') }}" name="passport_issue_date" class="date-input"
                                 onchange="updateDate('passport_issue_date')" />
                             <span id="passport_issue_datePlaceholder" class="placeholder">DD/MM/YYYY</span>
                             <img src="{{ asset('client/assets/register-page/calendar-icon.svg') }}" class="calendar-icon" />
@@ -45,7 +45,7 @@
                     <div class="input-wrapper">
                         <label for="date-of-birth" class="input-label">{{ getTranslation('Passport-validity-period') }}</label>
                         <div class="date-container" onclick="openDatePicker('passport_expiry_date')">
-                            <input type="date" id="passport_expiry_date" name="passport_expiry_date" class="date-input"
+                            <input type="date" id="passport_expiry_date" value="{{ old('passport_expiry_date') }}" name="passport_expiry_date" class="date-input"
                                 onchange="updateDate('passport_expiry_date')" />
                             <span id="passport_expiry_datePlaceholder" class="placeholder">DD/MM/YYYY</span>
                             <img src="{{ asset('client/assets/register-page/calendar-icon.svg') }}" class="calendar-icon" />
@@ -259,7 +259,8 @@
                     </label>
                     <label for="terms">{{ getTranslation('i_agree') }}.</label>
                 </div>
-                <button type="submit" class="btn btn-form">{{ getTranslation('add') }}</button>
+                {{-- <button type="submit" class="btn btn-form">{{ getTranslation('add') }}</button> --}}
+                <button type="submit" class="btn">{{ getTranslation('add') }}</button>
             </form>
         </section>
     </main>

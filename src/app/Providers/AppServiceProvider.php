@@ -31,8 +31,14 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('layouts.client', function ($view) {
-            $menus = Menyu::where('is_active', true)->orderByDesc('id')->limit(5)->get();
+            $menus     = Menyu::where('is_active', true)->orderByDesc('id')->limit(5)->get();
+
             $view->with('menus', $menus);
+        });
+        View::composer('layouts.client', function ($view) {
+
+            $languages = getLanguage();
+            $view->with('languages', $languages);
         });
 
         Paginator::useBootstrapFive();
