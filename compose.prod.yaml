@@ -1,0 +1,51 @@
+networks:
+  traefik-network:
+    external: true
+
+services:
+  fide_nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    image: "nginx:stable-alpine"
+    networks:
+      - traefik-network
+    ports:
+      - "80:80"
+    volumes:
+      - fide_project:/var/www/laravel
+    depends_on:
+      - fide_postgres
+      - fide_php
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fide_nginx.rule=Host(`api.uzchess.uz`)"
+      - "traefik.http.routers.fide_nginx.entryPoints=web"
+      - "traefik.http.routers.fide_nginx.service=fide_nginx"
+      - "traefik.http.services.fide_nginx.loadbalancer.server.port=80"
+      - "traefik.http.middlewares.compresstraefik.compress=true"
+      - "traefik.docker.network=traefik-network"
+
+  fide_php:
+    build:
+      context: .
+      dockerfile: dockerfiles/php.Dockerfile
+    networks:
+      - traefik-network
+    volumes:
+      - fide_project:/var/www/laravel
+
+
+  fide_postgres:
+    image: postgres:15
+    restart: always
+    env_file:
+      - env/postgres.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - traefik-network 
+
+volumes:
+  pgdata:
+  fide_project:
