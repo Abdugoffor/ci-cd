@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <form action="{{ route('application.store.additional',[], $model->id) }}" method="POST"
+            <form action="{{ route('application.store.additional', $model->id, false) }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
 
@@ -22,8 +22,9 @@
                 <div class="input-group">
                     <div class="input-wrapper">
                         <label for="first-name" class="input-label">{{ getTranslation('passport-number') }}</label>
-                        <input type="text" id="first-name" name="passport_number" placeholder="{{ getTranslation('passport-number') }}"
-                            value="{{ old('passport_number') }}" class="input-text" />
+                        <input type="text" id="first-name" name="passport_number"
+                            placeholder="{{ getTranslation('passport-number') }}" value="{{ old('passport_number') }}"
+                            class="input-text" />
                         @error('passport_number')
                             <p style="color: red; font-size: 12px;">{{ $message }}</p>
                         @enderror
@@ -33,22 +34,27 @@
                         <label for="last-name" class="input-label">{{ getTranslation('passport-issue-date') }}</label>
 
                         <div class="date-container" onclick="openDatePicker('passport_issue_date')">
-                            <input type="date" id="passport_issue_date" value="{{ old('passport_issue_date') }}" name="passport_issue_date" class="date-input"
+                            <input type="date" id="passport_issue_date" value="{{ old('passport_issue_date') }}"
+                                name="passport_issue_date" class="date-input"
                                 onchange="updateDate('passport_issue_date')" />
                             <span id="passport_issue_datePlaceholder" class="placeholder">DD/MM/YYYY</span>
-                            <img src="{{ asset('client/assets/register-page/calendar-icon.svg') }}" class="calendar-icon" />
+                            <img src="{{ asset('client/assets/register-page/calendar-icon.svg') }}"
+                                class="calendar-icon" />
                         </div>
                         @error('passport_issue_date')
                             <p style="color: red; font-size: 12px;">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="input-wrapper">
-                        <label for="date-of-birth" class="input-label">{{ getTranslation('Passport-validity-period') }}</label>
+                        <label for="date-of-birth"
+                            class="input-label">{{ getTranslation('Passport-validity-period') }}</label>
                         <div class="date-container" onclick="openDatePicker('passport_expiry_date')">
-                            <input type="date" id="passport_expiry_date" value="{{ old('passport_expiry_date') }}" name="passport_expiry_date" class="date-input"
+                            <input type="date" id="passport_expiry_date" value="{{ old('passport_expiry_date') }}"
+                                name="passport_expiry_date" class="date-input"
                                 onchange="updateDate('passport_expiry_date')" />
                             <span id="passport_expiry_datePlaceholder" class="placeholder">DD/MM/YYYY</span>
-                            <img src="{{ asset('client/assets/register-page/calendar-icon.svg') }}" class="calendar-icon" />
+                            <img src="{{ asset('client/assets/register-page/calendar-icon.svg') }}"
+                                class="calendar-icon" />
                         </div>
                         @error('passport_expiry_date')
                             <p style="color: red; font-size: 12px;">{{ $message }}</p>
@@ -87,10 +93,11 @@
 
                         <div class="input-wrapper">
                             <div class="input-wrapper">
-                                <label for="first-name" class="input-label">{{ getTranslation('passport-issuing-authority') }}</label>
+                                <label for="first-name"
+                                    class="input-label">{{ getTranslation('passport-issuing-authority') }}</label>
                                 <input type="text" id="first-name" name="passport_issuing_authority"
-                                    placeholder="{{ getTranslation('passport-issuing-authority') }}" value="{{ old('passport_issuing_authority') }}"
-                                    class="input-text" />
+                                    placeholder="{{ getTranslation('passport-issuing-authority') }}"
+                                    value="{{ old('passport_issuing_authority') }}" class="input-text" />
                                 @error('passport_issuing_authority')
                                     <p style="color: red; font-size: 12px;">{{ $message }}</p>
                                 @enderror
@@ -111,7 +118,8 @@
                             @enderror
                         </div>
                         <div class="input-wrapper">
-                            <label for="date-of-expiry" class="input-label">{{ getTranslation('departure-date') }}</label>
+                            <label for="date-of-expiry"
+                                class="input-label">{{ getTranslation('departure-date') }}</label>
                             <div class="date-container" onclick="openDatePicker('departure_details')">
                                 <input type="date" id="departure_details" name="departure_details" class="date-input"
                                     onchange="updateDate('departure_details')" />
@@ -126,8 +134,8 @@
 
                         <div class="input-wrapper">
                             <label for="first-name" class="input-label">{{ getTranslation('phone') }}</label>
-                            <input type="text" id="first-name" name="phone" placeholder="{{ getTranslation('phone') }}"
-                                class="input-text" />
+                            <input type="text" id="first-name" name="phone"
+                                placeholder="{{ getTranslation('phone') }}" class="input-text" />
                             @error('phone')
                                 <p style="color: red; font-size: 12px;">{{ $message }}</p>
                             @enderror
@@ -191,14 +199,16 @@
 
                     <div class="input-group">
                         <div class="input-wrapper">
-                            <label for="national-federation" class="input-label">{{ getTranslation('accreditation-category') }}</label>
+                            <label for="national-federation"
+                                class="input-label">{{ getTranslation('accreditation-category') }}</label>
 
                             <select name="accreditation_category_id" class="input-select">
                                 <option value="" disabled selected>
 
                                 </option>
                                 @foreach ($accreditationCategories as $category)
-                                    <option value="{{ $category->id }}" {{ session('player.id_number') && $category->slug == 'player' ? 'selected' : '' }}
+                                    <option value="{{ $category->id }}"
+                                        {{ session('player.id_number') && $category->slug == 'player' ? 'selected' : '' }}
                                         {{ old('accreditation_category_id') == $category->id ? 'selected' : '' }}>
                                         {{ getLocale($category->name) }}</option>
                                 @endforeach
@@ -208,14 +218,16 @@
                             @enderror
                         </div>
                         <div class="input-wrapper">
-                            <label for="national-federation" class="input-label">{{ getTranslation('citizenship') }}</label>
+                            <label for="national-federation"
+                                class="input-label">{{ getTranslation('citizenship') }}</label>
 
                             <select name="country_id" class="input-select">
                                 <option value="" disabled selected>
                                     {{ getTranslation('citizenship') }}
                                 </option>
                                 @foreach ($countries as $country)
-                                    <option value="{{ $country->id }}" {{ session('player.country') == $country->code3 || old('country_id') == $country->id ? 'selected' : '' }}>
+                                    <option value="{{ $country->id }}"
+                                        {{ session('player.country') == $country->code3 || old('country_id') == $country->id ? 'selected' : '' }}>
                                         {{ $country->label_en }}
                                     </option>
                                 @endforeach
@@ -226,11 +238,12 @@
                         </div>
 
                         <div class="input-wrapper">
-                            <label for="national-federation" class="input-label">{{ getTranslation( 'accommodation-details') }}</label>
+                            <label for="national-federation"
+                                class="input-label">{{ getTranslation('accommodation-details') }}</label>
 
                             <select name="accommodation_details" class="input-select">
                                 <option value="" disabled selected>
-                                    {{ getTranslation( 'accommodation-details') }}
+                                    {{ getTranslation('accommodation-details') }}
                                 </option>
                                 @foreach ($hotels as $hotel)
                                     <option value="{{ $hotel->id }}"
