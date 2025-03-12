@@ -47,7 +47,7 @@
                     </div>
                     <div class="input-wrapper">
                         <label for="date-of-birth"
-                            class="input-label">{{ getTranslation('Passport-validity-period') }}</label>
+                            class="input-label">{{ getTranslation('passport-validity-period') }}</label>
                         <div class="date-container" onclick="openDatePicker('passport_expiry_date')">
                             <input type="date" id="passport_expiry_date" value="{{ old('passport_expiry_date') }}"
                                 name="passport_expiry_date" class="date-input"
