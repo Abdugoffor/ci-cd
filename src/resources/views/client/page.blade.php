@@ -112,7 +112,7 @@
                                     </span>
                                     <div class="news-card__date">
                                         <span>{{ $model->created_at->format('d-M-Y') }}</span>
-                                        <a href="{{ route('page.index', $model->id, false) }}" class="more">Read more</a>
+                                        <a href="{{ route('page.index', $model->id, false) }}" class="more">{{ getTranslation('read_more') }}</a>
                                     </div>
                                 </div>
                             </div>

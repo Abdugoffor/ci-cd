@@ -10,8 +10,10 @@ use App\Models\AccreditationCategory;
 use App\Models\Country;
 use App\Models\Hotel;
 use App\Models\Participant;
+use App\Models\PlayerInfo;
 use App\Models\Tournament;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class ApplicationController extends Controller
@@ -108,48 +110,82 @@ class ApplicationController extends Controller
     public function storeAdditional(ApplicationAdditionRequest $request, Participant $model)
     {
         $data = $request->all();
-        // $file = $request->file('passport_copy');
-        // dd([
-        //     'is_valid' => $file->isValid(),
-        //     'size' => $file->getSize(), // Hajmi baytlarda (1MB = 1048576 byte)
-        //     'max_allowed' => 5120 * 1024, // Laravel 5MB limit (baytlarda)
-        //     'mime_type' => $file->getMimeType(),
-        // ]);
 
-        if ($request->hasFile('passport_copy') && $request->file('passport_copy')->isValid()) {
+        if ($request->hasFile('passport_copy')) {
 
             $file = $request->file('passport_copy');
 
-            $extension = $file->getClientOriginalExtension();
+            try {
 
-            $filename = date('d-m-Y') . '_' . Str::random(40) . '.' . $extension;
+                $extension = $file->getClientOriginalExtension();
 
-            $file->move(public_path('uploaded'), $filename);
+                $filename = date('d-m-Y') . '_' . Str::random(40) . '.' . $extension;
 
-            $data['passport_copy'] = 'uploaded/' . $filename;
+                $uploadPath = public_path('uploaded');
+
+                if (! file_exists($uploadPath)) {
+
+                    mkdir($uploadPath, 0755, true);
+                }
+
+                $file->move($uploadPath, $filename);
+
+                $data['passport_copy'] = 'uploaded/' . $filename;
+            } catch (\Exception $e) {
+
+                Log::error('Passport copy yuklashda xatolik: ' . $e->getMessage());
+
+                return redirect()->back()->withErrors('Passport copy yuklashda xatolik yuz berdi.');
+            }
         }
 
-        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+        if ($request->hasFile('photo')) {
 
             $file = $request->file('photo');
 
-            $extension = $file->getClientOriginalExtension();
+            try {
+                $extension = $file->getClientOriginalExtension();
 
-            $filename = date('d-m-Y') . '_' . Str::random(40) . '.' . $extension;
+                $filename = date('d-m-Y') . '_' . Str::random(40) . '.' . $extension;
 
-            $file->move(public_path('uploaded'), $filename);
+                $uploadPath = public_path('uploaded');
+                if (! file_exists($uploadPath)) {
+                    mkdir($uploadPath, 0755, true);
+                }
 
-            $data['photo'] = 'uploaded/' . $filename;
+                $file->move($uploadPath, $filename);
+
+                $data['photo'] = 'uploaded/' . $filename;
+            } catch (\Exception $e) {
+
+                Log::error('Photo yuklashda xatolik: ' . $e->getMessage());
+
+                return redirect()->back()->withErrors('Photo yuklashda xatolik yuz berdi.');
+            }
         }
 
         $model->update($data);
 
-        $model->playerInfo()->create(session()->get('player'));
+        try {
+            if (session()->has('player') && ! is_null(session()->get('player'))) {
 
-        session()->forget('player');
+                Log::info('Player sessiyasi: ', session()->get('player'));
+
+                $playerData = session()->get('player');
+
+                $model->playerInfo()->create($playerData);
+
+                session()->forget('player');
+            }
+        } catch (\Exception $e) {
+
+            Log::error('Sessiya bilan ishlashda xatolik: ' . $e->getMessage());
+
+            return response()->json(['Sessiya bilan ishlashda xatolik: ' . $e->getMessage()]);
+
+        }
 
         return redirect('/')->with('notification', getTranslation('notification'));
-
     }
 
 }

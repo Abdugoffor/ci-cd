@@ -49,11 +49,6 @@ class Participant extends Model
         'date_of_birth'     => 'date',
     ];
 
-    public static function getTableColumns()
-    {
-        return Schema::getColumnListing((new self)->getTable());
-    }
-
     public function tournament()
     {
         return $this->belongsTo(Tournament::class, 'tournament_id');

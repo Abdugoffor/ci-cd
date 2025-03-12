@@ -92,7 +92,7 @@
                                     <div class="news-card__date">
                                         <span>{{ $relatedNew->created_at->format('d-M-Y') }}</span>
                                         <a href="{{ route('news.latest', $relatedNew->id, false) }}" class="more">
-                                            Read more
+                                            {{ getTranslation('read_more') }}
                                         </a>
                                     </div>
                                 </div>

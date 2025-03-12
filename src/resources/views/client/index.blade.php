@@ -4,6 +4,11 @@
         <div class="container">
             <div class="banner-content">
                 <div class="banner-titles">
+                    @if (session('notification'))
+                        <div class="alert alert-success" style="color: white;">
+                            {{ session('notification') }}
+                        </div>
+                    @endif
                     <h3>46th FIDE</h3>
                     <h1>CHESS OLYMPIAD</h1>
                     <h3>{{ getLocale($model->name) }}</h3>
@@ -104,7 +109,9 @@
                             </span>
                             <div class="news-card__date">
                                 <span>{{ $new->created_at->format('d-M-Y') }}</span>
-                                <a href="{{ route('news.latest', $new->id, false) }}" class="more">Read more</a>
+                                <a href="{{ route('news.latest', $new->id, false) }}" class="more">
+                                    {{ getTranslation('read_more') }}
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -177,7 +184,7 @@
                                     </div>
                                     <div class="hotel-card__overlay">
                                         <a href="{{ route('hotel.index', $hotel->id, false) }}" class="book-now">
-                                            BOOK NOW
+                                            {{ getTranslation('read_more') }}
                                         </a>
                                     </div>
                                 </div>

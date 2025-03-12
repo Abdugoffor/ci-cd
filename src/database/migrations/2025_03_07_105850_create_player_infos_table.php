@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('participant_id')->constrained('participants')->onDelete('cascade');
             $table->string('name')->nullable();
-            $table->date('birthyear')->nullable();
+            $table->string('birthyear')->nullable();
             $table->string('title')->nullable();
-            $table->bigInteger('standard_rating')->nullable();
-            $table->bigInteger('blitz_rating')->nullable();
-            $table->bigInteger('rapid_rating')->nullable();
+            $table->string('standard_rating')->nullable();
+            $table->string('blitz_rating')->nullable();
+            $table->string('rapid_rating')->nullable();
             $table->string('image_file')->nullable();
             $table->timestamps();
         });

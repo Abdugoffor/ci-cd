@@ -941,6 +941,15 @@ class TranslationSeeder extends Seeder
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'Make the most of your visit, by staying at top-rated hotels near the event venue while experiencing the beauty of Samarkand.',
             ],
+            [
+                'slug'    => 'read_more',
+                'name'    => json_encode([
+                    'uz' => 'Ko`proq o`qish',
+                    'ru' => 'Читать далее',
+                    'en' => 'Read more',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Read more',
+            ],
 
         ];
 

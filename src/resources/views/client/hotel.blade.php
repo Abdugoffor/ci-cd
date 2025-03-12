@@ -112,7 +112,7 @@
                                             </p>
                                         </div>
                                         <div class="hotel-card__overlay">
-                                            <a href="{{ route('hotel.index', $item->id, false) }}" class="book-now">BOOK NOW</a>
+                                            <a href="{{ route('hotel.index', $item->id, false) }}" class="book-now">{{ getTranslation('read_more') }}</a>
                                         </div>
                                     </div>
                                 </div>

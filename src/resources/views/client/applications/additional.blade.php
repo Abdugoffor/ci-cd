@@ -47,7 +47,7 @@
                     </div>
                     <div class="input-wrapper">
                         <label for="date-of-birth"
-                            class="input-label">{{ getTranslation('Passport-validity-period') }}</label>
+                            class="input-label">{{ getTranslation('passport-validity-period') }}</label>
                         <div class="date-container" onclick="openDatePicker('passport_expiry_date')">
                             <input type="date" id="passport_expiry_date" value="{{ old('passport_expiry_date') }}"
                                 name="passport_expiry_date" class="date-input"
@@ -79,7 +79,6 @@
                             </label>
                             <div id="fileName" class="file-name"></div>
                             <div class="accepted-types">
-                                {{-- Only JPEG/PDF formats. File size not exceeding 5MB --}}
                                 @error('passport_copy')
                                     <p style="color: red; font-size: 12px;">{{ $message }}</p>
                                 @enderror
@@ -161,7 +160,6 @@
                                 </label>
                                 <div id="photoName" class="file-name"></div>
                                 <div class="accepted-types">
-                                    {{-- Only JPEG/PDF formats. File size not exceeding 5MB --}}
                                     @error('photo')
                                         <p style="color: red; font-size: 12px;">{{ $message }}</p>
                                     @enderror

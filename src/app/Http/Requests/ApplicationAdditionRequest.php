@@ -34,7 +34,7 @@ class ApplicationAdditionRequest extends FormRequest
             'requires_visa'              => 'required|boolean',
             'arrival_details'            => 'required|date',
             'departure_details'          => 'required|date|after_or_equal:arrival_details',
-            // 'accommodation_details'      => 'required|string',
+            'accommodation_details'      => 'required|string',
             'pcr_test_details'           => 'required|string',
         ];
     }
