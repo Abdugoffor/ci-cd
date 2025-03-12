@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <form action="{{ route('verify.code.post', $model->id) }}" method="GET">
+            <form action="{{ route('verify.code.post', $model->id, false) }}" method="GET">
                 @csrf
                 <div class="personal-info">{{ getTranslation('code_verifay') }},
                     {{ cache()->get('email_verification_' . $model->email) }}

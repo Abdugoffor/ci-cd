@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <form action="{{ route('application.store.additional', $model->id) }}" method="POST"
+            <form action="{{ route('application.store.additional',[], $model->id) }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
 

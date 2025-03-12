@@ -104,7 +104,7 @@
                             </span>
                             <div class="news-card__date">
                                 <span>{{ $new->created_at->format('d-M-Y') }}</span>
-                                <a href="{{ route('news.latest', $new->id, false) }}" class="more">Read more</a>
+                                <a href="{{ route('hotel.index', $hotel->id, false) }}" class="more">Read more</a>
                             </div>
                         </div>
                     </div>
