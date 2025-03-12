@@ -105,51 +105,80 @@ class ApplicationController extends Controller
 
         return view('client.applications.additional', ['model' => $model, 'hotels' => $hotels, 'countries' => $countries, 'accreditationCategories' => $accreditationCategories]);
     }
+    
     public function storeAdditional(ApplicationAdditionRequest $request, Participant $model)
     {
         $data = $request->all();
-        // $file = $request->file('passport_copy');
-        // dd([
-        //     'is_valid' => $file->isValid(),
-        //     'size' => $file->getSize(), // Hajmi baytlarda (1MB = 1048576 byte)
-        //     'max_allowed' => 5120 * 1024, // Laravel 5MB limit (baytlarda)
-        //     'mime_type' => $file->getMimeType(),
-        // ]);
 
-        if ($request->hasFile('passport_copy') && $request->file('passport_copy')->isValid()) {
+        if ($request->hasFile('passport_copy')) {
 
             $file = $request->file('passport_copy');
 
-            $extension = $file->getClientOriginalExtension();
+            if ($file->isValid()) {
+                try {
 
-            $filename = date('d-m-Y') . '_' . Str::random(40) . '.' . $extension;
+                    $extension = $file->getClientOriginalExtension();
 
-            $file->move(public_path('uploaded'), $filename);
+                    $filename  = date('d-m-Y') . '_' . Str::random(40) . '.' . $extension;
 
-            $data['passport_copy'] = 'uploaded/' . $filename;
+                    $uploadPath = public_path('uploaded');
+
+                    if (! file_exists($uploadPath)) {
+
+                        mkdir($uploadPath, 0755, true);
+                    }
+
+                    $file->move($uploadPath, $filename);
+
+                    $data['passport_copy'] = 'uploaded/' . $filename;
+                } catch (\Exception $e) {
+
+                    Log::error('Passport copy yuklashda xatolik: ' . $e->getMessage());
+
+                    return redirect()->back()->withErrors('Passport copy yuklashda xatolik yuz berdi.');
+                }
+            }
         }
 
-        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+        if ($request->hasFile('photo')) {
 
             $file = $request->file('photo');
 
-            $extension = $file->getClientOriginalExtension();
+            if ($file->isValid()) {
 
-            $filename = date('d-m-Y') . '_' . Str::random(40) . '.' . $extension;
+                try {
+                    $extension = $file->getClientOriginalExtension();
 
-            $file->move(public_path('uploaded'), $filename);
+                    $filename  = date('d-m-Y') . '_' . Str::random(40) . '.' . $extension;
 
-            $data['photo'] = 'uploaded/' . $filename;
+                    $uploadPath = public_path('uploaded');
+                    if (! file_exists($uploadPath)) {
+                        mkdir($uploadPath, 0755, true);
+                    }
+
+                    $file->move($uploadPath, $filename);
+
+                    $data['photo'] = 'uploaded/' . $filename;
+                } catch (\Exception $e) {
+
+                    Log::error('Photo yuklashda xatolik: ' . $e->getMessage());
+
+                    return redirect()->back()->withErrors('Photo yuklashda xatolik yuz berdi.');
+                }
+            }
         }
 
         $model->update($data);
 
-        $model->playerInfo()->create(session()->get('player'));
+        if (session()->has('player') && session()->get('player') != null) {
 
-        session()->forget('player');
+            $model->playerInfo()->create(session()->get('player'));
+
+            session()->forget('player');
+        }
+
 
         return redirect('/')->with('notification', getTranslation('notification'));
-
     }
 
 }
