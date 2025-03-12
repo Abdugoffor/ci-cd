@@ -25,8 +25,10 @@ WORKDIR /var/www/laravel
 # Копирование файлов проекта
 COPY src/ /var/www/laravel
 
-RUN mkdir -p /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes && \
+RUN mkdir -p /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes /var/www/laravel/storage/logs && \
+    touch /var/www/laravel/storage/logs/laravel.log && \  # Log faylini yaratish
     chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes && \
+    chmod 664 /var/www/laravel/storage/logs/laravel.log && \  # Log fayliga alohida ruxsat
     chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes
     
 # Копируем init.sh и делаем его исполняемым
