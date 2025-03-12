@@ -28,7 +28,7 @@ COPY src/ /var/www/laravel
 RUN mkdir -p /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes && \
     chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes && \
     chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes \
-    **&& mkdir -p /tmp && chmod 777 /tmp**
+    # **&& mkdir -p /tmp && chmod 777 /tmp**
 
 # Копируем init.sh и делаем его исполняемым
 COPY dockerfiles/init.sh /usr/local/bin/init.sh
