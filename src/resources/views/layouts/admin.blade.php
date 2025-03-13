@@ -11,29 +11,29 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 
     <!--local uchun -->
-    <link href="/admin/global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
-    <link href="/admin/assets/css/all.min.css" rel="stylesheet" type="text/css">
+    {{-- <link href="{{ asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
-    <script src="/admin/global_assets/js/main/jquery.min.js"></script>
-    <script src="/admin/global_assets/js/main/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('admin/global_assets/js/main/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
-    <script src="/admin/global_assets/js/plugins/visualization/d3/d3.min.js"></script>
-    <script src="/admin/global_assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
-    <script src="/admin/global_assets/js/plugins/ui/moment/moment.min.js"></script>
-    <script src="/admin/global_assets/js/plugins/pickers/daterangepicker.js"></script>
+    <script src="{{ asset('admin/global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
 
-    <script src="/admin/assets/js/app.js"></script>
-    <script src="/admin/global_assets/js/demo_pages/dashboard.js"></script>
+    <script src="{{ asset('admin/assets/js/app.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
 
     <!-- Theme JS ckeditor files -->
 
     <!--server uchun -->
 
-    {{-- <link href="{{ secure_asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ secure_asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ secure_asset('admin/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
@@ -49,7 +49,7 @@
     <script src="{{ secure_asset('admin/global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
 
     <script src="{{ secure_asset('admin/assets/js/app.js') }}"></script>
-    <script src="{{ secure_asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
+    <script src="{{ secure_asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script>
 </head>
 
 <body>

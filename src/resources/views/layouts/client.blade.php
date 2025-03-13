@@ -13,9 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="/client/css/style.css" />
     {{-- <link rel="stylesheet" href="{{ asset('client/css/style.css') }}" /> --}}
-    {{-- <link rel="stylesheet" href="{{ secure_asset('client/css/style.css') }}" /> --}}
+    <link rel="stylesheet" href="{{ secure_asset('client/css/style.css') }}" />
 </head>
 
 <body>
@@ -24,7 +23,7 @@
             <div class="nav-left">
                 <div class="logo-wrapper">
                     <a href="/" class="logo">
-                        <img src="client/assets/header_banner/chess_logo.svg"
+                        <img src="{{ asset('client/assets/header_banner/chess_logo.svg') }}"
                             alt="Chess Olympiad 2025" />
                     </a>
 
@@ -34,7 +33,7 @@
                     </div>
                 </div>
                 <div class="nav-line"></div>
-                <img class="fide-logo" src="/client/assets/header_banner/fide.svg" alt="fide" />
+                <img class="fide-logo" src="{{ asset('client/assets/header_banner/fide.svg') }}" alt="fide" />
             </div>
             <button class="menu-btn">
                 <span></span>
@@ -91,7 +90,7 @@
             <div class="footer-top">
                 <div class="footer-logo">
                     <a href="#">
-                        <img src="/client/assets/footer/footer-logo.svg" alt="Chess Olympiad" />
+                        <img src="{{ asset('client/assets/footer/footer-logo.svg') }}" alt="Chess Olympiad" />
                     </a>
                     <div class="footer-logo-text">
                         <div>46th FIDE CHESS OLYMPIAD</div>
@@ -99,7 +98,7 @@
                     </div>
                 </div>
                 <div class="footer-sponsors">
-                    <img src="/client/assets/footer/footer-sponsor1.svg" alt="sponsor1" />
+                    <img src="{{ asset('client/assets/footer/footer-sponsor1.svg') }}" alt="sponsor1" />
                 </div>
             </div>
             <div class="footer-nav">
@@ -119,9 +118,8 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="/client/js/main.js"></script>
     {{-- <script src="{{ asset('client/js/main.js') }}"></script> --}}
-    {{-- <script src="{{ secure_asset('client/js/main.js') }}"></script> --}}
+    <script src="{{ secure_asset('client/js/main.js') }}"></script>
 </body>
 
 </html>
