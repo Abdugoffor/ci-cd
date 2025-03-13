@@ -16,18 +16,18 @@
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
-    <script src="{{ asset('admin/global_assets/js/main/jquery.min.js') }}"></script>
-    <script src="{{ asset('admin/global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
+    <script src="/admin/global_assets/js/main/jquery.min.js"></script>
+    <script src="/admin/global_assets/js/main/bootstrap.bundle.min.js"></script>
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
-    <script src="{{ asset('admin/global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
-    <script src="{{ asset('admin/global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
-    <script src="{{ asset('admin/global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('admin/global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
+    <script src="/admin/global_assets/js/plugins/visualization/d3/d3.min.js"></script>
+    <script src="/admin/global_assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
+    <script src="/admin/global_assets/js/plugins/ui/moment/moment.min.js"></script>
+    <script src="/admin/global_assets/js/plugins/pickers/daterangepicker.js"></script>
 
-    <script src="{{ asset('admin/assets/js/app.js') }}"></script>
-    <script src="{{ asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script>
+    <script src="/admin/assets/js/app.js"></script>
+    <script src="/admin/global_assets/js/demo_pages/dashboard.js"></script>
 
     <!-- Theme JS ckeditor files -->
 

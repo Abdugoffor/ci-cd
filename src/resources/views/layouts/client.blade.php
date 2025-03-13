@@ -13,8 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    {{-- <link rel="stylesheet" href="{{ asset('client/css/style.css') }}" /> --}}
     <link rel="stylesheet" href="/client/css/style.css" />
+    {{-- <link rel="stylesheet" href="{{ asset('client/css/style.css') }}" /> --}}
     {{-- <link rel="stylesheet" href="{{ secure_asset('client/css/style.css') }}" /> --}}
 </head>
 
@@ -24,7 +24,7 @@
             <div class="nav-left">
                 <div class="logo-wrapper">
                     <a href="/" class="logo">
-                        <img src="{{ asset('client/assets/header_banner/chess_logo.svg') }}"
+                        <img src="client/assets/header_banner/chess_logo.svg"
                             alt="Chess Olympiad 2025" />
                     </a>
 
