@@ -16,8 +16,8 @@ RUN apk add --no-cache \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # PHP konfiguratsiyasini o‘zgartirish (php.ini sozlamalarini o‘rnatish)
-RUN echo "upload_max_filesize = 100M" >> /usr/local/etc/php/php.ini \
-    && echo "post_max_size = 100M" >> /usr/local/etc/php/php.ini
+RUN echo "upload_max_filesize = 500M" >> /usr/local/etc/php/php.ini \
+    && echo "post_max_size = 500M" >> /usr/local/etc/php/php.ini
 
 # Установка рабочего каталога
 WORKDIR /var/www/laravel
