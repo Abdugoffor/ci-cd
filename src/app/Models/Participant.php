@@ -70,4 +70,8 @@ class Participant extends Model
     {
         return $this->hasOne(PlayerInfo::class, 'participant_id');
     }
+    public function accommodation_detail()
+    {
+        return $this->belongsTo(Hotel::class, 'accommodation_details');
+    }
 }

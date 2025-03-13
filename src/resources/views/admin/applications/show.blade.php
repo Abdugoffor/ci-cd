@@ -52,7 +52,7 @@
                         <tr>
                             <th>{{ getTranslation('citizenship') }}
                             </th>
-                            <td>{{ $model->country->label_en }}</td>
+                            <td>{{ $model->country->label_en }} </td>
                         </tr>
                         <tr>
                             <th>{{ getTranslation('passport-number') }}
@@ -122,7 +122,8 @@
                                 {{ getTranslation('arrival-date') }}
 
                             </th>
-                            <td>{{ optional($model->arrival_details)->format('d-m-Y') }}
+                            <td>
+                                {{ optional($model->arrival_details)->format('d-m-Y') }}
                             </td>
                         </tr>
                         <tr>
@@ -134,10 +135,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('accommodation-details') }}
-
+                            <th>
+                                {{ getTranslation('accommodation-details') }}
                             </th>
-                            <td>{{ $model->accommodation_details }}
+                            <td>
+                                {{ getLocale($model->accommodation_detail->title) }}
                             </td>
                         </tr>
                         <tr>

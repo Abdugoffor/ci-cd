@@ -233,3 +233,14 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("code:", code);
   });
 });
+
+
+document.getElementById("fileInput").addEventListener("change", function () {
+  const fileName = this.files[0] ? this.files[0].name : "No file chosen";
+  document.getElementById("fileName").textContent = fileName;
+});
+
+document.getElementById("photoInput").addEventListener("change", function () {
+  const fileName = this.files[0] ? this.files[0].name : "No file chosen";
+  document.getElementById("photoName").textContent = fileName;
+});

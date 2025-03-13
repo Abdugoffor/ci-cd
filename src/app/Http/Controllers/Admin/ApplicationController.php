@@ -128,7 +128,7 @@ class ApplicationController extends Controller
             'status'  => 'canceled',
             'qk_code' => null,
         ]);
-
+        
         dispatch(new ApplicationCancelJob($participant->email, $request->cancel_reason));
 
         return back()->with('notification', getTranslation('notification'));
