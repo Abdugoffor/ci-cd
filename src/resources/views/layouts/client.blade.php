@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="nav-line"></div>
-                <img class="fide-logo" src="{{ asset('client/assets/header_banner/fide.svg') }}" alt="fide" />
+                <img class="fide-logo" src="/client/assets/header_banner/fide.svg" alt="fide" />
             </div>
             <button class="menu-btn">
                 <span></span>
@@ -91,7 +91,7 @@
             <div class="footer-top">
                 <div class="footer-logo">
                     <a href="#">
-                        <img src="{{ asset('client/assets/footer/footer-logo.svg') }}" alt="Chess Olympiad" />
+                        <img src="/client/assets/footer/footer-logo.svg" alt="Chess Olympiad" />
                     </a>
                     <div class="footer-logo-text">
                         <div>46th FIDE CHESS OLYMPIAD</div>
@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <div class="footer-sponsors">
-                    <img src="{{ asset('client/assets/footer/footer-sponsor1.svg') }}" alt="sponsor1" />
+                    <img src="/client/assets/footer/footer-sponsor1.svg" alt="sponsor1" />
                 </div>
             </div>
             <div class="footer-nav">
@@ -119,8 +119,8 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    {{-- <script src="{{ asset('client/js/main.js') }}"></script> --}}
     <script src="/client/js/main.js"></script>
+    {{-- <script src="{{ asset('client/js/main.js') }}"></script> --}}
     {{-- <script src="{{ secure_asset('client/js/main.js') }}"></script> --}}
 </body>
 
