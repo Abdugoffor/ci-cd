@@ -1,12 +1,12 @@
 <?php
-namespace App\Jobs;
+namespace App\Jobs\Admin;
 
-use App\Mail\SendPassword as MailSendPassword;
+use App\Mail\Admin\SendPasswordMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Mail;
 
-class SendPassword implements ShouldQueue
+class SendPasswordJob implements ShouldQueue
 {
     use Queueable;
 
@@ -23,6 +23,6 @@ class SendPassword implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->email)->send(new MailSendPassword($this->code));
+        Mail::to($this->email)->send(new SendPasswordMail($this->code));
     }
 }

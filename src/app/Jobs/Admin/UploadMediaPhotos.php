@@ -1,5 +1,5 @@
 <?php
-namespace App\Jobs;
+namespace App\Jobs\Admin;
 
 use App\Models\Media;
 use Exception;

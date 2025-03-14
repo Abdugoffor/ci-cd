@@ -9,7 +9,7 @@
 
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-{{--
+
     <!--localuchun uchun -->
     <link href="{{ asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -21,10 +21,10 @@
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
-    <script src="{{ asset('admin/assets/js/app.js') }}"></script> --}}
+    <script src="{{ asset('admin/assets/js/app.js') }}"></script>
 
     <!--server uchun -->
-    <link href="{{ secure_asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    {{-- <link href="{{ secure_asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ secure_asset('admin/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
@@ -34,7 +34,7 @@
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
-    <script src="{{ secure_asset('admin/assets/js/app.js') }}"></script>
+    <script src="{{ secure_asset('admin/assets/js/app.js') }}"></script> --}}
     <!-- /theme JS files -->
 
 </head>
@@ -85,26 +85,18 @@
                         <button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse"
                             data-target="#navbar-footer">
                             <i class="icon-unfold mr-2"></i>
-                            Footer
+                            {{-- Footer --}}
                         </button>
                     </div>
 
                     <div class="navbar-collapse collapse" id="navbar-footer">
-                        <span class="navbar-text">
-                            &copy; 2015 - 2018. <a href="#">Limitless Web App Kit</a> by <a
-                                href="https://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
-                        </span>
-
                         <ul class="navbar-nav ml-lg-auto">
-                            <li class="nav-item"><a href="https://kopyov.ticksy.com/" class="navbar-nav-link"
-                                    target="_blank"><i class="icon-lifebuoy mr-2"></i> Support</a></li>
-                            <li class="nav-item"><a href="https://demo.interface.club/limitless/docs/"
-                                    class="navbar-nav-link" target="_blank"><i class="icon-file-text2 mr-2"></i>
-                                    Docs</a></li>
-                            <li class="nav-item"><a
-                                    href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328?ref=kopyov"
-                                    class="navbar-nav-link font-weight-semibold"><span class="text-pink"><i
-                                            class="icon-cart2 mr-2"></i> Purchase</span></a></li>
+                            <li class="nav-item">
+                                <a href="https://uzinfocom.uz" target="_blank"
+                                    class="navbar-nav-link font-weight-semibold">
+                                    <span class="text-pink">uzinfocom</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

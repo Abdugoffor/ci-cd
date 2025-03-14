@@ -6,8 +6,8 @@ use App\Http\Requests\Tournament\TournamentStoreRequest;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Tournament;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class TournamentController extends Controller
 {
@@ -25,11 +25,11 @@ class TournamentController extends Controller
     {
         $categories = Category::all();
 
-        $countries  = Country::all();
+        $countries = Country::all();
 
-        $query      = Tournament::query();
+        $query = Tournament::query();
 
-        $locale     = app()->getLocale();
+        $locale = app()->getLocale();
 
         if ($request->filled('name')) {
             $query->where("name->$locale", 'LIKE', "%{$request->name}%");
@@ -95,11 +95,8 @@ class TournamentController extends Controller
         $data['description']['default'] = reset($data['description']);
 
         if ($request->hasFile('logo')) {
-            $file       = $request->file('logo');
-            $extensions = $file->getClientOriginalExtension();
-            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
-            $file->move(public_path('uploaded'), $filename);
-            $data['logo'] = 'uploaded/' . $filename;
+
+            $data['logo'] = FileUploadService::uploadFile($request->file('logo'));
         }
 
         Tournament::create($data);
@@ -123,12 +120,10 @@ class TournamentController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('logo')) {
-            $file       = $request->file('logo');
-            $extensions = $file->getClientOriginalExtension();
-            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
-            $file->move(public_path('uploaded'), $filename);
-            $data['logo'] = 'uploaded/' . $filename;
+
+            $data['logo'] = FileUploadService::uploadFile($request->file('logo'));
         }
+
         $tournament->update($data);
 
         return redirect()->route('tournaments.index')->with('notification', getTranslation('notification'));

@@ -95,8 +95,8 @@
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
-                                        <td>{{ substr(getLocale($model->title), 0, 30) }} ...</td>
-                                        <td>{{ substr(getLocale($model->description), 0, 30) }} ...</td>
+                                        <td>{!! (getLocale($model->title)) !!}</td>
+                                        <td>{!! (getLocale($model->description)) !!} </td>
                                         <td>{{ getLocale($model->menyu->name) }}</td>
                                         <td><img src="{{ asset($model->photo) }}" width="100px" alt=""></td>
                                         <td>

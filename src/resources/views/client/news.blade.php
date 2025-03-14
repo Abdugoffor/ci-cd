@@ -52,7 +52,7 @@
             </div>
             <div class="content-last">
                 <div class="content-text">
-                    {{ getLocale($currentNews->text) }}
+                    {!! getLocale($currentNews->text) !!}
                 </div>
             </div>
         </section>

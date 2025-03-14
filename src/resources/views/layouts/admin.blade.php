@@ -11,9 +11,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 
     <!--local uchun -->
-    {{-- <link href="{{ asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
+
+    <!-- /core JS files -->
+
+    <!-- Theme JS files -->
 
     <!-- Core JS files -->
     <script src="{{ asset('admin/global_assets/js/main/jquery.min.js') }}"></script>
@@ -27,13 +31,20 @@
     <script src="{{ asset('admin/global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
 
     <script src="{{ asset('admin/assets/js/app.js') }}"></script>
-    <script src="{{ asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
+    <script src="{{ asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script>
 
-    <!-- Theme JS ckeditor files -->
+
+    <!-- Summernote CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
+
+    <script src="{{ asset('admin/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
+
+    <script src="{{ asset('admin/global_assets/js/demo_pages/editor_summernote.js') }}"></script>
+
 
     <!--server uchun -->
 
-    <link href="{{ secure_asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    {{-- <link href="{{ secure_asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ secure_asset('admin/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
@@ -49,7 +60,7 @@
     <script src="{{ secure_asset('admin/global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
 
     <script src="{{ secure_asset('admin/assets/js/app.js') }}"></script>
-    <script src="{{ secure_asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script>
+    <script src="{{ secure_asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
 </head>
 
 <body>
@@ -66,11 +77,7 @@
         </div>
 
         <div class="navbar-brand text-center text-lg-left">
-            <a href="index.html" class="d-inline-block">
-                {{-- <img src="{{ secure_asset('admin/global_assets/images/logo_light.png') }}" class="d-none d-sm-block"
-                    alt="">
-                <img src="{{ secure_asset('admin/global_assets/images/logo_icon_light.png') }}" class="d-sm-none"
-                    alt=""> --}}
+            <a href="#" class="d-inline-block">
             </a>
         </div>
         <div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
@@ -83,8 +90,6 @@
                 <a href="#"
                     class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100"
                     data-toggle="dropdown">
-                    {{-- <img src="global_assets/images/placeholders/placeholder.jpg" class="rounded-pill mr-lg-2"
-                        height="34" alt=""> --}}
                     <span class="d-none d-lg-inline-block">{{ app()->getLocale() }}</span>
                 </a>
 
@@ -102,8 +107,6 @@
                 <a href="#"
                     class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100"
                     data-toggle="dropdown">
-                    {{-- <img src="global_assets/images/placeholders/placeholder.jpg" class="rounded-pill mr-lg-2"
-                        height="34" alt=""> --}}
                     <span class="d-none d-lg-inline-block">{{ auth()->user()->role ?? 'User' }}</span>
                 </a>
 
@@ -139,9 +142,8 @@
                 <div class="sidebar-section sidebar-user my-1">
                     <div class="sidebar-section-body">
                         <div class="media">
-                            <a href="#" class="mr-3">
-                                {{-- <img src="{{ asset('admin/global_assets/images/placeholders/placeholder.jpg') }}"
-                                    class="rounded-circle" alt=""> --}}
+                            <a href="/" target="_blank" class="mr-3">
+                                <img src="{{ asset('client/assets/1.png') }}" class="rounded-circle" alt="">
                             </a>
 
                             <div class="media-body">
@@ -356,5 +358,34 @@
     <!-- /page content -->
 
 </body>
+<script>
+    $('#summernote').summernote({
+        height: 300,
+        callbacks: {
+            onImageUpload: function(files) {
+                if (files[0].size > 5 * 1024 * 1024) {
+                    alert('Fayl hajmi 5MB dan oshmasligi kerak!');
+                    return;
+                }
+                var formData = new FormData();
+                formData.append("file", files[0]);
+
+                $.ajax({
+                    url: '/upload-image', // Laravel'dagi rasm yuklash marshruti
+                    method: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(url) {
+                        $('#summernote').summernote('insertImage', url);
+                    },
+                    error: function(data) {
+                        alert("Xatolik: Rasm yuklab bo‘lmadi.");
+                    }
+                });
+            }
+        }
+    });
+</script>
 
 </html>

@@ -97,7 +97,7 @@
                                     @foreach (getLanguage() as $model)
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab123{{ $model->id }}">
-                                            <textarea class="form-control" name="text[{{ $model->slug }}]" data-dashlane-classification="other"
+                                            <textarea class="form-control summernote" name="text[{{ $model->slug }}]" data-dashlane-classification="other"
                                                 placeholder="{{ $model->name }}">{{ $news->text[$model->slug] ?? $news->text['default'] }}</textarea>
                                             @error('text.' . $model->slug)
                                                 <p style="color:red;">

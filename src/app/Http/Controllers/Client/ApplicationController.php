@@ -5,16 +5,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ApplicationAdditionRequest;
 use App\Http\Requests\ApplicationStoreRequest;
 use App\Http\Requests\FideIdRequest;
-use App\Jobs\VerifyEmailJob;
+use App\Jobs\Client\PendingAppJob;
+use App\Jobs\Client\VerifyEmailJob;
 use App\Models\AccreditationCategory;
 use App\Models\Country;
 use App\Models\Hotel;
 use App\Models\Participant;
 use App\Models\PlayerInfo;
 use App\Models\Tournament;
+use App\Services\FileUploadService;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 
 class ApplicationController extends Controller
 {
@@ -69,7 +70,7 @@ class ApplicationController extends Controller
 
         $data['fide_id'] = session()->get('player')['id_number'] ?? null;
 
-        $model = Participant::create($request->all());
+        $model = Participant::create($data);
 
         $verificationCode = rand(100000, 999999);
 
@@ -114,85 +115,40 @@ class ApplicationController extends Controller
 
         if ($request->hasFile('passport_copy')) {
 
-            $file = $request->file('passport_copy');
-
-            if ($file->isValid()) {
-
-                try {
-
-                    $extension = $file->getClientOriginalExtension();
-
-                    $filename = date('d-m-Y') . '_' . Str::random(40) . '.' . $extension;
-
-                    $uploadPath = public_path('uploaded');
-
-                    if (! file_exists($uploadPath)) {
-
-                        mkdir($uploadPath, 0755, true);
-                    }
-
-                    $file->move($uploadPath, $filename);
-
-                    $data['passport_copy'] = 'uploaded/' . $filename;
-
-                } catch (\Exception $e) {
-
-                    Log::error('Passport copy yuklashda xatolik: ' . $e->getMessage());
-
-                    return redirect()->back()->withErrors('Passport copy yuklashda xatolik yuz berdi.');
-                }
-
-            }
-
-            if ($request->hasFile('photo')) {
-
-                $file = $request->file('photo');
-
-                try {
-                    $extension = $file->getClientOriginalExtension();
-
-                    $filename = date('d-m-Y') . '_' . Str::random(40) . '.' . $extension;
-
-                    $uploadPath = public_path('uploaded');
-
-                    if (! file_exists($uploadPath)) {
-                        mkdir($uploadPath, 0755, true);
-                    }
-
-                    $file->move($uploadPath, $filename);
-
-                    $data['photo'] = 'uploaded/' . $filename;
-                } catch (\Exception $e) {
-
-                    Log::error('Photo yuklashda xatolik: ' . $e->getMessage());
-
-                    return redirect()->back()->withErrors('Photo yuklashda xatolik yuz berdi.');
-                }
-            }
-
-            $model->update($data);
-
-            try {
-                if (session()->has('player') && ! is_null(session()->get('player'))) {
-
-                    Log::info('Player sessiyasi: ', session()->get('player'));
-
-                    $playerData = session()->get('player');
-
-                    $model->playerInfo()->create($playerData);
-
-                    session()->forget('player');
-                }
-            } catch (\Exception $e) {
-
-                Log::error('Sessiya bilan ishlashda xatolik: ' . $e->getMessage());
-
-                return response()->json(['Sessiya bilan ishlashda xatolik: ' . $e->getMessage()]);
-
-            }
-
-            return redirect('/')->with('notification', getTranslation('notification'));
+            $data['passport_copy'] = FileUploadService::uploadFile($request->file('passport_copy'));
         }
+
+        if ($request->hasFile('photo')) {
+
+            $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
+        }
+
+        $data['status'] = 'pending';
+
+        $model->update($data);
+
+        try {
+            if (session()->has('player') && ! is_null(session()->get('player'))) {
+
+                Log::info('Player sessiyasi: ', session()->get('player'));
+
+                $playerData = session()->get('player');
+
+                $model->playerInfo()->create($playerData);
+
+                session()->forget('player');
+            }
+        } catch (\Exception $e) {
+
+            Log::error('Sessiya bilan ishlashda xatolik: ' . $e->getMessage());
+
+            return response()->json(['Sessiya bilan ishlashda xatolik: ' . $e->getMessage()]);
+
+        }
+
+        dispatch(new PendingAppJob($model->email));
+
+        return redirect('/')->with('notification', getTranslation('notification'));
 
     }
 }

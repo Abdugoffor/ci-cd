@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PartnerStoreRequest;
 use App\Models\Partner;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -12,6 +13,7 @@ class PartnerController extends Controller
     public function index()
     {
         $models = Partner::orderByDesc('id')->paginate(10);
+
         return view(view: 'admin.partners.index', data: ['models' => $models]);
     }
     public function search(Request $request)
@@ -41,11 +43,8 @@ class PartnerController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('photo')) {
-            $file       = $request->file('photo');
-            $extensions = $file->getClientOriginalExtension();
-            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
-            $file->move(public_path('uploaded'), $filename);
-            $data['photo'] = 'uploaded/' . $filename;
+
+            $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
 
         $data['name']['default'] = reset($data['name']);
@@ -69,11 +68,8 @@ class PartnerController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('photo')) {
-            $file       = $request->file('photo');
-            $extensions = $file->getClientOriginalExtension();
-            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
-            $file->move(public_path('uploaded'), $filename);
-            $data['photo'] = 'uploaded/' . $filename;
+            
+            $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
 
         $partner->update($data);

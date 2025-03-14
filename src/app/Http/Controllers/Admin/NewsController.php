@@ -5,15 +5,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsStoreRequest;
 use App\Models\Menyu;
 use App\Models\News;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
     public function index()
     {
         $models = News::orderByDesc('id')->paginate(10);
-        $menus  = Menyu::all();
+
+        $menus = Menyu::all();
+
         return view('admin.news.index', data: ['models' => $models, 'menus' => $menus]);
     }
     public function search(Request $request)
@@ -41,7 +43,6 @@ class NewsController extends Controller
             $query->where('is_active', filter_var($request->is_active, FILTER_VALIDATE_BOOLEAN));
         }
 
-
         $models = $query->paginate(10);
         $models->appends($request->only(['title', 'description', 'text', 'is_active']));
 
@@ -66,12 +67,7 @@ class NewsController extends Controller
 
         if ($request->hasFile('photo')) {
 
-            $file       = $request->file('photo');
-            $extensions = $file->getClientOriginalExtension();
-            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
-            $file->move(public_path('uploaded'), $filename);
-            $data['photo'] = 'uploaded/' . $filename;
-
+            $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
 
         News::create($data);
@@ -81,7 +77,7 @@ class NewsController extends Controller
 
     public function show(int $news)
     {
-        $news  = News::findOrFail($news);
+        $news = News::findOrFail($news);
         return view('admin.news.show', ['model' => $news]);
     }
     public function edit(int $news)
@@ -97,11 +93,8 @@ class NewsController extends Controller
         $news = News::findOrFail($news);
 
         if ($request->hasFile('photo')) {
-            $file       = $request->file('photo');
-            $extensions = $file->getClientOriginalExtension();
-            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
-            $file->move(public_path('uploaded'), $filename);
-            $data['photo'] = 'uploaded/' . $filename;
+            
+            $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
 
         $news->update($data);

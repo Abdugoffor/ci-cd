@@ -64,7 +64,7 @@
                     <div class="input-wrapper">
                         <label for="issuing-authority" class="input-label">{{ getTranslation('copy-of-passport') }}</label>
                         <div class="file-upload">
-                            <input type="file" id="fileInput" name="passport_copy" class="hidden-input"
+                            <input type="file" id="fileInput" value="{{ old('passport_copy') }}" name="passport_copy" class="hidden-input"
                                 accept=".jpg, .jpeg, .pdf" />
                             <label for="fileInput" class="file-label">
                                 Upload file
@@ -106,7 +106,7 @@
                         <div class="input-wrapper">
                             <label for="date-of-issue" class="input-label">{{ getTranslation('arrival-date') }}</label>
                             <div class="date-container" onclick="openDatePicker('arrival_details')">
-                                <input type="date" id="arrival_details" name="arrival_details" class="date-input"
+                                <input type="date" id="arrival_details" value="{{ old('arrival_details') }}" name="arrival_details" class="date-input"
                                     onchange="updateDate('arrival_details')" />
                                 <span id="arrival_detailsPlaceholder" class="placeholder">DD/MM/YYYY</span>
                                 <img src="{{ asset('client/assets/register-page/calendar-icon.svg') }}"
@@ -120,7 +120,7 @@
                             <label for="date-of-expiry"
                                 class="input-label">{{ getTranslation('departure-date') }}</label>
                             <div class="date-container" onclick="openDatePicker('departure_details')">
-                                <input type="date" id="departure_details" name="departure_details" class="date-input"
+                                <input type="date" id="departure_details" value="{{ old('departure_details') }}" name="departure_details" class="date-input"
                                     onchange="updateDate('departure_details')" />
                                 <span id="departure_detailsPlaceholder" class="placeholder">DD/MM/YYYY</span>
                                 <img src="{{ asset('client/assets/register-page/calendar-icon.svg') }}"
@@ -133,7 +133,7 @@
 
                         <div class="input-wrapper">
                             <label for="first-name" class="input-label">{{ getTranslation('phone') }}</label>
-                            <input type="text" id="first-name" name="phone"
+                            <input type="text" id="first-name" value="{{ old('phone') }}" name="phone"
                                 placeholder="{{ getTranslation('phone') }}" class="input-text" />
                             @error('phone')
                                 <p style="color: red; font-size: 12px;">{{ $message }}</p>
@@ -145,7 +145,7 @@
                         <div class="input-wrapper">
                             <label for="issuing-authority" class="input-label">Photo for Accreditation</label>
                             <div class="file-upload">
-                                <input type="file" id="photoInput" name="photo" class="hidden-input"
+                                <input type="file" id="photoInput" value="{{ old('photo') }}" name="photo" class="hidden-input"
                                     accept=".jpg, .jpeg, .pdf" />
                                 <label for="photoInput" class="file-label">
                                     Upload file
@@ -168,7 +168,7 @@
                         </div>
                         <div class="input-wrapper">
                             <label for="last-name" class="input-label">Детали ПЦР-теста</label>
-                            <input type="text" id="last-name" name="pcr_test_details" placeholder="Детали ПЦР-теста"
+                            <input type="text" id="last-name" value="{{ old('pcr_test_details') }}" name="pcr_test_details" placeholder="Детали ПЦР-теста"
                                 class="input-text" />
                             @error('pcr_test_details')
                                 <p style="color: red; font-size: 12px;">{{ $message }}</p>
@@ -179,12 +179,12 @@
                             </label>
                             <div>
                                 <label class="radio-label">
-                                    <input type="radio" name="requires_visa" value="1" />
+                                    <input type="radio" name="requires_visa" {{ old('requires_visa') == 1 ? 'checked' : '' }} value="1" />
                                     <span class="custom-radio"></span>
                                     {{ getTranslation('yes') }}
                                 </label>
                                 <label class="radio-label">
-                                    <input type="radio" name="requires_visa" value="0" />
+                                    <input type="radio" name="requires_visa" {{ old('requires_visa') == 0 ? 'checked' : '' }} value="0" />
                                     <span class="custom-radio"></span>
                                     {{ getTranslation('no') }}
                                 </label>

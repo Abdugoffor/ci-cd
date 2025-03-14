@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HotelStoreRequest;
 use App\Models\Hotel;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class HotelController extends Controller
 {
@@ -62,15 +62,11 @@ class HotelController extends Controller
         $data['title']['default'] = reset($data['title']);
 
         $data['description']['default'] = reset($data['description']);
-
-        $data['text']['default'] = reset($data['text']);
+        $data['text']['default']        = reset($data['text']);
+        // dd($data['text']['default']);
 
         if ($request->hasFile('photo')) {
-            $file       = $request->file('photo');
-            $extensions = $file->getClientOriginalExtension();
-            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
-            $file->move(public_path('uploaded'), $filename);
-            $data['photo'] = 'uploaded/' . $filename;
+            $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
 
         Hotel::create($data);
@@ -93,11 +89,7 @@ class HotelController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('photo')) {
-            $file       = $request->file('photo');
-            $extensions = $file->getClientOriginalExtension();
-            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
-            $file->move(public_path('uploaded'), $filename);
-            $data['photo'] = 'uploaded/' . $filename;
+            $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
 
         $hotel->update($data);

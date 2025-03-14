@@ -717,6 +717,15 @@ class TranslationSeeder extends Seeder
                 'default' => 'Женщина',
             ],
             [
+                'slug'    => 'unfinished',
+                'name'    => json_encode([
+                    'uz' => 'Tugallanmagan',
+                    'ru' => 'Не законченный',
+                    'en' => 'Unfinished',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Unfinished',
+            ],
+            [
                 'slug'    => 'pending',
                 'name'    => json_encode([
                     'uz' => 'Kutilmoqda',

@@ -1,14 +1,13 @@
 <?php
-namespace App\Mail;
+namespace App\Mail\Client;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ApporveEmail extends Mailable
+class SuccessAppMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -22,23 +21,26 @@ class ApporveEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'test',
+            subject: 'Success App Mail',
         );
     }
 
     public function content(): Content
     {
         return new Content(
-            view: 'send_messages',
+            view: 'sendEmail.client.success',
+            with: [
+                'qrCode' => $this->qrCode,
+            ]
         );
     }
 
     public function attachments(): array
     {
         return [
-            Attachment::fromPath($this->qrCode)
-                ->as('qrcode.png')
-                ->withMime('image/png'),
+            // Attachment::fromPath($this->qrCode)
+            //     ->as('qrcode.png')
+            //     ->withMime('image/png'),
         ];
     }
 }

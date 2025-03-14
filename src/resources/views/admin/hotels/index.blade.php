@@ -39,7 +39,6 @@
                                     <th>№</th>
                                     <th>{{ getTranslation('title') }}</th>
                                     <th>{{ getTranslation('description') }}</th>
-                                    <th>{{ getTranslation('text') }}</th>
                                     <th>{{ getTranslation('photo') }}</th>
                                     <th>{{ getTranslation('rating') }}</th>
                                     <th>{{ getTranslation('location') }}</th>
@@ -60,11 +59,6 @@
                                             <input type="text" class="form-control" name="description"
                                                 placeholder="{{ getTranslation('description') }}"
                                                 value="{{ old('description', request('description')) }}">
-                                        </th>
-                                        <th>
-                                            <input type="text" class="form-control" name="text"
-                                                placeholder="{{ getTranslation('text') }}"
-                                                value="{{ old('text', request('text')) }}">
                                         </th>
                                         <th></th>
                                         <th>
@@ -108,9 +102,6 @@
                                         </td>
                                         <td>
                                             {{ substr(getLocale($model->description), 0, 30) }} ...
-                                        </td>
-                                        <td>
-                                            {{ substr(getLocale($model->text), 0, 30) }} ...
                                         </td>
                                         <td>
                                             <img src="{{ asset($model->photo) }}" width="100px" alt="">

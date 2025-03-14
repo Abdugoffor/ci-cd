@@ -96,7 +96,7 @@
                                     @foreach (getLanguage() as $model)
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab123{{ $model->id }}">
-                                            <textarea class="form-control" name="text[{{ $model->slug }}]" data-dashlane-classification="other"
+                                            <textarea class="form-control summernote" name="text[{{ $model->slug }}]" data-dashlane-classification="other"
                                                 placeholder="{{ $model->name }}">{{ old('text.' . $model->slug) }}</textarea>
                                             @error('text.' . $model->slug)
                                                 <p style="color:red;">
@@ -168,3 +168,27 @@
     </div>
     <!-- /content area -->
 @endsection
+<script>
+    $('#summernote').summernote({
+        height: 300,
+        callbacks: {
+            onImageUpload: function(files) {
+                let file = files[0];
+
+                // Maksimal hajm (5MB = 5120 KB)
+                if (file.size > 5120 * 1024) {
+                    alert("Fayl hajmi 5MB dan oshmasligi kerak!");
+                    return;
+                }
+
+                // Faqat rasm formatlariga ruxsat
+                if (!['image/jpeg', 'image/png', 'image/jpg'].includes(file.type)) {
+                    alert("Faqat JPG, JPEG yoki PNG formatidagi rasmlar yuklash mumkin!");
+                    return;
+                }
+
+                uploadImage(file);
+            }
+        }
+    });
+</script>

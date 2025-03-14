@@ -49,7 +49,7 @@
                     {{ getLocale($hotel->description) }}
                 </div>
                 <div class="content-text">
-                    {{ getLocale($hotel->text) }}
+                    {!! getLocale($hotel->text) !!}
                 </div>
             </div>
             <section class="hotels">

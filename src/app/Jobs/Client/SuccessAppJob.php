@@ -1,16 +1,14 @@
 <?php
-namespace App\Jobs;
+namespace App\Jobs\Client;
 
-use App\Mail\ApporveEmail;
+use App\Mail\Client\SuccessAppMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
-class ApporveEmailJob implements ShouldQueue
+class SuccessAppJob implements ShouldQueue
 {
-    use InteractsWithQueue, Queueable, SerializesModels;
+    use Queueable;
 
     public $email;
     public $qrPath;
@@ -23,7 +21,6 @@ class ApporveEmailJob implements ShouldQueue
 
     public function handle()
     {
-        Mail::to($this->email)->send(new ApporveEmail($this->qrPath));
+        Mail::to($this->email)->send(new SuccessAppMail($this->qrPath));
     }
-
 }

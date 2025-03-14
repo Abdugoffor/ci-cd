@@ -1,7 +1,7 @@
 <?php
-namespace App\Jobs;
+namespace App\Jobs\Client;
 
-use App\Mail\VerifyEmail;
+use App\Mail\Client\VerifyEmail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Mail;

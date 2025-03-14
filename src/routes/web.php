@@ -111,6 +111,8 @@ Route::middleware(LangMiddleware::class)->group(function () {
 
             Route::resource('/media', MediaController::class);
             Route::get('/media-status/{medium}', [MediaController::class, 'status'])->name('media.status');
+            
+            Route::get('/media-search', [MediaController::class, 'search'])->name('media.search');
 
         });
 

@@ -24,6 +24,10 @@
                             <td>{{ getLocale($model->description) }}</td>
                         </tr>
                         <tr>
+                            <th>{{ getTranslation('text') }}</th>
+                            <td>{!! getLocale($model->text) !!}</td>
+                        </tr>
+                        <tr>
                             <th>{{ getTranslation('menus') }}</th>
                             <td>{{ getLocale($model->menyu->name) }}</td>
                         </tr>

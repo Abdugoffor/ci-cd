@@ -28,11 +28,11 @@
                                         <th></th>
                                         <th>
                                             <input type="text" class="form-control" name="first_name"
-                                                placeholder="{{ getTranslation('name') }}">
+                                                placeholder="{{ getTranslation('name') }}" value="{{ old('first_name', request('first_name')) }}">
                                         </th>
                                         <th>
                                             <input type="text" class="form-control" name="fide_id"
-                                                placeholder="{{ getTranslation('fide-id') }}">
+                                                placeholder="{{ getTranslation('fide-id') }}" value="{{ old('fide_id', request('fide_id')) }}">
                                         </th>
                                         <th>
                                             <select class="form-control custom-select" name="accreditation_category_id"
@@ -46,25 +46,28 @@
                                             </select>
                                         </th>
                                         <th>
-                                            <input type="date" class="form-control" name="date_of_birth">
+                                            <input type="date" class="form-control" name="date_of_birth" value="{{ old('date_of_birth', request('date_of_birth')) }}">
                                         </th>
                                         <th>
                                             <input type="text" class="form-control" name="email"
-                                                placeholder="{{ getTranslation('email') }}">
+                                                placeholder="{{ getTranslation('email') }}" value="{{ old('email', request('email')) }}">
                                         </th>
                                         <th>
-                                            <input type="date" class="form-control" name="updated_at">
+                                            <input type="date" class="form-control" name="updated_at" value="{{ old('updated_at', request('updated_at')) }}">
                                         </th>
                                         <th>
                                             <select class="form-control custom-select" name="status" id="select_date">
                                                 <option></option>
-                                                <option value="pending">
+                                                <option value="unfinished" {{ old('status', request('status')) === 'unfinished' ? 'selected' : '' }}>
+                                                    {{ getTranslation('unfinished') }}
+                                                </option>
+                                                <option value="pending" {{ old('status', request('status')) === 'pending' ? 'selected' : '' }}>
                                                     {{ getTranslation('pending') }}
                                                 </option>
-                                                <option value="approved">
+                                                <option value="approved" {{ old('status', request('status')) === 'approved' ? 'selected' : '' }}>
                                                     {{ getTranslation('approved') }}
                                                 </option>
-                                                <option value="canceled">
+                                                <option value="canceled" {{ old('status', request('status')) === 'canceled' ? 'selected' : '' }}>
                                                     {{ getTranslation('canceled') }}
                                                 </option>
                                             </select>
@@ -92,8 +95,8 @@
                                             {{ $model->email_verified_at ? $model->email_verified_at->format('d-m-Y, H:i') : '' }}
                                         </td>
                                         <td>
-                                            <span class="badge badge-teal badge-pill ml-auto">
-                                                {{ getTranslation($model->status == 'pending' ? 'pending' : ($model->status == 'approved' ? 'approved' : 'canceled')) }}
+                                            <span class="badge badge-{{ $model->status == 'unfinished' ? 'secondary' : ($model->status == 'pending' ? 'warning' : ($model->status == 'approved' ? 'success' : 'danger')) }} badge-pill ml-auto">
+                                                {{ getTranslation($model->status == 'unfinished' ? 'unfinished' : ($model->status == 'pending' ? 'pending' : ($model->status == 'approved' ? 'approved' : 'canceled'))) }}
 
                                                 <div class="list-icons ml-2">
                                                     <div class="dropdown">

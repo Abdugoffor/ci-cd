@@ -52,7 +52,7 @@
                         <tr>
                             <th>{{ getTranslation('citizenship') }}
                             </th>
-                            <td>{{ $model->country->label_en }} </td>
+                            <td>{{ optional($model->country)->label_en ?? '' }}</td>
                         </tr>
                         <tr>
                             <th>{{ getTranslation('passport-number') }}
@@ -139,7 +139,7 @@
                                 {{ getTranslation('accommodation-details') }}
                             </th>
                             <td>
-                                {{ getLocale($model->accommodation_detail->title) }}
+                                {{ getLocale(optional($model->accommodation_detail)->title) ?? '' }}
                             </td>
                         </tr>
                         <tr>
@@ -154,8 +154,8 @@
 
                             </th>
                             <td>
-                                <span class="badge badge-teal badge-pill ml-auto">
-                                    {{ getTranslation($model->status == 'pending' ? 'pending' : ($model->status == 'approved' ? 'approved' : 'canceled')) }}
+                                <span class="badge badge-{{ $model->status == 'unfinished' ? 'secondary' : ($model->status == 'pending' ? 'warning' : ($model->status == 'approved' ? 'success' : 'danger')) }} badge-pill ml-auto">
+                                    {{ getTranslation($model->status == 'unfinished' ? 'unfinished' : ($model->status == 'pending' ? 'pending' : ($model->status == 'approved' ? 'approved' : 'canceled'))) }}
 
                                     <div class="list-icons ml-2">
                                         <div class="dropdown">

@@ -26,7 +26,7 @@
                         </tr>
                         <tr>
                             <th>{{ getTranslation('text') }}</th>
-                            <td>{{ getLocale($model->text) }}</td>
+                            <td>{!! getLocale($model->text) !!}</td>
                         </tr>
                         <tr>
                             <th>{{ getTranslation('photo') }}</th>

@@ -2,8 +2,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\ApplicationCancelJob;
-use App\Jobs\ApporveEmailJob;
+use App\Jobs\Client\CencelAppJob;
+use App\Jobs\Client\SuccessAppJob;
 use App\Models\AccreditationCategory;
 use App\Models\ApplicationCancellation;
 use App\Models\Participant;
@@ -107,7 +107,7 @@ class ApplicationController extends Controller
 
             file_put_contents($filePath, $result->getString());
 
-            dispatch(new ApporveEmailJob($participant->email, $filePath));
+            dispatch(new SuccessAppJob($participant->email, $filePath));
 
         }
 
@@ -128,8 +128,8 @@ class ApplicationController extends Controller
             'status'  => 'canceled',
             'qk_code' => null,
         ]);
-        
-        dispatch(new ApplicationCancelJob($participant->email, $request->cancel_reason));
+
+        dispatch(new CencelAppJob($participant->email, $request->cancel_reason));
 
         return back()->with('notification', getTranslation('notification'));
     }

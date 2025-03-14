@@ -1,9 +1,7 @@
 <?php
-
-namespace App\Mail;
+namespace App\Mail\Client;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -39,7 +37,7 @@ class VerifyEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'verify_email',
+            view: 'sendEmail.client.verify_email',
         );
     }
 

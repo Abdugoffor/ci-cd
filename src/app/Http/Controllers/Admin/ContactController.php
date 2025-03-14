@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactStoreRequest;
 use App\Models\Contact;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class ContactController extends Controller
 {
@@ -42,12 +42,9 @@ class ContactController extends Controller
         $data['title']['default'] = reset($data['title']);
 
         if ($request->hasFile('photo')) {
-            $file       = $request->file('photo');
-            $extensions = $file->getClientOriginalExtension();
-            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
-            $file->move(public_path('uploaded'), $filename);
-            $data['photo'] = 'uploaded/' . $filename;
+            $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
+
         Contact::create($data);
 
         return redirect()->route('contacts.index')->with('notification', getTranslation('notification'));
@@ -67,11 +64,7 @@ class ContactController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('photo')) {
-            $file       = $request->file('photo');
-            $extensions = $file->getClientOriginalExtension();
-            $filename   = date('d-m-Y') . Str::random(40) . '.' . $extensions;
-            $file->move(public_path('uploaded'), $filename);
-            $data['photo'] = 'uploaded/' . $filename;
+            $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
 
         $contact->update($data);

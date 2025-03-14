@@ -5,25 +5,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MediaStoreRequest;
 use App\Http\Requests\MediaUpdateRequest;
 use App\Models\Media;
+use App\Services\FileUploadService;
 use Exception;
-use Illuminate\Support\Str;
 
 class MediaController extends Controller
 {
     private $photoFields = ['photo_1', 'photo_2', 'photo_3', 'photo_4', 'photo_5', 'photo_6'];
 
-    private function uploadPhoto($file, $existingPath = null): string
-    {
-        if ($existingPath && file_exists(public_path($existingPath))) {
-            unlink(public_path($existingPath));
-        }
-
-        $filename = date('d-m-Y') . Str::random(40) . '.' . $file->getClientOriginalExtension();
-
-        $file->move(public_path('uploaded'), $filename);
-
-        return 'uploaded/' . $filename;
-    }
     public function index()
     {
         $models = Media::orderBy('id', 'desc')->paginate(10);
@@ -40,10 +28,13 @@ class MediaController extends Controller
             $data = [];
 
             foreach ($this->photoFields as $field) {
+
                 if ($request->hasFile($field) && $request->file($field)->isValid()) {
-                    $data[$field] = $this->uploadPhoto($request->file($field));
+
+                    $data[$field] = FileUploadService::uploadFile($request->file($field));
                 }
             }
+
             Media::create($data);
 
             return redirect()->route('media.index')->with('notification', getTranslation('notification'));
@@ -71,7 +62,9 @@ class MediaController extends Controller
 
             foreach ($this->photoFields as $field) {
                 if ($request->hasFile($field) && $request->file($field)->isValid()) {
-                    $data[$field] = $this->uploadPhoto($request->file($field), $medium->$field);
+
+                    $data[$field] = FileUploadService::uploadFile($request->file($field));
+
                 }
             }
 

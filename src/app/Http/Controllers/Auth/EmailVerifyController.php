@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\SendPassword;
+use App\Jobs\Admin\SendPasswordJob;
 use App\Models\Participant;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,7 +28,7 @@ class EmailVerifyController extends Controller
 
             $user->update(['password' => Hash::make($verificationCode)]);
 
-            dispatch(new SendPassword($email, $verificationCode));
+            dispatch(new SendPasswordJob($email, $verificationCode));
         }
 
         return redirect()->route('login');

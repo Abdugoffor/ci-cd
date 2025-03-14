@@ -38,7 +38,7 @@
                                 <tr>
                                     <th>№</th>
                                     <th>{{ getTranslation('name') }}</th>
-                                    <th>{{ getTranslation('path') }}</th>
+                                    {{-- <th>{{ getTranslation('path') }}</th> --}}
                                     <th>{{ getTranslation('status') }}</th>
                                     <th>{{ getTranslation('function') }}</th>
                                     <th>{{ getTranslation('history') }}</th>
@@ -78,11 +78,11 @@
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ getLocale($model->name) }}</td>
-                                        <td>
+                                        {{-- <td>
                                             <a href="{{ $model->path }}" target="_blank">
                                                 {{ $model->path ?? '-' }}
                                             </a>
-                                        </td>
+                                        </td> --}}
                                         <td class="text-center">
                                             <a href="{{ route('menus.status', $model->id, false) }}"
                                                 class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
