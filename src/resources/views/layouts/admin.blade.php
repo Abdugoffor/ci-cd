@@ -20,7 +20,7 @@
     <!-- Theme JS files -->
 
     <!-- Core JS files -->
-    <script src="{{ asset('admin/global_assets/js/main/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('admin/global_assets/js/main/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
     <!-- /core JS files -->
 
@@ -31,20 +31,20 @@
     <script src="{{ asset('admin/global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
 
     <script src="{{ asset('admin/assets/js/app.js') }}"></script>
-    <script src="{{ asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
 
 
     <!-- Summernote CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
 
-    <script src="{{ asset('admin/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
+    {{-- <script src="{{ asset('admin/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
 
-    <script src="{{ asset('admin/global_assets/js/demo_pages/editor_summernote.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/demo_pages/editor_summernote.js') }}"></script> --}}
 
 
     <!--server uchun -->
 
-    {{-- <link href="{{ secure_asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ secure_asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ secure_asset('admin/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
@@ -60,7 +60,7 @@
     <script src="{{ secure_asset('admin/global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
 
     <script src="{{ secure_asset('admin/assets/js/app.js') }}"></script>
-    <script src="{{ secure_asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
+    <script src="{{ secure_asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script>
 </head>
 
 <body>
