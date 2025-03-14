@@ -33,13 +33,17 @@
     <script src="{{ asset('admin/assets/js/app.js') }}"></script>
     <script src="{{ asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
 
+    {{-- <script src="{{ asset('admin/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
+
+    <script src="{{ asset('admin/global_assets/js/demo_pages/editor_summernote.js') }}"></script> --}}
 
     <!-- Summernote CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
 
-    {{-- <script src="{{ asset('admin/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
 
-    <script src="{{ asset('admin/global_assets/js/demo_pages/editor_summernote.js') }}"></script> --}}
+    <script src="{{ secure_asset('admin/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
+
+    <script src="{{ secure_asset('admin/global_assets/js/demo_pages/editor_summernote.js') }}"></script>
 
 
     <!--server uchun -->
