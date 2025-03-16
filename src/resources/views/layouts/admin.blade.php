@@ -15,10 +15,9 @@
     {{-- <link href="{{ asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
 
     <!-- /core JS files -->
-
-    <!-- Theme JS files -->
 
     <!-- Core JS files -->
     <script src="{{ asset('admin/global_assets/js/main/jquery.min.js') }}"></script>
@@ -32,42 +31,36 @@
     <script src="{{ asset('admin/global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
 
     <script src="{{ asset('admin/assets/js/app.js') }}"></script>
-    <script src="{{ asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script> 
+    <script src="{{ asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script>
 
     <script src="{{ asset('admin/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
 
     <script src="{{ asset('admin/global_assets/js/demo_pages/editor_summernote.js') }}"></script> --}}
 
-    <!-- Summernote CSS -->
-
-
-    <script src="{{ secure_asset('admin/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
-
-    <script src="{{ secure_asset('admin/global_assets/js/demo_pages/editor_summernote.js') }}"></script>
 
 
     <!--server uchun -->
 
-    <link href="{{ secure_asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ secure_asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet"
+        type="text/css">
     <link href="{{ secure_asset('admin/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
     <!-- Core JS files -->
     <script src="{{ secure_asset('admin/global_assets/js/main/jquery.min.js') }}"></script>
     <script src="{{ secure_asset('admin/global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
     <!-- /core JS files -->
-
     <!-- Theme JS files -->
     <script src="{{ secure_asset('admin/global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
     <script src="{{ secure_asset('admin/global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
     <script src="{{ secure_asset('admin/global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
     <script src="{{ secure_asset('admin/global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
-
     <script src="{{ secure_asset('admin/assets/js/app.js') }}"></script>
     <script src="{{ secure_asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script>
 
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
+    <script src="{{ secure_asset('admin/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
+    <script src="{{ secure_asset('admin/global_assets/js/demo_pages/editor_summernote.js') }}"></script>
+
 </head>
 
 <body>
@@ -365,34 +358,5 @@
     <!-- /page content -->
 
 </body>
-<script>
-    $('#summernote').summernote({
-        height: 300,
-        callbacks: {
-            onImageUpload: function(files) {
-                if (files[0].size > 5 * 1024 * 1024) {
-                    alert('Fayl hajmi 5MB dan oshmasligi kerak!');
-                    return;
-                }
-                var formData = new FormData();
-                formData.append("file", files[0]);
-
-                $.ajax({
-                    url: '/upload-image', // Laravel'dagi rasm yuklash marshruti
-                    method: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(url) {
-                        $('#summernote').summernote('insertImage', url);
-                    },
-                    error: function(data) {
-                        alert("Xatolik: Rasm yuklab bo‘lmadi.");
-                    }
-                });
-            }
-        }
-    });
-</script>
 
 </html>

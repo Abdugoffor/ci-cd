@@ -168,27 +168,3 @@
     </div>
     <!-- /content area -->
 @endsection
-<script>
-    $('#summernote').summernote({
-        height: 300,
-        callbacks: {
-            onImageUpload: function(files) {
-                let file = files[0];
-
-                // Maksimal hajm (5MB = 5120 KB)
-                if (file.size > 5120 * 1024) {
-                    alert("Fayl hajmi 5MB dan oshmasligi kerak!");
-                    return;
-                }
-
-                // Faqat rasm formatlariga ruxsat
-                if (!['image/jpeg', 'image/png', 'image/jpg'].includes(file.type)) {
-                    alert("Faqat JPG, JPEG yoki PNG formatidagi rasmlar yuklash mumkin!");
-                    return;
-                }
-
-                uploadImage(file);
-            }
-        }
-    });
-</script>
