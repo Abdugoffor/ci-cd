@@ -136,29 +136,8 @@ Route::middleware(LangMiddleware::class)->group(function () {
 
 });
 
-Route::get('/nginx-info', function (Request $request) {
-    // Nginx konfiguratsiyasini olish uchun shell buyrug‘ini ishlatish
-    $nginxConfig = shell_exec('nginx -T 2>&1 | grep client_max_body_size');
-
-    if ($nginxConfig) {
-        // Natijani tahlil qilish
-        preg_match('/client_max_body_size\s+(\d+[KMG]?)/', $nginxConfig, $matches);
-        $clientMaxBodySize = $matches[1] ?? 'Noma’lum';
-    } else {
-        $clientMaxBodySize = 'Nginx sozlamasi topilmadi yoki standart (1M)';
-    }
-
-    // Nginx versiyasini ham olish mumkin
-    $nginxVersion = shell_exec('nginx -v 2>&1');
-
-    return response()->json([
-        'nginx_version'        => trim($nginxVersion),
-        'client_max_body_size' => $clientMaxBodySize,
-    ]);
-});
 
 
 Route::get('/info', function () {
     phpinfo();
-    return php_sapi_name();
 });
