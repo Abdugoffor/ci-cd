@@ -77,7 +77,6 @@ class ApplicationController extends Controller
         if ($status == 'approved') {
 
             if ($participant->status != $status) {
-
                 $qk_code = $participant->id . Str::random(70);
 
                 $participant->update([
@@ -86,33 +85,39 @@ class ApplicationController extends Controller
                 ]);
             }
 
-            $qk_code = $participant->qk_code;
+            $domain      = request()->getSchemeAndHttpHost();
+            $qk_code_url = "{$domain}/badge-verify/{$participant->qk_code}";
 
-            $qrCode = QrCode::create($qk_code)
+            // QR kod yaratish
+            $qrCode = QrCode::create($qk_code_url)
                 ->setSize(300)
                 ->setMargin(5);
 
-            $writer = new PngWriter();
-
-            $result = $writer->write($qrCode);
+            $result = (new PngWriter())->write($qrCode);
 
             $fileName = "qrcode_{$participant->id}.png";
+            $filePath = "qrcodes/{$fileName}";
 
-            $filePath = public_path("qrcodes/{$fileName}");
+            $fullFilePath = public_path($filePath);
 
-            if (! file_exists(public_path('qrcodes'))) {
+            $dirPath = dirname($fullFilePath);
 
-                mkdir(public_path('qrcodes'), 0777, true);
+            if (! is_dir($dirPath)) {
+                mkdir($dirPath, 0777, true);
             }
 
-            file_put_contents($filePath, $result->getString());
+            file_put_contents($fullFilePath, $result->getString());
 
-            dispatch(new SuccessAppJob($participant->email, $filePath));
+            $participant->update([
+                'qk_code_path' => $filePath,
+            ]);
 
+            dispatch(new SuccessAppJob($participant->email, $fullFilePath));
         }
 
         return back()->with('notification', getTranslation('notification'));
     }
+
     public function show(Participant $participant)
     {
         return view('admin.applications.show', ['model' => $participant]);

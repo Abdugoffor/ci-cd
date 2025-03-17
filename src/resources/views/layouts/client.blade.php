@@ -13,8 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    {{-- <link rel="stylesheet" href="{{ asset('client/css/style.css') }}" /> --}}
-    <link rel="stylesheet" href="{{ secure_asset('client/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('client/css/style.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ secure_asset('client/css/style.css') }}" /> --}}
 </head>
 
 <body>
@@ -47,11 +47,11 @@
                     </a>
                 @endforeach
                 <li class="nav-item lang-selector">
-                    <button class="lang-btn">{{ app()->getLocale() }}</button>
+                    <a class="lang">{{ app()->getLocale() }}</a>
                     <ul class="lang-dropdown">
                         @foreach ($languages as $language)
                             <li>
-                                <a href="{{ route('change.language', $language->slug, false) }}"
+                                <a href="{{ route('change.language', $language->slug) }}"
                                     class="{{ app()->getLocale() == $language->slug ? 'active' : '' }}">
                                     {{ $language->slug }}
                                 </a>
@@ -118,8 +118,20 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    {{-- <script src="{{ asset('client/js/main.js') }}"></script> --}}
-    <script src="{{ secure_asset('client/js/main.js') }}"></script>
+    <script src="{{ asset('client/js/main.js') }}"></script>
+    {{-- <script src="{{ secure_asset('client/js/main.js') }}"></script> --}}
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".lang-dropdown a").forEach(function(el) {
+            el.addEventListener("click", function(event) {
+                event
+                    .preventDefault();
+                window.location.href = this.getAttribute(
+                    "href");
+            });
+        });
+    });
+</script>
 
 </html>

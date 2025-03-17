@@ -21,7 +21,7 @@
                         </tr>
                         <tr>
                             <th>{{ getTranslation('description') }}</th>
-                            <th>{{ getLocale($model->description) }}</th>
+                            <th>{!! getLocale($model->description) !!}</th>
                         </tr>
                         <tr>
                             <th>{{ getTranslation('category') }}</th>

@@ -1,3 +1,4 @@
+@import "./fonts.css";
 * {
   margin: 0;
   padding: 0;
@@ -129,6 +130,7 @@ body {
   background: none;
   border: none;
   color: #010506;
+  font-family: "Unbounded";
   font-size: 16px;
   font-weight: 300;
   cursor: pointer;
@@ -276,13 +278,14 @@ body {
 
 /* Header Banner */
 .banner {
-  min-height: 800px;
+  min-height: 867px;
   position: relative;
-  background-image: url(../assets/header_banner/header_banner.svg);
-  opacity: 0.8;
-  background-size: cover;
+  background-image: url(../assets/header_banner/image.svg);
+  background-repeat: repeat-x;
+  top: 0;
+  background-size: auto 861px;
   background-position: center;
-  background-repeat: no-repeat;
+  opacity: 0.8;
 }
 
 .banner .container {
@@ -338,6 +341,13 @@ body {
   font-weight: 800;
   line-height: 105.71%;
   letter-spacing: 1.28px;
+}
+
+.banner-titles span {
+  color: #000;
+  font-size: 29.392px;
+  font-weight: 500;
+  letter-spacing: 1.176px;
 }
 
 .banner-titles div {
@@ -398,30 +408,39 @@ body {
 /* History section */
 
 .history {
-  background: linear-gradient(to bottom, #ffffff, #ade8ee);
+  background: linear-gradient(to bottom, #ffffff 40%, #ade8ee 100%);
   position: relative;
   width: 100%;
+  height: 590px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding-top: 60px;
 }
 
-.white-box {
-  position: absolute;
-  background: #ffffff;
+.history-img {
+  position: relative;
   width: 100%;
-  height: 50px;
-  bottom: 0;
-  clip-path: ellipse(100% 100% at 40% 120%);
+  height: 100%;
+  bottom: -10px;
+}
+
+.substract {
+  position: absolute;
+  bottom: -330px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .history .container {
   position: absolute;
   z-index: 3;
   text-align: center;
-  padding: 60px 0;
+  top: 0;
+  padding-top: 64px;
+  z-index: 1;
 }
 
 .history-content {
@@ -470,7 +489,7 @@ body {
   gap: 16px;
   align-items: center;
   justify-content: center;
-  padding: 39px 0 85px 0;
+  padding: 50px 0 85px 0;
 }
 
 .register-form h2 {
@@ -482,14 +501,25 @@ body {
   letter-spacing: 0.52px;
   text-transform: uppercase;
 }
-
-.register-form div {
+.register-text {
   color: #356469;
   text-align: center;
   font-size: 16px;
   line-height: 125%; /* 20px */
   letter-spacing: 0.32px;
   margin-bottom: 26px;
+}
+
+.register-form form {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.register-section {
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 .register-form form label {
@@ -500,7 +530,6 @@ body {
   line-height: 125%; /* 12.77px */
   letter-spacing: 0.204px;
   text-transform: uppercase;
-  margin-right: 15px;
 }
 
 .register-form form input {
@@ -508,7 +537,6 @@ body {
   border-radius: 8px;
   border: 1px solid #b8d1d4;
   background: rgba(255, 255, 255, 0.76);
-  margin-right: 24px;
   width: 240px;
   height: 42px;
 }
@@ -530,8 +558,7 @@ body {
 }
 
 .sponsor .container {
-  max-width: 936px;
-  padding: 0;
+  padding: 0 50px;
 }
 
 .sponsors-slider {
@@ -590,6 +617,12 @@ body {
   width: 100%;
   transition: all 0.3s ease;
   cursor: pointer;
+  text-decoration: unset;
+  transition: all 0.3s ease;
+}
+
+.news-card a {
+  text-decoration: none;
 }
 
 .news-card:hover {
@@ -636,6 +669,24 @@ body {
   word-break: break-word;
 }
 
+.news-more {
+  border-radius: 7px;
+  background: #e2f4f9;
+  text-decoration: none;
+  color: #015269;
+  text-align: center;
+  font-family: Unbounded;
+  font-size: 10.216px;
+  font-weight: 400;
+  line-height: 125%; /* 12.77px */
+  letter-spacing: 0.204px;
+  text-transform: uppercase;
+  max-width: 129px;
+  width: 100%;
+  height: 40px;
+  padding: 12.405px 14.595px;
+}
+
 .news-card__date {
   display: flex;
   justify-content: space-between;
@@ -658,13 +709,15 @@ body {
 .hotels-line {
   height: 3px;
   width: 100%;
+  max-width: 2000px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   background: linear-gradient(
     90deg,
-    rgba(44, 137, 148, 0),
-    #2c8994,
-    #cee6e9,
-    #d9f4f7,
-    rgba(217, 244, 247, 0)
+    rgba(44, 137, 148, 0) 5%,
+    #2c8994 50%,
+    rgba(44, 137, 148, 0) 95%
   );
 }
 
@@ -690,7 +743,7 @@ body {
 
 .hotels-slider {
   padding: 42px;
-  border-radius: 18px 0px 0px 18px;
+  border-radius: 18px;
   background: #c7f0f4;
 }
 
@@ -699,7 +752,7 @@ body {
   display: flex;
   gap: 20px;
   justify-content: flex-end;
-  margin-bottom: 20px;
+  margin: 30px 0;
   padding-right: 42px;
 }
 
@@ -738,7 +791,6 @@ body {
 .hotel-card {
   display: flex;
   gap: 14px;
-  align-items: center;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -766,16 +818,16 @@ body {
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(0.95);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hotel-card:hover .hotel-card__overlay {
   opacity: 1;
-  transform: translateY(0);
+  transform: scale(1);
 }
-
-.hotel-card img {
+÷ .hotel-card img {
   width: 180px;
   height: 214px;
   object-fit: cover;
@@ -799,13 +851,12 @@ body {
   margin-bottom: 8px;
 }
 
-.hotel-info h4 {
+.hotel-name {
   overflow: hidden;
   color: #000;
   font-size: 20.807px;
   font-weight: 600;
   line-height: 29.625px;
-  margin-bottom: 8px;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -964,7 +1015,7 @@ body {
 
 .footer-copy {
   color: #5fa2b6;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.661px;
 }
@@ -1048,15 +1099,27 @@ body {
 /* Register page */
 .register-page {
   background-image: url("../assets/register-page/bg.svg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: right top;
+  background-repeat: repeat-y;
 }
 
 .register-personal {
   padding-top: 68px;
 }
-
+.register-personal .btn {
+  border-radius: 5px;
+  background: #0a333f;
+  width: 185px;
+  height: 40px;
+  overflow: hidden;
+  margin-bottom: 48px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
 .register-personal-top {
   display: flex;
   justify-content: space-between;
@@ -1110,6 +1173,41 @@ body {
   letter-spacing: -0.23px;
   margin-bottom: 36px;
   margin-top: 52px;
+}
+.modal {
+  display: none; /* По умолчанию скрыта */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px 20px 0 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 600px;
+  height: 150px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 /* Form inputs */
@@ -1616,9 +1714,8 @@ body {
 }
 
 .inner-img-content img {
-  max-width: 1040px;
   width: 100%;
-  height: 315px;
+  min-height: 315px;
   object-fit: cover;
   border-radius: 13px;
 }
@@ -1654,9 +1751,36 @@ body {
   letter-spacing: -0.16px;
 }
 
-.content-text ul {
+.content-desc {
+  color: #445b5e;
+  font-family: "SF Pro Display";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 182%; /* 29.12px */
+  letter-spacing: -0.16px;
+}
+
+.content ul {
   margin-bottom: 34px;
 }
+
+.content li {
+  color: #445b5e;
+  font-family: "SF Pro Display";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 182%; /* 29.12px */
+  letter-spacing: -0.16px;
+}
+
+.news-content-img {
+  min-width: 799px;
+  width: 100%;
+  min-height: 364px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
 .content-last {
   margin-bottom: 130px;
 }
@@ -1707,10 +1831,98 @@ body {
 
 .hotel-images img {
   border-radius: 19px;
-  max-width: 238px;
   width: 100%;
   height: 295px;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.hotel-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.583);
+  justify-content: center;
+  align-items: center;
+}
+
+.hotel-modal.active {
+  display: flex;
+}
+
+.hotel-modal .swiper {
+  width: 70%;
+  height: 60%;
+}
+
+.hotel-modal .swiper-slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: red;
+  font-size: 40px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+}
+
+.modal-close:hover {
+  transform: scale(1.2);
+  color: darkred;
+}
+.custom-swiper-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-swiper-button:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.custom-swiper-button-prev {
+  left: 15px;
+}
+
+.custom-swiper-button-next {
+  right: 15px;
+}
+
+.hotel-swiper .swiper-button-next,
+.hotel-swiper .swiper-button-prev {
+  background: white;
+  color: #17a8d0;
+  padding: 20px;
 }
 
 .hotels-text {
@@ -1747,7 +1959,7 @@ body {
 }
 
 .hotel-rating {
-  margin-top: 16px;
+  margin-top: 10px;
 }
 
 .stars-container {
@@ -1843,6 +2055,12 @@ body {
   background: #adc9d0;
 }
 /* Media Queries */
+@media (max-width: 1200px) {
+  .substract {
+    bottom: -250px;
+  }
+}
+
 @media (max-width: 992px) {
   .nav-list {
     gap: 20px;
@@ -1853,7 +2071,7 @@ body {
   .banner-titles h1 {
     font-size: 40px;
   }
-  .banner-titles h3 {
+  .banner-titles span {
     font-size: 20px;
   }
 
@@ -1913,6 +2131,9 @@ body {
 @media (max-width: 768px) {
   .banner {
     padding-top: 90px;
+  }
+  .substract {
+    bottom: -225px;
   }
   .nav {
     padding: 20px;
@@ -2010,6 +2231,9 @@ body {
   .passport-block-content-acc {
     grid-template-columns: repeat(3, 1fr);
   }
+  .history .container {
+    padding-top: 140px;
+  }
 
   /* Hotels page */
   .hotels-services {
@@ -2022,16 +2246,17 @@ body {
     overflow: hidden;
     padding: 30px;
   }
+  .substract {
+    bottom: 50px;
+    height: 140px;
+  }
   .banner-titles {
     gap: 8px;
   }
   .banner-img {
     max-height: 300px;
   }
-  .banner-content,
-  .history .container {
-    padding: 50px 0;
-  }
+
   .history-content {
     gap: 15px;
     padding: 0 20px;
@@ -2076,6 +2301,11 @@ body {
     flex-direction: column;
     gap: 10px;
     align-items: center;
+  }
+  .register-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   .register-form form input {
     margin-right: 0;
@@ -2170,5 +2400,9 @@ body {
   }
   .hotel-images img {
     max-width: 100%;
+  }
+  .hotels-slider .swiper-slide {
+    width: 100% !important;
+    height: auto !important;
   }
 }

@@ -40,6 +40,7 @@ class Participant extends Model
         'accommodation_details',      // Mehmonxona va yashash ma’lumotlari
         'pcr_test_details',           // PCR testi ma’lumotlari
         'qk_code',
+        'qk_code_path',
         'status',
     ];
     protected $casts = [

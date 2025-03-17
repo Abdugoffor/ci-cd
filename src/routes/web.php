@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\EmailVerifyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Client\ApplicationController;
+use App\Http\Controllers\Client\BadgesController;
 use App\Http\Controllers\Client\HotelController as ClientHotelController;
 use App\Http\Controllers\Client\IndexController;
 use App\Http\Controllers\Client\NewsController as ClientNewsController;
@@ -34,7 +35,6 @@ Route::middleware(LangMiddleware::class)->group(function () {
     Route::get('/application/{tournament}', [ApplicationController::class, 'application'])->name('application');
     Route::get('/applications-verify-email/{model}', [ApplicationController::class, 'applicationVerifyEmail'])->name('application.verify.email');
     Route::post('/applications', [ApplicationController::class, 'store'])->name('application.store');
-
 
     Route::get('/applications-additional/{model}', [ApplicationController::class, 'createAdditional'])->middleware(CheckEmailSession::class)->name('application.additional');
     Route::post('/applications-additional/{model}', [ApplicationController::class, 'storeAdditional'])->middleware(CheckEmailSession::class)->name('application.store.additional');
@@ -111,7 +111,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
 
             Route::resource('/media', MediaController::class);
             Route::get('/media-status/{medium}', [MediaController::class, 'status'])->name('media.status');
-            
+
             Route::get('/media-search', [MediaController::class, 'search'])->name('media.search');
 
         });
@@ -130,5 +130,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
         });
 
     });
+
+    Route::get('/badge-verify/{badges}', [BadgesController::class, 'verify'])->name('badges.verify');
 
 });

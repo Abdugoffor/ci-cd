@@ -38,6 +38,7 @@ return new class extends Migration
             $table->text('pcr_test_details')->nullable();
             $table->enum('status', ['unfinished', 'pending', 'approved', 'canceled'])->default('unfinished');
             $table->string('qk_code')->unique()->nullable();
+            $table->string('qk_code_path')->unique()->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

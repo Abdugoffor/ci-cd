@@ -73,8 +73,8 @@ return [
     |
     */
 
-    'upload_max_filesize' => '100M',
-    'post_max_size'       => '120M',
+    'upload_max_filesize' => '200M',
+    'post_max_size'       => '200M',
 
     'links'               => [
         public_path('storage') => storage_path('app/public'),

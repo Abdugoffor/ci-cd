@@ -16,7 +16,8 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('qk_code') }}</label>
                             <div class="col-lg-10">
-                                <input class="form-control" type="text" name="qk_code" placeholder="{{ getTranslation('qk_code') }}" autofocus>
+                                <input class="form-control" type="text" name="qk_code"
+                                    placeholder="{{ getTranslation('qk_code') }}" autofocus>
                             </div>
                             @error('qk_code')
                                 <p style="color: red;">{{ $message }}</p>
@@ -64,13 +65,13 @@
                                 <th>{{ getTranslation('accreditation-category') }}
                                 </th>
                                 <td>
-                                    {{ $participant->accreditationCategory ? getLocale($participant->accreditationCategory->name) : '' }}
+                                    {{ getLocale(optional($participant->accreditationCategory)->name) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>{{ getTranslation('citizenship') }}
                                 </th>
-                                <td>{{ $participant->citizenship }}</td>
+                                <td>{{ optional($participant->country)->name }}</td>
                             </tr>
                             <tr>
                                 <th>{{ getTranslation('passport-number') }}
