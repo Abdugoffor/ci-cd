@@ -12,7 +12,7 @@
 
     <!--local uchun -->
 
-    <link href="{{ asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    {{-- <link href="{{ asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
@@ -35,13 +35,13 @@
 
     <script src="{{ asset('admin/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
 
-    <script src="{{ asset('admin/global_assets/js/demo_pages/editor_summernote.js') }}"></script>
+    <script src="{{ asset('admin/global_assets/js/demo_pages/editor_summernote.js') }}"></script> --}}
 
 
 
     <!--server uchun -->
 
-    {{-- <link href="{{ secure_asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet"
+    <link href="{{ secure_asset('admin/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet"
         type="text/css">
     <link href="{{ secure_asset('admin/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
@@ -59,7 +59,7 @@
     <script src="{{ secure_asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script>
 
     <script src="{{ secure_asset('admin/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
-    <script src="{{ secure_asset('admin/global_assets/js/demo_pages/editor_summernote.js') }}"></script> --}}
+    <script src="{{ secure_asset('admin/global_assets/js/demo_pages/editor_summernote.js') }}"></script>
 
 </head>
 
