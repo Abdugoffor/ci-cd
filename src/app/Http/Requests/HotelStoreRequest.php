@@ -24,10 +24,10 @@ class HotelStoreRequest extends FormRequest
             'title'       => 'required|array',
             'description' => 'required|array',
             'text'        => 'required|array',
-            'photo'       => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'rating'      => 'nullable|numeric',
-            'location'    => 'nullable|string',
-            'phone'       => 'nullable|string',
+            'photo'       => 'required|image|mimes:jpeg,png,jpg|max:5120',
+            'rating'      => 'required|numeric|max:5',
+            'location'    => 'required|string',
+            'phone'       => 'required|string',
         ];
 
         $rules = array_merge($rules, validateTranslation('title'), validateTranslation('description'), validateTranslation('text'));

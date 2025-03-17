@@ -936,7 +936,7 @@ class TranslationSeeder extends Seeder
                 'slug'    => 'hotel_title',
                 'name'    => json_encode([
                     'uz' => 'Наслаждайтесь своим пребыванием и исследуйте древний Самарканд',
-                    'ru' => 'Последние новости',
+                    'ru' => 'Enjoy Your Stay & Explore Ancient Samarkand',
                     'en' => 'Enjoy Your Stay & Explore Ancient Samarkand',
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'Mehmonxonangizdan rohatlaning va Qadimiy Samarqand bilan tanishing',
@@ -958,6 +958,15 @@ class TranslationSeeder extends Seeder
                     'en' => 'Read more',
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'Read more',
+            ],
+            [
+                'slug'    => 'back_to_homepage',
+                'name'    => json_encode([
+                    'uz' => 'Вернуться на главную страницу',
+                    'ru' => 'Вернуться на главную страницу',
+                    'en' => 'Back to Homepage',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Back to Homepage',
             ],
 
         ];

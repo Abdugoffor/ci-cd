@@ -13,10 +13,10 @@ class PendingAppJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public $email;
-    public function __construct($email)
+    public $data;
+    public function __construct($data)
     {
-        $this->email = $email;
+        $this->data = $data;
     }
 
     /**
@@ -24,6 +24,6 @@ class PendingAppJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->email)->send(new PendingAppMail());
+        Mail::to($this->data->email)->send(new PendingAppMail($this->data));
     }
 }

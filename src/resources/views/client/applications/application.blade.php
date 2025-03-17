@@ -99,7 +99,6 @@
                     </label>
                     <label for="terms">{{ getTranslation('i_agree') }}.</label>
                 </div>
-                {{-- <button type="submit" class="btn btn-form">{{ getTranslation('add') }}</button> --}}
                 <button type="submit" class="btn">{{ getTranslation('add') }}</button>
             </form>
         </section>

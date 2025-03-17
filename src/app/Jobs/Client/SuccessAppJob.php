@@ -10,17 +10,15 @@ class SuccessAppJob implements ShouldQueue
 {
     use Queueable;
 
-    public $email;
-    public $qrPath;
+    public $data;
 
-    public function __construct($email, $qrPath)
+    public function __construct($data)
     {
-        $this->email  = $email;
-        $this->qrPath = $qrPath;
+        $this->data = $data;
     }
 
     public function handle()
     {
-        Mail::to($this->email)->send(new SuccessAppMail($this->qrPath));
+        Mail::to($this->data['participant']->email)->send(new SuccessAppMail($this->data));
     }
 }

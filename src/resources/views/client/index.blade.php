@@ -1,6 +1,7 @@
 @extends('layouts.client')
 @section('banner')
     <div class="banner">
+        <!-- banner update start titles -->
         <div class="container">
             <div class="banner-content">
                 <div class="banner-titles">
@@ -9,9 +10,10 @@
                             {{ session('notification') }}
                         </div>
                     @endif
-                    <h3>46th FIDE</h3>
-                    <h1>CHESS OLYMPIAD</h1>
-                    <h3>{{ getLocale($model->name) }}</h3>
+                    <span>46th FIDE</span>
+                    <h1>{{ getLocale($model->category->name) }}</h1>
+                    <span>{{ getLocale($model->name) }}</span>
+                    <!-- banner update end text -->
                     <div>
                         {{ getLocale($model->description) }}
                     </div>
@@ -20,16 +22,16 @@
                     <div class="info-block">
                         <img src="{{ asset('client/assets/header_banner/calendar.svg') }}" alt="calendar" />
                         <div class="info-block__content">
-                            <div>{{ $model->registration_start->format('d-M') }},
-                                {{ $model->registration_end->format('d-M') }}</div>
-                            <span>September</span>
+                            <div>{{ $model->registration_start->format('d') }}-{{ $model->registration_end->format('d') }}
+                            </div>
+                            <span>{{ $model->registration_start->format('M') }}-{{ $model->registration_end->format('M') }}</span>
                         </div>
                     </div>
                     <div class="info-block info-block__secondary">
                         <img src="{{ asset('client/assets/header_banner/location.svg') }}" alt="location" />
                         <div class="info-block__content">
-                            <div>Silk Road Complex</div>
-                            <span>{{ $model->country->label_en }}</span>
+                            <div>{{ $model->country->label_en }}</div>
+                            <span>{{ getLocale($model->category->name) }}</span>
                         </div>
                     </div>
                 </div>
@@ -40,8 +42,10 @@
 @endsection
 @section('content')
     <main>
+        <!-- history update start  -->
         <section class="history">
-            <img src="{{ asset('client/assets/main/history-image.svg') }}" alt="">
+            <img src="{{ asset('client/assets/main/history-image.svg') }}" alt="history" class="history-img" />
+            <img src="{{ asset('client/assets/main/substract.svg') }}" alt="substract" class="substract" />
             <div class="container">
                 <div class="history-content">
                     <div class="history-title">
@@ -53,33 +57,50 @@
                         Hosted in the historic city of Samarkand, this event will be an
                         unforgettable fusion of strategy, culture, and global unity.
                     </div>
-                    @if ($model)
-                        <form action="{{ route('application', $model->id, false) }}" method="get">
-                            @csrf
-                            <button class="btn" type="submit">action button</button>
-                        </form>
-                    @endif
+                    <button class="btn">action button</button>
                 </div>
             </div>
-            <div class="white-box"></div>
         </section>
+        <!-- history update end  -->
         <section class="register container">
+            <!-- register update start  -->
             <div class="register-form">
                 <h2>Register for the event</h2>
-                <div>Please input your FIDE ID to proceed to registration pagez</div>
+                <div class="register-text">
+                    Please input your FIDE ID to proceed to registration page
+                </div>
+                <div class="forms-div">
                 @if ($model)
-                    <form action="{{ route('application', $model->id, false) }}" method="get">
+                    <form action="{{ route('application', $model->id, false) }}" id="fideForm">
                         @csrf
                         <label for="fide-id">FIDE ID</label>
-                        <input type="text" id="fide-id" name="fide_id" class="input" value="{{ old('fide_id') }}" />
-                        <button type="submit" class="btn">CHECK</button>
-                        <br>
-                        @error('fide_id')
-                            <p style="color: red; font-size: 12px">{{ $message }}</p>
-                        @enderror
+                        <div class="register-section">
+                            <input type="text" name="fide_id" value="{{ old('fide_id') }}" id="fide-id"
+                                class="input" />
+                            @error('fide_id')
+                                <p style="color: red; font-size: 12px">{{ $message }}</p>
+                            @enderror
+                            <button type="submit" class="btn form-btn">CHECK</button>
+
+                        </div>
+                    </form>
+                    <form action="{{ route('application', $model->id, false) }}" id="fideForm">
+                        @csrf
+                        <button type="submit" class="btn">Регистрироватся как гость</button>
                     </form>
                 @endif
+                </div>
             </div>
+            </form>
+            <div class="modal" id="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>FIDE ID Check</h2>
+                    <p>Ваш FIDE ID успешно проверен!</p>
+                </div>
+            </div>
+            </div>
+            <!-- register update end  -->
         </section>
         <section class="sponsor">
             <div class="container">
@@ -98,23 +119,27 @@
             <h1>{{ getTranslation('latest_news') }}</h1>
             <div class="news-cards">
                 @foreach ($news as $new)
+                    <!-- news update start  -->
                     <div class="news-card">
-                        <img src="{{ asset($new->photo) }}" alt="" />
-                        <div class="news-card__content">
-                            <h3>
-                                {{ getLocale($new->title) }}
-                            </h3>
-                            <span>
-                                {{ getLocale($new->description) }}
-                            </span>
-                            <div class="news-card__date">
-                                <span>{{ $new->created_at->format('d-M-Y') }}</span>
-                                <a href="{{ route('news.latest', $new->id, false) }}" class="more">
-                                    {{ getTranslation('read_more') }}
-                                </a>
+                        <a href="{{ route('news.latest', $new->id, false) }}">
+                            <img src="{{ asset($new->photo) }}" alt="" />
+                            <div class="news-card__content">
+                                <h3>
+                                    {{ getLocale($new->title) }}
+                                </h3>
+                                <span>
+                                    {{ getLocale($new->description) }}
+                                </span>
+                                <div class="news-card__date">
+                                    <span>{{ $new->created_at->format('d-M-Y') }}</span>
+                                    <a href="{{ route('news.latest', $new->id, false) }}" class="news-more">
+                                        {{ getTranslation('read_more') }}
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
+                    <!-- news update end  -->
                 @endforeach
             </div>
         </section>
@@ -159,7 +184,7 @@
                                             </svg>
                                             {{ $hotel->location }}
                                         </div>
-                                        <h4>{{ getLocale($hotel->title) }}</h4>
+                                        <h4 class="hotel-name">{{ getLocale($hotel->title) }}</h4>
                                         <div class="hotel-rating">
                                             <svg width="18" height="17" viewBox="0 0 18 17" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">

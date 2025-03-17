@@ -5,16 +5,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chess Olympiad 2025</title>
-    <link rel="icon" type="image/svg+xml" href="./assets/header_banner/chess_logo.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/header_banner/chess_logo.svg" />
+    <link rel="icon" type="image/svg+xml" href="{{ asset('client/assets/header_banner/chess_logo.svg') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('client/assets/header_banner/chess_logo.svg') }}" />
     <meta name="theme-color" content="#17a8d0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    {{-- <link rel="stylesheet" href="{{ asset('client/css/style.css') }}" /> --}}
-    <link rel="stylesheet" href="{{ secure_asset('client/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('client/css/style.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ secure_asset('client/css/style.css') }}" /> --}}
 </head>
 
 <body>
@@ -47,12 +47,13 @@
                     </a>
                 @endforeach
                 <li class="nav-item lang-selector">
-                    <a class="lang">{{ app()->getLocale() }}</a>
+                    <a class="lang" style="text-transform: uppercase;">{{ app()->getLocale() }}</a>
                     <ul class="lang-dropdown">
                         @foreach ($languages as $language)
                             <li>
                                 <a href="{{ route('change.language', $language->slug) }}"
-                                    class="{{ app()->getLocale() == $language->slug ? 'active' : '' }}">
+                                    class="{{ app()->getLocale() == $language->slug ? 'active' : '' }}"
+                                    style="text-transform: uppercase;">
                                     {{ $language->slug }}
                                 </a>
                             </li>
@@ -104,9 +105,11 @@
             <div class="footer-nav">
                 <ul>
                     @foreach ($menus as $menu)
-                        <a href="{{ route('page.index', $menu->id, false) }}">
-                            <li class="nav-item">{{ getLocale($menu->name) }}</li>
-                        </a>
+                        <li>
+                            <a href="{{ route('page.index', $menu->id, false) }}">
+                                {{ getLocale($menu->name) }}
+                            </a>
+                        </li>
                     @endforeach
                 </ul>
             </div>
@@ -117,9 +120,10 @@
             </div>
         </div>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    {{-- <script src="{{ asset('client/js/main.js') }}"></script> --}}
-    <script src="{{ secure_asset('client/js/main.js') }}"></script>
+    <script src="{{ asset('client/js/main.js') }}"></script>
+    {{-- <script src="{{ secure_asset('client/js/main.js') }}"></script> --}}
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", function() {

@@ -10,13 +10,10 @@ class CencelAppJob implements ShouldQueue
 {
     use Queueable;
 
-    public $email;
-    public $message;
-    public function __construct($email, $message)
+    public $data;
+    public function __construct($data)
     {
-        $this->email = $email;
-
-        $this->message = $message;
+        $this->data = $data;
     }
 
     /**
@@ -24,6 +21,6 @@ class CencelAppJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->email)->send(new CencelAppMail($this->message));
+        Mail::to($this->data['participant']->email)->send(new CencelAppMail($this->data));
     }
 }

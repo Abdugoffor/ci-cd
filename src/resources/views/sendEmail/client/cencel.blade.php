@@ -28,7 +28,7 @@
                                 Статус вашей заявки <br />на участие в мероприятии
                             </h1>
                             <p style="color: #546668; font-size: 18px;">
-                                Уважаемый <strong style="color: #1f3a3e;">Алишер Абдуллаев</strong>,
+                                Уважаемый <strong style="color: #1f3a3e;">{{ $data['participant']->first_name }}</strong>,
                             </p>
                             <p style="color: #546668; font-size: 18px;">
                                 Благодарим вас за проявленный интерес к нашему мероприятию. К сожалению, вынуждены
@@ -42,7 +42,7 @@
                             <div
                                 style="color: #381717; font-size: 16px; border: 1.6px dashed rgba(243, 94, 94, 0.61); background: #FFF9F9; padding: 15px; border-radius: 10px;">
 
-                                {{ $text }}
+                                {{ $data['cancel_reason'] }}
                             </div>
                         </td>
                     </tr>
@@ -63,7 +63,7 @@
                     <tr>
                         <td style="padding-top: 20px;">
                             <p style="color: #546668; font-size: 18px; font-weight: 500;">С уважением,</p>
-                            <p style="color: #0d2022; font-size: 18px; font-weight: bold;">Дилшод Алимов</p>
+                            <p style="color: #0d2022; font-size: 18px; font-weight: bold;">{{ $data['auth'] }}</p>
                             <p style="color: #1f3a3e; font-size: 18px; font-weight: 500;">FIDE Uzbekistan Representative
                             </p>
                             <p style="color: #447177; font-size: 18px;"><a href="mailto:dilshod.a@fide.com"

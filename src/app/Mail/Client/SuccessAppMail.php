@@ -11,11 +11,11 @@ class SuccessAppMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $qrCode;
+    public $data;
 
-    public function __construct($qrCode)
+    public function __construct($data)
     {
-        $this->qrCode = $qrCode;
+        $this->data = $data;
     }
 
     public function envelope(): Envelope
@@ -30,7 +30,7 @@ class SuccessAppMail extends Mailable
         return new Content(
             view: 'sendEmail.client.success',
             with: [
-                'qrCode' => $this->qrCode,
+                'data' => $this->data,
             ]
         );
     }

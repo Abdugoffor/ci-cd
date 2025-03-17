@@ -71,7 +71,7 @@
                             <tr>
                                 <th>{{ getTranslation('citizenship') }}
                                 </th>
-                                <td>{{ optional($participant->country)->name }}</td>
+                                <td>{{ optional($participant->country)->label_en }}</td>
                             </tr>
                             <tr>
                                 <th>{{ getTranslation('passport-number') }}
@@ -152,7 +152,8 @@
                                 <th>{{ getTranslation('accommodation-details') }}
 
                                 </th>
-                                <td>{{ $participant->accommodation_details }}
+                                <td>
+                                    {{ getLocale(optional($participant->accommodationDetail)->title) }}
                                 </td>
                             </tr>
                             <tr>

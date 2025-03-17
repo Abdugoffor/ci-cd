@@ -105,7 +105,7 @@ class MenyuSeeder extends Seeder
             [
                 'name' => [
                     'uz'      => 'FAQ',
-                    'ru'      => 'Часто задаваемые вопросы',
+                    'ru'      => 'FAQ',
                     'en'      => 'FAQ',
                     'default' => 'FAQ',
                 ],

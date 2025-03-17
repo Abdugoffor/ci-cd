@@ -45,7 +45,7 @@
                             </h1>
                             <p style="color: #546668; font-size: 18px">
                                 Уважаемый
-                                <strong style="color: #1f3a3e">Алишер Абдуллаев</strong>,
+                                <strong style="color: #1f3a3e">{{ $data->first_name }}</strong>,
                             </p>
                             <br />
                             <p style="color: #546668; font-size: 18px">

@@ -305,7 +305,7 @@
                                                                                 <th>{{ getTranslation('accommodation-details') }}
 
                                                                                 </th>
-                                                                                <td>{{ $model->accommodation_details }}
+                                                                                <td>{{ getLocale(optional($model->accommodationDetail)->title) ?? '' }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>

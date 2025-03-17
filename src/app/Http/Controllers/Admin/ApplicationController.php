@@ -10,6 +10,7 @@ use App\Models\Participant;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ApplicationController extends Controller
@@ -77,18 +78,19 @@ class ApplicationController extends Controller
         if ($status == 'approved') {
 
             if ($participant->status != $status) {
-                $qk_code = $participant->id . Str::random(70);
+                
+                $qkCode = $participant->id . Str::random(70);
 
                 $participant->update([
                     'status'  => $status,
-                    'qk_code' => $qk_code,
+                    'qk_code' => $qkCode,
                 ]);
             }
 
-            $domain      = request()->getSchemeAndHttpHost();
+            $domain = request()->getSchemeAndHttpHost();
+
             $qk_code_url = "{$domain}/badge-verify/{$participant->qk_code}";
 
-            // QR kod yaratish
             $qrCode = QrCode::create($qk_code_url)
                 ->setSize(300)
                 ->setMargin(5);
@@ -112,7 +114,13 @@ class ApplicationController extends Controller
                 'qk_code_path' => $filePath,
             ]);
 
-            dispatch(new SuccessAppJob($participant->email, $fullFilePath));
+            $data = [
+                'participant'  => $participant,
+                'auth'         => Auth::user()->name,
+                'fullFilePath' => $fullFilePath,
+            ];
+
+            dispatch(new SuccessAppJob($data));
         }
 
         return back()->with('notification', getTranslation('notification'));
@@ -133,8 +141,12 @@ class ApplicationController extends Controller
             'status'  => 'canceled',
             'qk_code' => null,
         ]);
-
-        dispatch(new CencelAppJob($participant->email, $request->cancel_reason));
+        $data = [
+            'participant'  => $participant,
+            'auth'         => Auth::user()->name,
+            'cancel_reason' => $request->cancel_reason,
+        ];
+        dispatch(new CencelAppJob($data));
 
         return back()->with('notification', getTranslation('notification'));
     }

@@ -139,7 +139,7 @@
                                 {{ getTranslation('accommodation-details') }}
                             </th>
                             <td>
-                                {{ getLocale(optional($model->accommodation_detail)->title) ?? '' }}
+                                {{ getLocale(optional($model->accommodationDetail)->title) ?? '' }}
                             </td>
                         </tr>
                         <tr>

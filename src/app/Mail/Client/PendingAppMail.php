@@ -1,9 +1,7 @@
 <?php
-
 namespace App\Mail\Client;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -16,9 +14,10 @@ class PendingAppMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public $data;
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -38,6 +37,7 @@ class PendingAppMail extends Mailable
     {
         return new Content(
             view: 'sendEmail.client.pending',
+            with: ['data' => $this->data]
         );
     }
 

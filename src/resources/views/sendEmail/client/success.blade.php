@@ -45,7 +45,7 @@
                             </h1>
                             <p style="color: #546668; font-size: 18px">
                                 Уважаемый
-                                <strong style="color: #1f3a3e">Алишер Абдуллаев</strong>,
+                                <strong style="color: #1f3a3e">{{ $data['participant']->first_name }}</strong>,
                             </p>
                             <br />
                             <p style="color: #546668; font-size: 18px">
@@ -87,8 +87,7 @@
                     ">
                                     Для получения вашего бейджа вы можете:
                                     <span
-                                        style="
-                        border-radius: 13px;
+                                        style="border-radius: 13px;
                         border: 1px solid rgba(167, 195, 216, 0.8);
                         background: #f2f6f9;
                         width: 111px;
@@ -97,10 +96,9 @@
                         align-items: center;
                         justify-content: center;
                         padding: 10px 12px;
-                        margin-top: 16px;
-                      ">
-                      <img src="{{ $message->embed($qrCode) }}" alt="qr" width="87"
-                                            height="87" /></span>
+                        margin-top: 16px;">
+                                        <img src="{{ $message->embed($data['fullFilePath']) }}" alt="qr"
+                                            style="width: 87px; height: 87px; padding: 10px;" /></span>
                                 </li>
                                 <li
                                     style="
@@ -210,7 +208,7 @@
                                 С уважением,
                             </p>
                             <p style="color: #0d2022; font-size: 18px; font-weight: bold">
-                                Дилшод Алимов
+                                {{ $data['auth'] }}
                             </p>
                             <p style="color: #1f3a3e; font-size: 18px; font-weight: 500">
                                 FIDE Uzbekistan Representative

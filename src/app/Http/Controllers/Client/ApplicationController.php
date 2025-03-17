@@ -146,7 +146,7 @@ class ApplicationController extends Controller
 
         }
 
-        dispatch(new PendingAppJob($model->email));
+        dispatch(new PendingAppJob($model));
 
         return redirect('/')->with('notification', getTranslation('notification'));
 

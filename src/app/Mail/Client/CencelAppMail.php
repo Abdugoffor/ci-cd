@@ -16,10 +16,10 @@ class CencelAppMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public $text;
-    public function __construct($text)
+    public $data;
+    public function __construct($data)
     {
-        $this->text = $text;
+        $this->data = $data;
     }
 
     /**
@@ -39,7 +39,7 @@ class CencelAppMail extends Mailable
     {
         return new Content(
             view: 'sendEmail.client.cencel',
-            with: ['text' => $this->text]
+            with: ['data' => $this->data]
         );
     }
 
