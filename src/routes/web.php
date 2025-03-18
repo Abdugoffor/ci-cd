@@ -137,7 +137,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
 });
 
 
+
 Route::get('/info', function () {
     phpinfo();
-    return php_sapi_name();
 });
