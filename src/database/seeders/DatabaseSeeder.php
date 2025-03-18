@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
             HotelSeeder::class,
             TurnirSeeder::class,
             PartnerSeeder::class,
+            MediaSeeder::class,
         ]);
     }
 }

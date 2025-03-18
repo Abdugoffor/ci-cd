@@ -148,7 +148,7 @@ if (! function_exists('validateTranslation')) {
         $rules = [];
 
         foreach ($languages as $lang) {
-            $rules["$col.$lang"] = 'required|string';
+            $rules["$col.$lang"] = 'required|string|max:3000000';
         }
 
         return $rules;

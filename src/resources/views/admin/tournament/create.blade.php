@@ -47,6 +47,36 @@
 
                             </div>
                         </div>
+                        
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">{{ getTranslation('title') }}</label>
+                            <div class="card-body">
+                                <ul class="nav nav-tabs">
+                                    @foreach (getLanguage() as $model)
+                                        <li class="nav-item">
+                                            <a href="#basic-tab1{{ $model->id }}"
+                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
+                                                data-toggle="tab">{{ $model->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <div class="tab-content">
+                                    @foreach (getLanguage() as $model)
+                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                            id="basic-tab1{{ $model->id }}">
+                                            <input type="text" class="form-control" name="title[{{ $model->slug }}]"
+                                                value="{{ old('title.' . $model->slug) }}"
+                                                placeholder="{{ $model->name }}">
+                                            @error('title.' . $model->slug)
+                                                <p style="color: red;">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('category') }}</label>
@@ -165,3 +195,40 @@
     </div>
     <!-- /content area -->
 @endsection
+<script>
+    $(document).ready(function() {
+        $('.summernote').summernote({
+            height: 300,
+            callbacks: {
+                onImageUpload: function(files) {
+                    let maxSize = 1 * 1024 * 1024; // 1 MB chegarasi
+                    for (let i = 0; i < files.length; i++) {
+                        if (files[i].size > maxSize) {
+                            alert("Fayl hajmi 1 MB dan oshmasligi kerak!");
+                            return false; // Yuklashni to‘xtatish
+                        }
+                    }
+
+                    // Agar hajmi mos kelsa, faylni yuklash
+                    for (let i = 0; i < files.length; i++) {
+                        let file = files[i];
+                        let reader = new FileReader();
+                        reader.onloadend = function() {
+                            $('.summernote').summernote('insertImage', reader.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                },
+                onChange: function(contents, $editable) {
+                    // Har safar o‘zgarish bo‘lganda umumiy hajmni tekshirish
+                    let totalSize = new Blob([contents]).size;
+                    let maxTotalSize = 5 * 1024 * 1024; // Masalan, 5 MB umumiy chegara
+                    if (totalSize > maxTotalSize) {
+                        alert("Umumiy ma'lumot hajmi 5 MB dan oshmasligi kerak!");
+                        $('.summernote').summernote('undo'); // Oxirgi o‘zgarishni bekor qilish
+                    }
+                }
+            }
+        });
+    });
+</script>

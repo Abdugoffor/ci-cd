@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tournaments', function (Blueprint $table) {
             $table->id();
             $table->jsonb('name');
+            $table->jsonb('title');
             $table->foreignId('country_id')->constrained('countries')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->date('registration_start');

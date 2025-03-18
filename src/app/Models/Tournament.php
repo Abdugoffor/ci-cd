@@ -11,6 +11,7 @@ class Tournament extends Model
 
     protected $fillable = [
         "name",
+        "title",
         'description',
         "country_id",
         "category_id",
@@ -23,6 +24,7 @@ class Tournament extends Model
     ];
     protected $casts = [
         'name'               => 'array',
+        'title'               => 'array',
         'description'        => 'array',
         'registration_start' => 'date',
         'registration_end'   => 'date',

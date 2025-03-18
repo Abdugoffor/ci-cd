@@ -1,6 +1,7 @@
 <?php
 namespace App\Providers;
 
+use App\Models\Media;
 use App\Models\Menyu;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\URL;
@@ -31,14 +32,27 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('layouts.client', function ($view) {
-            $menus     = Menyu::where('is_active', true)->orderByDesc('id')->limit(5)->get();
 
-            $view->with('menus', $menus);
-        });
-        View::composer('layouts.client', function ($view) {
+            $menus = Menyu::where('is_active', true)->orderByDesc('id')->limit(5)->get();
 
             $languages = getLanguage();
-            $view->with('languages', $languages);
+
+            $siteSettings = Media::where('is_active', true)->orderByDesc('id')->first();
+
+            $view->with([
+                'menus'        => $menus,
+                'languages'    => $languages,
+                'siteSettings' => $siteSettings,
+            ]);
+        });
+
+        View::composer('client.index', function ($view) {
+
+            $siteSettings = Media::where('is_active', true)->orderByDesc('id')->first();
+
+            $view->with([
+                'siteSettings' => $siteSettings,
+            ]);
         });
 
         Paginator::useBootstrapFive();

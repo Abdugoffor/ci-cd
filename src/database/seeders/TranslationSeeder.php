@@ -845,11 +845,11 @@ class TranslationSeeder extends Seeder
             [
                 'slug'    => 'media',
                 'name'    => json_encode([
-                    'uz' => 'Media fayllar',
-                    'ru' => 'Медиа-файлы',
-                    'en' => 'Media Files',
+                    'uz' => 'Sayt Sozlamalari',
+                    'ru' => 'Настройки Сайта',
+                    'en' => 'Site Settings',
                 ], JSON_UNESCAPED_UNICODE),
-                'default' => 'Медиа-файлы',
+                'default' => 'Настройки Сайта',
             ],
             [
                 'slug'    => 'presence',

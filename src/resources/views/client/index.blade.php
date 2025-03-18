@@ -10,33 +10,39 @@
                             {{ session('notification') }}
                         </div>
                     @endif
-                    <span>46th FIDE</span>
-                    <h1>{{ getLocale($model->category->name) }}</h1>
-                    <span>{{ getLocale($model->name) }}</span>
+                    <span>{{ isset($model) && $model->name ? getLocale($model->name) : '' }}</span>
+                    {{ isset($model) && $model->category ? getLocale($model->category->name) : '' }}
+                    <span>{{ isset($model) ? getLocale($model->title) : '' }}</span>
                     <!-- banner update end text -->
                     <div>
-                        {{ getLocale($model->description) }}
+                        {{ isset($model) ? getLocale($model->description) : '' }}
                     </div>
                 </div>
                 <div class="info-blocks-wrapper">
                     <div class="info-block">
                         <img src="{{ asset('client/assets/header_banner/calendar.svg') }}" alt="calendar" />
                         <div class="info-block__content">
-                            <div>{{ $model->registration_start->format('d') }}-{{ $model->registration_end->format('d') }}
+                            <div>
+                                {{ $model?->registration_start?->format('d') ?? '' }} -
+                                {{ $model?->registration_end?->format('d') ?? '' }}
                             </div>
-                            <span>{{ $model->registration_start->format('M') }}-{{ $model->registration_end->format('M') }}</span>
+                            <span>
+                                {{ $model?->registration_start?->format('M') ?? '' }} -
+                                {{ $model?->registration_end?->format('M') ?? '' }}
+                            </span>
                         </div>
                     </div>
                     <div class="info-block info-block__secondary">
                         <img src="{{ asset('client/assets/header_banner/location.svg') }}" alt="location" />
                         <div class="info-block__content">
-                            <div>{{ $model->country->label_en }}</div>
-                            <span>{{ getLocale($model->category->name) }}</span>
+                            <div>{{ isset($model) ? $model->country->label_en : '' }}</div>
+                            <span>{{ isset($model) ? getLocale($model->category->name) : '' }}</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <img src="{{ asset('client/assets/header_banner/banner-chess.svg') }}" alt="banner-chess" class="banner-img" />
+            <img src="{{ asset($siteSettings?->photo_1 ?? 'client/assets/header_banner/banner-chess.svg') }}"
+                alt="banner-chess" class="banner-img" />
         </div>
     </div>
 @endsection
@@ -44,18 +50,19 @@
     <main>
         <!-- history update start  -->
         <section class="history">
-            <img src="{{ asset('client/assets/main/history-image.svg') }}" alt="history" class="history-img" />
+            <img src="{{ asset($siteSettings?->photo_2 ?? 'client/assets/main/history-image.svg') }}" alt="history"
+                class="history-img" />
             <img src="{{ asset('client/assets/main/substract.svg') }}" alt="substract" class="substract" />
             <div class="container">
                 <div class="history-content">
                     <div class="history-title">
-                        Strategy <br />
-                        Meets History
+                        {{ getLocale($siteSettings?->description) ?: 'Strategy Meets History' }}
                     </div>
                     <div class="history-line"></div>
                     <div class="history-text">
-                        Hosted in the historic city of Samarkand, this event will be an
-                        unforgettable fusion of strategy, culture, and global unity.
+                        {{ getLocale($siteSettings?->text) ?:
+                            ' Hosted in the historic city of Samarkand, this event will be an
+                                                                        unforgettable fusion of strategy, culture, and global unity' }}
                     </div>
                     <button class="btn">action button</button>
                 </div>
@@ -70,25 +77,25 @@
                     Please input your FIDE ID to proceed to registration page
                 </div>
                 <div class="forms-div">
-                @if ($model)
-                    <form action="{{ route('application', $model->id, false) }}" id="fideForm">
-                        @csrf
-                        <label for="fide-id">FIDE ID</label>
-                        <div class="register-section">
-                            <input type="text" name="fide_id" value="{{ old('fide_id') }}" id="fide-id"
-                                class="input" />
-                            @error('fide_id')
-                                <p style="color: red; font-size: 12px">{{ $message }}</p>
-                            @enderror
-                            <button type="submit" class="btn form-btn">CHECK</button>
+                    @if ($model)
+                        <form action="{{ route('application', $model->id, false) }}" id="fideForm">
+                            @csrf
+                            <label for="fide-id">FIDE ID</label>
+                            <div class="register-section">
+                                <input type="text" name="fide_id" value="{{ old('fide_id') }}" id="fide-id"
+                                    class="input" />
+                                @error('fide_id')
+                                    <p style="color: red; font-size: 12px">{{ $message }}</p>
+                                @enderror
+                                <button type="submit" class="btn form-btn">CHECK</button>
 
-                        </div>
-                    </form>
-                    <form action="{{ route('application', $model->id, false) }}" id="fideForm">
-                        @csrf
-                        <button type="submit" class="btn">Регистрироватся как гость</button>
-                    </form>
-                @endif
+                            </div>
+                        </form>
+                        <form action="{{ route('application', $model->id, false) }}" id="fideForm">
+                            @csrf
+                            <button type="submit" class="btn">Регистрироватся как гость</button>
+                        </form>
+                    @endif
                 </div>
             </div>
             </form>

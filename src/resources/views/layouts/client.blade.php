@@ -28,8 +28,8 @@
                     </a>
 
                     <div class="logo-text">
-                        <div>46th FIDE CHESS OLYMPIAD</div>
-                        <strong>SAMARKAND 2025</strong>
+                        <div>{{ getLocale($siteSettings?->name) ?: 'Chess Olympiad' }}</div>
+                        <strong>{{ getLocale($siteSettings?->title) ?: 'Chess Olympiad' }}</strong>
                     </div>
                 </div>
                 <div class="nav-line"></div>
@@ -94,8 +94,8 @@
                         <img src="{{ asset('client/assets/footer/footer-logo.svg') }}" alt="Chess Olympiad" />
                     </a>
                     <div class="footer-logo-text">
-                        <div>46th FIDE CHESS OLYMPIAD</div>
-                        <strong>SAMARKAND 2025</strong>
+                        <div>{{ getLocale($siteSettings?->name) ?: 'Chess Olympiad' }}</div>
+                        <strong>{{ getLocale($siteSettings?->title) ?: 'Chess Olympiad' }}</strong>
                     </div>
                 </div>
                 <div class="footer-sponsors">

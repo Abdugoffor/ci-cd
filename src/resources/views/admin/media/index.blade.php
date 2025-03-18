@@ -37,12 +37,12 @@
                             <thead>
                                 <tr>
                                     <th>№</th>
+                                    <th>{{ getTranslation('name') }}</th>
+                                    <th>{{ getTranslation('title') }}</th>
+                                    <th>{{ getTranslation('description') }}</th>
+                                    <th>{{ getTranslation('text') }} </th>
                                     <th>{{ getTranslation('photo') }} 1</th>
                                     <th>{{ getTranslation('photo') }} 2</th>
-                                    <th>{{ getTranslation('photo') }} 3</th>
-                                    <th>{{ getTranslation('photo') }} 4</th>
-                                    <th>{{ getTranslation('photo') }} 5</th>
-                                    <th>{{ getTranslation('photo') }} 6</th>
                                     <th>{{ getTranslation('status') }}</th>
                                     <th>{{ getTranslation('function') }}</th>
                                 </tr>
@@ -52,25 +52,22 @@
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>
-                                            <img src="{{ asset($model->photo_1) }}" width="100px" alt="">
+                                            {{ substr(getLocale($model->name), 0, 30) }} ...
+                                        </td>
+                                        <td>
+                                            {{ substr(getLocale($model->title), 0, 30) }} ...
+                                        </td>
+                                        <td>
+                                            {{ substr(getLocale($model->description), 0, 30) }} ...
+                                        </td>
+                                        <td>
+                                            {{ substr(getLocale($model->text), 0, 30) }} ...
                                         </td>
                                         <td>
                                             <img src="{{ asset($model->photo_1) }}" width="100px" alt="">
                                         </td>
                                         <td>
                                             <img src="{{ asset($model->photo_2) }}" width="100px" alt="">
-                                        </td>
-                                        <td>
-                                            <img src="{{ asset($model->photo_3) }}" width="100px" alt="">
-                                        </td>
-                                        <td>
-                                            <img src="{{ asset($model->photo_4) }}" width="100px" alt="">
-                                        </td>
-                                        <td>
-                                            <img src="{{ asset($model->photo_5) }}" width="100px" alt="">
-                                        </td>
-                                        <td>
-                                            <img src="{{ asset($model->photo_6) }}" width="100px" alt="">
                                         </td>
                                         <td class="text-center">
                                             <a href="{{ route('media.status', $model->id, false) }}"

@@ -29,6 +29,7 @@ class TournamentStoreRequest extends FormRequest
             'end_date'           => 'required|date|after_or_equal:start_date',
             'logo'               => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
             'name'               => 'required|array',
+            'title'               => 'required|array',
             'description'        => 'required|array',
         ];
 

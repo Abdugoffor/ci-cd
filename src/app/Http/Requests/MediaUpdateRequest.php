@@ -21,12 +21,12 @@ class MediaUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'photo_1' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'photo_2' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'photo_3' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'photo_4' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'photo_5' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'photo_6' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'name'        => 'required|array',
+            'title'       => 'required|array',
+            'description' => 'required|array',
+            'text'        => 'required|array',
+            'photo_1'     => 'nullable|image|mimes:jpeg,png,jpg,svg|max:5120',
+            'photo_2'     => 'nullable|image|mimes:jpeg,png,jpg,svg|max:5120',
         ];
     }
 }

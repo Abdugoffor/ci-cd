@@ -15,6 +15,12 @@ class TurnirSeeder extends Seeder
         $tournaments = [
             [
                 'name'               => [
+                    'uz'      => '46th FIDEi',
+                    'ru'      => '46th FIDE',
+                    'en'      => '46th FIDE',
+                    'default' => '46th FIDE',
+                ],
+                'title'              => [
                     'uz'      => 'Buxoro chempionati',
                     'ru'      => 'Чемпионат Бухары',
                     'en'      => 'Bukhara Championship',
@@ -37,6 +43,12 @@ class TurnirSeeder extends Seeder
             ],
             [
                 'name'               => [
+                    'uz'      => '46th FIDEi',
+                    'ru'      => '46th FIDE',
+                    'en'      => '46th FIDE',
+                    'default' => '46th FIDE',
+                ],
+                'title'              => [
                     'uz'      => 'Samarqand kubogi',
                     'ru'      => 'Кубок Самарканда',
                     'en'      => 'Samarkand Cup',
@@ -59,6 +71,12 @@ class TurnirSeeder extends Seeder
             ],
             [
                 'name'               => [
+                    'uz'      => '46th FIDEi',
+                    'ru'      => '46th FIDE',
+                    'en'      => '46th FIDE',
+                    'default' => '46th FIDE',
+                ],
+                'title'              => [
                     'uz'      => 'Toshkent ochiq turniri',
                     'ru'      => 'Ташкентский открытый турнир',
                     'en'      => 'Tashkent Open Tournament',
@@ -81,6 +99,12 @@ class TurnirSeeder extends Seeder
             ],
             [
                 'name'               => [
+                    'uz'      => '46th FIDEi',
+                    'ru'      => '46th FIDE',
+                    'en'      => '46th FIDE',
+                    'default' => '46th FIDE',
+                ],
+                'title'              => [
                     'uz'      => 'Xiva oazisi',
                     'ru'      => 'Хивский оазис',
                     'en'      => 'Khiva Oasis',
@@ -103,6 +127,12 @@ class TurnirSeeder extends Seeder
             ],
             [
                 'name'               => [
+                    'uz'      => '46th FIDEi',
+                    'ru'      => '46th FIDE',
+                    'en'      => '46th FIDE',
+                    'default' => '46th FIDE',
+                ],
+                'title'              => [
                     'uz'      => 'Andijon chempionati',
                     'ru'      => 'Чемпионат Андижана',
                     'en'      => 'Andijan Championship',

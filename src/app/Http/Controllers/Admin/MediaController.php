@@ -10,7 +10,6 @@ use Exception;
 
 class MediaController extends Controller
 {
-    private $photoFields = ['photo_1', 'photo_2', 'photo_3', 'photo_4', 'photo_5', 'photo_6'];
 
     public function index()
     {
@@ -25,14 +24,25 @@ class MediaController extends Controller
     public function store(MediaStoreRequest $request)
     {
         try {
-            $data = [];
 
-            foreach ($this->photoFields as $field) {
+            $data = $request->all();
 
-                if ($request->hasFile($field) && $request->file($field)->isValid()) {
+            $data['name']['default'] = reset($data['name']);
 
-                    $data[$field] = FileUploadService::uploadFile($request->file($field));
-                }
+            $data['title']['default'] = reset($data['title']);
+
+            $data['description']['default'] = reset($data['description']);
+
+            $data['text']['default'] = reset($data['text']);
+
+            if ($request->hasFile('photo_1')) {
+
+                $data['photo_1'] = FileUploadService::uploadFile($request->file('photo_1'));
+            }
+
+            if ($request->hasFile('photo_2')) {
+
+                $data['photo_2'] = FileUploadService::uploadFile($request->file('photo_2'));
             }
 
             Media::create($data);
@@ -58,20 +68,27 @@ class MediaController extends Controller
     public function update(MediaUpdateRequest $request, Media $medium)
     {
         try {
-            $data = [];
+            $data = $request->all();
+            
+            $data['name']['default'] = reset($data['name']);
 
-            foreach ($this->photoFields as $field) {
-                if ($request->hasFile($field) && $request->file($field)->isValid()) {
+            $data['title']['default'] = reset($data['title']);
 
-                    $data[$field] = FileUploadService::uploadFile($request->file($field));
+            $data['description']['default'] = reset($data['description']);
 
-                }
+            $data['text']['default'] = reset($data['text']);
+
+            if ($request->hasFile('photo_1')) {
+                
+                $data['photo_1'] = FileUploadService::uploadFile($request->file('photo_1'));
             }
 
-            if ($data) {
+            if ($request->hasFile('photo_2')) {
 
-                $medium->update($data);
+                $data['photo_2'] = FileUploadService::uploadFile($request->file('photo_2'));
             }
+
+            $medium->update($data);
 
             return redirect()->route('media.index')->with('notification', getTranslation('notification'));
 

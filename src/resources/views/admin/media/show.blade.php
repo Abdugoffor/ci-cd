@@ -16,28 +16,28 @@
                 <table class="table text-nowrap">
                     <tbody>
                         <tr>
+                            <th>{{ getTranslation('name') }}</th>
+                            <td>{{ getLocale($model->name) }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ getTranslation('title') }}</th>
+                            <td>{{ getLocale($model->title) }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ getTranslation('description') }}</th>
+                            <td>{{ getLocale($model->description) }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ getTranslation('text') }}</th>
+                            <td>{{ getLocale($model->text) }}</td>
+                        </tr>
+                        <tr>
                             <th>{{ getTranslation('photo') }} 1</th>
                             <td><img src="{{ asset($model->photo_1) }}" width="100px" alt=""></td>
                         </tr>
                         <tr>
                             <th>{{ getTranslation('photo') }} 2</th>
                             <td><img src="{{ asset($model->photo_2) }}" width="100px" alt=""></td>
-                        </tr>
-                        <tr>
-                            <th>{{ getTranslation('photo') }} 3</th>
-                            <td><img src="{{ asset($model->photo_3) }}" width="100px" alt=""></td>
-                        </tr>
-                        <tr>
-                            <th>{{ getTranslation('photo') }} 4</th>
-                            <td><img src="{{ asset($model->photo_4) }}" width="100px" alt=""></td>
-                        </tr>
-                        <tr>
-                            <th>{{ getTranslation('photo') }} 5</th>
-                            <td><img src="{{ asset($model->photo_5) }}" width="100px" alt=""></td>
-                        </tr>
-                        <tr>
-                            <th>{{ getTranslation('photo') }} 6</th>
-                            <td><img src="{{ asset($model->photo_6) }}" width="100px" alt=""></td>
                         </tr>
                         <tr>
                             <th>

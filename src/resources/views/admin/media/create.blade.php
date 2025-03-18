@@ -7,6 +7,9 @@
             <a href="{{ route('media.index', [], false) }}" class="btn btn-sm btn-outline-success">
                 {{ getTranslation('back') }}
             </a>
+            @if (session()->has('notification'))
+                {{ session()->get('notification') }}
+            @endif
         </div>
         <div class="card mt-2">
             <div class="card-body">
@@ -17,9 +20,129 @@
                         </legend>
 
                         <div class="form-group row">
+                            <label class="col-form-label col-lg-2">{{ getTranslation('name') }}</label>
+                            <div class="card-body">
+                                <ul class="nav nav-tabs">
+                                    @foreach (getLanguage() as $model)
+                                        <li class="nav-item">
+                                            <a href="#basic-tab1{{ $model->id }}"
+                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
+                                                data-toggle="tab">{{ $model->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <div class="tab-content">
+                                    @foreach (getLanguage() as $model)
+                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                            id="basic-tab1{{ $model->id }}">
+                                            <input type="text" class="form-control" name="name[{{ $model->slug }}]"
+                                                value="{{ old('name.' . $model->slug) }}"
+                                                placeholder="{{ $model->name }}">
+                                            @error('name.' . $model->slug)
+                                                <p style="color: red;">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">{{ getTranslation('title') }}</label>
+                            <div class="card-body">
+                                <ul class="nav nav-tabs">
+                                    @foreach (getLanguage() as $model)
+                                        <li class="nav-item">
+                                            <a href="#basic-tab12{{ $model->id }}"
+                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
+                                                data-toggle="tab">{{ $model->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <div class="tab-content">
+                                    @foreach (getLanguage() as $model)
+                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                            id="basic-tab12{{ $model->id }}">
+                                            <input type="text" class="form-control" name="title[{{ $model->slug }}]"
+                                                value="{{ old('title.' . $model->slug) }}"
+                                                placeholder="{{ $model->name }}">
+                                            @error('title.' . $model->slug)
+                                                <p style="color: red;">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">{{ getTranslation('description') }}</label>
+                            <div class="card-body">
+                                <ul class="nav nav-tabs">
+                                    @foreach (getLanguage() as $model)
+                                        <li class="nav-item">
+                                            <a href="#basic-tab13{{ $model->id }}"
+                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
+                                                data-toggle="tab">{{ $model->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <div class="tab-content">
+                                    @foreach (getLanguage() as $model)
+                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                            id="basic-tab13{{ $model->id }}">
+                                            <input type="text" class="form-control" name="description[{{ $model->slug }}]"
+                                                value="{{ old('description.' . $model->slug) }}"
+                                                placeholder="{{ $model->name }}">
+                                            @error('description.' . $model->slug)
+                                                <p style="color: red;">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">{{ getTranslation('text') }}</label>
+                            <div class="card-body">
+                                <ul class="nav nav-tabs">
+                                    @foreach (getLanguage() as $model)
+                                        <li class="nav-item">
+                                            <a href="#basic-tab14{{ $model->id }}"
+                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
+                                                data-toggle="tab">{{ $model->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <div class="tab-content">
+                                    @foreach (getLanguage() as $model)
+                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                            id="basic-tab14{{ $model->id }}">
+                                            <input type="text" class="form-control" name="text[{{ $model->slug }}]"
+                                                value="{{ old('text.' . $model->slug) }}"
+                                                placeholder="{{ $model->name }}">
+                                            @error('text.' . $model->slug)
+                                                <p style="color: red;">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('photo') }} 1</label>
                             <div class="col-lg-10">
-                                <input type="file" class="form-control" name="photo_1" value="{{ old('photo') }}"
+                                <input type="file" class="form-control" name="photo_1" value="{{ old('photo_1') }}"
                                     placeholder="{{ getTranslation('photo') }}">
                                 @error('photo_1')
                                     <p style="color: red;">{{ $message }}</p>
@@ -30,53 +153,9 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('photo') }} 2</label>
                             <div class="col-lg-10">
-                                <input type="file" class="form-control" name="photo_2" value="{{ old('photo') }}"
+                                <input type="file" class="form-control" name="photo_2" value="{{ old('photo_2') }}"
                                     placeholder="{{ getTranslation('photo') }}">
                                 @error('photo_2')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
-
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('photo') }} 3</label>
-                            <div class="col-lg-10">
-                                <input type="file" class="form-control" name="photo_3" value="{{ old('photo') }}"
-                                    placeholder="{{ getTranslation('photo') }}">
-                                @error('photo_3')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
-
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('photo') }} 4</label>
-                            <div class="col-lg-10">
-                                <input type="file" class="form-control" name="photo_4" value="{{ old('photo') }}"
-                                    placeholder="{{ getTranslation('photo') }}">
-                                @error('photo_4')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
-
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('photo') }} 5</label>
-                            <div class="col-lg-10">
-                                <input type="file" class="form-control" name="photo_5" value="{{ old('photo') }}"
-                                    placeholder="{{ getTranslation('photo') }}">
-                                @error('photo_5')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
-
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('photo') }} 6</label>
-                            <div class="col-lg-10">
-                                <input type="file" class="form-control" name="photo_6" value="{{ old('photo') }}"
-                                    placeholder="{{ getTranslation('photo') }}">
-                                @error('photo_6')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
 

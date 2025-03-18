@@ -6,12 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 class Media extends Model
 {
     protected $fillable = [
+        'name',
+        'title',
+        'description',
+        'text',
         'photo_1',
         'photo_2',
-        'photo_3',
-        'photo_4',
-        'photo_5',
-        'photo_6',
         'is_active',
+    ];
+
+    protected $casts = [
+        'name'        => 'array',
+        'title'       => 'array',
+        'description' => 'array',
+        'text'        => 'array',
     ];
 }
