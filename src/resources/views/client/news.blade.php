@@ -90,7 +90,7 @@
                     @foreach ($relatedNews as $relatedNew)
                         <div class="swiper-slide">
                             <div class="news-card">
-                                <a href="#">
+                                <a href="{{ route('news.latest', $relatedNew->id, false) }}">
                                     <img src="{{ asset($relatedNew->photo) }}" alt="" />
                                     <div class="news-card__content">
                                         <h3>

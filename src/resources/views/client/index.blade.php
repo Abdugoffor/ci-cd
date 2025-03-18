@@ -1,6 +1,7 @@
 @extends('layouts.client')
 @section('banner')
     <div class="banner">
+
         <!-- banner update start titles -->
         <div class="container">
             <div class="banner-content">
@@ -11,7 +12,7 @@
                         </div>
                     @endif
                     <span>{{ isset($model) && $model->name ? getLocale($model->name) : '' }}</span>
-                    {{ isset($model) && $model->category ? getLocale($model->category->name) : '' }}
+                    <h1>{{ isset($model) && $model->category ? getLocale($model->category->name) : '' }}</h1>
                     <span>{{ isset($model) ? getLocale($model->title) : '' }}</span>
                     <!-- banner update end text -->
                     <div>
@@ -20,7 +21,7 @@
                 </div>
                 <div class="info-blocks-wrapper">
                     <div class="info-block">
-                        <img src="{{ asset('client/assets/header_banner/calendar.svg') }}" alt="calendar" />
+                        <img src="{{ asset('frontend/assets/header_banner/calendar.svg') }}" alt="calendar" />
                         <div class="info-block__content">
                             <div>
                                 {{ $model?->registration_start?->format('d') ?? '' }} -
@@ -33,7 +34,7 @@
                         </div>
                     </div>
                     <div class="info-block info-block__secondary">
-                        <img src="{{ asset('client/assets/header_banner/location.svg') }}" alt="location" />
+                        <img src="{{ asset('frontend/assets/header_banner/location.svg') }}" alt="location" />
                         <div class="info-block__content">
                             <div>{{ isset($model) ? $model->country->label_en : '' }}</div>
                             <span>{{ isset($model) ? getLocale($model->category->name) : '' }}</span>
@@ -41,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <img src="{{ asset($siteSettings?->photo_1 ?? 'client/assets/header_banner/banner-chess.svg') }}"
+            <img src="{{ asset($siteSettings?->photo_1 ?? 'frontend/assets/header_banner/banner-chess.svg') }}"
                 alt="banner-chess" class="banner-img" />
         </div>
     </div>
@@ -50,9 +51,9 @@
     <main>
         <!-- history update start  -->
         <section class="history">
-            <img src="{{ asset($siteSettings?->photo_2 ?? 'client/assets/main/history-image.svg') }}" alt="history"
+            <img src="{{ asset($siteSettings?->photo_2 ?? 'frontend/assets/main/history-image.svg') }}" alt="history"
                 class="history-img" />
-            <img src="{{ asset('client/assets/main/substract.svg') }}" alt="substract" class="substract" />
+            <img src="{{ asset('frontend/assets/main/substract.svg') }}" alt="substract" class="substract" />
             <div class="container">
                 <div class="history-content">
                     <div class="history-title">
@@ -61,8 +62,7 @@
                     <div class="history-line"></div>
                     <div class="history-text">
                         {{ getLocale($siteSettings?->text) ?:
-                            ' Hosted in the historic city of Samarkand, this event will be an
-                                                                                                unforgettable fusion of strategy, culture, and global unity' }}
+                            ' Hosted in the historic city of Samarkand, this event will be an unforgettable fusion of strategy, culture, and global unity' }}
                     </div>
                     <button class="btn">action button</button>
                 </div>
@@ -84,21 +84,20 @@
                             <div class="register-section">
                                 <input type="text" name="fide_id" value="{{ old('fide_id') }}" id="fide-id"
                                     class="input" />
-                                @error('fide_id')
-                                    <p style="color: red; font-size: 12px">{{ $message }}</p>
-                                @enderror
                                 <button type="submit" class="btn form-btn">CHECK</button>
-
                             </div>
                         </form>
                         <form action="{{ route('application', $model->id, false) }}" id="fideForm">
                             @csrf
                             <button type="submit" class="btn">Регистрироватся как гость</button>
                         </form>
+                        <br>
                     @endif
                 </div>
+                @error('fide_id')
+                    <p style="color: red; font-size: 12px">{{ $message }}</p>
+                @enderror
             </div>
-            </form>
             <div class="modal" id="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
@@ -106,9 +105,9 @@
                     <p>Ваш FIDE ID успешно проверен!</p>
                 </div>
             </div>
-            </div>
             <!-- register update end  -->
         </section>
+
         <section class="sponsor">
             <div class="container">
                 <div class="swiper sponsors-slider">
@@ -122,6 +121,7 @@
                 </div>
             </div>
         </section>
+
         <section class="news container">
             <h1>{{ getTranslation('latest_news') }}</h1>
             <div class="news-cards">

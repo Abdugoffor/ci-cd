@@ -7,7 +7,7 @@
             <div class="register-personal-top">
                 <h1>{{ getTranslation('register_for_accreditation') }}</h1>
                 <div>
-                    <img src="{{ asset('client/assets/register-page/chess-logo.svg') }}" alt="chess-logo" />
+                    <img src="{{ asset('frontend/assets/register-page/chess-logo.svg') }}" alt="chess-logo" />
                     <div class="register-logo-text">
                         <span>46th FIDE CHESS OLYMPIAD</span>
                         <strong>SAMARKAND 2025</strong>
@@ -38,7 +38,7 @@
                                 name="passport_issue_date" class="date-input"
                                 onchange="updateDate('passport_issue_date')" />
                             <span id="passport_issue_datePlaceholder" class="placeholder">DD/MM/YYYY</span>
-                            <img src="{{ asset('client/assets/register-page/calendar-icon.svg') }}"
+                            <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                 class="calendar-icon" />
                         </div>
                         @error('passport_issue_date')
@@ -53,7 +53,7 @@
                                 name="passport_expiry_date" class="date-input"
                                 onchange="updateDate('passport_expiry_date')" />
                             <span id="passport_expiry_datePlaceholder" class="placeholder">DD/MM/YYYY</span>
-                            <img src="{{ asset('client/assets/register-page/calendar-icon.svg') }}"
+                            <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                 class="calendar-icon" />
                         </div>
                         @error('passport_expiry_date')
@@ -109,7 +109,7 @@
                                 <input type="date" id="arrival_details" value="{{ old('arrival_details') }}" name="arrival_details" class="date-input"
                                     onchange="updateDate('arrival_details')" />
                                 <span id="arrival_detailsPlaceholder" class="placeholder">DD/MM/YYYY</span>
-                                <img src="{{ asset('client/assets/register-page/calendar-icon.svg') }}"
+                                <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
                             </div>
                             @error('arrival_details')
@@ -123,7 +123,7 @@
                                 <input type="date" id="departure_details" value="{{ old('departure_details') }}" name="departure_details" class="date-input"
                                     onchange="updateDate('departure_details')" />
                                 <span id="departure_detailsPlaceholder" class="placeholder">DD/MM/YYYY</span>
-                                <img src="{{ asset('client/assets/register-page/calendar-icon.svg') }}"
+                                <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
                             </div>
                             @error('departure_details')

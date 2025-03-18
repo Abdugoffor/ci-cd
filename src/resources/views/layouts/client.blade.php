@@ -5,18 +5,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chess Olympiad 2025</title>
-    <link rel="icon" type="image/svg+xml" href="{{ secure_asset('client/assets/header_banner/chess_logo.svg') }}" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('client/assets/header_banner/chess_logo.svg') }}" />
-    {{-- <link rel="icon" type="image/svg+xml" href="{{ asset('client/assets/header_banner/chess_logo.svg') }}" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('client/assets/header_banner/chess_logo.svg') }}" /> --}}
+    {{-- <link rel="icon" type="image/svg+xml" href="{{ secure_asset('frontend/assets/header_banner/chess_logo.svg') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('frontend/assets/header_banner/chess_logo.svg') }}" /> --}}
+    <link rel="icon" type="image/svg+xml" href="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}" />
     <meta name="theme-color" content="#17a8d0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    {{-- <link rel="stylesheet" href="{{ asset('client/css/style.css') }}" /> --}}
-    <link rel="stylesheet" href="{{ secure_asset('client/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ secure_asset('frontend/css/style.css') }}" /> --}}
 </head>
 
 <body>
@@ -25,7 +25,7 @@
             <div class="nav-left">
                 <div class="logo-wrapper">
                     <a href="/" class="logo">
-                        <img src="{{ asset('client/assets/header_banner/chess_logo.svg') }}"
+                        <img src="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}"
                             alt="Chess Olympiad 2025" />
                     </a>
 
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="nav-line"></div>
-                <img class="fide-logo" src="{{ asset('client/assets/header_banner/fide.svg') }}" alt="fide" />
+                <img class="fide-logo" src="{{ asset('frontend/assets/header_banner/fide.svg') }}" alt="fide" />
             </div>
             <button class="menu-btn">
                 <span></span>
@@ -93,7 +93,7 @@
             <div class="footer-top">
                 <div class="footer-logo">
                     <a href="#">
-                        <img src="{{ asset('client/assets/footer/footer-logo.svg') }}" alt="Chess Olympiad" />
+                        <img src="{{ asset('frontend/assets/footer/footer-logo.svg') }}" alt="Chess Olympiad" />
                     </a>
                     <div class="footer-logo-text">
                         <div>{{ getLocale($siteSettings?->name) ?: 'Chess Olympiad' }}</div>
@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <div class="footer-sponsors">
-                    <img src="{{ asset('client/assets/footer/footer-sponsor1.svg') }}" alt="sponsor1" />
+                    <img src="{{ asset('frontend/assets/footer/footer-sponsor1.svg') }}" alt="sponsor1" />
                 </div>
             </div>
             <div class="footer-nav">
@@ -123,8 +123,8 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    {{-- <script src="{{ asset('client/js/main.js') }}"></script> --}}
-    <script src="{{ secure_asset('client/js/main.js') }}"></script>
+    <script src="{{ asset('frontend/js/main.js') }}"></script>
+    {{-- <script src="{{ secure_asset('frontend/js/main.js') }}"></script> --}}
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", function() {

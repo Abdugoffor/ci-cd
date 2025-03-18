@@ -32,7 +32,7 @@ class NewsSeeder extends Seeder
                     'default' => 'Today, Olympiad 2025 was officially opened in Tashkent with athletes from various countries around the world.',
                 ],
                 'menyu_id'    => 1,
-                'photo'       => 'client/assets/news/detail1.svg',
+                'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
             ],
             [
@@ -55,7 +55,7 @@ class NewsSeeder extends Seeder
                     'default' => 'A new 50,000-seat stadium was opened in Samarkand, where international competitions will be held.',
                 ],
                 'menyu_id'    => 2,
-                'photo'       => 'client/assets/news/detail1.svg',
+                'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
             ],
             [
@@ -78,7 +78,7 @@ class NewsSeeder extends Seeder
                     'default' => 'The festival held in Bukhara featured local and international artists.',
                 ],
                 'menyu_id'    => 3,
-                'photo'       => 'client/assets/news/detail1.svg',
+                'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
             ],
             [
@@ -101,7 +101,7 @@ class NewsSeeder extends Seeder
                     'default' => 'An art night took place in Khiva’s Ichan-Qala, featuring music and dance performances.',
                 ],
                 'menyu_id'    => 4,
-                'photo'       => 'client/assets/news/detail1.svg',
+                'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
             ],
             [
@@ -124,7 +124,7 @@ class NewsSeeder extends Seeder
                     'default' => 'The Tashkent marathon with thousands of participants concluded successfully.',
                 ],
                 'menyu_id'    => 1,
-                'photo'       => 'client/assets/news/detail1.svg',
+                'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
             ],
             [
@@ -147,7 +147,7 @@ class NewsSeeder extends Seeder
                     'default' => 'The fair in Fergana showcased handicrafts and food products.',
                 ],
                 'menyu_id'    => 5,
-                'photo'       => 'client/assets/news/detail1.svg',
+                'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
             ],
             [
@@ -170,7 +170,7 @@ class NewsSeeder extends Seeder
                     'default' => 'Local teams won at the competition held in Andijan.',
                 ],
                 'menyu_id'    => 2,
-                'photo'       => 'client/assets/news/detail1.svg',
+                'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
             ],
             [
@@ -193,7 +193,7 @@ class NewsSeeder extends Seeder
                     'default' => 'The concert in Namangan featured local and international stars.',
                 ],
                 'menyu_id'    => 3,
-                'photo'       => 'client/assets/news/detail1.svg',
+                'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
             ],
             [
@@ -216,7 +216,7 @@ class NewsSeeder extends Seeder
                     'default' => 'The exhibition in Karshi showcased works by local artists.',
                 ],
                 'menyu_id'    => 4,
-                'photo'       => 'client/assets/news/detail1.svg',
+                'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
             ],
             [
@@ -239,7 +239,7 @@ class NewsSeeder extends Seeder
                     'default' => 'Ancient artifacts were discovered during excavations near Termez.',
                 ],
                 'menyu_id'    => 5,
-                'photo'       => 'client/assets/news/detail1.svg',
+                'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
             ],
         ];

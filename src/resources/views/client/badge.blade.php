@@ -425,7 +425,7 @@
                         <h4>{{ getLocale(optional($participant->accreditationCategory)->name) }}</h4>
                     </div>
                     <div class="block-right-bottom">
-                        <img src="{{ asset('client/assets/badge/img.svg') }}" alt="bottom-img" class="bottom-img" />
+                        <img src="{{ asset('frontend/assets/badge/img.svg') }}" alt="bottom-img" class="bottom-img" />
                         <div>
                             <img src="{{ asset($participant->qk_code_path) }}" alt="bottom-qr" class="bottom-qr" />
                         </div>
@@ -437,12 +437,12 @@
             <div>{{ $participant->passport_number }}</div>
         </div>
         <div class="badge-footer">
-            <img src="{{ asset('client/assets/badge/footer1.svg') }}" alt="footer1" />
-            <img src="{{ asset('client/assets/badge/footer2.svg') }}" alt="footer2" />
-            <img src="{{ asset('client/assets/badge/footer3.svg') }}" alt="footer3" />
-            <img src="{{ asset('client/assets/badge/footer2.svg') }}" alt="footer4" />
-            <img src="{{ asset('client/assets/badge/footer4.svg') }}" alt="footer5" />
-            <img src="{{ asset('client/assets/badge/footer1.svg') }}" alt="footer6" />
+            <img src="{{ asset('frontend/assets/badge/footer1.svg') }}" alt="footer1" />
+            <img src="{{ asset('frontend/assets/badge/footer2.svg') }}" alt="footer2" />
+            <img src="{{ asset('frontend/assets/badge/footer3.svg') }}" alt="footer3" />
+            <img src="{{ asset('frontend/assets/badge/footer2.svg') }}" alt="footer4" />
+            <img src="{{ asset('frontend/assets/badge/footer4.svg') }}" alt="footer5" />
+            <img src="{{ asset('frontend/assets/badge/footer1.svg') }}" alt="footer6" />
         </div>
     </div>
 </body>

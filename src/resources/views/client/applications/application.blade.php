@@ -7,7 +7,7 @@
             <div class="register-personal-top">
                 <h1>{{ getTranslation('register_for_accreditation') }}</h1>
                 <div>
-                    <img src="{{ asset('client/assets/register-page/chess-logo.svg') }}" alt="chess-logo" />
+                    <img src="{{ asset('frontend/assets/register-page/chess-logo.svg') }}" alt="chess-logo" />
                     <div class="register-logo-text">
                         <span>{{ getLocale($tournament->name) }}</span>
                         <strong>{{ getLocale($tournament->description) }}</strong>
@@ -44,7 +44,7 @@
                                 <input type="date" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth') }}" class="date-input"
                                     onchange="updateDate('date_of_birth')" />
                                 <span id="date_of_birthPlaceholder" class="placeholder">DD/MM/YYYY</span>
-                                <img src="{{ asset('client/assets/register-page/calendar-icon.svg') }}"
+                                <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
                             </div>
                             @error('date_of_birth')

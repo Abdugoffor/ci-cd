@@ -7,7 +7,7 @@
             <div class="register-personal-top">
                 <h1>{{ getTranslation('register_for_accreditation') }}</h1>
                 <div>
-                    <img src="{{ asset('client/assets/register-page/chess-logo.svg') }}" alt="chess-logo" />
+                    <img src="{{ asset('frontend/assets/register-page/chess-logo.svg') }}" alt="chess-logo" />
                     <div class="register-logo-text">
                         <span>46th FIDE CHESS OLYMPIAD</span>
                         <strong>SAMARKAND 2025</strong>

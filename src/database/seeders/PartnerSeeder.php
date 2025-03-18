@@ -20,7 +20,7 @@ class PartnerSeeder extends Seeder
                     'default' => 'Uzbektelecom',
                 ],
                 'path'      => 'https://uztelecom.uz',
-                'photo'     => 'client/assets/sponsors/chess-federation.svg',
+                'photo'     => 'frontend/assets/sponsors/chess-federation.svg',
                 'is_active' => true,
             ],
             [
@@ -31,7 +31,7 @@ class PartnerSeeder extends Seeder
                     'default' => 'Tashkent City Administration',
                 ],
                 'path'      => 'https://tashkent.uz',
-                'photo'     => 'client/assets/sponsors/chess-federation.svg',
+                'photo'     => 'frontend/assets/sponsors/chess-federation.svg',
                 'is_active' => true,
             ],
             [
@@ -42,7 +42,7 @@ class PartnerSeeder extends Seeder
                     'default' => 'Samarkand Tourism Agency',
                 ],
                 'path'      => 'https://samarkandtourism.uz',
-                'photo'     => 'client/assets/sponsors/chess-federation.svg',
+                'photo'     => 'frontend/assets/sponsors/chess-federation.svg',
                 'is_active' => true,
             ],
             [
@@ -53,7 +53,7 @@ class PartnerSeeder extends Seeder
                     'default' => 'Bukhara People’s Bank',
                 ],
                 'path'      => 'https://bukhara-bank.uz',
-                'photo'     => 'client/assets/sponsors/chess-federation.svg',
+                'photo'     => 'frontend/assets/sponsors/chess-federation.svg',
                 'is_active' => true,
             ],
             [
@@ -64,7 +64,7 @@ class PartnerSeeder extends Seeder
                     'default' => 'Khiva Arts Society',
                 ],
                 'path'      => 'https://khivaarts.uz',
-                'photo'     => 'client/assets/sponsors/chess-federation.svg',
+                'photo'     => 'frontend/assets/sponsors/chess-federation.svg',
                 'is_active' => true,
             ],
             [
@@ -75,7 +75,7 @@ class PartnerSeeder extends Seeder
                     'default' => 'Fergana Chamber of Commerce',
                 ],
                 'path'      => 'https://ferganachamber.uz',
-                'photo'     => 'client/assets/sponsors/chess-federation.svg',
+                'photo'     => 'frontend/assets/sponsors/chess-federation.svg',
                 'is_active' => true,
             ],
             [
@@ -86,7 +86,7 @@ class PartnerSeeder extends Seeder
                     'default' => 'Andijan Sports Club',
                 ],
                 'path'      => 'https://andijansport.uz',
-                'photo'     => 'client/assets/sponsors/chess-federation.svg',
+                'photo'     => 'frontend/assets/sponsors/chess-federation.svg',
                 'is_active' => true,
             ],
             [
@@ -97,7 +97,7 @@ class PartnerSeeder extends Seeder
                     'default' => 'Namangan Transport Company',
                 ],
                 'path'      => 'https://namangantransport.uz',
-                'photo'     => 'client/assets/sponsors/chess-federation.svg',
+                'photo'     => 'frontend/assets/sponsors/chess-federation.svg',
                 'is_active' => true,
             ],
             [
@@ -108,7 +108,7 @@ class PartnerSeeder extends Seeder
                     'default' => 'Kashkadarya Energy',
                 ],
                 'path'      => 'https://kashkadaryaenergy.uz',
-                'photo'     => 'client/assets/sponsors/chess-federation.svg',
+                'photo'     => 'frontend/assets/sponsors/chess-federation.svg',
                 'is_active' => true,
             ],
             [
@@ -119,7 +119,7 @@ class PartnerSeeder extends Seeder
                     'default' => 'Surkhandarya Construction',
                 ],
                 'path'      => 'https://surkhandaryabuild.uz',
-                'photo'     => 'client/assets/sponsors/chess-federation.svg',
+                'photo'     => 'frontend/assets/sponsors/chess-federation.svg',
                 'is_active' => true,
             ],
         ];

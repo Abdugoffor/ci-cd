@@ -36,8 +36,8 @@ class MediaSeeder extends Seeder
                 'en'      => 'This event, held in the historic city of Samarkand, will be an unforgettable blend of strategy, culture, and global unity.',
                 'default' => 'Это мероприятие, проходящее в историческом городе Самарканд, станет незабываемым слиянием стратегии, культуры и глобального единства.',
             ],
-            'photo_1' => 'client/assets/header_banner/banner-chess.svg',
-            'photo_2' => 'client/assets/main/history-image.svg',
+            'photo_1' => 'frontend/assets/header_banner/banner-chess.svg',
+            'photo_2' => 'frontend/assets/main/history-image.svg',
         ]);
 
     }

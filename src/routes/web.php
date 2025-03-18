@@ -23,10 +23,9 @@ use App\Http\Controllers\Client\HotelController as ClientHotelController;
 use App\Http\Controllers\Client\IndexController;
 use App\Http\Controllers\Client\NewsController as ClientNewsController;
 use App\Http\Controllers\Client\PageController;
-use App\Http\Controllers\PresenceController;
+use App\Http\Controllers\Client\PresenceController;
 use App\Http\Middleware\CheckEmailSession;
 use App\Http\Middleware\LangMiddleware;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(LangMiddleware::class)->group(function () {
@@ -134,10 +133,4 @@ Route::middleware(LangMiddleware::class)->group(function () {
 
     Route::get('/badge-verify/{badges}', [BadgesController::class, 'verify'])->name('badges.verify');
 
-});
-
-
-
-Route::get('/info', function () {
-    phpinfo();
 });
