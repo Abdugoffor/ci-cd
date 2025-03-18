@@ -62,7 +62,7 @@
                     <div class="history-text">
                         {{ getLocale($siteSettings?->text) ?:
                             ' Hosted in the historic city of Samarkand, this event will be an
-                                                                        unforgettable fusion of strategy, culture, and global unity' }}
+                                                                                                unforgettable fusion of strategy, culture, and global unity' }}
                     </div>
                     <button class="btn">action button</button>
                 </div>
@@ -72,9 +72,9 @@
         <section class="register container">
             <!-- register update start  -->
             <div class="register-form">
-                <h2>Register for the event</h2>
+                <h2>{{ getTranslation('register_event') }}</h2>
                 <div class="register-text">
-                    Please input your FIDE ID to proceed to registration page
+                    {{ getTranslation('register_event_fide_id') }}
                 </div>
                 <div class="forms-div">
                     @if ($model)

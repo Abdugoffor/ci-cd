@@ -968,6 +968,33 @@ class TranslationSeeder extends Seeder
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'Back to Homepage',
             ],
+            [
+                'slug'    => 'register_event',
+                'name'    => json_encode([
+                    'uz' => 'Register for the event',
+                    'ru' => 'Register for the event',
+                    'en' => 'Register for the event',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Register for the event',
+            ],
+            [
+                'slug'    => 'register_event_fide_id',
+                'name'    => json_encode([
+                    'uz' => 'Please input your FIDE ID to proceed to registration page uz',
+                    'ru' => 'Please input your FIDE ID to proceed to registration page ru',
+                    'en' => 'Please input your FIDE ID to proceed to registration page en',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Please input your FIDE ID to proceed to registration page',
+            ],
+            [
+                'slug'    => 'footer_text',
+                'name'    => json_encode([
+                    'uz' => 'Copyrights 2025 Uzbekistan Chess Federation & FIDE International Chess Federation. All Rights Reserved. uz',
+                    'ru' => 'Copyrights 2025 Uzbekistan Chess Federation & FIDE International Chess Federation. All Rights Reserved. ru',
+                    'en' => 'Copyrights 2025 Uzbekistan Chess Federation & FIDE International Chess Federation. All Rights Reserved. en',
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Copyrights 2025 Uzbekistan Chess Federation & FIDE International Chess Federation. All Rights Reserved.',
+            ],
 
         ];
 
