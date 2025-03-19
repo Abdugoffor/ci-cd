@@ -143,7 +143,7 @@
                     <div class="input-group">
 
                         <div class="input-wrapper">
-                            <label for="issuing-authority" class="input-label">Photo for Accreditation</label>
+                            <label for="issuing-authority" class="input-label">{{ getTranslation('photo_for_accreditation') }}</label>
                             <div class="file-upload">
                                 <input type="file" id="photoInput" value="{{ old('photo') }}" name="photo" class="hidden-input"
                                     accept=".jpg, .jpeg, .pdf" />
@@ -167,7 +167,7 @@
                             </div>
                         </div>
                         <div class="input-wrapper">
-                            <label for="last-name" class="input-label">Детали ПЦР-теста</label>
+                            <label for="last-name" class="input-label">{{ getTranslation('pcr-test-details') }}</label>
                             <input type="text" id="last-name" value="{{ old('pcr_test_details') }}" name="pcr_test_details" placeholder="Детали ПЦР-теста"
                                 class="input-text" />
                             @error('pcr_test_details')

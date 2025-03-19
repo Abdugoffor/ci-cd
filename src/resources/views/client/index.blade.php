@@ -13,10 +13,9 @@
                     @endif
                     <span>{{ isset($model) && $model->name ? getLocale($model->name) : '' }}</span>
                     <h1>{{ isset($model) && $model->category ? getLocale($model->category->name) : '' }}</h1>
-                    <span>{{ isset($model) ? getLocale($model->title) : '' }}</span>
                     <!-- banner update end text -->
                     <div>
-                        {{ isset($model) ? getLocale($model->description) : '' }}
+                        {{ isset($model) ? getLocale($model->title) : '' }}
                     </div>
                 </div>
                 <div class="info-blocks-wrapper">

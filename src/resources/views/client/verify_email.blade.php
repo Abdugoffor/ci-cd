@@ -30,8 +30,7 @@
                             @enderror
                         </div>
                         <div class="input-wrapper" style="margin-top: 15px;">
-                            {{-- <button type="submit" class="btn btn-form" style="margin-top: 10px;">Submit</button> --}}
-                            <button type="submit" class="btn" style="margin-top: 10px;">Submit</button>
+                            <button type="submit" class="btn" style="margin-top: 10px;">{{ getTranslation('check') }}</button>
                         </div>
                     </div>
                 </div>

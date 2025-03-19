@@ -598,7 +598,7 @@ class TranslationSeeder extends Seeder
                 'default' => 'Path', // Fixed default to match English
             ],
             [
-                'slug'    => 'Title',
+                'slug'    => 'title',
                 'name'    => json_encode([
                     'uz' => "Sarlavha",
                     'ru' => 'Заголовок',
@@ -1019,6 +1019,15 @@ class TranslationSeeder extends Seeder
                     'en' => 'Check',
                 ], JSON_UNESCAPED_UNICODE),
                 'default' => 'Check',
+            ],
+            [
+                'slug'    => 'photo_for_accreditation',
+                'name'    => json_encode([
+                    'uz' => "Akkreditatsiya uchun rasm",
+                    'ru' => "Фото для аккредитации",
+                    'en' => "Photo for Accreditation",
+                ], JSON_UNESCAPED_UNICODE),
+                'default' => 'Photo for Accreditation',
             ],
 
         ];
