@@ -10,7 +10,7 @@ fi
 
 # Генерация ключа
 php artisan key:generate
-php artisan migrate
+php artisan migrate:fresh
 php artisan db:seed
 
 # Очистка и кеширование конфигурации
