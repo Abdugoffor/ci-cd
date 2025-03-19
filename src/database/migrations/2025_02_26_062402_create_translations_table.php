@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('slug');
             $table->jsonb('name');
-            $table->string('default');
+            $table->string('default')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
