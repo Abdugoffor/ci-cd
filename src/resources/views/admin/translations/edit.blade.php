@@ -22,7 +22,7 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('standard') }}</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" name="default" value="{{ $model->default }}"
+                                <input type="text" class="form-control" name="default" value="{{ $model->name['default'] }}"
                                     placeholder="{{ getTranslation('standard') }}">
                                 @error('default')
                                     <p style="color: red;">{{ $message }}</p>

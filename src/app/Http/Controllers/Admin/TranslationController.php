@@ -18,7 +18,7 @@ class TranslationController extends Controller
 
     public function search(Request $request)
     {
-        $query  = Translation::query();
+        $query = Translation::query();
 
         $locale = app()->getLocale();
 
@@ -41,7 +41,8 @@ class TranslationController extends Controller
     {
         $data = $request->all();
 
-        $data['slug'] = slug($request->default);
+        $data['slug']            = slug($request->default);
+        $data['name']['default'] = $request->default;
 
         Translation::create($data);
 
@@ -59,8 +60,8 @@ class TranslationController extends Controller
 
     public function update(TranslationUpdateRequest $request, Translation $translation)
     {
-        $data = $request->all();
-
+        $data                    = $request->all();
+        $data['name']['default'] = $request->default;
         $translation->update($data);
 
         cacheClear($translation->slug);
