@@ -49,5 +49,4 @@ services:
 
 volumes:
   pgdata:
-    external: true
   fide_project:
