@@ -18,6 +18,7 @@ class SendPasswordJob implements ShouldQueue
         $this->code  = $code;
         // test uchun 
         // rerer
+        // ergerger
     }
 
     /**
