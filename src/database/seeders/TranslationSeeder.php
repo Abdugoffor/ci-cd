@@ -1031,7 +1031,13 @@ class TranslationSeeder extends Seeder
             ],
 
         ];
+        foreach ($translations as $translation) {
+            $existingTranslation = Translation::where('slug', $translation['slug'])->first();
 
-        Translation::insert($translations);
+            if (! $existingTranslation) {
+                Translation::create($translation);
+            }
+        }
+        // Translation::insert($translations);
     }
 }

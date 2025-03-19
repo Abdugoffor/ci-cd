@@ -96,7 +96,8 @@
                                     @foreach (getLanguage() as $model)
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab13{{ $model->id }}">
-                                            <input type="text" class="form-control" name="description[{{ $model->slug }}]"
+                                            <input type="text" class="form-control"
+                                                name="description[{{ $model->slug }}]"
                                                 value="{{ old('description.' . $model->slug) }}"
                                                 placeholder="{{ $model->name }}">
                                             @error('description.' . $model->slug)
@@ -143,22 +144,30 @@
                             <label class="col-form-label col-lg-2">{{ getTranslation('photo') }} 1</label>
                             <div class="col-lg-10">
                                 <input type="file" class="form-control" name="photo_1" value="{{ old('photo_1') }}"
-                                    placeholder="{{ getTranslation('photo') }}">
+                                    placeholder="{{ getTranslation('photo') }}"
+                                    onchange="previewImage(event, 'imagePreview')">
                                 @error('photo_1')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-
+                                <div class="mt-2">
+                                    <img id="imagePreview" src="" alt="imagePreview" class="img-thumbnail d-none"
+                                        width="200">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('photo') }} 2</label>
                             <div class="col-lg-10">
                                 <input type="file" class="form-control" name="photo_2" value="{{ old('photo_2') }}"
-                                    placeholder="{{ getTranslation('photo') }}">
+                                    placeholder="{{ getTranslation('photo') }}"
+                                    onchange="previewImage(event, 'imagePreview2')">
                                 @error('photo_2')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-
+                                <div class="mt-2">
+                                    <img id="imagePreview2" src="" alt="imagePreview"
+                                        class="img-thumbnail d-none" width="200">
+                                </div>
                             </div>
                         </div>
                     </fieldset>

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,36 +15,33 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name'  => 'admin',
-            'email' => 'admin@gmail.com',
-            'role'  => 'admin',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'admin@gmail.com'],
+            ['name' => 'admin', 'role' => 'admin', 'password' => Hash::make('12345678')]
+        );
 
-        User::factory()->create([
-            'name'  => 'user',
-            'email' => 'user@gmail.com',
-            'role'  => 'user',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'user@gmail.com'],
+            ['name' => 'user', 'role' => 'user', 'password' => Hash::make('12345678')]
+        );
 
-        User::factory()->create([
-            'name'  => 'moderator',
-            'email' => 'moderator@gmail.com',
-            'role'  => 'moderator',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'moderator@gmail.com'],
+            ['name' => 'moderator', 'role' => 'moderator', 'password' => Hash::make('12345678')]
+        );
 
         $this->call([
-            CategorySeeder::class,
-            AccreditationCategorySeeder::class,
-            CountriesSeeder::class,
-            LanguageSeeder::class,
             TranslationSeeder::class,
-            MenyuSeeder::class,
-            NewsSeeder::class,
-            HotelSeeder::class,
-            TurnirSeeder::class,
-            PartnerSeeder::class,
-            MediaSeeder::class,
+            // CategorySeeder::class,
+            // AccreditationCategorySeeder::class,
+            // CountriesSeeder::class,
+            // LanguageSeeder::class,
+            // MenyuSeeder::class,
+            // NewsSeeder::class,
+            // HotelSeeder::class,
+            // TurnirSeeder::class,
+            // PartnerSeeder::class,
+            // MediaSeeder::class,
         ]);
     }
 }

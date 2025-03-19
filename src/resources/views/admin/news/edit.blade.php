@@ -129,10 +129,15 @@
                             <label class="col-form-label col-lg-2">{{ getTranslation('photo') }}</label>
                             <div class="col-lg-10">
                                 <input type="file" class="form-control" name="photo" value="{{ $news->photo }}"
-                                    placeholder="{{ getTranslation('photo') }}">
+                                    placeholder="{{ getTranslation('photo') }}"
+                                    onchange="previewImage(event, 'imagePreview')">
                                 @error('photo')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
+                                <div class="mt-2">
+                                    <img id="imagePreview" src="" alt="imagePreview" class="img-thumbnail d-none"
+                                        width="200">
+                                </div>
                                 <img src="{{ asset($news->photo) }}" width="100px" class="mt-1" alt="">
 
                             </div>

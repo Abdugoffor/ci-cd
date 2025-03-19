@@ -184,7 +184,11 @@
                             <label class="col-form-label col-lg-2">{{ getTranslation('logo') }}</label>
                             <div class="col-lg-10">
                                 <input class="form-control" type="file" value="{{ $tournament->logo }}"
-                                    name="logo">
+                                    name="logo" onchange="previewImage(event, 'imagePreview')">
+                                <div class="mt-2">
+                                    <img id="imagePreview" src="" alt="imagePreview"
+                                        class="img-thumbnail d-none" width="200">
+                                </div>
                                 <img src="{{ asset($tournament->logo) }}" width="100px" class="m-1" alt="">
                                 @error('logo')
                                     <p style="color: red;">{{ $message }}</p>

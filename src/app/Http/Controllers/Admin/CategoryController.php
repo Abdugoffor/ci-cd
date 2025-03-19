@@ -79,7 +79,8 @@ class CategoryController extends Controller
     public function status(Category $category)
     {
         $category->update(['is_active' => ! $category->is_active]);
-        return back()->with('notification', getTranslation('notification'));
+        return $category;
+        // return back()->with('notification', getTranslation('notification'));
     }
 
 }

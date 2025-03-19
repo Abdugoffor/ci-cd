@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('title') }}</label>
                             <div class="card-body">
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('description') }}</label>
                             <div class="card-body">
@@ -91,7 +91,8 @@
                                     @foreach (getLanguage() as $model)
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab123{{ $model->id }}">
-                                            <input type="text" class="form-control" name="description[{{ $model->slug }}]"
+                                            <input type="text" class="form-control"
+                                                name="description[{{ $model->slug }}]"
                                                 value="{{ $media->description[$model->slug] ?? $media->description['default'] }}"
                                                 placeholder="{{ $model->name }}">
                                             @error($model->slug)
@@ -102,7 +103,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('text') }}</label>
                             <div class="card-body">
@@ -136,10 +137,15 @@
                             <label class="col-form-label col-lg-2">{{ getTranslation('photo') }} 1</label>
                             <div class="col-lg-10">
                                 <input type="file" class="form-control" name="photo_1" value="{{ old('photo') }}"
-                                    placeholder="{{ getTranslation('photo') }}">
+                                    placeholder="{{ getTranslation('photo') }}"
+                                    onchange="previewImage(event, 'imagePreview')">
                                 @error('photo_1')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
+                                <div class="mt-2">
+                                    <img id="imagePreview" src="" alt="imagePreview" class="img-thumbnail d-none"
+                                        width="200">
+                                </div>
                                 <img src="{{ asset($media->photo_1) }}" width="100px" class="mt-1" alt="">
                             </div>
                         </div>
@@ -147,10 +153,15 @@
                             <label class="col-form-label col-lg-2">{{ getTranslation('photo') }} 2</label>
                             <div class="col-lg-10">
                                 <input type="file" class="form-control" name="photo_2" value="{{ old('photo') }}"
-                                    placeholder="{{ getTranslation('photo') }}">
+                                    placeholder="{{ getTranslation('photo') }}"
+                                    onchange="previewImage(event, 'imagePreview2')">
                                 @error('photo_2')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
+                                <div class="mt-2">
+                                    <img id="imagePreview2" src="" alt="imagePreview"
+                                        class="img-thumbnail d-none" width="200">
+                                </div>
                                 <img src="{{ asset($media->photo_2) }}" width="100px" class="mt-1" alt="">
                             </div>
                         </div>

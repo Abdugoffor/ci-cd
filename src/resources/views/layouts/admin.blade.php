@@ -358,5 +358,21 @@
     <!-- /page content -->
 
 </body>
+<script>
+    function previewImage(event, id) {
+        var input = event.target;
+        var reader = new FileReader();
+
+        reader.onload = function() {
+            var img = document.getElementById(id);
+            img.src = reader.result;
+            img.classList.remove('d-none'); // Rasmni ko'rsatish
+        };
+
+        if (input.files && input.files[0]) {
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 
 </html>

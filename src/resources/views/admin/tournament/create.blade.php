@@ -47,7 +47,7 @@
 
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('title') }}</label>
                             <div class="card-body">
@@ -162,8 +162,8 @@
                                     @foreach (getLanguage() as $model)
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab12{{ $model->id }}">
-                                            <textarea class="form-control summernote" name="description[{{ $model->slug }}]" data-dashlane-classification="other"
-                                                placeholder="{{ $model->name }}">{{ old('description.' . $model->slug) }}</textarea>
+                                            <textarea class="form-control summernote" name="description[{{ $model->slug }}]"
+                                                data-dashlane-classification="other" placeholder="{{ $model->name }}">{{ old('description.' . $model->slug) }}</textarea>
                                             @error('description.' . $model->slug)
                                                 <p style="color:red;">
                                                     {{ $message }}
@@ -178,10 +178,15 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('logo') }}</label>
                             <div class="col-lg-10">
-                                <input class="form-control" type="file" name="logo">
+                                <input class="form-control" type="file" name="logo"
+                                    onchange="previewImage(event, 'imagePreview')">
                                 @error('logo')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
+                                <div class="mt-2">
+                                    <img id="imagePreview" src="" alt="imagePreview"
+                                        class="img-thumbnail d-none" width="200">
+                                </div>
                             </div>
                         </div>
                     </fieldset>
