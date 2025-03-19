@@ -43,7 +43,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
     Route::get('/hotel/{hotel}', [ClientHotelController::class, 'index'])->name('hotel.index');
     Route::get('/news-latest/{currentNews}', [ClientNewsController::class, 'index'])->name('news.latest');
 
-    Route::get('/admin-dashboard', [LoginController::class, 'index'])->name('login');
+    Route::get('/admin', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('loginSubmit');
 
     Route::get('/lang/{lang}', [IndexController::class, 'changeLanguage'])->name('change.language');
