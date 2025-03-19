@@ -9,8 +9,8 @@
                 <div>
                     <img src="{{ asset('frontend/assets/register-page/chess-logo.svg') }}" alt="chess-logo" />
                     <div class="register-logo-text">
-                        <span>46th FIDE CHESS OLYMPIAD</span>
-                        <strong>SAMARKAND 2025</strong>
+                        <span>{{ getLocale($tournament->name) }}</span>
+                        <strong>{{ getLocale($tournament->title) }}</strong>
                     </div>
                 </div>
             </div>

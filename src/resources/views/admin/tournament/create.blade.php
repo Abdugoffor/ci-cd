@@ -54,7 +54,7 @@
                                 <ul class="nav nav-tabs">
                                     @foreach (getLanguage() as $model)
                                         <li class="nav-item">
-                                            <a href="#basic-tab1{{ $model->id }}"
+                                            <a href="#basic-tab156{{ $model->id }}"
                                                 class="nav-link {{ $loop->first ? 'active' : '' }}"
                                                 data-toggle="tab">{{ $model->name }}
                                             </a>
@@ -64,7 +64,7 @@
                                 <div class="tab-content">
                                     @foreach (getLanguage() as $model)
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                            id="basic-tab1{{ $model->id }}">
+                                            id="basic-tab156{{ $model->id }}">
                                             <input type="text" class="form-control" name="title[{{ $model->slug }}]"
                                                 value="{{ old('title.' . $model->slug) }}"
                                                 placeholder="{{ $model->name }}">

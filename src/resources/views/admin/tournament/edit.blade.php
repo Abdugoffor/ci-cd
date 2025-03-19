@@ -11,7 +11,8 @@
         <div class="card mt-2">
             <div class="card-body">
 
-                <form action="{{ route('tournaments.update', $tournament->id,  false) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('tournaments.update', $tournament->id, false) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <fieldset class="mb-3">
@@ -44,6 +45,36 @@
                                         </div>
                                     @endforeach
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">{{ getTranslation('title') }}</label>
+                            <div class="card-body">
+                                <ul class="nav nav-tabs">
+                                    @foreach (getLanguage() as $model)
+                                        <li class="nav-item">
+                                            <a href="#basic-tab156{{ $model->id }}"
+                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
+                                                data-toggle="tab">{{ $model->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <div class="tab-content">
+                                    @foreach (getLanguage() as $model)
+                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                            id="basic-tab156{{ $model->id }}">
+                                            <input type="text" class="form-control" name="title[{{ $model->slug }}]"
+                                                value="{{ $tournament->title[$model->slug] ?? $tournament->title['default'] }}"
+                                                placeholder="{{ $model->name }}">
+                                            @error('title.' . $model->slug)
+                                                <p style="color: red;">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    @endforeach
+                                </div>
+
                             </div>
                         </div>
 
@@ -136,8 +167,8 @@
                                     @foreach (getLanguage() as $model)
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                             id="basic-tab12{{ $model->id }}">
-                                            <textarea class="form-control summernote" name="description[{{ $model->slug }}]" data-dashlane-classification="other"
-                                                placeholder="{{ $model->name }}">{{ $tournament->description[$model->slug] ?? $tournament->description['default'] }}</textarea>
+                                            <textarea class="form-control summernote" name="description[{{ $model->slug }}]"
+                                                data-dashlane-classification="other" placeholder="{{ $model->name }}">{{ $tournament->description[$model->slug] ?? $tournament->description['default'] }}</textarea>
                                             @error('description.' . $model->slug)
                                                 <p style="color:red;">
                                                     {{ $message }}
@@ -152,7 +183,8 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">{{ getTranslation('logo') }}</label>
                             <div class="col-lg-10">
-                                <input class="form-control" type="file" value="{{ $tournament->logo }}" name="logo">
+                                <input class="form-control" type="file" value="{{ $tournament->logo }}"
+                                    name="logo">
                                 <img src="{{ asset($tournament->logo) }}" width="100px" class="m-1" alt="">
                                 @error('logo')
                                     <p style="color: red;">{{ $message }}</p>

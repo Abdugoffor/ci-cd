@@ -91,7 +91,9 @@ class ApplicationController extends Controller
             return redirect('/');
         }
 
-        return view('client.verify_email', ['model' => $model]);
+        $tournament = Tournament::findOrFail($model->tournament_id);
+
+        return view('client.verify_email', ['model' => $model, 'tournament' => $tournament]);
     }
     public function createAdditional(Participant $model)
     {

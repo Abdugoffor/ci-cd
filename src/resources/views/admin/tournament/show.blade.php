@@ -20,6 +20,10 @@
                             <th>{{ getLocale($model->name) }}</th>
                         </tr>
                         <tr>
+                            <th>{{ getTranslation('title') }}</th>
+                            <th>{{ getLocale($model->title) }}</th>
+                        </tr>
+                        <tr>
                             <th>{{ getTranslation('description') }}</th>
                             <th>{!! getLocale($model->description) !!}</th>
                         </tr>

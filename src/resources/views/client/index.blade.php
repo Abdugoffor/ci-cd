@@ -78,18 +78,18 @@
                 </div>
                 <div class="forms-div">
                     @if ($model)
-                        <form action="{{ route('application', $model->id, false) }}" id="fideForm">
+                        <form action="{{ route('application', $model->id, false) }}" id="fideForm1">
                             @csrf
                             <label for="fide-id">FIDE ID</label>
                             <div class="register-section">
                                 <input type="text" name="fide_id" value="{{ old('fide_id') }}" id="fide-id"
                                     class="input" />
-                                <button type="submit" class="btn form-btn">CHECK</button>
+                                <button type="submit" class="btn form-btn">{{ getTranslation('check') }}</button>
                             </div>
                         </form>
-                        <form action="{{ route('application', $model->id, false) }}" id="fideForm">
+                        <form action="{{ route('application', $model->id, false) }}" id="fideForm2">
                             @csrf
-                            <button type="submit" class="btn">Регистрироватся как гость</button>
+                            <button type="submit" class="btn">{{ getTranslation('register_as_guest') }}</button>
                         </form>
                         <br>
                     @endif
@@ -98,13 +98,13 @@
                     <p style="color: red; font-size: 12px">{{ $message }}</p>
                 @enderror
             </div>
-            <div class="modal" id="modal">
+            {{-- <div class="modal" id="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <h2>FIDE ID Check</h2>
                     <p>Ваш FIDE ID успешно проверен!</p>
                 </div>
-            </div>
+            </div> --}}
             <!-- register update end  -->
         </section>
 
