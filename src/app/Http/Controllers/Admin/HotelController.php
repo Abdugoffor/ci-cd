@@ -63,12 +63,11 @@ class HotelController extends Controller
 
         $data['description']['default'] = reset($data['description']);
         $data['text']['default']        = reset($data['text']);
-        // dd($data['text']['default']);
 
         if ($request->hasFile('photo')) {
             $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
-
+        
         Hotel::create($data);
 
         return redirect()->route('hotels.index')->with('notification', getTranslation('notification'));

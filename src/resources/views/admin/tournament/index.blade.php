@@ -35,29 +35,27 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table text-nowrap">
+                        <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th>№</th>
-                                    <th>{{ getTranslation('name') }}</th>
-                                    <th>{{ getTranslation('competition-type') }}</th>
-                                    <th>{{ getTranslation('country') }}</th>
-                                    <th>{{ getTranslation('start-of-registration') }}</th>
-                                    <th>{{ getTranslation('registration-completed') }}</th>
-                                    <th>{{ getTranslation('start') }}</th>
-                                    <th>{{ getTranslation('finished') }}</th>
-                                    <th>{{ getTranslation('status') }}</th>
-                                    <th>{{ getTranslation('function') }}</th>
+                                    <th class="text-center">№</th>
+                                    <th class="text-center">{{ getTranslation('name') }}</th>
+                                    <th class="text-center">{{ getTranslation('competition-type') }}</th>
+                                    <th class="text-center">{{ getTranslation('country') }}</th>
+                                    <th class="text-center">{{ getTranslation('start-of-registration') }}</th>
+                                    <th class="text-center">{{ getTranslation('start') }}</th>
+                                    <th class="text-center">{{ getTranslation('status') }}</th>
+                                    <th class="text-center">{{ getTranslation('function') }}</th>
                                 </tr>
                                 <form action="{{ route('tournaments.search', [], false) }}" method="get">
                                     <tr>
-                                        <th></th>
-                                        <th>
+                                        <th class="text-center"></th>
+                                        <th class="text-center">
                                             <input type="text" class="form-control" name="name"
                                                 placeholder="{{ getTranslation('name') }}"
                                                 value="{{ old('name', request('name')) }}">
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             <select class="form-control custom-select" name="category_id"
                                                 id="select_category">
                                                 <option value="">{{ getTranslation('all_categories') }}</option>
@@ -69,7 +67,7 @@
                                                 @endforeach
                                             </select>
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             <select class="form-control custom-select" name="country_id"
                                                 id="select_country">
                                                 <option></option>
@@ -81,23 +79,15 @@
                                                 @endforeach
                                             </select>
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             <input type="date" class="form-control" name="registration_start"
                                                 value="{{ old('registration_start', request('registration_start')) }}">
                                         </th>
-                                        <th>
-                                            <input type="date" class="form-control" name="registration_end"
-                                                value="{{ old('registration_end', request('registration_end')) }}">
-                                        </th>
-                                        <th>
+                                        <th class="text-center">
                                             <input type="date" class="form-control" name="start_date"
                                                 value="{{ old('start_date', request('start_date')) }}">
                                         </th>
-                                        <th>
-                                            <input type="date" class="form-control" name="end_date"
-                                                value="{{ old('end_date', request('end_date')) }}">
-                                        </th>
-                                        <th>
+                                        <th class="text-center">
                                             <select class="form-control custom-select" name="status" id="select_status">
                                                 <option value="">{{ getTranslation('all_statuses') }}</option>
                                                 <option value="pending"
@@ -114,7 +104,7 @@
                                                 </option>
                                             </select>
                                         </th>
-                                        <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                        <th class="text-center"><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
                                     </tr>
                                 </form>
                             </thead>
@@ -145,14 +135,8 @@
                                             {{ $model->registration_start->format('d-m-Y') }}
                                         </td>
                                         <td>
-                                            {{ $model->registration_end->format('d-m-Y') }}
-                                        </td>
-                                        <td>
 
                                             {{ $model->start_date->format('d-m-Y') }}
-                                        </td>
-                                        <td>
-                                            {{ $model->end_date->format('d-m-Y') }}
                                         </td>
                                         <td>
                                             <span class="badge badge-teal badge-pill ml-auto">
@@ -198,11 +182,11 @@
                                             </button>
                                             <!-- Full width modal -->
                                             <div id="modal_full{{ $model->id }}" class="modal fade" tabindex="-1">
-                                                <div class="modal-dialog">
+                                                <div class="modal-dialog modal-dialog-centered modal-sm">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">{{ getTranslation('competitions') }}
-                                                            </h5>
+                                                            {{-- <h5 class="modal-title">{{ getTranslation('competitions') }}
+                                                            </h5> --}}
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal">&times;</button>
                                                         </div>
@@ -214,14 +198,15 @@
                                                             <div class="modal-body">
                                                                 <div class="row">
                                                                     <div class="col-12">
-                                                                        <h3>{{ getTranslation('do-you-want-to-delete') }}?
+                                                                        <h3 class="text-center">
+                                                                            {{ getTranslation('do-you-want-to-delete') }}
                                                                         </h3>
                                                                     </div>
                                                                 </div>
 
                                                             </div>
 
-                                                            <div class="modal-footer">
+                                                            <div class="modal-footer d-flex justify-content-center pb-4">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-dismiss="modal"
                                                                     data-dashlane-label="true">{{ getTranslation('close') }}</button>

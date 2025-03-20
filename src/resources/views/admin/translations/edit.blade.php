@@ -12,7 +12,8 @@
 
             <div class="card-body">
 
-                <form action="{{ route('translations.update', $model->id,false) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('translations.update', $model->id, false) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <fieldset class="mb-3">
@@ -20,39 +21,35 @@
                         </legend>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('standard') }}</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" name="default" value="{{ $model->name['default'] }}"
-                                    placeholder="{{ getTranslation('standard') }}">
+                            <div class="col-lg-12">
+                                <label class="col-form-label col-lg-2">{{ getTranslation('standard') }}</label>
+                                <input type="text" class="form-control" name="default"
+                                    value="{{ $model->name['default'] }}" placeholder="{{ getTranslation('standard') }}">
                                 @error('default')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-                                <div class="card-body">
-                                    <ul class="nav nav-tabs">
-                                        @foreach (getLanguage() as $language)
-                                            <li class="nav-item">
-                                                <a href="#basic-tab1{{ $language->id }}"
-                                                    class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                    data-toggle="tab">{{ $language->name }}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                    <div class="tab-content">
-                                        @foreach (getLanguage() as $language)
-                                            <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                                id="basic-tab1{{ $language->id }}">
-                                                <input type="text" class="form-control"
-                                                    name="name[{{ $language->slug }}]"
-                                                    value="{{ $model->name[$language->slug] ?? '' }}"
-                                                    placeholder="{{ $language->name }}">
-                                                @error('name.' . $language->slug)
-                                                    <p style="color: red;">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                        @endforeach
-                                    </div>
-
+                                <ul class="nav nav-tabs mt-2">
+                                    @foreach (getLanguage() as $language)
+                                        <li class="nav-item">
+                                            <a href="#basic-tab1{{ $language->id }}"
+                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
+                                                data-toggle="tab">{{ $language->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <div class="tab-content">
+                                    @foreach (getLanguage() as $language)
+                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                            id="basic-tab1{{ $language->id }}">
+                                            <input type="text" class="form-control" name="name[{{ $language->slug }}]"
+                                                value="{{ $model->name[$language->slug] ?? '' }}"
+                                                placeholder="{{ $language->name }}">
+                                            @error('name.' . $language->slug)
+                                                <p style="color: red;">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    @endforeach
                                 </div>
 
                             </div>

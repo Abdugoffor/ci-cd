@@ -33,25 +33,23 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table text-nowrap">
+                        <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th>№</th>
-                                    <th>{{ getTranslation('standard') }}</th>
-                                    <th>{{ getTranslation('function') }}</th>
-                                    <th>{{ getTranslation('history') }}</th>
+                                    <th class="text-center">№</th>
+                                    <th class="text-center">{{ getTranslation('standard') }}</th>
+                                    <th class="text-center">{{ getTranslation('function') }}</th>
                                 </tr>
                                 <form action="{{ route('translations.search', [], false) }}" method="get">
                                     @csrf
                                     <tr>
-                                        <th></th>
-                                        <th>
+                                        <th class="text-center"></th>
+                                        <th class="text-center">
                                             <input type="text" class="form-control" name="name"
                                                 value="{{ old('name', request('name')) }}"
                                                 placeholder="{{ getTranslation('name') }}">
                                         </th>
-                                        <th></th>
-                                        <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                        <th class="text-center"><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
                                     </tr>
                                 </form>
                             </thead>
@@ -60,21 +58,18 @@
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ getLocale($model->name) }}</td>
-                                        <td>
+                                        <td class="text-center">
                                             <div class="d-inline-flex gap-2">
                                                 <a href="{{ route('translations.show', $model->id, false) }}"
                                                     class="btn btn-outline-info">
                                                     <i class="icon-eye8"></i>
                                                 </a>
                                                 <a href="{{ route('translations.edit', $model->id, false) }}"
-                                                    class="btn btn-sm btn-outline-success ml-2">
+                                                    class="btn btn-outline-success ml-2">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
-
+                                                {!! historyCheck($model) !!}
                                             </div>
-                                        </td>
-                                        <td>
-                                            {!! historyCheck($model) !!}
                                         </td>
                                     </tr>
                                 @endforeach

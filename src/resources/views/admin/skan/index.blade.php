@@ -32,70 +32,70 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <th>{{ getTranslation('name') }}</th>
+                                <th class="text-center">{{ getTranslation('name') }}</th>
                                 <td>{{ $participant->first_name }}</td>
                             </tr>
                             <tr>
-                                <th>{{ getTranslation('last-name') }}</th>
+                                <th class="text-center">{{ getTranslation('last-name') }}</th>
                                 <td>{{ $participant->last_name }}</td>
                             </tr>
                             <tr>
-                                <th>{{ getTranslation('birth-date') }}</th>
+                                <th class="text-center">{{ getTranslation('birth-date') }}</th>
                                 <td>{{ $participant->date_of_birth }}</td>
                             </tr>
                             <tr>
-                                <th>{{ getTranslation('gender') }}</th>
+                                <th class="text-center">{{ getTranslation('gender') }}</th>
                                 <td>{{ $participant->gender }}</td>
                             </tr>
                             <tr>
-                                <th>{{ getTranslation('email') }}</th>
+                                <th class="text-center">{{ getTranslation('email') }}</th>
                                 <td>{{ $participant->email }}</td>
                             </tr>
                             <tr>
-                                <th>{{ getTranslation('email-confirmed') }}
+                                <th class="text-center">{{ getTranslation('email-confirmed') }}
                                 </th>
                                 <td>{{ $participant->email_verified_at ? $participant->email_verified_at->format('d-m-Y, H:i') : '' }}
                                 </td>
                             </tr>
                             <tr>
-                                <th>{{ getTranslation('fide-id') }}</th>
+                                <th class="text-center">{{ getTranslation('fide-id') }}</th>
                                 <td>{{ $participant->fide_id }}</td>
                             </tr>
                             <tr>
-                                <th>{{ getTranslation('accreditation-category') }}
+                                <th class="text-center">{{ getTranslation('accreditation-category') }}
                                 </th>
                                 <td>
                                     {{ getLocale(optional($participant->accreditationCategory)->name) }}
                                 </td>
                             </tr>
                             <tr>
-                                <th>{{ getTranslation('citizenship') }}
+                                <th class="text-center">{{ getTranslation('citizenship') }}
                                 </th>
                                 <td>{{ optional($participant->country)->label_en }}</td>
                             </tr>
                             <tr>
-                                <th>{{ getTranslation('passport-number') }}
+                                <th class="text-center">{{ getTranslation('passport-number') }}
                                 </th>
                                 <td>{{ $participant->passport_number }}</td>
                             </tr>
                             <tr>
-                                <th>{{ getTranslation('passport-issue-date') }}
+                                <th class="text-center">{{ getTranslation('passport-issue-date') }}
                                 </th>
                                 <td>{{ $participant->passport_issue_date }}</td>
                             </tr>
                             <tr>
-                                <th>{{ getTranslation('Passport-validity-period') }}
+                                <th class="text-center">{{ getTranslation('Passport-validity-period') }}
                                 </th>
                                 <td>{{ $participant->passport_expiry_date }}</td>
                             </tr>
                             <tr>
-                                <th>{{ getTranslation('passport-issuing-authority') }}
+                                <th class="text-center">{{ getTranslation('passport-issuing-authority') }}
                                 </th>
                                 <td>{{ $participant->passport_issuing_authority }}
                                 </td>
                             </tr>
                             <tr>
-                                <th>{{ getTranslation('copy-of-passport') }}
+                                <th class="text-center">{{ getTranslation('copy-of-passport') }}
                                 </th>
                                 <td>
                                     @if ($participant->passport_copy)
@@ -107,13 +107,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>
+                                <th class="text-center">
                                     {{ getTranslation('phone') }}
                                 </th>
                                 <td>{{ $participant->phone }}</td>
                             </tr>
                             <tr>
-                                <th>
+                                <th class="text-center">
                                     {{ getTranslation('photo') }}
                                 </th>
                                 <td>
@@ -125,7 +125,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>
+                                <th class="text-center">
                                     {{ getTranslation('visa-required') }}?
                                 </th>
                                 <td>
@@ -133,7 +133,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>
+                                <th class="text-center">
                                     {{ getTranslation('arrival-date') }}
 
                                 </th>
@@ -141,7 +141,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>
+                                <th class="text-center">
                                     {{ getTranslation('departure-date') }}
 
                                 </th>
@@ -149,7 +149,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>{{ getTranslation('accommodation-details') }}
+                                <th class="text-center">{{ getTranslation('accommodation-details') }}
 
                                 </th>
                                 <td>
@@ -157,13 +157,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>
+                                <th class="text-center">
                                     {{ getTranslation('pcr-test-details') }}
                                 </th>
                                 <td>{{ $participant->pcr_test_details }}</td>
                             </tr>
                             <tr>
-                                <th>
+                                <th class="text-center">
                                     {{ getTranslation('status') }}
 
                                 </th>

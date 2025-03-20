@@ -24,6 +24,7 @@ class ContactStoreRequest extends FormRequest
             'title' => 'required|array',
             'path'  => 'required|string',
             'photo'   => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'is_active' => 'required|boolean',
         ];
 
         $rules = array_merge($rules, validateTranslation('title'));

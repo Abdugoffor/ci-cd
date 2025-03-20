@@ -22,6 +22,7 @@ class AccreditationCategoryStoreRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|array',
+            'is_active' => 'required|boolean',
         ];
 
         $rules = array_merge($rules, validateTranslation('name'));

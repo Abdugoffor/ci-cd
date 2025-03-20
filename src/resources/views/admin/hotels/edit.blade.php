@@ -17,150 +17,107 @@
                     <fieldset class="mb-3">
                         <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('hotels') }}
                         </legend>
-
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('title') }}</label>
                             <div class="card-body">
-                                <ul class="nav nav-tabs">
+                                <!-- Tablar qismi -->
+                                <ul class="nav nav-tabs mt-2">
                                     @foreach (getLanguage() as $model)
                                         <li class="nav-item">
-                                            <a href="#basic-tab1{{ $model->id }}"
+                                            <a href="#tab-{{ $model->id }}"
                                                 class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                data-toggle="tab">{{ $model->name }}
-                                            </a>
+                                                data-toggle="tab">{{ $model->name }}</a>
                                         </li>
                                     @endforeach
                                 </ul>
+
+                                <!-- Tab ichidagi kontent -->
                                 <div class="tab-content">
                                     @foreach (getLanguage() as $model)
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                            id="basic-tab1{{ $model->id }}">
+                                            id="tab-{{ $model->id }}">
+                                            <!-- Title maydoni -->
+                                            <label class="col-form-label col-lg-2">{{ getTranslation('title') }}</label>
                                             <input type="text" class="form-control" name="title[{{ $model->slug }}]"
-                                                value="{{ $hotel->title[$model->slug] ?? $hotel->title['default'] }}"
+                                                value="{{ old('title.' . $model->slug, $hotel->title[$model->slug] ?? '') }}"
                                                 placeholder="{{ $model->name }}">
                                             @error('title.' . $model->slug)
+                                                <p style="color: red;">{{ $message }}</p>
+                                            @enderror
+
+                                            <!-- Description maydoni -->
+                                            <label
+                                                class="col-form-label col-lg-2">{{ getTranslation('description') }}</label>
+                                            <textarea class="form-control" name="description[{{ $model->slug }}]" data-dashlane-classification="other"
+                                                placeholder="{{ $model->name }}">{{ old('description.' . $model->slug, $hotel->description[$model->slug] ?? '') }}</textarea>
+                                            @error('description.' . $model->slug)
+                                                <p style="color: red;">{{ $message }}</p>
+                                            @enderror
+
+                                            <!-- Text maydoni -->
+                                            <label class="col-form-label col-lg-2">{{ getTranslation('text') }}</label>
+                                            <textarea class="form-control summernote" name="text[{{ $model->slug }}]" data-dashlane-classification="other"
+                                                placeholder="{{ $model->name }}">{{ old('text.' . $model->slug, $hotel->text[$model->slug] ?? '') }}</textarea>
+                                            @error('text.' . $model->slug)
                                                 <p style="color: red;">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     @endforeach
                                 </div>
 
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('description') }}</label>
-                            <div class="card-body">
-                                <ul class="nav nav-tabs">
-                                    @foreach (getLanguage() as $model)
-                                        <li class="nav-item">
-                                            <a href="#basic-tab12{{ $model->id }}"
-                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                data-toggle="tab">{{ $model->name }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                                <div class="tab-content">
-                                    @foreach (getLanguage() as $model)
-                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                            id="basic-tab12{{ $model->id }}">
-                                            <textarea class="form-control" name="description[{{ $model->slug }}]" data-dashlane-classification="other"
-                                                placeholder="{{ $model->name }}">{{ $hotel->description[$model->slug] ?? $hotel->description['default'] }}</textarea>
-                                            @error('description.' . $model->slug)
-                                                <p style="color:red;">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
-                                        </div>
-                                    @endforeach
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('text') }}</label>
-                            <div class="card-body">
-                                <ul class="nav nav-tabs">
-                                    @foreach (getLanguage() as $model)
-                                        <li class="nav-item">
-                                            <a href="#basic-tab123{{ $model->id }}"
-                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                data-toggle="tab">{{ $model->name }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                                <div class="tab-content">
-                                    @foreach (getLanguage() as $model)
-                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                            id="basic-tab123{{ $model->id }}">
-                                            <textarea class="form-control summernote" name="text[{{ $model->slug }}]" data-dashlane-classification="other"
-                                                placeholder="{{ $model->name }}">{{ $hotel->text[$model->slug] ?? $hotel->text['default'] }}</textarea>
-                                            @error('text.' . $model->slug)
-                                                <p style="color:red;">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
-                                        </div>
-                                    @endforeach
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('phone') }}</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" name="phone" value="{{ $hotel->phone }}"
+                                <!-- Phone maydoni (ko‘p tilli emas) -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('phone') }}</label>
+                                <input type="text" class="form-control" name="phone"
+                                    value="{{ old('phone', $hotel->phone ?? '') }}"
                                     placeholder="{{ getTranslation('phone') }}">
                                 @error('phone')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
 
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('rating') }}</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" name="rating" value="{{ $hotel->rating }}"
+                                <!-- Rating maydoni (ko‘p tilli emas) -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('rating') }}</label>
+                                <input type="text" class="form-control" name="rating"
+                                    value="{{ old('rating', $hotel->rating ?? '') }}"
                                     placeholder="{{ getTranslation('rating') }}">
                                 @error('rating')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
 
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('location') }}</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" name="location" value="{{ $hotel->location }}"
+                                <!-- Location maydoni (ko‘p tilli emas) -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('location') }}</label>
+                                <input type="text" class="form-control" name="location"
+                                    value="{{ old('location', $hotel->location ?? '') }}"
                                     placeholder="{{ getTranslation('location') }}">
                                 @error('location')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
 
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('photo') }}</label>
-                            <div class="col-lg-10">
-                                <input type="file" class="form-control" name="photo" value="{{ $hotel->photo }}"
+                                <!-- Photo maydoni (ko‘p tilli emas) -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('photo') }}</label>
+                                <input type="file" class="form-control" name="photo"
                                     placeholder="{{ getTranslation('photo') }}" id="photo"
                                     onchange="previewImage(event,'imagePreview')">
                                 @error('photo')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
                                 <div class="mt-2">
-                                    <img id="imagePreview" src="" alt="imagePreview" class="img-thumbnail d-none"
-                                        width="200">
+                                    @if ($hotel->photo)
+                                        <img id="imagePreview" src="{{ asset($hotel->photo) }}" alt="imagePreview"
+                                            class="img-thumbnail" width="200">
+                                    @else
+                                        <img id="imagePreview" src="" alt="imagePreview"
+                                            class="img-thumbnail d-none" width="200">
+                                    @endif
                                 </div>
-                                <img src="{{ asset($hotel->photo) }}" width="100px" class="mt-1" alt="">
 
+                                <!-- Is_active holat kaliti -->
+                                <div class="header-elements mt-3">
+                                    <label class="custom-control custom-switch custom-control-right">
+                                        <input type="hidden" name="is_active" value="0">
+                                        <input type="checkbox" name="is_active" class="custom-control-input" value="1"
+                                            {{ $hotel->is_active == 1 ? 'checked' : '' }}>
+                                        <span class="custom-control-label">{{ getTranslation('status') }}</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </fieldset>

@@ -25,6 +25,7 @@ class UserUpdateRequest extends FormRequest
             'role'     => 'required|string|max:255',
             'email'    => 'required|email|max:255|unique:users,email,' . $this->user->id,
             'password' => 'nullable|string|min:8|confirmed',
+            'status' => 'required|boolean',
         ];
     }
 }

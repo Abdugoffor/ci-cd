@@ -48,7 +48,7 @@ class CategoryController extends Controller
         $data['description']['default'] = reset($data['description']);
 
         $data['slug'] = slug($data['name']['default']);
-
+        // dd($data);
         Category::create($data);
 
         return redirect()->route('categories.index')->with('notification', getTranslation('notification'));
@@ -74,13 +74,13 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('notification', getTranslation('notification'));
     }
     public function status(Category $category)
     {
         $category->update(['is_active' => ! $category->is_active]);
-        return $category;
-        // return back()->with('notification', getTranslation('notification'));
+        // return $category;
+        return back()->with('notification', getTranslation('notification'));
     }
 
 }

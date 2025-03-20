@@ -7,38 +7,38 @@
             <a href="{{ route('news.index', [], false) }}" class="btn btn-sm btn-outline-success">
                 {{ getTranslation('back') }}
             </a>
-            <a href="{{ route('news.edit', $model->id, false) }}" class="btn btn-sm btn-outline-success ml-2">
+            <a href="{{ route('news.edit', $model->id, false) }}" class="btn btn-outline-success ml-2">
                 {{ getTranslation('change') }}
             </a>
         </div>
         <div class="card mt-2">
             <div class="card-body">
-                <table class="table text-nowrap">
+                <table class="table text-nowrap table-bordered">
                     <tbody>
                         <tr>
-                            <th>{{ getTranslation('title') }}</th>
+                            <th class="text-center">{{ getTranslation('title') }}</th>
                             <td>{{ getLocale($model->title) }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('description') }}</th>
+                            <th class="text-center">{{ getTranslation('description') }}</th>
                             <td>{{ getLocale($model->description) }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('text') }}</th>
+                            <th class="text-center">{{ getTranslation('text') }}</th>
                             <td>{!! getLocale($model->text) !!}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('menus') }}</th>
+                            <th class="text-center">{{ getTranslation('menus') }}</th>
                             <td>{{ getLocale($model->menyu->name) }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('photo') }}</th>
+                            <th class="text-center">{{ getTranslation('photo') }}</th>
                             <td>
                                 <img src="{{ asset($model->photo) }}" width="100px" alt="">
                             </td>
                         </tr>
                         <tr>
-                            <th>
+                            <th class="text-center">
                                 {{ getTranslation('status') }}
                             </th>
                             <td>
@@ -49,12 +49,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('created') }}</th>
-                            <th>{{ $model->created_at->format('d-m-Y, H:i') }}</th>
+                            <th class="text-center">{{ getTranslation('created') }}</th>
+                            <th class="text-center">{{ $model->created_at->format('d-m-Y, H:i') }}</th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('change') }}</th>
-                            <th>{{ $model->updated_at->format('d-m-Y, H:i') }}</th>
+                            <th class="text-center">{{ getTranslation('change') }}</th>
+                            <th class="text-center">{{ $model->updated_at->format('d-m-Y, H:i') }}</th>
                         </tr>
                     </tbody>
                 </table>

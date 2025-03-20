@@ -23,6 +23,7 @@ class CategoryStoreRequest extends FormRequest
         $rules = [
             'name'        => 'required|array',
             'description' => 'required|array',
+            'is_active'   => 'required|boolean',
         ];
 
         $rules = array_merge($rules, validateTranslation('name'), validateTranslation('description'));

@@ -69,7 +69,7 @@ class NewsController extends Controller
 
             $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
-
+        // dd($data);
         News::create($data);
 
         return redirect()->route('news.index')->with('notification', getTranslation('notification'));

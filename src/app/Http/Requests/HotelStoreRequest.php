@@ -28,6 +28,7 @@ class HotelStoreRequest extends FormRequest
             'rating'      => 'required|numeric|max:5',
             'location'    => 'required|string',
             'phone'       => 'required|string',
+            'is_active'   => 'required|boolean',
         ];
 
         $rules = array_merge($rules, validateTranslation('title'), validateTranslation('description'), validateTranslation('text'));

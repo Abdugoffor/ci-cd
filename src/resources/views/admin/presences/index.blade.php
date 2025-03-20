@@ -15,27 +15,27 @@
                 @endif
                 <div class="card">
                     <div class="table-responsive">
-                        <table class="table text-nowrap">
+                        <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th>№</th>
-                                    <th>{{ getTranslation('name') }}</th>
-                                    <th>{{ getTranslation('arrival-date') }}</th>
-                                    <th></th>
+                                    <th class="text-center">№</th>
+                                    <th class="text-center">{{ getTranslation('name') }}</th>
+                                    <th class="text-center">{{ getTranslation('arrival-date') }}</th>
+                                    <th class="text-center"></th>
                                 </tr>
                                 <form action="{{ route('presence.index', [], false) }}" method="get">
                                     @csrf
                                     <tr>
-                                        <th></th>
-                                        <th>
+                                        <th class="text-center"></th>
+                                        <th class="text-center">
                                             <input type="text" class="form-control" name="name"
                                                 placeholder="{{ getTranslation('name') }}"
                                                 value="{{ old('name', request('name')) }}">
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             <input type="date" class="form-control" name="date" value="{{ old('date', request('date')) }}">
                                         </th>
-                                        <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                        <th class="text-center"><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
                                     </tr>
                                 </form>
                             </thead>

@@ -7,28 +7,28 @@
             <a href="{{ route('users.index', [], false) }}" class="btn btn-sm btn-outline-success">
                 {{ getTranslation('back') }}
             </a>
-            <a href="{{ route('users.edit', $model->id, false) }}" class="btn btn-sm btn-outline-success ml-2">
+            <a href="{{ route('users.edit', $model->id, false) }}" class="btn btn-outline-success ml-2">
                 {{ getTranslation('change') }}
             </a>
         </div>
         <div class="card mt-2">
             <div class="card-body">
-                <table class="table text-nowrap">
+                <table class="table text-nowrap table-bordered">
                     <tbody>
                         <tr>
-                            <th>{{ getTranslation('name') }}</th>
+                            <th class="text-center">{{ getTranslation('name') }}</th>
                             <td>{{ $model->name }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('role') }}</th>
+                            <th class="text-center">{{ getTranslation('role') }}</th>
                             <td>{{ $model->role }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('email') }}</th>
+                            <th class="text-center">{{ getTranslation('email') }}</th>
                             <td>{{ $model->email }}</td>
                         </tr>
                         <tr>
-                            <th>
+                            <th class="text-center">
                                 {{ getTranslation('status') }}
                             </th>
                             <td>
@@ -39,12 +39,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('created') }}</th>
-                            <th>{{ $model->created_at->format('d-m-Y, H:i') }}</th>
+                            <th class="text-center">{{ getTranslation('created') }}</th>
+                            <th class="text-center">{{ $model->created_at->format('d-m-Y, H:i') }}</th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('change') }}</th>
-                            <th>{{ $model->updated_at->format('d-m-Y, H:i') }}</th>
+                            <th class="text-center">{{ getTranslation('change') }}</th>
+                            <th class="text-center">{{ $model->updated_at->format('d-m-Y, H:i') }}</th>
                         </tr>
                     </tbody>
                 </table>

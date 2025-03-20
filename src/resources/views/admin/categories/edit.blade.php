@@ -12,70 +12,61 @@
 
             <div class="card-body">
 
-                <form action="{{ route('categories.update', $category->id, false) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('categories.update', $category->id, false) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <fieldset class="mb-3">
                         <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('category') }}
                         </legend>
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('name') }}</label>
                             <div class="card-body">
                                 <ul class="nav nav-tabs">
                                     @foreach (getLanguage() as $model)
                                         <li class="nav-item">
-                                            <a href="#basic-tab1{{ $model->id }}"
+                                            <a href="#tab-{{ $model->id }}"
                                                 class="nav-link {{ $loop->first ? 'active' : '' }}"
                                                 data-toggle="tab">{{ $model->name }}
                                             </a>
                                         </li>
                                     @endforeach
                                 </ul>
+
+                                <!-- Faqat bitta tab-content bo‘lishi kerak -->
                                 <div class="tab-content">
                                     @foreach (getLanguage() as $model)
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                            id="basic-tab1{{ $model->id }}">
+                                            id="tab-{{ $model->id }}">
+                                            <!-- Name maydoni -->
+                                            <label class="col-form-label col-lg-2">{{ getTranslation('name') }}</label>
                                             <input type="text" class="form-control" name="name[{{ $model->slug }}]"
-                                                value="{{ $category->name[$model->slug] ?? $category->name['default'] }}"
+                                                value="{{ $category->name[$model->slug] ?? ($category->name['default'] ?? '') }}"
                                                 placeholder="{{ $model->name }}">
                                             @error('name.' . $model->slug)
                                                 <p style="color: red;">{{ $message }}</p>
                                             @enderror
-                                        </div>
-                                    @endforeach
-                                </div>
 
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('description') }}</label>
-                            <div class="card-body">
-                                <ul class="nav nav-tabs">
-                                    @foreach (getLanguage() as $model)
-                                        <li class="nav-item">
-                                            <a href="#basic-tab12{{ $model->id }}"
-                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                data-toggle="tab">{{ $model->name }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                                <div class="tab-content">
-                                    @foreach (getLanguage() as $model)
-                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                            id="basic-tab12{{ $model->id }}">
-                                            <textarea class="form-control" name="description[{{ $model->slug }}]" data-dashlane-classification="other"
-                                                placeholder="{{ $model->name }}">{{ $category->description[$model->slug] ?? $category->description['default'] }}</textarea>
+                                            <!-- Description maydoni -->
+                                            <label
+                                                class="col-form-label col-lg-2">{{ getTranslation('description') }}</label>
+                                            <textarea class="form-control" name="description[{{ $model->slug }}]" placeholder="{{ $model->name }}">{{ $category->description[$model->slug] ?? ($category->description['default'] ?? '') }}</textarea>
                                             @error('description.' . $model->slug)
-                                                <p style="color:red;">
-                                                    {{ $message }}
-                                                </p>
+                                                <p style="color:red;">{{ $message }}</p>
                                             @enderror
+
                                         </div>
                                     @endforeach
                                 </div>
 
+                                <div class="header-elements mt-3">
+                                    <label class="custom-control custom-switch custom-control-right">
+                                        <input type="hidden" name="is_active" value="0"
+                                            {{ $category->is_active == 0 ? 'checked' : '' }}>
+                                        <input type="checkbox" name="is_active" class="custom-control-input" value="1"
+                                            {{ $category->is_active == 1 ? 'checked' : '' }}>
+                                        <span class="custom-control-label">{{ getTranslation('status') }}</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </fieldset>

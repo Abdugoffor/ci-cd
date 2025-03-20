@@ -23,6 +23,7 @@ class MenyuStoreRequest extends FormRequest
         $rules = [
             'name'  => 'required|array',
             'path'  => 'required|string',
+            'is_active' => 'required|boolean',
         ];
 
         $rules = array_merge($rules, validateTranslation('name'));

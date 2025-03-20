@@ -27,6 +27,7 @@ class MediaStoreRequest extends FormRequest
             'text'        => 'required|array',
             'photo_1'     => 'required|image|mimes:jpeg,png,jpg,svg|max:5120',
             'photo_2'     => 'required|image|mimes:jpeg,png,jpg,svg|max:5120',
+            'is_active'   => 'required|boolean',
         ];
 
         $rules = array_merge($rules, validateTranslation('name'), validateTranslation('title'), validateTranslation('description'), validateTranslation('text'));

@@ -24,6 +24,7 @@ class PartnerStoreRequest extends FormRequest
             'name'  => 'required|array',
             'photo' => 'required|image|mimes:jpeg,png,jpg|max:5120',
             'path'  => 'required|string',
+            'is_active' => 'required|boolean',
         ];
 
         $rules = array_merge($rules, validateTranslation('name'));

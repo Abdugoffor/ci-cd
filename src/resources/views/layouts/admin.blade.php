@@ -12,15 +12,15 @@
 
     <!--local uchun -->
 
-    {{-- <link href="{{ asset('backend/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('backend/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet"> --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
 
     <!-- /core JS files -->
 
     <!-- Core JS files -->
-    {{-- <script src="{{ asset('backend/global_assets/js/main/jquery.min.js') }}"></script>
+    <script src="{{ asset('backend/global_assets/js/main/jquery.min.js') }}"></script>
     <script src="{{ asset('backend/global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
     <!-- /core JS files -->
 
@@ -35,13 +35,13 @@
 
     <script src="{{ asset('backend/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
 
-    <script src="{{ asset('backend/global_assets/js/demo_pages/editor_summernote.js') }}"></script> --}}
+    <script src="{{ asset('backend/global_assets/js/demo_pages/editor_summernote.js') }}"></script>
 
 
 
     <!--server uchun -->
 
-    <link href="{{ secure_asset('backend/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet"
+    {{-- <link href="{{ secure_asset('backend/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet"
         type="text/css">
     <link href="{{ secure_asset('backend/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
@@ -59,7 +59,7 @@
     <script src="{{ secure_asset('backend/global_assets/js/demo_pages/dashboard.js') }}"></script>
 
     <script src="{{ secure_asset('backend/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
-    <script src="{{ secure_asset('backend/global_assets/js/demo_pages/editor_summernote.js') }}"></script>
+    <script src="{{ secure_asset('backend/global_assets/js/demo_pages/editor_summernote.js') }}"></script> --}}
 
 </head>
 
@@ -77,8 +77,10 @@
         </div>
 
         <div class="navbar-brand text-center text-lg-left">
-            <a href="#" class="d-inline-block">
-            </a>
+            <a href="/" class="d-inline-block">
+				<img src="{{ asset('backend/global_assets/images/logo_light.png') }}" class="d-none d-sm-block" alt="">
+				<img src="{{ asset('backend/global_assets/images/logo_icon_light.png') }}" class="d-sm-none" alt="">
+			</a>
         </div>
         <div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
 

@@ -10,73 +10,73 @@
         </div>
         <div class="card mt-2">
             <div class="card-body">
-                <table class="table text-nowrap">
+                <table class="table text-nowrap table-bordered">
                     <tbody>
                         <tr>
-                            <th>{{ getTranslation('name') }}</th>
+                            <th class="text-center">{{ getTranslation('name') }}</th>
                             <td>{{ $model->first_name }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('last-name') }}</th>
+                            <th class="text-center">{{ getTranslation('last-name') }}</th>
                             <td>{{ $model->last_name }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('birth-date') }}</th>
+                            <th class="text-center">{{ getTranslation('birth-date') }}</th>
                             <td>{{ $model->date_of_birth->format('d-m-Y') }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('gender') }}</th>
+                            <th class="text-center">{{ getTranslation('gender') }}</th>
                             <td>{{ $model->gender }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('email') }}</th>
+                            <th class="text-center">{{ getTranslation('email') }}</th>
                             <td>{{ $model->email }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('email-confirmed') }}
+                            <th class="text-center">{{ getTranslation('email-confirmed') }}
                             </th>
                             <td>{{ $model->email_verified_at ? $model->email_verified_at->format('d-m-Y, H:i') : '' }}
                             </td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('fide-id') }}</th>
+                            <th class="text-center">{{ getTranslation('fide-id') }}</th>
                             <td>{{ $model->fide_id }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('accreditation-category') }}
+                            <th class="text-center">{{ getTranslation('accreditation-category') }}
                             </th>
                             <td>
                                 {{ $model->accreditationCategory ? getLocale($model->accreditationCategory->name) : '' }}
                             </td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('citizenship') }}
+                            <th class="text-center">{{ getTranslation('citizenship') }}
                             </th>
                             <td>{{ optional($model->country)->label_en ?? '' }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('passport-number') }}
+                            <th class="text-center">{{ getTranslation('passport-number') }}
                             </th>
                             <td>{{ $model->passport_number }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('passport-issue-date') }}
+                            <th class="text-center">{{ getTranslation('passport-issue-date') }}
                             </th>
                             <td>{{ $model->passport_issue_date }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('Passport-validity-period') }}
+                            <th class="text-center">{{ getTranslation('Passport-validity-period') }}
                             </th>
                             <td>{{ $model->passport_expiry_date }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('passport-issuing-authority') }}
+                            <th class="text-center">{{ getTranslation('passport-issuing-authority') }}
                             </th>
                             <td>{{ $model->passport_issuing_authority }}
                             </td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('copy-of-passport') }}
+                            <th class="text-center">{{ getTranslation('copy-of-passport') }}
                             </th>
                             <td>
                                 @if ($model->passport_copy)
@@ -88,7 +88,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>
+                            <th class="text-center">
                                 {{ getTranslation('phone') }}
                             </th>
                             <td>
@@ -98,7 +98,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>
+                            <th class="text-center">
                                 {{ getTranslation('photo') }}
                             </th>
                             <td>
@@ -110,7 +110,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>
+                            <th class="text-center">
                                 {{ getTranslation('visa-required') }}?
                             </th>
                             <td>
@@ -118,7 +118,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>
+                            <th class="text-center">
                                 {{ getTranslation('arrival-date') }}
 
                             </th>
@@ -127,7 +127,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>
+                            <th class="text-center">
                                 {{ getTranslation('departure-date') }}
 
                             </th>
@@ -135,7 +135,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>
+                            <th class="text-center">
                                 {{ getTranslation('accommodation-details') }}
                             </th>
                             <td>
@@ -143,13 +143,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>
+                            <th class="text-center">
                                 {{ getTranslation('pcr-test-details') }}
                             </th>
                             <td>{{ $model->pcr_test_details }}</td>
                         </tr>
                         <tr>
-                            <th>
+                            <th class="text-center">
                                 {{ getTranslation('status') }}
 
                             </th>
@@ -214,12 +214,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('created') }}</th>
-                            <th>{{ $model->created_at->format('d-m-Y, H:i') }}</th>
+                            <th class="text-center">{{ getTranslation('created') }}</th>
+                            <th class="text-center">{{ $model->created_at->format('d-m-Y, H:i') }}</th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('change') }}</th>
-                            <th>{{ $model->updated_at->format('d-m-Y, H:i') }}</th>
+                            <th class="text-center">{{ getTranslation('change') }}</th>
+                            <th class="text-center">{{ $model->updated_at->format('d-m-Y, H:i') }}</th>
                         </tr>
                     </tbody>
                 </table>

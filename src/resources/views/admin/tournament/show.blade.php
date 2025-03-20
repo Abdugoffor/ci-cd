@@ -7,57 +7,57 @@
             <a href="{{ route('tournaments.index', [], false) }}" class="btn btn-sm btn-outline-success">
                 {{ getTranslation('back') }}
             </a>
-            <a href="{{ route('tournaments.edit', $model->id, false) }}" class="btn btn-sm btn-outline-success ml-2">
+            <a href="{{ route('tournaments.edit', $model->id, false) }}" class="btn btn-outline-success ml-2">
                 {{ getTranslation('change') }}
             </a>
         </div>
         <div class="card mt-2">
             <div class="card-body">
-                <table class="table text-nowrap">
+                <table class="table text-nowrap table-bordered">
                     <thead>
                         <tr>
-                            <th>{{ getTranslation('name') }}</th>
-                            <th>{{ getLocale($model->name) }}</th>
+                            <th class="text-center">{{ getTranslation('name') }}</th>
+                            <th class="text-center">{{ getLocale($model->name) }}</th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('title') }}</th>
-                            <th>{{ getLocale($model->title) }}</th>
+                            <th class="text-center">{{ getTranslation('title') }}</th>
+                            <th class="text-center">{{ getLocale($model->title) }}</th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('description') }}</th>
-                            <th>{!! getLocale($model->description) !!}</th>
+                            <th class="text-center">{{ getTranslation('description') }}</th>
+                            <th class="text-center">{!! getLocale($model->description) !!}</th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('category') }}</th>
-                            <th>{{ getLocale($model->category->name) }}</th>
+                            <th class="text-center">{{ getTranslation('category') }}</th>
+                            <th class="text-center">{{ getLocale($model->category->name) }}</th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('country') }}</th>
-                            <th>{{ $model->country->label_en }}</th>
+                            <th class="text-center">{{ getTranslation('country') }}</th>
+                            <th class="text-center">{{ $model->country->label_en }}</th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('start-of-registration') }}</th>
-                            <th>{{ $model->registration_start->format('d-m-Y') }}</th>
+                            <th class="text-center">{{ getTranslation('start-of-registration') }}</th>
+                            <th class="text-center">{{ $model->registration_start->format('d-m-Y') }}</th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('registration-completed') }}</th>
-                            <th>{{ $model->registration_end->format('d-m-Y') }}</th>
+                            <th class="text-center">{{ getTranslation('registration-completed') }}</th>
+                            <th class="text-center">{{ $model->registration_end->format('d-m-Y') }}</th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('start') }}</th>
-                            <th>{{ $model->start_date->format('d-m-Y') }}</th>
+                            <th class="text-center">{{ getTranslation('start') }}</th>
+                            <th class="text-center">{{ $model->start_date->format('d-m-Y') }}</th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('finished') }}</th>
-                            <th>{{ $model->end_date->format('d-m-Y') }}</th>
+                            <th class="text-center">{{ getTranslation('finished') }}</th>
+                            <th class="text-center">{{ $model->end_date->format('d-m-Y') }}</th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('logo') }}</th>
-                            <th><img src="{{ asset($model->logo) }}" width="100px" alt=""></th>
+                            <th class="text-center">{{ getTranslation('logo') }}</th>
+                            <th class="text-center"><img src="{{ asset($model->logo) }}" width="100px" alt=""></th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('status') }}</th>
-                            <th>
+                            <th class="text-center">{{ getTranslation('status') }}</th>
+                            <th class="text-center">
                                 <span class="badge badge-teal badge-pill ml-auto">
                                     {{ getTranslation($model->status) }}
                                     <div class="list-icons ml-2">
@@ -88,7 +88,7 @@
                             </th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('participants') }}</th>
+                            <th class="text-center">{{ getTranslation('participants') }}</th>
                             <td>
                                 <h6 class="mb-0">{{ $model->participants()->count() }}</h6>
                                 <div class="font-size-sm text-muted line-height-1">
@@ -97,12 +97,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('created') }}</th>
-                            <th>{{ $model->created_at->format('d-m-Y, H:i') }}</th>
+                            <th class="text-center">{{ getTranslation('created') }}</th>
+                            <th class="text-center">{{ $model->created_at->format('d-m-Y, H:i') }}</th>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('change') }}</th>
-                            <th>{{ $model->updated_at->format('d-m-Y, H:i') }}</th>
+                            <th class="text-center">{{ getTranslation('change') }}</th>
+                            <th class="text-center">{{ $model->updated_at->format('d-m-Y, H:i') }}</th>
                         </tr>
                     </thead>
                 </table>

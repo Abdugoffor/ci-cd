@@ -33,34 +33,34 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table text-nowrap">
+                        <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th>№</th>
-                                    <th>{{ getTranslation('name') }}</th>
-                                    <th>{{ getTranslation('role') }}</th>
-                                    <th>{{ getTranslation('email') }}</th>
-                                    <th>{{ getTranslation('status') }}</th>
-                                    <th>{{ getTranslation('function') }}</th>
-                                    <th>{{ getTranslation('history') }}</th>
+                                    <th class="text-center">№</th>
+                                    <th class="text-center">{{ getTranslation('name') }}</th>
+                                    <th class="text-center">{{ getTranslation('role') }}</th>
+                                    <th class="text-center">{{ getTranslation('email') }}</th>
+                                    <th class="text-center">{{ getTranslation('status') }}</th>
+                                    <th class="text-center">{{ getTranslation('function') }}</th>
+                                    <th class="text-center">{{ getTranslation('history') }}</th>
                                 </tr>
                                 <form action="{{ route('users.search', [], false) }}" method="get">
                                     @csrf
                                     <tr>
-                                        <th></th>
-                                        <th>
+                                        <th class="text-center"></th>
+                                        <th class="text-center">
                                             <input type="text" class="form-control" name="name"
                                                 placeholder="{{ getTranslation('name') }}">
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             <input type="text" class="form-control" name="email"
                                                 placeholder="{{ getTranslation('email') }}">
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             <input type="text" class="form-control" name="email"
                                                 placeholder="{{ getTranslation('email') }}">
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             <select class="form-control custom-select" name="is_active" id="select_date">
                                                 <option></option>
                                                 <option value="true">
@@ -70,8 +70,8 @@
                                                     {{ getTranslation('not-active') }}</option>
                                             </select>
                                         </th>
-                                        <th></th>
-                                        <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                        <th class="text-center"></th>
+                                        <th class="text-center"><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
                                     </tr>
                                 </form>
                             </thead>
@@ -99,7 +99,7 @@
                                                     <i class="icon-pencil3"></i>
                                                 </a>
 
-                                                <button type="button" class="btn btn-sm btn-outline-danger ml-2"
+                                                <button type="button" class="btn btn-outline-danger ml-2"
                                                     data-toggle="modal" data-target="#modal_full{{ $model->id }}"><i
                                                         class="icon-trash"></i>
                                                 </button>

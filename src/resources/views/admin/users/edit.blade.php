@@ -19,57 +19,64 @@
                         <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('users') }}</legend>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('name') }}</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" name="name" value="{{ $model->name }}"
-                                    placeholder="{{ getTranslation('name') }}">
+                            <div class="card-body">
+                                <!-- Name maydoni -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('name') }}</label>
+                                <input type="text" class="form-control" name="name"
+                                    value="{{ old('name', $model->name ?? '') }}" placeholder="{{ getTranslation('name') }}">
                                 @error('name')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('role') }}</label>
-                            <div class="col-lg-10">
-                                <select name="role" class="form-control">
-                                    <option></option>
-                                    <option {{ $model->role == 'admin' ? 'selected' : '' }}>admin</option>
-                                    <option {{ $model->role == 'moderator' ? 'selected' : '' }}>moderator</option>
-                                    <option {{ $model->role == 'user' ? 'selected' : '' }}>user</option>
+
+                                <!-- Role maydoni -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('role') }}</label>
+                                <select name="role" id="" class="form-control">
+                                    <option value="">{{ getTranslation('select_role') }}</option>
+                                    <option value="admin" {{ old('role', $model->role) == 'admin' ? 'selected' : '' }}>
+                                        admin</option>
+                                    <option value="moderator"
+                                        {{ old('role', $model->role) == 'moderator' ? 'selected' : '' }}>moderator</option>
+                                    <option value="user" {{ old('role', $model->role) == 'user' ? 'selected' : '' }}>user
+                                    </option>
                                 </select>
                                 @error('role')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('email') }}</label>
-                            <div class="col-lg-10">
-                                <input type="email" class="form-control" name="email" value="{{ $model->email }}"
+
+                                <!-- Email maydoni -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('email') }}</label>
+                                <input type="email" class="form-control" name="email"
+                                    value="{{ old('email', $model->email ?? '') }}"
                                     placeholder="{{ getTranslation('email') }}">
                                 @error('email')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('password') }}</label>
-                            <div class="col-lg-10">
+
+                                <!-- Password maydoni -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('password') }}</label>
                                 <input type="password" class="form-control" name="password"
                                     placeholder="{{ getTranslation('password') }}">
                                 @error('password')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('password_conf') }}</label>
-                            <div class="col-lg-10">
+
+                                <!-- Password Confirmation maydoni -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('password_conf') }}</label>
                                 <input type="password" class="form-control" name="password_confirmation"
                                     placeholder="{{ getTranslation('password_conf') }}">
                                 @error('password_confirmation')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
+
+                                <!-- Is_active holat kaliti -->
+                                <div class="header-elements mt-3">
+                                    <label class="custom-control custom-switch custom-control-right">
+                                        <input type="hidden" name="status" value="0">
+                                        <input type="checkbox" name="status" class="custom-control-input" value="1"
+                                            {{ $model->status == 1 ? 'checked' : '' }}>
+                                        <span class="custom-control-label">{{ getTranslation('status') }}</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </fieldset>

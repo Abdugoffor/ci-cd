@@ -33,32 +33,25 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table text-nowrap">
+                        <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th>№</th>
-                                    <th>{{ getTranslation('title') }}</th>
-                                    <th>{{ getTranslation('description') }}</th>
-                                    <th>{{ getTranslation('menus') }}</th>
-                                    <th>{{ getTranslation('photo') }}</th>
-                                    <th>{{ getTranslation('status') }}</th>
-                                    <th>{{ getTranslation('function') }}</th>
-                                    <th>{{ getTranslation('history') }}</th>
+                                    <th class="text-center">№</th>
+                                    <th class="text-center">{{ getTranslation('title') }}</th>
+                                    <th class="text-center">{{ getTranslation('menus') }}</th>
+                                    <th class="text-center">{{ getTranslation('photo') }}</th>
+                                    <th class="text-center">{{ getTranslation('status') }}</th>
+                                    <th class="text-center">{{ getTranslation('function') }}</th>
                                 </tr>
                                 <form action="{{ route('news.search', [], false) }}" method="get">
                                     <tr>
-                                        <th></th>
-                                        <th>
+                                        <th class="text-center"></th>
+                                        <th class="text-center">
                                             <input type="text" class="form-control" name="title"
                                                 placeholder="{{ getTranslation('title') }}"
                                                 value="{{ old('title', request('title')) }}">
                                         </th>
-                                        <th>
-                                            <input type="text" class="form-control" name="description"
-                                                placeholder="{{ getTranslation('description') }}"
-                                                value="{{ old('description', request('description')) }}">
-                                        </th>
-                                        <th>
+                                        <th class="text-center">
                                             <select class="form-control custom-select" name="menyu_id" id="select_menyu">
                                                 <option value=""></option>
                                                 @foreach ($menus as $menu)
@@ -69,9 +62,9 @@
                                                 @endforeach
                                             </select>
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             <select class="form-control custom-select" name="is_active" id="select_date">
                                                 <option value="">{{ getTranslation('all') }}</option>
                                                 <option value="true"
@@ -84,10 +77,8 @@
                                                 </option>
                                             </select>
                                         </th>
-                                        <th>
-
-                                        </th>
-                                        <th><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                        <th class="text-center"><button
+                                                class="btn btn-teal">{{ getTranslation('search') }}</button></th>
                                     </tr>
                                 </form>
                             </thead>
@@ -95,8 +86,7 @@
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
-                                        <td>{!! (getLocale($model->title)) !!}</td>
-                                        <td>{!! (getLocale($model->description)) !!} </td>
+                                        <td>{!! getLocale($model->title) !!}</td>
                                         <td>{{ getLocale($model->menyu->name) }}</td>
                                         <td><img src="{{ asset($model->photo) }}" width="100px" alt=""></td>
                                         <td>
@@ -105,7 +95,7 @@
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <div class="d-inline-flex gap-2">
                                                 <a href="{{ route('news.show', $model->id, false) }}"
                                                     class="btn btn-outline-info">
@@ -113,21 +103,22 @@
                                                 </a>
 
                                                 <a href="{{ route('news.edit', $model->id, false) }}"
-                                                    class="btn btn-sm btn-outline-success ml-1">
+                                                    class="btn btn-outline-success ml-2">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
 
-                                                <button type="button" class="btn btn-sm btn-outline-danger ml-1"
+                                                <button type="button" class="btn btn-outline-danger ml-2"
                                                     data-toggle="modal" data-target="#modal_full{{ $model->id }}"><i
                                                         class="icon-trash"></i>
                                                 </button>
+                                                
                                                 <!-- Full width modal -->
                                                 <div id="modal_full{{ $model->id }}" class="modal fade" tabindex="-1">
-                                                    <div class="modal-dialog">
+                                                    <div class="modal-dialog modal-dialog-centered modal-sm">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title">{{ getTranslation('news') }}
-                                                                </h5>
+                                                                {{-- <h5 class="modal-title">{{ getTranslation('competitions') }}
+                                                            </h5> --}}
                                                                 <button type="button" class="close"
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
@@ -139,14 +130,16 @@
                                                                 <div class="modal-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            <h3>{{ getTranslation('do-you-want-to-delete') }}?
+                                                                            <h3 class="text-center">
+                                                                                {{ getTranslation('do-you-want-to-delete') }}
                                                                             </h3>
                                                                         </div>
                                                                     </div>
 
                                                                 </div>
 
-                                                                <div class="modal-footer">
+                                                                <div
+                                                                    class="modal-footer d-flex justify-content-center pb-4">
                                                                     <button type="button" class="btn btn-secondary"
                                                                         data-dismiss="modal"
                                                                         data-dashlane-label="true">{{ getTranslation('close') }}</button>
@@ -158,10 +151,9 @@
                                                     </div>
                                                 </div>
                                                 <!-- /full width modal -->
+
+                                                {!! historyCheck($model) !!}
                                             </div>
-                                        </td>
-                                        <td>
-                                            {!! historyCheck($model) !!}
                                         </td>
                                     </tr>
                                 @endforeach

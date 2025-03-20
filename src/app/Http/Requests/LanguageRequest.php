@@ -23,6 +23,7 @@ class LanguageRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
+            'is_active' => 'required|boolean',
         ];
     }
 }

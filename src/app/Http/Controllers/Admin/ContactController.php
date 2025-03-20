@@ -44,7 +44,6 @@ class ContactController extends Controller
         if ($request->hasFile('photo')) {
             $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
-
         Contact::create($data);
 
         return redirect()->route('contacts.index')->with('notification', getTranslation('notification'));
@@ -75,7 +74,7 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         $contact->delete();
-        return redirect()->route('contacts.index');
+        return redirect()->route('contacts.index')->with('notification', getTranslation('notification'));
     }
     public function status(Contact $contacts)
     {

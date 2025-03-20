@@ -45,7 +45,7 @@ if (! function_exists('historyCheck')) {
         }
 
         $html = '<!-- Button trigger modal -->
-        <a href="#" class="btn btn-outline-warning"
+        <a href="#" class="btn btn-outline-warning ml-2"
             data-toggle="modal" data-target="#panel_right' . $model->id . '">
             <i class="icon-history"></i>
         </a>
