@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chess Olympiad 2025</title>
     
-    <link rel="icon" type="image/svg+xml" href="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}" />
+    {{-- <link rel="icon" type="image/svg+xml" href="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}" /> --}}
     
-    {{-- <link rel="icon" type="image/svg+xml" href="{{ secure_asset('frontend/assets/header_banner/chess_logo.svg') }}" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('frontend/assets/header_banner/chess_logo.svg') }}" /> --}}
+    <link rel="icon" type="image/svg+xml" href="{{ secure_asset('frontend/assets/header_banner/chess_logo.svg') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('frontend/assets/header_banner/chess_logo.svg') }}" />
 
     <meta name="theme-color" content="#17a8d0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,8 +19,8 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
-    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
-    {{-- <link rel="stylesheet" href="{{ secure_asset('frontend/css/style.css') }}" /> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" /> --}}
+    <link rel="stylesheet" href="{{ secure_asset('frontend/css/style.css') }}" />
 </head>
 
 <body>
@@ -127,8 +127,8 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="{{ asset('frontend/js/main.js') }}"></script>
-    {{-- <script src="{{ secure_asset('frontend/js/main.js') }}"></script> --}}
+    {{-- <script src="{{ asset('frontend/js/main.js') }}"></script> --}}
+    <script src="{{ secure_asset('frontend/js/main.js') }}"></script>
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
