@@ -20,179 +20,131 @@
                         </legend>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('name') }}</label>
                             <div class="card-body">
-                                <ul class="nav nav-tabs">
+                                <!-- Tablar qismi -->
+                                <ul class="nav nav-tabs mt-2">
                                     @foreach (getLanguage() as $model)
                                         <li class="nav-item">
-                                            <a href="#basic-tab1{{ $model->id }}"
+                                            <a href="#tab-{{ $model->id }}"
                                                 class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                data-toggle="tab">{{ $model->name }}
-                                            </a>
+                                                data-toggle="tab">{{ $model->name }}</a>
                                         </li>
                                     @endforeach
                                 </ul>
+
+                                <!-- Tab ichidagi kontent -->
                                 <div class="tab-content">
                                     @foreach (getLanguage() as $model)
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                            id="basic-tab1{{ $model->id }}">
+                                            id="tab-{{ $model->id }}">
+                                            <!-- Name maydoni -->
+                                            <label class="col-form-label col-lg-2">{{ getTranslation('name') }}</label>
                                             <input type="text" class="form-control" name="name[{{ $model->slug }}]"
-                                                value="{{ $tournament->name[$model->slug] ?? $tournament->name['default'] }}"
+                                                value="{{ old('name.' . $model->slug, $tournament->name[$model->slug] ?? '') }}"
                                                 placeholder="{{ $model->name }}">
-                                            @error($model->slug)
+                                            @error('name.' . $model->slug)
                                                 <p style="color: red;">{{ $message }}</p>
                                             @enderror
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('title') }}</label>
-                            <div class="card-body">
-                                <ul class="nav nav-tabs">
-                                    @foreach (getLanguage() as $model)
-                                        <li class="nav-item">
-                                            <a href="#basic-tab156{{ $model->id }}"
-                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                data-toggle="tab">{{ $model->name }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                                <div class="tab-content">
-                                    @foreach (getLanguage() as $model)
-                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                            id="basic-tab156{{ $model->id }}">
+                                            <!-- Title maydoni -->
+                                            <label class="col-form-label col-lg-2">{{ getTranslation('title') }}</label>
                                             <input type="text" class="form-control" name="title[{{ $model->slug }}]"
-                                                value="{{ $tournament->title[$model->slug] ?? $tournament->title['default'] }}"
+                                                value="{{ old('title.' . $model->slug, $tournament->title[$model->slug] ?? '') }}"
                                                 placeholder="{{ $model->name }}">
                                             @error('title.' . $model->slug)
                                                 <p style="color: red;">{{ $message }}</p>
                                             @enderror
+
+                                            <!-- Description maydoni -->
+                                            <label
+                                                class="col-form-label col-lg-2">{{ getTranslation('description') }}</label>
+                                            <textarea class="form-control summernote" name="description[{{ $model->slug }}]" data-dashlane-classification="other"
+                                                placeholder="{{ $model->name }}">{{ old('description.' . $model->slug, $tournament->description[$model->slug] ?? '') }}</textarea>
+                                            @error('description.' . $model->slug)
+                                                <p style="color: red;">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     @endforeach
                                 </div>
 
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('category') }}</label>
-                            <div class="col-lg-10">
+                                <!-- Category maydoni (ko‘p tilli emas) -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('category') }}</label>
                                 <select name="category_id" id="" class="form-control">
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}"
-                                            {{ $tournament->category_id == $category->id ? 'selected' : '' }}>
-                                            {{ getLocale($category->name) }}</option>
+                                            {{ old('category_id', $tournament->category_id) == $category->id ? 'selected' : '' }}>
+                                            {{ getLocale($category->name) }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @error('category_id')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('country') }}</label>
-                            <div class="col-lg-10">
+
+                                <!-- Country maydoni (ko‘p tilli emas) -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('country') }}</label>
                                 <select name="country_id" id="" class="form-control">
                                     @foreach ($countries as $country)
                                         <option value="{{ $country->id }}"
-                                            {{ $tournament->country_id == $country->id ? 'selected' : '' }}>
-                                            {{ $country->label_en }}</option>
+                                            {{ old('country_id', $tournament->country_id) == $country->id ? 'selected' : '' }}>
+                                            {{ $country->label_en }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @error('country_id')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('start-of-registration') }}</label>
-                            <div class="col-lg-10">
+                                <!-- Registration Start maydoni (ko‘p tilli emas) -->
+                                <label
+                                    class="col-form-label col-lg-2">{{ getTranslation('start-of-registration') }}</label>
                                 <input class="form-control" type="date" name="registration_start"
                                     value="{{ $tournament->registration_start->format('Y-m-d') }}">
                                 @error('registration_start')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('registration-completed') }}</label>
-                            <div class="col-lg-10">
-                                <input class="form-control" type="date"
-                                    value="{{ $tournament->registration_end->format('Y-m-d') }}" name="registration_end">
+
+                                <!-- Registration End maydoni (ko‘p tilli emas) -->
+                                <label
+                                    class="col-form-label col-lg-2">{{ getTranslation('registration-completed') }}</label>
+                                <input class="form-control" type="date" name="registration_end"
+                                    value="{{ $tournament->registration_end->format('Y-m-d') }}">
                                 @error('registration_end')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('start') }}</label>
-                            <div class="col-lg-10">
-                                <input class="form-control" type="date"
-                                    value="{{ $tournament->start_date->format('Y-m-d') }}" name="start_date">
+
+                                <!-- Start Date maydoni (ko‘p tilli emas) -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('start') }}</label>
+                                <input class="form-control" type="date" name="start_date"
+                                    value="{{ $tournament->start_date->format('Y-m-d') }}">
                                 @error('start_date')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('finished') }}</label>
-                            <div class="col-lg-10">
-                                <input class="form-control" type="date"
-                                    value="{{ $tournament->end_date->format('Y-m-d') }}" name="end_date">
+
+                                <!-- End Date maydoni (ko‘p tilli emas) -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('finished') }}</label>
+                                <input class="form-control" type="date" name="end_date"
+                                    value="{{ $tournament->end_date->format('Y-m-d') }}">
                                 @error('end_date')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('description') }}</label>
 
-                            <div class="card-body">
-                                <ul class="nav nav-tabs">
-                                    @foreach (getLanguage() as $model)
-                                        <li class="nav-item">
-                                            <a href="#basic-tab12{{ $model->id }}"
-                                                class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                data-toggle="tab">{{ $model->name }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                                <div class="tab-content">
-                                    @foreach (getLanguage() as $model)
-                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                            id="basic-tab12{{ $model->id }}">
-                                            <textarea class="form-control summernote" name="description[{{ $model->slug }}]"
-                                                data-dashlane-classification="other" placeholder="{{ $model->name }}">{{ $tournament->description[$model->slug] ?? $tournament->description['default'] }}</textarea>
-                                            @error('description.' . $model->slug)
-                                                <p style="color:red;">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
-                                        </div>
-                                    @endforeach
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-2">{{ getTranslation('logo') }}</label>
-                            <div class="col-lg-10">
-                                <input class="form-control" type="file" value="{{ $tournament->logo }}"
-                                    name="logo" onchange="previewImage(event, 'imagePreview')">
-                                <div class="mt-2">
-                                    <img id="imagePreview" src="" alt="imagePreview"
-                                        class="img-thumbnail d-none" width="200">
-                                </div>
-                                <img src="{{ asset($tournament->logo) }}" width="100px" class="m-1" alt="">
+                                <!-- Logo maydoni (ko‘p tilli emas) -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('logo') }}</label>
+                                <input class="form-control" type="file" name="logo"
+                                    onchange="previewImage(event, 'imagePreview')">
                                 @error('logo')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
+                                <div class="mt-2">
+                                    @if ($tournament->logo)
+                                        <img id="imagePreview" src="{{ asset($tournament->logo) }}" alt="imagePreview"
+                                            class="img-thumbnail" width="200">
+                                    @else
+                                        <img id="imagePreview" src="" alt="imagePreview"
+                                            class="img-thumbnail d-none" width="200">
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </fieldset>
