@@ -11,7 +11,7 @@ services:
     networks:
       - traefik-network
     ports:
-      - "80:80"
+      - "8080:80"  # Tashqi 80-port o‘rniga 8080 ishlatiladi
     volumes:
       - fide_project:/var/www/laravel
     depends_on:
@@ -44,7 +44,7 @@ services:
       - ./postgres-data:/var/lib/postgresql/data
     networks:
       - traefik-network
-    command: ["sh", "-c", "mkdir -p /var/lib/postgresql/data && chown postgres:postgres /var/lib/postgresql/data && postgres"]  # Yangi qo'shilgan
+    command: ["sh", "-c", "mkdir -p /var/lib/postgresql/data && chown postgres:postgres /var/lib/postgresql/data && postgres"]
 
 volumes:
   fide_project:
