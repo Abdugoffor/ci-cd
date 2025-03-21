@@ -2,7 +2,6 @@ networks:
   traefik-network:
     external: true
 
-
 services:
   fide_nginx:
     build:
@@ -12,7 +11,7 @@ services:
     networks:
       - traefik-network
     ports:
-      - "8010:80"
+      - "80:80"
     volumes:
       - fide_project:/var/www/laravel
     depends_on:
@@ -20,7 +19,7 @@ services:
       - fide_php
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.fide_nginx.rule=Host(`api.uzchess.sriss.uz`)"
+      - "traefik.http.routers.fide_nginx.rule=Host(api.uzchess.uz)"
       - "traefik.http.routers.fide_nginx.entryPoints=web"
       - "traefik.http.routers.fide_nginx.service=fide_nginx"
       - "traefik.http.services.fide_nginx.loadbalancer.server.port=80"
@@ -36,17 +35,15 @@ services:
     volumes:
       - fide_project:/var/www/laravel
 
-
   fide_postgres:
     image: postgres:15
     restart: always
     env_file:
       - env/postgres.env
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - ./postgres-data:/var/lib/postgresql/data  # O'zgartirilgan qism
     networks:
       - traefik-network 
 
 volumes:
-  pgdata:
-  fide_project:
+  fide_project:  # pgdata olib tashlandi
