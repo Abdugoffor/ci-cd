@@ -35,13 +35,13 @@ class DatabaseSeeder extends Seeder
             CountriesSeeder::class,
             LanguageSeeder::class,
             AccreditationCategorySeeder::class,
-            CategorySeeder::class,
-            MenyuSeeder::class,
-            NewsSeeder::class,
-            HotelSeeder::class,
-            TurnirSeeder::class,
-            PartnerSeeder::class,
-            MediaSeeder::class,
+            // CategorySeeder::class,
+            // MenyuSeeder::class,
+            // NewsSeeder::class,
+            // HotelSeeder::class,
+            // TurnirSeeder::class,
+            // PartnerSeeder::class,
+            // MediaSeeder::class,
         ]);
     }
 }
