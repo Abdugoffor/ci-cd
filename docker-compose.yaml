@@ -41,9 +41,10 @@ services:
     env_file:
       - env/postgres.env
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data  # O'zgartirilgan qism
+      - ./postgres-data:/var/lib/postgresql/data
     networks:
-      - traefik-network 
+      - traefik-network
+    command: ["sh", "-c", "mkdir -p /var/lib/postgresql/data && chown postgres:postgres /var/lib/postgresql/data && postgres"]  # Yangi qo'shilgan
 
 volumes:
-  fide_project:  # pgdata olib tashlandi
+  fide_project:
