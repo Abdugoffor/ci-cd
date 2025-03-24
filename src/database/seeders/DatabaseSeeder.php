@@ -34,14 +34,14 @@ class DatabaseSeeder extends Seeder
             TranslationSeeder::class,
             CountriesSeeder::class,
             LanguageSeeder::class,
-            // AccreditationCategorySeeder::class,
-            // CategorySeeder::class,
-            // MenyuSeeder::class,
-            // NewsSeeder::class,
-            // HotelSeeder::class,
-            // TurnirSeeder::class,
-            // PartnerSeeder::class,
-            // MediaSeeder::class,
+            AccreditationCategorySeeder::class,
+            CategorySeeder::class,
+            MenyuSeeder::class,
+            NewsSeeder::class,
+            HotelSeeder::class,
+            TurnirSeeder::class,
+            PartnerSeeder::class,
+            MediaSeeder::class,
         ]);
     }
 }

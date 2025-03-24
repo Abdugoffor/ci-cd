@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('last_name')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->enum('gender', ['M', 'F']);
-            $table->string('passport_number')->unique()->nullable();
+            $table->string('passport_number')->nullable();
             $table->date('passport_issue_date')->nullable();
             $table->date('passport_expiry_date')->nullable();
             $table->string('passport_issuing_authority')->nullable();
@@ -37,8 +37,8 @@ return new class extends Migration
             $table->text('accommodation_details')->nullable();
             $table->text('pcr_test_details')->nullable();
             $table->enum('status', ['unfinished', 'pending', 'approved', 'canceled'])->default('unfinished');
-            $table->string('qk_code')->unique()->nullable();
-            $table->string('qk_code_path')->unique()->nullable();
+            $table->string('qk_code')->nullable();
+            $table->string('qk_code_path')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

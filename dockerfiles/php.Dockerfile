@@ -15,15 +15,30 @@ RUN apk add --no-cache \
 # Установка Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# PHP konfiguratsiyasini o‘zgartirish (php.ini sozlamalarini o‘rnatish)
-RUN echo "upload_max_filesize = 500M" >> /usr/local/etc/php/conf.d/custom.ini \
-    && echo "post_max_size = 500M" >> /usr/local/etc/php/conf.d/custom.ini \
-    && echo "sys_temp_dir = /tmp" >> /usr/local/etc/php/conf.d/custom.ini
+# PHP konfiguratsiyasini o‘zgartirish
+RUN echo "upload_max_filesize = 500M" >> /usr/local/etc/php/conf.d/uploads.ini \
+    && echo "post_max_size = 500M" >> /usr/local/etc/php/conf.d/uploads.ini \
+    && echo "upload_tmp_dir = /tmp" >> /usr/local/etc/php/conf.d/uploads.ini \
+    && echo "error_reporting = E_ALL & ~E_NOTICE" >> /usr/local/etc/php/conf.d/uploads.ini
 
-# /tmp katalogini yaratish va ruxsatlarni sozlash
-RUN mkdir -p /tmp && \
-    chmod 1777 /tmp && \
-    chown www-data:www-data /tmp
+# Barcha kerakli direktoriyalarni yaratish
+RUN mkdir -p /tmp \
+    && mkdir -p /var/www/laravel/storage/logs \
+    && mkdir -p /var/www/laravel/bootstrap/cache \
+    && mkdir -p /var/www/laravel/public/uploaded \
+    && mkdir -p /var/www/laravel/public/qrcodes \
+    && touch /var/www/laravel/storage/logs/laravel.log \
+    && chmod -R 775 /tmp \
+    && chmod -R 775 /var/www/laravel/storage \
+    && chmod -R 775 /var/www/laravel/bootstrap/cache \
+    && chmod -R 775 /var/www/laravel/public/uploaded \
+    && chmod -R 775 /var/www/laravel/public/qrcodes \
+    && chmod 664 /var/www/laravel/storage/logs/laravel.log \
+    && chown -R www-data:www-data /tmp \
+    && chown -R www-data:www-data /var/www/laravel/storage \
+    && chown -R www-data:www-data /var/www/laravel/bootstrap/cache \
+    && chown -R www-data:www-data /var/www/laravel/public/uploaded \
+    && chown -R www-data:www-data /var/www/laravel/public/qrcodes
 
 # Установка рабочего каталога
 WORKDIR /var/www/laravel
@@ -31,13 +46,9 @@ WORKDIR /var/www/laravel
 # Копирование файлов проекта
 COPY src/ /var/www/laravel
 
-# Fayl tizimi kataloglari va ruxsatlar
-RUN mkdir -p /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes /var/www/laravel/storage/logs && \
-    touch /var/www/laravel/storage/logs/laravel.log && \
-    chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes && \
-    chmod 664 /var/www/laravel/storage/logs/laravel.log && \
-    chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes
-        
+# Composer install ni Dockerfile ichida bajarish
+RUN composer install --no-scripts --no-interaction --optimize-autoloader
+
 # Копируем init.sh и делаем его исполняемым
 COPY dockerfiles/init.sh /usr/local/bin/init.sh
 RUN chmod +x /usr/local/bin/init.sh && dos2unix /usr/local/bin/init.sh

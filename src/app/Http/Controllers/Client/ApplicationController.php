@@ -117,14 +117,12 @@ class ApplicationController extends Controller
 
         if ($request->hasFile('passport_copy')) {
 
-            // $data['passport_copy'] = FileUploadService::uploadFile($request->file('passport_copy'));
-            $data['passport_copy'] = '123';
+            $data['passport_copy'] = FileUploadService::uploadFile($request->file('passport_copy'));
         }
 
         if ($request->hasFile('photo')) {
 
-            // $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
-            $data['photo'] = '123';
+            $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
 
         $data['status'] = 'pending';
