@@ -129,24 +129,24 @@ class ApplicationController extends Controller
 
         $model->update($data);
 
-        try {
-            if (session()->has('player') && ! is_null(session()->get('player'))) {
+        // try {
+        //     if (session()->has('player') && ! is_null(session()->get('player'))) {
 
-                Log::info('Player sessiyasi: ', session()->get('player'));
+        //         Log::info('Player sessiyasi: ', session()->get('player'));
 
-                $playerData = session()->get('player');
+        //         $playerData = session()->get('player');
 
-                $model->playerInfo()->create($playerData);
+        //         $model->playerInfo()->create($playerData);
 
-                session()->forget('player');
-            }
-        } catch (\Exception $e) {
+        //         session()->forget('player');
+        //     }
+        // } catch (\Exception $e) {
 
-            Log::error('Sessiya bilan ishlashda xatolik: ' . $e->getMessage());
+        //     Log::error('Sessiya bilan ishlashda xatolik: ' . $e->getMessage());
 
-            return response()->json(['Sessiya bilan ishlashda xatolik: ' . $e->getMessage()]);
+        //     return response()->json(['Sessiya bilan ishlashda xatolik: ' . $e->getMessage()]);
 
-        }
+        // }
 
         dispatch(new PendingAppJob($model));
 
