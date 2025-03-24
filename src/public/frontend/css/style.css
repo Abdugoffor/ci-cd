@@ -1327,13 +1327,17 @@ body {
   letter-spacing: 0.12px;
   color: #83acb1;
   appearance: none;
-  /* Убирает стандартный стиль браузера */
   -webkit-appearance: none;
   -moz-appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.293 9.71057C18.6836 10.1011 18.6836 10.7343 18.293 11.1248L13.4008 16.0122C12.6196 16.7926 11.3539 16.7923 10.5731 16.0116L5.68275 11.1212C5.29215 10.7307 5.29215 10.0975 5.68275 9.70696C6.07325 9.31643 6.70645 9.31643 7.09695 9.70696L11.2826 13.8926C11.6731 14.2832 12.3063 14.2831 12.6968 13.8926L16.8788 9.71057C17.2694 9.32004 17.9025 9.32004 18.293 9.71057Z' fill='%23517C82'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 9px center;
   background-size: 16px;
+}
+
+.input-select option { 
+  min-width: 200px;
+  width: 100%;
 }
 
 .input-select:invalid {
@@ -1377,6 +1381,11 @@ body {
   flex-direction: column;
   justify-content: space-between;
   gap: 12px;
+}
+
+.radio-group-2 {
+  justify-content: center;
+  gap: 20px;
 }
 
 .radio-group div {

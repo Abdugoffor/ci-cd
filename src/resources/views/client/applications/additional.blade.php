@@ -32,8 +32,7 @@
 
                     <div class="input-wrapper">
                         <label for="last-name" class="input-label">{{ getTranslation('passport-issue-date') }}</label>
-
-                        <div class="date-container" onclick="openDatePicker('passport_issue_date')">
+                        <div class="date-container"  onclick="openDatePicker('passport_issue_date')">
                             <input type="date" id="passport_issue_date" value="{{ old('passport_issue_date') }}"
                                 name="passport_issue_date" class="date-input"
                                 onchange="updateDate('passport_issue_date')" />
@@ -174,7 +173,7 @@
                                 <p style="color: red; font-size: 12px;">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="radio-group">
+                        <div class="radio-group radio-group-2">
                             <label for="citizenship" class="input-label">{{ getTranslation('visa-required') }} ?
                             </label>
                             <div>

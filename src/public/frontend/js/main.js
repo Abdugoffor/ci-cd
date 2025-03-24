@@ -72,7 +72,7 @@ updateLanguage(currentLang);
 
 // Sponsors slider
 const sponsorsSwiper = new Swiper(".sponsors-slider", {
-  slidesPerView: 4,
+  slidesPerView: 5,
   centeredSlides: true,
   spaceBetween: 30,
   loop: true,
@@ -154,7 +154,6 @@ const newsSlider = new Swiper(".news-slider", {
     },
   },
 });
-
 document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("click", function (event) {
     if (event.target.closest(".date-container")) {
@@ -179,6 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
 
 // Verification input
 document.addEventListener("DOMContentLoaded", function () {
