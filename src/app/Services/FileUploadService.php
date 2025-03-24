@@ -27,7 +27,14 @@ class FileUploadService
 
         $filename = date('d-m-Y') . '-' . Str::random(30) . '.' . $extension;
 
-        $file->move(public_path('uploaded/' . $folder), $filename);
+        $destination = public_path('uploaded/' . $folder);
+
+        if (! file_exists($destination)) {
+            
+            mkdir($destination, 0775, true);
+        }
+
+        $file->move($destination, $filename);
 
         return 'uploaded/' . $folder . '/' . $filename;
     }
