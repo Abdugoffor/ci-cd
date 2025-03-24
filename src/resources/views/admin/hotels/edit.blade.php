@@ -3,7 +3,7 @@
 @section('content')
     <div class="content">
         <div class="d-inline-flex gap-2">
-            <a href="{{ route('hotels.index', [], false) }}" class="btn btn-sm btn-outline-success">
+            <a href="{{ route('hotels.index', [], false) }}" class="btn btn-sm btn-outline-secondary">
                 {{ getTranslation('back') }}
             </a>
         </div>

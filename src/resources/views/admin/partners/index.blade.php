@@ -87,10 +87,9 @@
                                             <img src="{{ asset($model->photo) }}" width="100px" alt="">
                                         </td>
                                         <td>
-                                            <a href="{{ route('partners.status', $model->id, false) }}"
-                                                class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
+                                            <span class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
-                                            </a>
+                                            </span>
                                         </td>
                                         <td class="text-center">
                                             <div class="d-inline-flex gap-2">

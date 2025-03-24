@@ -4,10 +4,10 @@
     <!-- Content area -->
     <div class="content">
         <div class="d-inline-flex gap-2">
-            <a href="{{ route('users.index', [], false) }}" class="btn btn-sm btn-outline-success">
+            <a href="{{ route('users.index', [], false) }}" class="btn btn-sm btn-outline-secondary">
                 {{ getTranslation('back') }}
             </a>
-            <a href="{{ route('users.edit', $model->id, false) }}" class="btn btn-outline-success ml-2">
+            <a href="{{ route('users.edit', $model->id, false) }}" class="btn btn-outline-secondary ml-2">
                 {{ getTranslation('change') }}
             </a>
         </div>
@@ -32,10 +32,9 @@
                                 {{ getTranslation('status') }}
                             </th>
                             <td>
-                                <a href="{{ route('users.status', $model->id, false) }}"
-                                    class="badge badge-{{ $model->status ? 'primary' : 'danger' }}">
+                                <span class="badge badge-{{ $model->status ? 'primary' : 'danger' }}">
                                     {{ $model->status ? getTranslation('assets') : getTranslation('not-active') }}
-                                </a>
+                                </span>
                             </td>
                         </tr>
                         <tr>

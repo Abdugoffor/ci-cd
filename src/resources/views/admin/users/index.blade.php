@@ -91,10 +91,9 @@
                                             {{ $model->email }}
                                         </td>
                                         <td>
-                                            <a href="{{ route('users.status', $model->id, false) }}"
-                                                class="badge badge-{{ $model->status ? 'primary' : 'danger' }}">
+                                            <span class="badge badge-{{ $model->status ? 'primary' : 'danger' }}">
                                                 {{ $model->status ? getTranslation('assets') : getTranslation('not-active') }}
-                                            </a>
+                                            </span>
                                         </td>
                                         <td class="text-center">
                                             <div class="d-inline-flex gap-2">

@@ -81,10 +81,9 @@
                                         <td>{{ getLocale($model->name) }}</td>
                                         <td>{{ getLocale($model->description) }}</td>
                                         <td>
-                                            <a href="{{ route('categories.status', $model->id, false) }}"
-                                                class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
+                                            <span class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
-                                            </a>
+                                            </span>
                                             {{-- <label
                                                 class="custom-control custom-switch custom-control-inline custom-control-right">
                                                 <input type="checkbox" class="custom-control-input"

@@ -90,10 +90,9 @@
                                         <td>{{ getLocale($model->menyu->name) }}</td>
                                         <td><img src="{{ asset($model->photo) }}" width="100px" alt=""></td>
                                         <td>
-                                            <a href="{{ route('news.status', $model->id, false) }}"
-                                                class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
+                                            <span class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
-                                            </a>
+                                            </span>
                                         </td>
                                         <td class="text-center">
                                             <div class="d-inline-flex gap-2">
@@ -111,7 +110,7 @@
                                                     data-toggle="modal" data-target="#modal_full{{ $model->id }}"><i
                                                         class="icon-trash"></i>
                                                 </button>
-                                                
+
                                                 <!-- Full width modal -->
                                                 <div id="modal_full{{ $model->id }}" class="modal fade" tabindex="-1">
                                                     <div class="modal-dialog modal-dialog-centered modal-sm">

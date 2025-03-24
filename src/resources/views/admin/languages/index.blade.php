@@ -63,7 +63,8 @@
                                                 </option>
                                             </select>
                                         </th>
-                                        <th class="text-center"><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                        <th class="text-center"><button
+                                                class="btn btn-teal">{{ getTranslation('search') }}</button></th>
                                     </tr>
                                 </form>
                             </thead>
@@ -73,10 +74,9 @@
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ $model->name }}</td>
                                         <td>
-                                            <a href="{{ route('language.status', $model->id, false) }}"
-                                                class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
+                                            <span class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
-                                            </a>
+                                            </span>
                                         </td>
                                         <td class="text-center">
                                             <div class="d-inline-flex gap-2">
@@ -104,7 +104,8 @@
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
 
-                                                            <form action="{{ route('languages.destroy', $model->id, false) }}"
+                                                            <form
+                                                                action="{{ route('languages.destroy', $model->id, false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')

@@ -40,7 +40,6 @@
                                     <th class="text-center">{{ getTranslation('name') }}</th>
                                     <th class="text-center">{{ getTranslation('title') }}</th>
                                     <th class="text-center">{{ getTranslation('description') }}</th>
-                                    <th class="text-center">{{ getTranslation('text') }} </th>
                                     <th class="text-center">{{ getTranslation('photo') }} 1</th>
                                     <th class="text-center">{{ getTranslation('photo') }} 2</th>
                                     <th class="text-center">{{ getTranslation('status') }}</th>
@@ -52,16 +51,10 @@
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>
-                                            {{ substr(getLocale($model->name), 0, 30) }} ...
+                                            {{ getLocale($model->name) }}
                                         </td>
                                         <td>
-                                            {{ substr(getLocale($model->title), 0, 30) }} ...
-                                        </td>
-                                        <td>
-                                            {{ substr(getLocale($model->description), 0, 30) }} ...
-                                        </td>
-                                        <td>
-                                            {{ substr(getLocale($model->text), 0, 30) }} ...
+                                            {{ getLocale($model->title) }}
                                         </td>
                                         <td>
                                             <img src="{{ asset($model->photo_1) }}" width="100px" alt="">
@@ -70,10 +63,9 @@
                                             <img src="{{ asset($model->photo_2) }}" width="100px" alt="">
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('media.status', $model->id, false) }}"
-                                                class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
+                                            <span class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
-                                            </a>
+                                            </span>
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">

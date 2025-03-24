@@ -38,7 +38,6 @@
                                 <tr>
                                     <th class="text-center">№</th>
                                     <th class="text-center">{{ getTranslation('title') }}</th>
-                                    <th class="text-center">{{ getTranslation('description') }}</th>
                                     <th class="text-center">{{ getTranslation('photo') }}</th>
                                     <th class="text-center">{{ getTranslation('rating') }}</th>
                                     <th class="text-center">{{ getTranslation('location') }}</th>
@@ -53,11 +52,6 @@
                                             <input type="text" class="form-control" name="title"
                                                 placeholder="{{ getTranslation('title') }}"
                                                 value="{{ old('title', request('title')) }}">
-                                        </th>
-                                        <th class="text-center">
-                                            <input type="text" class="form-control" name="description"
-                                                placeholder="{{ getTranslation('description') }}"
-                                                value="{{ old('description', request('description')) }}">
                                         </th>
                                         <th class="text-center"></th>
                                         <th class="text-center">
@@ -98,10 +92,7 @@
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>
-                                            {{ substr(getLocale($model->title), 0, 30) }} ...
-                                        </td>
-                                        <td>
-                                            {{ substr(getLocale($model->description), 0, 30) }} ...
+                                            {{ getLocale($model->title) }}
                                         </td>
                                         <td>
                                             <img src="{{ asset($model->photo) }}" width="100px" alt="">
@@ -116,10 +107,9 @@
                                             <a href="tel:{{ $model->phone }}" target="_blank">{{ $model->phone }}</a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('hotels.status', $model->id, false) }}"
-                                                class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
+                                            <span class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
-                                            </a>
+                                            </span>
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
