@@ -32,7 +32,7 @@
 
                     <div class="input-wrapper">
                         <label for="last-name" class="input-label">{{ getTranslation('passport-issue-date') }}</label>
-                        <div class="date-container"  onclick="openDatePicker('passport_issue_date')">
+                        <div class="date-container" onclick="openDatePicker('passport_issue_date')">
                             <input type="date" id="passport_issue_date" value="{{ old('passport_issue_date') }}"
                                 name="passport_issue_date" class="date-input"
                                 onchange="updateDate('passport_issue_date')" />
@@ -63,8 +63,8 @@
                     <div class="input-wrapper">
                         <label for="issuing-authority" class="input-label">{{ getTranslation('copy-of-passport') }}</label>
                         <div class="file-upload">
-                            <input type="file" id="fileInput" value="{{ old('passport_copy') }}" name="passport_copy" class="hidden-input"
-                                accept=".jpg, .jpeg, .pdf" />
+                            <input type="file" id="fileInput" value="{{ old('passport_copy') }}" name="passport_copy"
+                                class="hidden-input" accept=".jpg, .jpeg, .pdf" />
                             <label for="fileInput" class="file-label">
                                 Upload file
                                 <span class="file-icon">
@@ -105,8 +105,8 @@
                         <div class="input-wrapper">
                             <label for="date-of-issue" class="input-label">{{ getTranslation('arrival-date') }}</label>
                             <div class="date-container" onclick="openDatePicker('arrival_details')">
-                                <input type="date" id="arrival_details" value="{{ old('arrival_details') }}" name="arrival_details" class="date-input"
-                                    onchange="updateDate('arrival_details')" />
+                                <input type="date" id="arrival_details" value="{{ old('arrival_details') }}"
+                                    name="arrival_details" class="date-input" onchange="updateDate('arrival_details')" />
                                 <span id="arrival_detailsPlaceholder" class="placeholder">DD/MM/YYYY</span>
                                 <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
@@ -119,7 +119,8 @@
                             <label for="date-of-expiry"
                                 class="input-label">{{ getTranslation('departure-date') }}</label>
                             <div class="date-container" onclick="openDatePicker('departure_details')">
-                                <input type="date" id="departure_details" value="{{ old('departure_details') }}" name="departure_details" class="date-input"
+                                <input type="date" id="departure_details" value="{{ old('departure_details') }}"
+                                    name="departure_details" class="date-input"
                                     onchange="updateDate('departure_details')" />
                                 <span id="departure_detailsPlaceholder" class="placeholder">DD/MM/YYYY</span>
                                 <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
@@ -142,10 +143,11 @@
                     <div class="input-group">
 
                         <div class="input-wrapper">
-                            <label for="issuing-authority" class="input-label">{{ getTranslation('photo_for_accreditation') }}</label>
+                            <label for="issuing-authority"
+                                class="input-label">{{ getTranslation('photo_for_accreditation') }}</label>
                             <div class="file-upload">
-                                <input type="file" id="photoInput" value="{{ old('photo') }}" name="photo" class="hidden-input"
-                                    accept=".jpg, .jpeg, .pdf" />
+                                <input type="file" id="photoInput" value="{{ old('photo') }}" name="photo"
+                                    class="hidden-input" accept=".jpg, .jpeg, .pdf" />
                                 <label for="photoInput" class="file-label">
                                     Upload file
                                     <span class="file-icon">
@@ -167,8 +169,8 @@
                         </div>
                         <div class="input-wrapper">
                             <label for="last-name" class="input-label">{{ getTranslation('pcr-test-details') }}</label>
-                            <input type="text" id="last-name" value="{{ old('pcr_test_details') }}" name="pcr_test_details" placeholder="Детали ПЦР-теста"
-                                class="input-text" />
+                            <input type="text" id="last-name" value="{{ old('pcr_test_details') }}"
+                                name="pcr_test_details" placeholder="Детали ПЦР-теста" class="input-text" />
                             @error('pcr_test_details')
                                 <p style="color: red; font-size: 12px;">{{ $message }}</p>
                             @enderror
@@ -178,12 +180,14 @@
                             </label>
                             <div>
                                 <label class="radio-label">
-                                    <input type="radio" name="requires_visa" {{ old('requires_visa') == 1 ? 'checked' : '' }} value="1" />
+                                    <input type="radio" name="requires_visa"
+                                        {{ old('requires_visa') == 1 ? 'checked' : '' }} value="1" />
                                     <span class="custom-radio"></span>
                                     {{ getTranslation('yes') }}
                                 </label>
                                 <label class="radio-label">
-                                    <input type="radio" name="requires_visa" {{ old('requires_visa') == 0 ? 'checked' : '' }} value="0" />
+                                    <input type="radio" name="requires_visa"
+                                        {{ old('requires_visa') == 0 ? 'checked' : '' }} value="0" />
                                     <span class="custom-radio"></span>
                                     {{ getTranslation('no') }}
                                 </label>
@@ -257,19 +261,7 @@
                 </div>
 
                 <div class="terms">
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="terms" id="terms" />
-                        <span class="checkmark">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"
-                                fill="none">
-                                <path d="M2 6.99999L4.76923 10L11 3.25" stroke="#39585C" stroke-width="1.37813"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </span>
-                    </label>
-                    <label for="terms">{{ getTranslation('i_agree') }}.</label>
                 </div>
-                {{-- <button type="submit" class="btn btn-form">{{ getTranslation('add') }}</button> --}}
                 <button type="submit" class="btn">{{ getTranslation('add') }}</button>
             </form>
         </section>

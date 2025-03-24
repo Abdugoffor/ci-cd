@@ -2,9 +2,6 @@
 
 # Composer install
 composer install
-#!/bin/sh
-# /tmp ni tozalash
-rm -rf /tmp/*
 
 # Копирование .env файла, если его нет
 if [ ! -f .env ]; then
@@ -23,12 +20,7 @@ php artisan route:cache
 php artisan view:cache
 
 # Установка прав на нужные папки
-chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/public/uploaded
-chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/public/uploaded
-chmod -R 775 /tmp
-chown -R www-data:www-data /tmp
-
+# chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache
 nohup php artisan queue:work --daemon > /var/www/laravel/storage/logs/queue.log 2>&1 &
-
 # Запуск PHP-FPM
 php-fpm

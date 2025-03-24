@@ -4,18 +4,11 @@ namespace App\Models;
 use App\Traits\HasHistory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Schema;
 
 class Participant extends Model
 {
     use HasHistory, SoftDeletes;
     protected $fillable = [
-        // 'fide_id',
-        // 'first_name',    // Ism (pasportdagidek)
-        // 'country_id',                 // Fuqaroligi (mamlakati)
-        // 'gender',        // Jins (Erkak - M / Ayol - F)
-        // 'date_of_birth', // Tug‘ilgan sana (YYYY-MM-DD)
-
         'tournament_id',
         'fide_id',
         'first_name',    // Ism (pasportdagidek)
@@ -23,6 +16,7 @@ class Participant extends Model
         'date_of_birth', // Tug‘ilgan sana (YYYY-MM-DD)
         'gender',        // Jins (Erkak - M / Ayol - F)
         'email',         // Elektron pochta
+        'key',           // password
         'email_verified_at',
 
         'accreditation_category_id',

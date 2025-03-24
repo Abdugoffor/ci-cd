@@ -14,8 +14,10 @@ use App\Models\Participant;
 use App\Models\PlayerInfo;
 use App\Models\Tournament;
 use App\Services\FileUploadService;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class ApplicationController extends Controller
 {
@@ -68,17 +70,27 @@ class ApplicationController extends Controller
     {
         $data = $request->all();
 
+        $key = Str::random(8);
+
         $data['fide_id'] = session()->get('player')['id_number'] ?? null;
+
+        $data['key'] = Hash::make($key);
 
         $model = Participant::create($data);
 
         $verificationCode = rand(100000, 999999);
 
+        $data = [
+            'participant_id'    => $model->id,
+            'verification_code' => $verificationCode,
+            'key'               => $key,
+            'link'              => route('chack.application'),
+        ];
         cache()->put('email_verification_' . $model->email, $verificationCode, now()->addMinutes(5));
 
         session()->put('model_id', $model->id);
 
-        dispatch(new VerifyEmailJob($model->email, $verificationCode));
+        dispatch(new VerifyEmailJob($model->email, $data));
 
         return redirect()->route('application.verify.email', ['model' => $model->id]);
 
@@ -150,7 +162,11 @@ class ApplicationController extends Controller
 
         dispatch(new PendingAppJob($model));
 
-        return redirect('/')->with('notification', getTranslation('notification'));
+        return redirect()->route('chack.application')->with('notification', getTranslation('notification'));
 
+    }
+    public function aferta()
+    {
+        return view('client.aferta');
     }
 }

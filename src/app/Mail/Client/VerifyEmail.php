@@ -14,11 +14,11 @@ class VerifyEmail extends Mailable
     /**
      * Create a new message instance.
      */
-    public $code;
+    public $data;
 
-    public function __construct($code)
+    public function __construct($data)
     {
-        $this->code = $code;
+        $this->data = $data;
     }
 
     /**

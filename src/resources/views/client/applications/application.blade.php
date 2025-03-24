@@ -125,7 +125,10 @@
                             </svg>
                         </span>
                     </label>
-                    <label for="terms">{{ getTranslation('i_agree') }}.</label>
+                    <label for="terms">
+                        {{ getTranslation('i_agree') }} |
+                    </label>
+                    <a href="/aferta" target="_blank"> Aferta</a>
                 </div>
                 <button type="submit" class="btn">{{ getTranslation('add') }}</button>
             </form>

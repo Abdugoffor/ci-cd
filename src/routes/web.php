@@ -19,6 +19,7 @@ use App\Http\Controllers\Auth\EmailVerifyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Client\ApplicationController;
 use App\Http\Controllers\Client\BadgesController;
+use App\Http\Controllers\Client\ChackApplication;
 use App\Http\Controllers\Client\HotelController as ClientHotelController;
 use App\Http\Controllers\Client\IndexController;
 use App\Http\Controllers\Client\NewsController as ClientNewsController;
@@ -35,9 +36,13 @@ Route::middleware(LangMiddleware::class)->group(function () {
     Route::get('/application/{tournament}', [ApplicationController::class, 'application'])->name('application');
     Route::get('/applications-verify-email/{model}', [ApplicationController::class, 'applicationVerifyEmail'])->name('application.verify.email');
     Route::post('/applications', [ApplicationController::class, 'store'])->name('application.store');
+    Route::get('/aferta', [ApplicationController::class, 'aferta'])->name('aferta');
 
     Route::get('/applications-additional/{model}', [ApplicationController::class, 'createAdditional'])->middleware(CheckEmailSession::class)->name('application.additional');
     Route::post('/applications-additional/{model}', [ApplicationController::class, 'storeAdditional'])->middleware(CheckEmailSession::class)->name('application.store.additional');
+
+    Route::get('/chack-application', [ChackApplication::class, 'chack'])->name('chack.application');
+    Route::get('/chack-application-srach', [ChackApplication::class, 'search'])->name('chack.application.srach');
 
     Route::get('/page/{page}', [PageController::class, 'index'])->name('page.index');
     Route::get('/hotel/{hotel}', [ClientHotelController::class, 'index'])->name('hotel.index');

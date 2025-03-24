@@ -25,19 +25,20 @@ class MediaSeeder extends Seeder
                 'default' => 'SAMARKAND 2025',
             ],
             'description' => [
-                'uz'      => 'Strategiya Tarix bilan uchrashadi',
-                'ru'      => 'Стратегия Встречает Историю',
-                'en'      => 'Strategy Meets History',
-                'default' => 'Стратегия Встречает Историю',
+                'uz'      => 'Ariza holatini tekshirish',
+                'ru'      => 'Проверка статуса заявки',
+                'en'      => 'Application Status Check',
+                'default' => 'Проверка статуса заявки',
             ],
             'text'        => [
-                'uz'      => 'Bu tadbir tarixiy shahar Samarqandda o‘tkazilib, strategiya, madaniyat va global birdamlikni unutilmas uyg‘unlashuvini yaratadi.',
-                'ru'      => 'Это мероприятие, проходящее в историческом городе Самарканд, станет незабываемым слиянием стратегии, культуры и глобального единства.',
-                'en'      => 'This event, held in the historic city of Samarkand, will be an unforgettable blend of strategy, culture, and global unity.',
-                'default' => 'Это мероприятие, проходящее в историческом городе Самарканд, станет незабываемым слиянием стратегии, культуры и глобального единства.',
+                'uz'      => 'Siz ariza holatini tekshirishingiz mumkin. Buning uchun emailga yuborilgan ariza ID va maxsus kalit (key) ma’lumotlarini kiritishingiz lozim. Shuningdek, ariza holatini yangilash imkoniyati ham mavjud.',
+                'ru'      => 'Вы можете проверить статус заявки. Для этого необходимо ввести идентификатор заявки и специальный ключ (key), отправленный на вашу электронную почту. Также есть возможность обновить статус заявки.',
+                'en'      => 'You can check the status of your application. To do this, enter the application ID and the special key (key) sent to your email. You also have the option to update the application status.',
+                'default' => 'Вы можете проверить статус заявки. Для этого необходимо ввести идентификатор заявки и специальный ключ (key), отправленный на вашу электронную почту. Также есть возможность обновить статус заявки.',
             ],
-            'photo_1' => 'frontend/assets/header_banner/banner-chess.svg',
-            'photo_2' => 'frontend/assets/main/history-image.svg',
+
+            'photo_1'     => 'frontend/assets/header_banner/banner-chess.svg',
+            'photo_2'     => 'frontend/assets/main/history-image.svg',
         ]);
 
     }

@@ -14,11 +14,11 @@ class VerifyEmailJob implements ShouldQueue
      * Create a new job instance.
      */
     public $email;
-    public $verificationCode;
-    public function __construct($email, $verificationCode)
+    public $data;
+    public function __construct($email, $data)
     {
         $this->email            = $email;
-        $this->verificationCode = $verificationCode;
+        $this->data = $data;
     }
 
     /**
@@ -26,6 +26,6 @@ class VerifyEmailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->email)->send(new VerifyEmail($this->verificationCode));
+        Mail::to($this->email)->send(new VerifyEmail($this->data));
     }
 }

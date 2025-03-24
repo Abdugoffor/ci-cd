@@ -61,7 +61,7 @@
                     <div class="history-line"></div>
                     <div class="history-text">
                         {{ getLocale($siteSettings?->text) ?:
-                            ' Hosted in the historic city of Samarkand, this event will be an unforgettable fusion of strategy, culture, and global unity' }}
+                            'Hosted in the historic city of Samarkand, this event will be an unforgettable fusion of strategy, culture, and global unity' }}
                     </div>
                     <button class="btn">action button</button>
                 </div>

@@ -1038,6 +1038,15 @@ class TranslationSeeder extends Seeder
                     'default' => 'date',
                 ],
             ],
+            [
+                'slug' => 'setting',
+                'name' => [
+                    'uz'      => "Sozlama",
+                    'ru'      => "Настройки",
+                    'en'      => "Settings",
+                    'default' => 'Settings',
+                ],
+            ],
         ];
 
         foreach ($translations as $translation) {
