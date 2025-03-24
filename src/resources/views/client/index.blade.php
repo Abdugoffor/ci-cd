@@ -137,7 +137,7 @@
                                     {{ getLocale($new->description) }}
                                 </span>
                                 <div class="news-card__date">
-                                    <span>{{ $new->created_at->format('d-M-Y') }}</span>
+                                    <span>{{ $new->date }}</span>
                                     <a href="{{ route('news.latest', $new->id, false) }}" class="news-more">
                                         {{ getTranslation('read_more') }}
                                     </a>

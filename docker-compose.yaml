@@ -2,7 +2,6 @@ networks:
   traefik-network:
     external: true
 
-
 services:
   fide_nginx:
     build:
@@ -36,17 +35,15 @@ services:
     volumes:
       - fide_project:/var/www/laravel
 
-
   fide_postgres:
     image: postgres:15
     restart: always
     env_file:
       - env/postgres.env
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - ./pgdata:/var/lib/postgresql/data  # Lokal direktoriyaga bog'lash
     networks:
       - traefik-network 
 
 volumes:
-  pgdata:
   fide_project:

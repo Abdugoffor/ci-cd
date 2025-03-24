@@ -14,6 +14,7 @@ class News extends Model
         'text',
         'menyu_id',
         'photo',
+        'date',
         'is_active',
     ];
     protected $casts = [

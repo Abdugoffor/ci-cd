@@ -51,7 +51,7 @@
                                 d="M14 12.1992C14 12.6825 14.3918 13.0742 14.875 13.0742C15.3582 13.0742 15.75 12.6825 15.75 12.1992C15.75 11.716 15.3582 11.3242 14.875 11.3242C14.3918 11.3242 14 11.716 14 12.1992Z"
                                 fill="#487379" />
                         </svg>
-                        <span class="inner-span">{{ $currentNews->created_at->format('d-M-Y') }}</span>
+                        <span class="inner-span">{{ $currentNews->date }}</span>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                                             {{ getLocale($relatedNew->description) }}
                                         </span>
                                         <div class="news-card__date">
-                                            <span>{{ $relatedNew->created_at->format('d-M-Y') }}</span>
+                                            <span>{{ $relatedNew->date }}</span>
                                             <a href="{{ route('news.latest', $relatedNew->id, false) }}" class="news-more">
                                                 {{ getTranslation('read_more') }}
                                             </a>

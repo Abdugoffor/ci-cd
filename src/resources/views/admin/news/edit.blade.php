@@ -97,6 +97,14 @@
                                             class="img-thumbnail d-none" width="200">
                                     @endif
                                 </div>
+                                
+                                <!-- Date maydoni (ko‘p tilli emas) -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('date') }}</label>
+                                <input type="date" class="form-control" name="date" value="{{ $news->date }}"
+                                    placeholder="{{ getTranslation('date') }}">
+                                @error('date')
+                                    <p style="color: red;">{{ $message }}</p>
+                                @enderror
 
                                 <!-- Is_active holat kaliti -->
                                 <div class="header-elements mt-3">

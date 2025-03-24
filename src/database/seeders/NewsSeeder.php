@@ -34,6 +34,7 @@ class NewsSeeder extends Seeder
                 'menyu_id'    => 1,
                 'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
+                'date' => '2020-12-12',
             ],
             [
                 'title'       => [
@@ -54,9 +55,10 @@ class NewsSeeder extends Seeder
                     'en'      => 'A new 50,000-seat stadium was opened in Samarkand, where international competitions will be held.',
                     'default' => 'A new 50,000-seat stadium was opened in Samarkand, where international competitions will be held.',
                 ],
-                'menyu_id'    => 2,
+                'menyu_id'    => 1,
                 'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
+                'date' => '2020-12-12',
             ],
             [
                 'title'       => [
@@ -77,9 +79,10 @@ class NewsSeeder extends Seeder
                     'en'      => 'The festival held in Bukhara featured local and international artists.',
                     'default' => 'The festival held in Bukhara featured local and international artists.',
                 ],
-                'menyu_id'    => 3,
+                'menyu_id'    => 1,
                 'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
+                'date' => '2020-12-12',
             ],
             [
                 'title'       => [
@@ -100,9 +103,10 @@ class NewsSeeder extends Seeder
                     'en'      => 'An art night took place in Khiva’s Ichan-Qala, featuring music and dance performances.',
                     'default' => 'An art night took place in Khiva’s Ichan-Qala, featuring music and dance performances.',
                 ],
-                'menyu_id'    => 4,
+                'menyu_id'    => 1,
                 'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
+                'date' => '2020-12-12',
             ],
             [
                 'title'       => [
@@ -126,6 +130,7 @@ class NewsSeeder extends Seeder
                 'menyu_id'    => 1,
                 'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
+                'date' => '2020-12-12',
             ],
             [
                 'title'       => [
@@ -146,9 +151,10 @@ class NewsSeeder extends Seeder
                     'en'      => 'The fair in Fergana showcased handicrafts and food products.',
                     'default' => 'The fair in Fergana showcased handicrafts and food products.',
                 ],
-                'menyu_id'    => 5,
+                'menyu_id'    => 1,
                 'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
+                'date' => '2020-12-12',
             ],
             [
                 'title'       => [
@@ -169,9 +175,10 @@ class NewsSeeder extends Seeder
                     'en'      => 'Local teams won at the competition held in Andijan.',
                     'default' => 'Local teams won at the competition held in Andijan.',
                 ],
-                'menyu_id'    => 2,
+                'menyu_id'    => 1,
                 'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
+                'date' => '2020-12-12',
             ],
             [
                 'title'       => [
@@ -192,9 +199,10 @@ class NewsSeeder extends Seeder
                     'en'      => 'The concert in Namangan featured local and international stars.',
                     'default' => 'The concert in Namangan featured local and international stars.',
                 ],
-                'menyu_id'    => 3,
+                'menyu_id'    => 1,
                 'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
+                'date' => '2020-12-12',
             ],
             [
                 'title'       => [
@@ -215,9 +223,10 @@ class NewsSeeder extends Seeder
                     'en'      => 'The exhibition in Karshi showcased works by local artists.',
                     'default' => 'The exhibition in Karshi showcased works by local artists.',
                 ],
-                'menyu_id'    => 4,
+                'menyu_id'    => 1,
                 'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
+                'date' => '2020-12-12',
             ],
             [
                 'title'       => [
@@ -238,9 +247,10 @@ class NewsSeeder extends Seeder
                     'en'      => 'Ancient artifacts were discovered during excavations near Termez.',
                     'default' => 'Ancient artifacts were discovered during excavations near Termez.',
                 ],
-                'menyu_id'    => 5,
+                'menyu_id'    => 1,
                 'photo'       => 'frontend/assets/news/detail1.svg',
                 'is_active'   => true,
+                'date' => '2020-12-12',
             ],
         ];
         foreach ($news as $new) {

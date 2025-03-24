@@ -5,12 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chess Olympiad 2025</title>
+
     
-    <link rel="icon" type="image/svg+xml" href="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}" />
+    {{-- <link rel="icon" type="image/svg+xml" href="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}" /> --}}
     
-    {{-- <link rel="icon" type="image/svg+xml" href="{{ secure_asset('frontend/assets/header_banner/chess_logo.svg') }}" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('frontend/assets/header_banner/chess_logo.svg') }}" /> --}}
+    <link rel="icon" type="image/svg+xml" href="{{ secure_asset('frontend/assets/header_banner/chess_logo.svg') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('frontend/assets/header_banner/chess_logo.svg') }}" />
 
     <meta name="theme-color" content="#17a8d0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,9 +19,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    
-    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
-    {{-- <link rel="stylesheet" href="{{ secure_asset('frontend/css/style.css') }}" /> --}}
+
+    {{-- <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" /> --}}
+
+    <link rel="stylesheet" href="{{ secure_asset('frontend/css/style.css') }}" />
 </head>
 
 <body>
@@ -127,8 +129,8 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="{{ asset('frontend/js/main.js') }}"></script>
-    {{-- <script src="{{ secure_asset('frontend/js/main.js') }}"></script> --}}
+    {{-- <script src="{{ asset('frontend/js/main.js') }}"></script> --}}
+    <script src="{{ secure_asset('frontend/js/main.js') }}"></script>
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -142,5 +144,67 @@
         });
     });
 </script>
+<style>
+    nav {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    .pagination {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        gap: 10px;
+    }
+
+    .page-item {
+        display: inline-block;
+    }
+
+    .page-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .page-item .page-link {
+        background-color: #ffffff;
+        color: #333;
+        border: 1px solid #ddd;
+    }
+
+    .page-item .page-link:hover {
+        background-color: #f0f0f0;
+        border-color: #bbb;
+    }
+
+    .page-item.active .page-link {
+        background-color: #0b5e76;
+        color: #ffffff;
+        border: none;
+
+    }
+
+    .page-item.disabled .page-link {
+        background-color: #e9ecef;
+        color: #6c757d;
+        border: none;
+        cursor: not-allowed;
+    }
+
+    .page-item:first-child .page-link,
+    .page-item:last-child .page-link {
+        font-size: 18px;
+    }
+</style>
 
 </html>

@@ -1029,6 +1029,15 @@ class TranslationSeeder extends Seeder
                     'default' => 'Photo for Accreditation',
                 ],
             ],
+            [
+                'slug' => 'date',
+                'name' => [
+                    'uz'      => "date",
+                    'ru'      => "date",
+                    'en'      => "date",
+                    'default' => 'date',
+                ],
+            ],
         ];
 
         foreach ($translations as $translation) {

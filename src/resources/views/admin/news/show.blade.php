@@ -38,6 +38,12 @@
                             </td>
                         </tr>
                         <tr>
+                            <th class="text-center">{{ getTranslation('date') }}</th>
+                            <td>
+                                {{ $model->date }}
+                            </td>
+                        </tr>
+                        <tr>
                             <th class="text-center">
                                 {{ getTranslation('status') }}
                             </th>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->jsonb('description');
             $table->jsonb('text');
             $table->string('photo')->nullable();
+            $table->date('date');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes();
