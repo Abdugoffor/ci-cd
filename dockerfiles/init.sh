@@ -16,7 +16,7 @@ fi
 echo "Generating application key..."
 php artisan key:generate
 echo "Running migrations..."
-php artisan migrate
+php artisan migrate:fresh
 echo "Running seeders..."
 php artisan db:seed
 
