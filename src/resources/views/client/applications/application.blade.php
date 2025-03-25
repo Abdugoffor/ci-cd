@@ -2,6 +2,7 @@
 @section('banner')
 @endsection
 @section('content')
+    
     <main class="container">
         <section class="register-personal">
             <div class="register-personal-top">
@@ -15,13 +16,13 @@
                 </div>
             </div>
             @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
                         @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
+                            toast.create("{{ $error }}");
                         @endforeach
-                    </ul>
-                </div>
+                    });
+                </script>
             @endif
             <form action="{{ route('application.store', [], false) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -142,5 +143,7 @@
                 <button type="submit" class="btn">{{ getTranslation('add') }}</button>
             </form>
         </section>
+        <div class="toast-container"></div>
     </main>
+    
 @endsection

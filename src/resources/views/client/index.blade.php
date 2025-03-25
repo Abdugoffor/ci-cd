@@ -63,7 +63,7 @@
                         {{ getLocale($siteSettings?->text) ?:
                             'Hosted in the historic city of Samarkand, this event will be an unforgettable fusion of strategy, culture, and global unity' }}
                     </div>
-                    <a href='/chack-application' class="btn">action button</a>
+                    <a href='/chack-application' class="btn">{{ getTranslation('action_button') }}</a>
                 </div>
             </div>
         </section>

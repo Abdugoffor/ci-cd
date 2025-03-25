@@ -25,7 +25,82 @@
     {{-- <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" /> --}}
 
     <link rel="stylesheet" href="{{ secure_asset('frontend/css/style.css') }}" />
+
 </head>
+<style>
+    .toast-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+    }
+
+    .toast {
+        background: #fff;
+        border-radius: 8px;
+        padding: 12px 24px;
+        margin-bottom: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        animation: slideIn 0.3s ease-in-out;
+        min-width: 300px;
+        max-width: 500px;
+    }
+
+    .toast.error {
+        border-left: 4px solid #ff4b4b;
+    }
+
+    .toast-icon {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .toast-message {
+        color: #333;
+        font-size: 14px;
+        flex: 1;
+    }
+
+    .toast-close {
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+    }
+
+    .toast-close:hover {
+        opacity: 1;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+</style>
 
 <body>
     <header class="header">
@@ -134,6 +209,42 @@
     {{-- <script src="{{ asset('frontend/js/main.js') }}"></script> --}}
     <script src="{{ secure_asset('frontend/js/main.js') }}"></script>
 </body>
+<script>
+    const toast = {
+        create: function(message, type = 'error', duration = 5000) {
+            const toastContainer = document.querySelector('.toast-container');
+            if (!toastContainer) return;
+
+            const toastElement = document.createElement('div');
+            toastElement.className = `toast ${type}`;
+
+            toastElement.innerHTML = `
+          <div class="toast-icon">
+            ${type === 'error' ? `
+                          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM11 15H9V13H11V15ZM11 11H9V5H11V11Z" fill="#ff4b4b"/>
+                          </svg>
+                        ` : ''}
+          </div>
+          <div class="toast-message">${message}</div>
+          <div class="toast-close" onclick="this.parentElement.remove()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="currentColor"/>
+            </svg>
+          </div>
+        `;
+
+            toastContainer.appendChild(toastElement);
+
+            setTimeout(() => {
+                toastElement.style.animation = 'slideOut 0.3s ease-in-out forwards';
+                setTimeout(() => {
+                    toastElement.remove();
+                }, 300);
+            }, duration);
+        }
+    };
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll(".lang-dropdown a").forEach(function(el) {

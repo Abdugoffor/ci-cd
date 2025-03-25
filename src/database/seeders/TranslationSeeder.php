@@ -1047,6 +1047,24 @@ class TranslationSeeder extends Seeder
                     'default' => 'Settings',
                 ],
             ],
+            [
+                'slug' => 'action_button',
+                'name' => [
+                    'uz'      => "Проверить",
+                    'ru'      => "Проверить",
+                    'en'      => "Проверить",
+                    'default' => 'Проверить',
+                ],
+            ],
+            [
+                'slug' => 'action_button',
+                'name' => [
+                    'uz'      => "Проверить",
+                    'ru'      => "Проверить",
+                    'en'      => "Проверить",
+                    'default' => 'Проверить',
+                ],
+            ],
         ];
 
         foreach ($translations as $translation) {

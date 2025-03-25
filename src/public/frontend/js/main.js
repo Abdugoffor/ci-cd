@@ -73,14 +73,11 @@ updateLanguage(currentLang);
 // Sponsors slider
 const sponsorsSwiper = new Swiper(".sponsors-slider", {
   slidesPerView: 5,
-  centeredSlides: true,
+  // centeredSlides: true,
   spaceBetween: 30,
   loop: true,
   loopedSlides: 6,
-  autoplay: {
-    delay: 1500,
-    disableOnInteraction: false,
-  },
+  autoplay: false,
   speed: 800,
   grabCursor: true,
   breakpoints: {
@@ -93,6 +90,10 @@ const sponsorsSwiper = new Swiper(".sponsors-slider", {
       spaceBetween: 20,
     },
     1024: {
+      slidesPerView: 5,
+      spaceBetween: 30,
+    },
+    1280: {
       slidesPerView: 5,
       spaceBetween: 30,
     },

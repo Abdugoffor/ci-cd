@@ -14,6 +14,15 @@
                     </div>
                 </div>
             </div>
+            @if ($errors->any())
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        @foreach ($errors->all() as $error)
+                            toast.create("{{ $error }}");
+                        @endforeach
+                    });
+                </script>
+            @endif
             <form action="{{ route('application.store.additional', $model->id, false) }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
@@ -25,9 +34,6 @@
                         <input type="text" id="first-name" name="passport_number"
                             placeholder="{{ getTranslation('passport-number') }}" value="{{ old('passport_number') }}"
                             class="input-text" />
-                        @error('passport_number')
-                            <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                        @enderror
                     </div>
 
                     <div class="input-wrapper">
@@ -40,9 +46,6 @@
                             <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                 class="calendar-icon" />
                         </div>
-                        @error('passport_issue_date')
-                            <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                        @enderror
                     </div>
                     <div class="input-wrapper">
                         <label for="date-of-birth"
@@ -55,9 +58,6 @@
                             <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                 class="calendar-icon" />
                         </div>
-                        @error('passport_expiry_date')
-                            <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                        @enderror
                     </div>
 
                     <div class="input-wrapper">
@@ -78,9 +78,7 @@
                             </label>
                             <div id="fileName" class="file-name"></div>
                             <div class="accepted-types">
-                                @error('passport_copy')
-                                    <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                                @enderror
+
                             </div>
                         </div>
                     </div>
@@ -96,9 +94,7 @@
                                 <input type="text" id="first-name" name="passport_issuing_authority"
                                     placeholder="{{ getTranslation('passport-issuing-authority') }}"
                                     value="{{ old('passport_issuing_authority') }}" class="input-text" />
-                                @error('passport_issuing_authority')
-                                    <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                                @enderror
+
                             </div>
                         </div>
 
@@ -111,9 +107,7 @@
                                 <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
                             </div>
-                            @error('arrival_details')
-                                <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                            @enderror
+
                         </div>
                         <div class="input-wrapper">
                             <label for="date-of-expiry"
@@ -126,18 +120,14 @@
                                 <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
                             </div>
-                            @error('departure_details')
-                                <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                            @enderror
+
                         </div>
 
                         <div class="input-wrapper">
                             <label for="first-name" class="input-label">{{ getTranslation('phone') }}</label>
                             <input type="text" id="first-name" value="{{ old('phone') }}" name="phone"
                                 placeholder="{{ getTranslation('phone') }}" class="input-text" />
-                            @error('phone')
-                                <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                            @enderror
+
                         </div>
                     </div>
                     <div class="input-group">
@@ -161,9 +151,7 @@
                                 </label>
                                 <div id="photoName" class="file-name"></div>
                                 <div class="accepted-types">
-                                    @error('photo')
-                                        <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                                    @enderror
+
                                 </div>
                             </div>
                         </div>
@@ -171,9 +159,7 @@
                             <label for="last-name" class="input-label">{{ getTranslation('pcr-test-details') }}</label>
                             <input type="text" id="last-name" value="{{ old('pcr_test_details') }}"
                                 name="pcr_test_details" placeholder="Детали ПЦР-теста" class="input-text" />
-                            @error('pcr_test_details')
-                                <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                            @enderror
+
                         </div>
                         <div class="radio-group radio-group-2">
                             <label for="citizenship" class="input-label">{{ getTranslation('visa-required') }} ?
@@ -192,9 +178,6 @@
                                     {{ getTranslation('no') }}
                                 </label>
                             </div>
-                            @error('requires_visa')
-                                <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                            @enderror
                         </div>
                     </div>
 
@@ -214,9 +197,6 @@
                                         {{ getLocale($category->name) }}</option>
                                 @endforeach
                             </select>
-                            @error('accreditation_category_id')
-                                <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                            @enderror
                         </div>
                         <div class="input-wrapper">
                             <label for="national-federation"
@@ -233,9 +213,6 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('country_id')
-                                <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                            @enderror
                         </div>
 
                         <div class="input-wrapper">
@@ -253,9 +230,6 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('accommodation_details')
-                                <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                            @enderror
                         </div>
                     </div>
                 </div>
@@ -265,5 +239,6 @@
                 <button type="submit" class="btn">{{ getTranslation('add') }}</button>
             </form>
         </section>
+        <div class="toast-container"></div>
     </main>
 @endsection

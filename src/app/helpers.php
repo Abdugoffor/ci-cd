@@ -114,7 +114,7 @@ if (! function_exists('getTranslation')) {
             $translation = Translation::where('slug', $slug)->first();
 
             if ($translation) {
-                return $translation->name[App::getLocale()] ?? $translation->name['default'];
+                return $translation->name[App::getLocale()] ? $translation->name[App::getLocale()] : $translation->name['default'];
             }
 
             return null;
@@ -135,7 +135,7 @@ if (! function_exists('getLocale')) {
             return $model[$lang];
         }
 
-        return $model['default'] ?? '';
+        return $model['default'] ? $model['default'] : '';
 
     }
 }

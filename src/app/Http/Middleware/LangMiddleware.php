@@ -20,11 +20,13 @@ class LangMiddleware
         $locale = Session::get('lang');
 
         if (! $locale) {
-            $locale = 'en';
+            $locale = getLanguage()->first()->slug;
+            
             Session::put('lang', $locale);
         }
 
-        App::setLocale($locale);
+        App::setLocale('en');
+        // App::setLocale($locale);
 
         return $next($request);
     }
