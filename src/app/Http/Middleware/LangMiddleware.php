@@ -25,8 +25,7 @@ class LangMiddleware
             Session::put('lang', $locale);
         }
 
-        App::setLocale('en');
-        // App::setLocale($locale);
+        App::setLocale($locale);
 
         return $next($request);
     }

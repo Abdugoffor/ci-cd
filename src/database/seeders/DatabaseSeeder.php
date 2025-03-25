@@ -32,10 +32,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             TranslationSeeder::class,
-            // CountriesSeeder::class,
-            // LanguageSeeder::class,
-            // AccreditationCategorySeeder::class,
-            // CategorySeeder::class,
+            CountriesSeeder::class,
+            LanguageSeeder::class,
+            AccreditationCategorySeeder::class,
+            CategorySeeder::class,
             // MenyuSeeder::class,
             // NewsSeeder::class,
             // HotelSeeder::class,

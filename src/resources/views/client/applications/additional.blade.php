@@ -41,7 +41,7 @@
                         <div class="date-container" onclick="openDatePicker('passport_issue_date')">
                             <input type="date" id="passport_issue_date" value="{{ old('passport_issue_date') }}"
                                 name="passport_issue_date" class="date-input"
-                                onchange="updateDate('passport_issue_date')" />
+                                onchange="updateDate('passport_issue_date')" oninput="updateDate('passport_issue_date')" />
                             <span id="passport_issue_datePlaceholder" class="placeholder">DD/MM/YYYY</span>
                             <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                 class="calendar-icon" />
@@ -53,7 +53,7 @@
                         <div class="date-container" onclick="openDatePicker('passport_expiry_date')">
                             <input type="date" id="passport_expiry_date" value="{{ old('passport_expiry_date') }}"
                                 name="passport_expiry_date" class="date-input"
-                                onchange="updateDate('passport_expiry_date')" />
+                                onchange="updateDate('passport_expiry_date')" oninput="updateDate('passport_expiry_date')" />
                             <span id="passport_expiry_datePlaceholder" class="placeholder">DD/MM/YYYY</span>
                             <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                 class="calendar-icon" />
@@ -102,7 +102,7 @@
                             <label for="date-of-issue" class="input-label">{{ getTranslation('arrival-date') }}</label>
                             <div class="date-container" onclick="openDatePicker('arrival_details')">
                                 <input type="date" id="arrival_details" value="{{ old('arrival_details') }}"
-                                    name="arrival_details" class="date-input" onchange="updateDate('arrival_details')" />
+                                    name="arrival_details" class="date-input" onchange="updateDate('arrival_details')"  oninput="updateDate('arrival_details')" />
                                 <span id="arrival_detailsPlaceholder" class="placeholder">DD/MM/YYYY</span>
                                 <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
@@ -115,7 +115,7 @@
                             <div class="date-container" onclick="openDatePicker('departure_details')">
                                 <input type="date" id="departure_details" value="{{ old('departure_details') }}"
                                     name="departure_details" class="date-input"
-                                    onchange="updateDate('departure_details')" />
+                                    onchange="updateDate('departure_details')"  oninput="updateDate('departure_details')" />
                                 <span id="departure_detailsPlaceholder" class="placeholder">DD/MM/YYYY</span>
                                 <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
