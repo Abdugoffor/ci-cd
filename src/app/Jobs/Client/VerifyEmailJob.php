@@ -26,6 +26,10 @@ class VerifyEmailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->email)->send(new VerifyEmail($this->data));
+        try {
+            Mail::to($this->email)->send(new VerifyEmail($this->data));
+        } catch (\Exception $e) {
+            dd('Email yuborishda xatolik: ' . $e->getMessage());
+        }
     }
 }

@@ -73,10 +73,13 @@ class ApplicationController extends Controller
         $key = Str::random(8);
 
         $data['fide_id'] = session()->get('player')['id_number'] ?? null;
+        $data['key']     = Hash::make($key);
 
-        $data['key'] = Hash::make($key);
-
-        $model = Participant::create($data);
+        try {
+            $model = Participant::create($data);
+        } catch (\Exception $e) {
+            dd('Ma\'lumotni saqlashda xatolik: ' . $e->getMessage());
+        }
 
         $verificationCode = rand(100000, 999999);
 
@@ -86,11 +89,15 @@ class ApplicationController extends Controller
             'key'               => $key,
             'link'              => route('chack.application'),
         ];
-        cache()->put('email_verification_' . $model->email, $verificationCode, now()->addMinutes(5));
 
+        cache()->put('email_verification_' . $model->email, $verificationCode, now()->addMinutes(5));
         session()->put('model_id', $model->id);
 
-        dispatch(new VerifyEmailJob($model->email, $data));
+        try {
+            dispatch(new VerifyEmailJob($model->email, $data));
+        } catch (\Exception $e) {
+            dd('Email yuborishni ishga tushirishda xatolik: ' . $e->getMessage());
+        }
 
         return redirect()->route('application.verify.email', ['model' => $model->id]);
 
