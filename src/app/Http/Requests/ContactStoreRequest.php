@@ -23,7 +23,7 @@ class ContactStoreRequest extends FormRequest
         $rules = [
             'title' => 'required|array',
             'path'  => 'required|string',
-            'photo'   => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'photo'   => 'required|image|mimes:jpeg,png,jpg,svg|max:5120',
             'is_active' => 'required|boolean',
         ];
 

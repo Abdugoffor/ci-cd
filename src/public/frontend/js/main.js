@@ -154,29 +154,35 @@ const newsSlider = new Swiper(".news-slider", {
     },
   },
 });
-document.addEventListener("DOMContentLoaded", function () {
-  document.addEventListener("click", function (event) {
-    if (event.target.closest(".date-container")) {
-      const container = event.target.closest(".date-container");
-      const dateInput = container.querySelector(".date-input");
-      dateInput.showPicker();
-    }
-  });
 
-  document.addEventListener("change", function (event) {
-    if (event.target.classList.contains("date-input")) {
-      const dateInput = event.target;
-      const container = dateInput.closest(".date-container");
-      const datePlaceholder = container.querySelector(".placeholder");
+const dateInputs = document.querySelectorAll('.date-input');
+dateInputs.forEach(input => {
+  if (input.value) {
+    updateDate(input);
+  }
+});
 
-      if (dateInput.value) {
-        const [year, month, day] = dateInput.value.split("-");
-        const formattedDate = `${day}/${month}/${year}`;
-        datePlaceholder.textContent = formattedDate;
-        datePlaceholder.style.color = "#000";
-      }
+document.addEventListener("click", function (event) {
+  if (event.target.closest(".date-container")) {
+    const container = event.target.closest(".date-container");
+    const dateInput = container.querySelector(".date-input");
+    dateInput.showPicker();
+  }
+});
+
+document.addEventListener("change", function (event) {
+  if (event.target.classList.contains("date-input")) {
+    const dateInput = event.target;
+    const container = dateInput.closest(".date-container");
+    const datePlaceholder = container.querySelector(".placeholder");
+
+    if (dateInput.value) {
+      const [year, month, day] = dateInput.value.split("-");
+      const formattedDate = `${day}/${month}/${year}`;
+      datePlaceholder.textContent = formattedDate;
+      datePlaceholder.style.color = "#000";
     }
-  });
+  }
 });
 
 

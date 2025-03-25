@@ -4,6 +4,7 @@ namespace App\Jobs\Client;
 use App\Mail\Client\VerifyEmail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class VerifyEmailJob implements ShouldQueue
@@ -29,7 +30,7 @@ class VerifyEmailJob implements ShouldQueue
         try {
             Mail::to($this->email)->send(new VerifyEmail($this->data));
         } catch (\Exception $e) {
-            dd('Email yuborishda xatolik: ' . $e->getMessage());
+            Log::info("Email sent successfully to: {$e->getMessage()}");
         }
     }
 }

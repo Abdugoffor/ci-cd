@@ -96,7 +96,7 @@ class ApplicationController extends Controller
         try {
             dispatch(new VerifyEmailJob($model->email, $data));
         } catch (\Exception $e) {
-            dd('Email yuborishni ishga tushirishda xatolik: ' . $e->getMessage());
+            Log::info("Email sent successfully to: {$e->getMessage()}");
         }
 
         return redirect()->route('application.verify.email', ['model' => $model->id]);

@@ -24,7 +24,7 @@ class HotelStoreRequest extends FormRequest
             'title'       => 'required|array',
             'description' => 'required|array',
             'text'        => 'required|array',
-            'photo'       => 'required|image|mimes:jpeg,png,jpg|max:5120',
+            'photo'       => 'required|image|mimes:jpeg,png,jpg,svg|max:5120',
             'rating'      => 'required|numeric|max:5',
             'location'    => 'required|string',
             'phone'       => 'required|string',
