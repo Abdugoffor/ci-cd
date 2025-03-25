@@ -21,7 +21,7 @@ class LangMiddleware
 
         if (! $locale) {
             $locale = getLanguage()->first()->slug;
-            
+
             Session::put('lang', $locale);
         }
 

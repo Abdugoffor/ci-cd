@@ -8,6 +8,7 @@ use App\Http\Requests\FideIdRequest;
 use App\Jobs\Client\PendingAppJob;
 use App\Jobs\Client\VerifyEmailJob;
 use App\Models\AccreditationCategory;
+use App\Models\Aferta;
 use App\Models\Country;
 use App\Models\Hotel;
 use App\Models\Participant;
@@ -174,6 +175,7 @@ class ApplicationController extends Controller
     }
     public function aferta()
     {
-        return view('client.aferta');
+        $model = Aferta::first();
+        return view('client.aferta', ['model' => $model]);
     }
 }

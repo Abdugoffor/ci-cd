@@ -228,6 +228,7 @@
                                     activeMenu('partners.index') ||
                                     activeMenu('media.index') ||
                                     activeMenu('users.index');
+                                    activeMenu('aferta.index');
                             @endphp
                             <li class="nav-item nav-item-submenu {{ $isActive ? 'nav-item-open' : '' }}">
                                 <a href="#" class="nav-link">
@@ -305,6 +306,13 @@
                                                 class="nav-link {{ activeMenu('media.index') }}">
                                                 <i class="icon-list-unordered"></i>
                                                 <span>{{ getTranslation('media') }}</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('aferta.index', [], false) }}"
+                                                class="nav-link {{ activeMenu('aferta.index') }}">
+                                                <i class="icon-list-unordered"></i>
+                                                <span>{{ getTranslation('aferta') }}</span>
                                             </a>
                                         </li>
                                     @endif

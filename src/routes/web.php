@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AccreditationCategoryController;
+use App\Http\Controllers\Admin\AfertaController;
 use App\Http\Controllers\Admin\ApplicationController as AdminAppController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
@@ -101,6 +102,9 @@ Route::middleware(LangMiddleware::class)->group(function () {
             Route::resource('/hotels', HotelController::class);
             Route::get('/hotels-status/{hotel}', [HotelController::class, 'status'])->name('hotels.status');
             Route::get('/hotels-search', [HotelController::class, 'search'])->name('hotels.search');
+
+            Route::resource('/aferta', AfertaController::class);
+            Route::get('/aferta-search', [AfertaController::class, 'search'])->name('aferta.search');
 
             Route::resource('/news', NewsController::class);
             Route::get('/news-status/{hotel}', [NewsController::class, 'status'])->name('news.status');

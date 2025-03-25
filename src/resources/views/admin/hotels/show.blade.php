@@ -17,39 +17,39 @@
                 <table class="table text-nowrap table-bordered">
                     <tbody>
                         <tr>
-                            <th class="text-center">{{ getTranslation('title') }}</th>
+                            <th>{{ getTranslation('title') }}</th>
                             <td>{{ getLocale($model->title) }}</td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('description') }}</th>
+                            <th>{{ getTranslation('description') }}</th>
                             <td>{{ getLocale($model->description) }}</td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('text') }}</th>
+                            <th>{{ getTranslation('text') }}</th>
                             <td>{!! getLocale($model->text) !!}</td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('photo') }}</th>
+                            <th>{{ getTranslation('photo') }}</th>
                             <td><img src="{{ asset($model->photo) }}" width="100px" alt=""></td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('rating') }}</th>
+                            <th>{{ getTranslation('rating') }}</th>
                             <td>{{ $model->rating }}</td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('location') }}</th>
+                            <th>{{ getTranslation('location') }}</th>
                             <td>
                                 {{ $model->location }}
                             </td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('phone') }}</th>
+                            <th>{{ getTranslation('phone') }}</th>
                             <td>
                                 <a href="tel:{{ $model->phone }}" target="_blank">{{ $model->phone }}</a>
                             </td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('status') }}</th>
+                            <th>{{ getTranslation('status') }}</th>
                             <td>
                                 <span class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                     {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
@@ -57,12 +57,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('created') }}</th>
+                            <th>{{ getTranslation('created') }}</th>
                             <th class="text-center">
                                 {{ $model->created_at ? $model->created_at->format('d-m-Y, H:i') : '' }}</th>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('change') }}</th>
+                            <th>{{ getTranslation('change') }}</th>
                             <th class="text-center">
                                 {{ $model->updated_at ? $model->updated_at->format('d-m-Y, H:i') : '' }}</th>
                         </tr>

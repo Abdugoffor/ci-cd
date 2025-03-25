@@ -2,7 +2,6 @@
 @section('banner')
 @endsection
 @section('content')
-    
     <main class="container">
         <section class="register-personal">
             <div class="register-personal-top">
@@ -35,14 +34,14 @@
                                 <span>({{ getTranslation('in_passport') }})</span></label>
                             <input type="text" id="first-name" name="first_name" value="{{ old('first_name') }}"
                                 class="input-text" placeholder="{{ getTranslation('name') }}" />
-                            
+
                         </div>
                         <div class="input-wrapper">
                             <label for="last-name"
                                 class="input-label">{{ getTranslation('last-name') }}<span>({{ getTranslation('in_passport') }})</span></label>
                             <input type="text" id="last-name" name="last_name" value="{{ old('last_name') }}"
                                 class="input-text" placeholder="{{ getTranslation('last-name') }}" />
-                            
+
                         </div>
                         <div class="input-wrapper">
                             <label for="date-of-birth" class="input-label">{{ getTranslation('birth-date') }}</label>
@@ -131,12 +130,11 @@
                     <label for="terms">
                         {{ getTranslation('i_agree') }} |
                     </label>
-                    <a href="/aferta" target="_blank"> Aferta</a>
+                    <a href="/aferta" target="_blank"> {{ getTranslation('aferta') }}</a>
                 </div>
                 <button type="submit" class="btn">{{ getTranslation('add') }}</button>
             </form>
         </section>
         <div class="toast-container"></div>
     </main>
-    
 @endsection

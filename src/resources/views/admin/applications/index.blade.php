@@ -15,7 +15,7 @@
                         <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th class="text-center">ID</th>
+                                    <th class="text-center" width="10%">ID</th>
                                     <th class="text-center">{{ getTranslation('name') }}</th>
                                     <th class="text-center">{{ getTranslation('fide-id') }}</th>
                                     <th class="text-center">{{ getTranslation('type') }}</th>

@@ -45,6 +45,18 @@
                         <tbody>
                             <tr>
                                 <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('photo') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    @if ($participant->photo)
+                                        <img src="{{ asset($participant->photo) }}" alt="Фото" width="100">
+                                    @else
+                                        {{ getTranslation('no-photo') }}
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
                                     {{ getTranslation('name') }}</th>
                                 <td style="padding: 8px; border: 1px solid #ddd;">{{ $participant->first_name }}</td>
                             </tr>
@@ -156,18 +168,6 @@
                             </tr>
                             <tr>
                                 <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
-                                    {{ getTranslation('photo') }}
-                                </th>
-                                <td style="padding: 8px; border: 1px solid #ddd;">
-                                    @if ($participant->photo)
-                                        <img src="{{ asset($participant->photo) }}" alt="Фото" width="100">
-                                    @else
-                                        {{ getTranslation('no-photo') }}
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr>
-                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
                                     {{ getTranslation('visa-required') }}?
                                 </th>
                                 <td style="padding: 8px; border: 1px solid #ddd;">
@@ -235,7 +235,7 @@
                         </tbody>
                     </table>
                 </div>
-            {{-- @else
+                {{-- @else
                 <p class="text-danger">Ma’lumot topilmadi!</p> --}}
             @endif
 

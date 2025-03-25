@@ -1065,6 +1065,15 @@ class TranslationSeeder extends Seeder
                     'default' => 'Проверить',
                 ],
             ],
+            [
+                'slug' => 'aferta',
+                'name' => [
+                    'uz'      => "Aferta",
+                    'ru'      => "Aferta",
+                    'en'      => "Aferta",
+                    'default' => 'Aferta',
+                ],
+            ],
         ];
 
         foreach ($translations as $translation) {

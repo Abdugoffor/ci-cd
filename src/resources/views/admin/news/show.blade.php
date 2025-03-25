@@ -16,35 +16,35 @@
                 <table class="table text-nowrap table-bordered">
                     <tbody>
                         <tr>
-                            <th class="text-center">{{ getTranslation('title') }}</th>
+                            <th>{{ getTranslation('title') }}</th>
                             <td>{{ getLocale($model->title) }}</td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('description') }}</th>
+                            <th>{{ getTranslation('description') }}</th>
                             <td>{{ getLocale($model->description) }}</td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('text') }}</th>
+                            <th>{{ getTranslation('text') }}</th>
                             <td>{!! getLocale($model->text) !!}</td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('menus') }}</th>
+                            <th>{{ getTranslation('menus') }}</th>
                             <td>{{ getLocale($model->menyu->name) }}</td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('photo') }}</th>
+                            <th>{{ getTranslation('photo') }}</th>
                             <td>
                                 <img src="{{ asset($model->photo) }}" width="100px" alt="">
                             </td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('date') }}</th>
+                            <th>{{ getTranslation('date') }}</th>
                             <td>
                                 {{ $model->date }}
                             </td>
                         </tr>
                         <tr>
-                            <th class="text-center">
+                            <th>
                                 {{ getTranslation('status') }}
                             </th>
                             <td>
@@ -54,12 +54,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('created') }}</th>
-                            <th class="text-center">{{ $model->created_at->format('d-m-Y, H:i') }}</th>
+                            <th>{{ getTranslation('created') }}</th>
+                            <th>{{ $model->created_at->format('d-m-Y, H:i') }}</th>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('change') }}</th>
-                            <th class="text-center">{{ $model->updated_at->format('d-m-Y, H:i') }}</th>
+                            <th>{{ getTranslation('change') }}</th>
+                            <th>{{ $model->updated_at->format('d-m-Y, H:i') }}</th>
                         </tr>
                     </tbody>
                 </table>

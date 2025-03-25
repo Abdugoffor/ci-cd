@@ -17,11 +17,11 @@
                 <table class="table text-nowrap table-bordered">
                     <tbody>
                         <tr>
-                            <th class="text-center">{{ getTranslation('name') }}</th>
+                            <th>{{ getTranslation('name') }}</th>
                             <td>{{ $model->name }}</td>
                         </tr>
                         <tr>
-                            <th class="text-center">
+                            <th>
                                 {{ getTranslation('status') }}
 
                             </th>
@@ -32,12 +32,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('created') }}</th>
+                            <th>{{ getTranslation('created') }}</th>
                             <th class="text-center">
                                 {{ $model->created_at ? $model->created_at->format('d-m-Y, H:i') : '' }}</th>
                         </tr>
                         <tr>
-                            <th class="text-center">{{ getTranslation('change') }}</th>
+                            <th>{{ getTranslation('change') }}</th>
                             <th class="text-center">
                                 {{ $model->updated_at ? $model->updated_at->format('d-m-Y, H:i') : '' }}</th>
                         </tr>
