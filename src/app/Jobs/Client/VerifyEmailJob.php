@@ -17,8 +17,8 @@ class VerifyEmailJob implements ShouldQueue
     public $data;
     public function __construct($email, $data)
     {
-        $this->email            = $email;
-        $this->data = $data;
+        $this->email = $email;
+        $this->data  = $data;
     }
 
     /**

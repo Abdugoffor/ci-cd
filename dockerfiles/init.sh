@@ -14,11 +14,11 @@ fi
 
 # Laravel sozlamalari
 echo "Generating application key..."
-php artisan key:generate --force
+php artisan key:generate
 echo "Running migrations..."
-php artisan migrate --force
+php artisan migrate
 echo "Running seeders..."
-php artisan db:seed --force
+php artisan db:seed
 
 # Keshlarni tozalash va yangilash
 echo "Clearing and caching configurations..."
