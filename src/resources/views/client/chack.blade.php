@@ -1,4 +1,5 @@
 @extends('layouts.client')
+
 @section('banner')
 @endsection
 @section('content')
@@ -37,229 +38,203 @@
                     </div>
                 </div>
             </form>
-            @if (session('errors'))
-                <div class="alert alert-danger">
-                    @foreach (session('errors')->all() as $error)
-                        <p>{{ $error }}</p>
-                    @endforeach
-                </div>
-            @endif
 
             @if (isset($participant))
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('name') }}</th>
-                            <td>{{ $participant->first_name }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('last-name') }}</th>
-                            <td>{{ $participant->last_name }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('birth-date') }}</th>
-                            <td>{{ $participant->date_of_birth->format('d-m-Y') }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('gender') }}</th>
-                            <td>{{ $participant->gender }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('email') }}</th>
-                            <td>{{ $participant->email }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('email-confirmed') }}
-                            </th>
-                            <td>{{ $participant->email_verified_at ? $participant->email_verified_at->format('d-m-Y, H:i') : '' }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('fide-id') }}</th>
-                            <td>{{ $participant->fide_id }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('accreditation-category') }}
-                            </th>
-                            <td>
-                                {{ $participant->accreditationCategory ? getLocale($participant->accreditationCategory->name) : '' }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('citizenship') }}
-                            </th>
-                            <td>{{ optional($participant->country)->label_en ?? '' }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('passport-number') }}
-                            </th>
-                            <td>{{ $participant->passport_number }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('passport-issue-date') }}
-                            </th>
-                            <td>{{ $participant->passport_issue_date }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('Passport-validity-period') }}
-                            </th>
-                            <td>{{ $participant->passport_expiry_date }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('passport-issuing-authority') }}
-                            </th>
-                            <td>{{ $participant->passport_issuing_authority }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('copy-of-passport') }}
-                            </th>
-                            <td>
-                                @if ($participant->passport_copy)
-                                    <a href="{{ asset($participant->passport_copy) }}"
-                                        target="_blank">{{ getTranslation('view') }}</a>
-                                @else
-                                    {{ getTranslation('no-data') }}
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">
-                                {{ getTranslation('phone') }}
-                            </th>
-                            <td>
-                                <a href="tel:{{ $participant->phone }}" target="_blank">
-                                    {{ $participant->phone }}
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">
-                                {{ getTranslation('photo') }}
-                            </th>
-                            <td>
-                                @if ($participant->photo)
-                                    <img src="{{ asset($participant->photo) }}" alt="Фото" width="100">
-                                @else
-                                    {{ getTranslation('no-photo') }}
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">
-                                {{ getTranslation('visa-required') }}?
-                            </th>
-                            <td>
-                                {{ $participant->requires_visa ? getTranslation('yes') : getTranslation('no') }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">
-                                {{ getTranslation('arrival-date') }}
+                <div style="padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+                    <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+                        <tbody>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('name') }}</th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">{{ $participant->first_name }}</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('name') }}</th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">{{ $participant->first_name }}</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('last-name') }}</th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">{{ $participant->last_name }}</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('birth-date') }}</th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    {{ $participant->date_of_birth->format('d-m-Y') }}</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('gender') }}</th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">{{ $participant->gender }}</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('email') }}</th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">{{ $participant->email }}</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('email-confirmed') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    {{ $participant->email_verified_at ? $participant->email_verified_at->format('d-m-Y, H:i') : '' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('fide-id') }}</th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">{{ $participant->fide_id }}</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('accreditation-category') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    {{ $participant->accreditationCategory ? getLocale($participant->accreditationCategory->name) : '' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('citizenship') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    {{ optional($participant->country)->label_en ?? '' }}</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('passport-number') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">{{ $participant->passport_number }}</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('passport-issue-date') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    {{ $participant->passport_issue_date }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('Passport-validity-period') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">{{ $participant->passport_expiry_date }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('passport-issuing-authority') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    {{ $participant->passport_issuing_authority }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('copy-of-passport') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    @if ($participant->passport_copy)
+                                        <a href="{{ asset($participant->passport_copy) }}"
+                                            target="_blank">{{ getTranslation('view') }}</a>
+                                    @else
+                                        {{ getTranslation('no-data') }}
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('phone') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    <a href="tel:{{ $participant->phone }}" target="_blank">
+                                        {{ $participant->phone }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('photo') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    @if ($participant->photo)
+                                        <img src="{{ asset($participant->photo) }}" alt="Фото" width="100">
+                                    @else
+                                        {{ getTranslation('no-photo') }}
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('visa-required') }}?
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    {{ $participant->requires_visa ? getTranslation('yes') : getTranslation('no') }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('arrival-date') }}
 
-                            </th>
-                            <td>
-                                {{ optional($participant->arrival_details)->format('d-m-Y') }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">
-                                {{ getTranslation('departure-date') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    {{ optional($participant->arrival_details)->format('d-m-Y') }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('departure-date') }}
 
-                            </th>
-                            <td>{{ optional($participant->departure_details)->format('d-m-Y') }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">
-                                {{ getTranslation('accommodation-details') }}
-                            </th>
-                            <td>
-                                {{ getLocale(optional($participant->accommodationDetail)->title) ?? '' }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">
-                                {{ getTranslation('pcr-test-details') }}
-                            </th>
-                            <td>{{ $participant->pcr_test_details }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">
-                                {{ getTranslation('status') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    {{ optional($participant->departure_details)->format('d-m-Y') }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('accommodation-details') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    {{ getLocale(optional($participant->accommodationDetail)->title) ?? '' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('pcr-test-details') }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">{{ $participant->pcr_test_details }}</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('status') }}
 
-                            </th>
-                            <td>
-                                <span
-                                    class="badge badge-{{ $participant->status == 'unfinished' ? 'secondary' : ($participant->status == 'pending' ? 'warning' : ($participant->status == 'approved' ? 'success' : 'danger')) }} badge-pill ml-auto">
-                                    {{ getTranslation($participant->status == 'unfinished' ? 'unfinished' : ($participant->status == 'pending' ? 'pending' : ($participant->status == 'approved' ? 'approved' : 'canceled'))) }}
+                                </th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    <span
+                                        class="badge badge-{{ $participant->status == 'unfinished' ? 'secondary' : ($participant->status == 'pending' ? 'warning' : ($participant->status == 'approved' ? 'success' : 'danger')) }} badge-pill ml-auto">
+                                        {{ getTranslation($participant->status == 'unfinished' ? 'unfinished' : ($participant->status == 'pending' ? 'pending' : ($participant->status == 'approved' ? 'approved' : 'canceled'))) }}
 
-                                    <div class="list-icons ml-2">
-                                        <div class="dropdown">
-                                            <a href="#" class="list-icons-item" data-toggle="dropdown"><i
-                                                    class="icon-menu7"></i></a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <!-- Qabul qilish tugmasi -->
-                                                <a href="{{ route('application.status', [$participant->id, 'approved'], false) }}"
-                                                    class="dropdown-item">
-                                                    <i class="icon-checkmark3 text-success"></i>
-                                                    {{ getTranslation('acceptance') }}
-                                                </a>
-                                                <!-- Canceled tugmasi: Modalni ochadi -->
-                                                <span href="#" class="dropdown-item canceled-btn" data-toggle="modal"
-                                                    data-target="#cancelModal{{ $participant->id }}">
-                                                    <i class="icon-cross2 text-danger"></i>{{ getTranslation('canceled') }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </span>
+                                    </span>
 
-                                <!-- Canceled Modal (Har bir model uchun alohida) -->
-                                <div id="cancelModal{{ $participant->id }}" class="modal fade" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">
-                                                    {{ getTranslation('reason-for-cancellation') }}:
-                                                    {{ $participant->first_name }}</h5>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            </div>
-
-                                            <form action="{{ route('application.cancel', $participant->id, false) }}"
-                                                method="POST">
-                                                @csrf
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label>
-                                                            {{ getTranslation('reason-for-cancellation') }}:
-                                                        </label>
-                                                        <textarea name="cancel_reason" class="form-control" required></textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">{{ getTranslation('close') }}</button>
-                                                    <button type="submit"
-                                                        class="btn btn-danger">{{ getTranslation('confirm') }}</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('created') }}</th>
-                            <th class="text-center">{{ $participant->created_at->format('d-m-Y, H:i') }}</th>
-                        </tr>
-                        <tr>
-                            <th class="text-center">{{ getTranslation('change') }}</th>
-                            <th class="text-center">{{ $participant->updated_at->format('d-m-Y, H:i') }}</th>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('created') }}</th>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ $participant->created_at->format('d-m-Y, H:i') }}</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ getTranslation('change') }}</th>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                    {{ $participant->updated_at->format('d-m-Y, H:i') }}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             @else
                 <p class="text-danger">Ma’lumot topilmadi!</p>
             @endif
