@@ -1,31 +1,41 @@
 #!/bin/sh
 
-# Composer install
-composer install
-
-# Копирование .env файла, если его нет
-if [ ! -f .env ]; then
-    cp .env.example .env
+# Vendor direktoriyasini tekshirish (agar biron sababga ko‘ra yo‘q bo‘lsa)
+if [ ! -d "/var/www/laravel/vendor" ]; then
+    echo "Vendor directory not found, running composer install..."
+    composer install --no-interaction --prefer-dist --optimize-autoloader || { echo "Composer install failed in init.sh"; exit 1; }
 fi
 
-# Генерация ключа
-php artisan key:generate
-php artisan migrate
-php artisan db:seed
+# .env faylini tekshirish va nusxalash
+if [ ! -f "/var/www/laravel/.env" ]; then
+    echo "Copying .env.example to .env..."
+    cp /var/www/laravel/.env.example /var/www/laravel/.env
+fi
 
-# Очистка и кеширование конфигурации
+# Laravel sozlamalari
+echo "Generating application key..."
+php artisan key:generate --force
+echo "Running migrations..."
+php artisan migrate --force
+echo "Running seeders..."
+php artisan db:seed --force
+
+# Keshlarni tozalash va yangilash
+echo "Clearing and caching configurations..."
 php artisan optimize:clear
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
-# Установка прав на нужные папки
-chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/public/uploaded
-chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/public/uploaded
-# chmod -R 775 /tmp
-# chown -R www-data:www-data /tmp
-# Установка прав на нужные папки
+# Ruxsatlarni qayta sozlash
+echo "Setting permissions..."
+chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes
+chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes
 
+# Queue ishga tushirish
+echo "Starting queue worker..."
 nohup php artisan queue:work --daemon > /var/www/laravel/storage/logs/queue.log 2>&1 &
-# Запуск PHP-FPM
+
+# PHP-FPM ishga tushirish
+echo "Starting PHP-FPM..."
 php-fpm

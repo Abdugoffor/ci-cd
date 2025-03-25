@@ -1,39 +1,46 @@
 FROM php:8.2-fpm-alpine
 
-# Установка необходимых расширений PHP
+# Kerakli paketlar va kengaytmalarni o‘rnatish
 RUN apk add --no-cache \
     postgresql-dev \
     libpq \
     freetype-dev \
     libjpeg-turbo-dev \
     libpng-dev \
+    libzip-dev \          # zip kengaytmasi uchun
+    zip \                 # qo‘shimcha vosita sifatida
     dos2unix \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pdo pdo_pgsql pgsql gd \
-    && docker-php-ext-enable gd
+    && docker-php-ext-install pdo pdo_pgsql pgsql gd zip \
+    && docker-php-ext-enable gd zip
 
-# Установка Composer
+# Composer o‘rnatish
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# PHP konfiguratsiyasini o‘zgartirish (php.ini sozlamalarini o‘rnatish)
+# PHP sozlamalarini o‘zgartirish
 RUN echo "upload_max_filesize = 500M" >> /usr/local/etc/php/php.ini \
     && echo "post_max_size = 500M" >> /usr/local/etc/php/php.ini
 
-# Установка рабочего каталога
+# Ishchi direktoriya
 WORKDIR /var/www/laravel
 
-# Копирование файлов проекта
-COPY src/ /var/www/laravel
+# Composer fayllarini avval nusxalash va dependency o‘rnatish
+COPY src/composer.json src/composer.lock /var/www/laravel/
+RUN composer install --no-scripts --no-interaction --prefer-dist --optimize-autoloader || { echo "Composer install failed"; exit 1; }
 
+# Loyiha fayllarini nusxalash
+COPY src/ /var/www/laravel/
+
+# Ruxsatlar va direktoriyalarni sozlash
 RUN mkdir -p /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes /var/www/laravel/storage/logs && \
     touch /var/www/laravel/storage/logs/laravel.log && \
     chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes && \
     chmod 664 /var/www/laravel/storage/logs/laravel.log && \
     chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes
-        
-# Копируем init.sh и делаем его исполняемым
+
+# init.sh faylini nusxalash va ruxsat berish
 COPY dockerfiles/init.sh /usr/local/bin/init.sh
 RUN chmod +x /usr/local/bin/init.sh && dos2unix /usr/local/bin/init.sh
 
-# Запуск init.sh при старте контейнера
+# Konteyner ishga tushganda init.sh ni bajarish
 CMD ["sh", "/usr/local/bin/init.sh"]
