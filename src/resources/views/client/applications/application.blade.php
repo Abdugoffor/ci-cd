@@ -35,18 +35,14 @@
                                 <span>({{ getTranslation('in_passport') }})</span></label>
                             <input type="text" id="first-name" name="first_name" value="{{ old('first_name') }}"
                                 class="input-text" placeholder="{{ getTranslation('name') }}" />
-                            {{-- @error('first_name')
-                                <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                            @enderror --}}
+                            
                         </div>
                         <div class="input-wrapper">
                             <label for="last-name"
                                 class="input-label">{{ getTranslation('last-name') }}<span>({{ getTranslation('in_passport') }})</span></label>
                             <input type="text" id="last-name" name="last_name" value="{{ old('last_name') }}"
                                 class="input-text" placeholder="{{ getTranslation('last-name') }}" />
-                            {{-- @error('last_name')
-                                <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                            @enderror --}}
+                            
                         </div>
                         <div class="input-wrapper">
                             <label for="date-of-birth" class="input-label">{{ getTranslation('birth-date') }}</label>
@@ -58,9 +54,6 @@
                                 <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
                             </div>
-                            {{-- @error('date_of_birth')
-                                <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                            @enderror --}}
                         </div>
                     </div>
                     <div class="input-group">

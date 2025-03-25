@@ -8,14 +8,14 @@
             <div class="col-xl-12">
                 <!-- Support tickets -->
                 <a href="{{ route('participant.export', [], false) }}" class="btn btn-primary m-2">
-                    Exports
+                    Export
                 </a>
                 <div class="card">
                     <div class="table-responsive">
                         <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th class="text-center">№</th>
+                                    <th class="text-center">ID</th>
                                     <th class="text-center">{{ getTranslation('name') }}</th>
                                     <th class="text-center">{{ getTranslation('fide-id') }}</th>
                                     <th class="text-center">{{ getTranslation('type') }}</th>
@@ -28,14 +28,19 @@
                                 <form action="{{ route('application.search', [], false) }}" method="get">
                                     @csrf
                                     <tr>
-                                        <th class="text-center"></th>
+                                        <th class="text-center">
+                                            <input type="number" class="form-control" name="id" placeholder="ID"
+                                                value="{{ old('id', request('id')) }}">
+                                        </th>
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="first_name"
-                                                placeholder="{{ getTranslation('name') }}" value="{{ old('first_name', request('first_name')) }}">
+                                                placeholder="{{ getTranslation('name') }}"
+                                                value="{{ old('first_name', request('first_name')) }}">
                                         </th>
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="fide_id"
-                                                placeholder="{{ getTranslation('fide-id') }}" value="{{ old('fide_id', request('fide_id')) }}">
+                                                placeholder="{{ getTranslation('fide-id') }}"
+                                                value="{{ old('fide_id', request('fide_id')) }}">
                                         </th>
                                         <th class="text-center">
                                             <select class="form-control custom-select" name="accreditation_category_id"
@@ -49,33 +54,41 @@
                                             </select>
                                         </th>
                                         <th class="text-center">
-                                            <input type="date" class="form-control" name="date_of_birth" value="{{ old('date_of_birth', request('date_of_birth')) }}">
+                                            <input type="date" class="form-control" name="date_of_birth"
+                                                value="{{ old('date_of_birth', request('date_of_birth')) }}">
                                         </th>
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="email"
-                                                placeholder="{{ getTranslation('email') }}" value="{{ old('email', request('email')) }}">
+                                                placeholder="{{ getTranslation('email') }}"
+                                                value="{{ old('email', request('email')) }}">
                                         </th>
                                         <th class="text-center">
-                                            <input type="date" class="form-control" name="updated_at" value="{{ old('updated_at', request('updated_at')) }}">
+                                            <input type="date" class="form-control" name="updated_at"
+                                                value="{{ old('updated_at', request('updated_at')) }}">
                                         </th>
                                         <th class="text-center">
                                             <select class="form-control custom-select" name="status" id="select_date">
                                                 <option></option>
-                                                <option value="unfinished" {{ old('status', request('status')) === 'unfinished' ? 'selected' : '' }}>
+                                                <option value="unfinished"
+                                                    {{ old('status', request('status')) === 'unfinished' ? 'selected' : '' }}>
                                                     {{ getTranslation('unfinished') }}
                                                 </option>
-                                                <option value="pending" {{ old('status', request('status')) === 'pending' ? 'selected' : '' }}>
+                                                <option value="pending"
+                                                    {{ old('status', request('status')) === 'pending' ? 'selected' : '' }}>
                                                     {{ getTranslation('pending') }}
                                                 </option>
-                                                <option value="approved" {{ old('status', request('status')) === 'approved' ? 'selected' : '' }}>
+                                                <option value="approved"
+                                                    {{ old('status', request('status')) === 'approved' ? 'selected' : '' }}>
                                                     {{ getTranslation('approved') }}
                                                 </option>
-                                                <option value="canceled" {{ old('status', request('status')) === 'canceled' ? 'selected' : '' }}>
+                                                <option value="canceled"
+                                                    {{ old('status', request('status')) === 'canceled' ? 'selected' : '' }}>
                                                     {{ getTranslation('canceled') }}
                                                 </option>
                                             </select>
                                         </th>
-                                        <th class="text-center"><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                        <th class="text-center"><button
+                                                class="btn btn-teal">{{ getTranslation('search') }}</button></th>
                                     </tr>
                                 </form>
                             </thead>
@@ -98,7 +111,8 @@
                                             {{ $model->email_verified_at ? $model->email_verified_at->format('d-m-Y, H:i') : '' }}
                                         </td>
                                         <td>
-                                            <span class="badge badge-{{ $model->status == 'unfinished' ? 'secondary' : ($model->status == 'pending' ? 'warning' : ($model->status == 'approved' ? 'success' : 'danger')) }} badge-pill ml-auto">
+                                            <span
+                                                class="badge badge-{{ $model->status == 'unfinished' ? 'secondary' : ($model->status == 'pending' ? 'warning' : ($model->status == 'approved' ? 'success' : 'danger')) }} badge-pill ml-auto">
                                                 {{ getTranslation($model->status == 'unfinished' ? 'unfinished' : ($model->status == 'pending' ? 'pending' : ($model->status == 'approved' ? 'approved' : 'canceled'))) }}
 
                                                 <div class="list-icons ml-2">
@@ -187,70 +201,84 @@
                                                                     <table class="table table-bordered">
                                                                         <tbody>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('name') }}</th>
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('name') }}</th>
                                                                                 <td>{{ $model->first_name }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('last-name') }}</th>
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('last-name') }}</th>
                                                                                 <td>{{ $model->last_name }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('birth-date') }}</th>
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('birth-date') }}</th>
                                                                                 <td>{{ $model->date_of_birth }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('gender') }}</th>
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('gender') }}</th>
                                                                                 <td>{{ $model->gender }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('email') }}</th>
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('email') }}</th>
                                                                                 <td>{{ $model->email }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('email-confirmed') }}
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('email-confirmed') }}
                                                                                 </th>
                                                                                 <td>{{ $model->email_verified_at ? $model->email_verified_at->format('d-m-Y, H:i') : '' }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('fide-id') }}</th>
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('fide-id') }}</th>
                                                                                 <td>{{ $model->fide_id }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('accreditation-category') }}
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('accreditation-category') }}
                                                                                 </th>
                                                                                 <td>
                                                                                     {{ $model->accreditationCategory ? getLocale($model->accreditationCategory->name) : '' }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('citizenship') }}
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('citizenship') }}
                                                                                 </th>
                                                                                 <td>{{ $model->citizenship }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('passport-number') }}
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('passport-number') }}
                                                                                 </th>
                                                                                 <td>{{ $model->passport_number }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('passport-issue-date') }}
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('passport-issue-date') }}
                                                                                 </th>
                                                                                 <td>{{ $model->passport_issue_date }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('Passport-validity-period') }}
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('Passport-validity-period') }}
                                                                                 </th>
                                                                                 <td>{{ $model->passport_expiry_date }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('passport-issuing-authority') }}
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('passport-issuing-authority') }}
                                                                                 </th>
                                                                                 <td>{{ $model->passport_issuing_authority }}
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('copy-of-passport') }}
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('copy-of-passport') }}
                                                                                 </th>
                                                                                 <td>
                                                                                     @if ($model->passport_copy)
@@ -305,7 +333,8 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="text-center">{{ getTranslation('accommodation-details') }}
+                                                                                <th class="text-center">
+                                                                                    {{ getTranslation('accommodation-details') }}
 
                                                                                 </th>
                                                                                 <td>{{ getLocale(optional($model->accommodationDetail)->title) ?? '' }}

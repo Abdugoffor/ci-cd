@@ -13,6 +13,18 @@
                 <table class="table text-nowrap table-bordered">
                     <tbody>
                         <tr>
+                            <th>
+                                {{ getTranslation('photo') }}
+                            </th>
+                            <td>
+                                @if ($model->photo)
+                                    <img src="{{ asset($model->photo) }}" alt="Фото" width="100">
+                                @else
+                                    {{ getTranslation('no-photo') }}
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
                             <th>{{ getTranslation('name') }}</th>
                             <td>{{ $model->first_name }}</td>
                         </tr>
@@ -99,18 +111,6 @@
                         </tr>
                         <tr>
                             <th>
-                                {{ getTranslation('photo') }}
-                            </th>
-                            <td>
-                                @if ($model->photo)
-                                    <img src="{{ asset($model->photo) }}" alt="Фото" width="100">
-                                @else
-                                    {{ getTranslation('no-photo') }}
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
                                 {{ getTranslation('visa-required') }}?
                             </th>
                             <td>
@@ -154,7 +154,8 @@
 
                             </th>
                             <td>
-                                <span class="badge badge-{{ $model->status == 'unfinished' ? 'secondary' : ($model->status == 'pending' ? 'warning' : ($model->status == 'approved' ? 'success' : 'danger')) }} badge-pill ml-auto">
+                                <span
+                                    class="badge badge-{{ $model->status == 'unfinished' ? 'secondary' : ($model->status == 'pending' ? 'warning' : ($model->status == 'approved' ? 'success' : 'danger')) }} badge-pill ml-auto">
                                     {{ getTranslation($model->status == 'unfinished' ? 'unfinished' : ($model->status == 'pending' ? 'pending' : ($model->status == 'approved' ? 'approved' : 'canceled'))) }}
 
                                     <div class="list-icons ml-2">

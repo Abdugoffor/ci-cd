@@ -29,6 +29,10 @@ class ApplicationController extends Controller
     {
         $query = Participant::query();
 
+        if ($request->filled('id')) {
+            $query->where('id', 'LIKE', "%{$request->id}%");
+        }
+
         if ($request->filled('first_name')) {
             $query->where('first_name', 'LIKE', "%{$request->first_name}%");
         }
@@ -59,6 +63,7 @@ class ApplicationController extends Controller
 
         $models = $query->paginate(10);
         $models->appends($request->only([
+            'id',
             'first_name',
             'fide_id',
             'accreditation_category_id',
