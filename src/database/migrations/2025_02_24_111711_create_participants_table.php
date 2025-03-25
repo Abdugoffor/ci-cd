@@ -16,7 +16,7 @@ return new class extends Migration
             $table->enum('type', ['player', 'guest'])->default('guest');
             $table->integer('accreditation_category_id')->nullable();
             $table->foreignId('tournament_id')->constrained('tournaments')->onDelete('cascade');
-            $table->string('fide_id')->nullable()->unique();
+            $table->string('fide_id')->nullable();
             $table->string('first_name');
             $table->string('last_name')->nullable();
             $table->date('date_of_birth')->nullable();

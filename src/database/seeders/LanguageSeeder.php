@@ -16,9 +16,9 @@ class LanguageSeeder extends Seeder
             // ['name' => 'Русский', 'slug' => 'ru', 'is_active' => true],
             // ['name' => 'English', 'slug' => 'en', 'is_active' => true],
 
-            ['name' => 'O‘zbekcha', 'slug' => 'uz', 'is_active' => true],
+            ['name' => 'English', 'slug' => 'en', 'is_active' => false],
             ['name' => 'Русский', 'slug' => 'ru', 'is_active' => true],
-            ['name' => 'English', 'slug' => 'en', 'is_active' => true],
+            ['name' => 'O‘zbekcha', 'slug' => 'uz', 'is_active' => true],
             ['name' => 'Français', 'slug' => 'fr', 'is_active' => false],
             ['name' => 'Deutsch', 'slug' => 'de', 'is_active' => false],
             ['name' => 'Español', 'slug' => 'es', 'is_active' => false],

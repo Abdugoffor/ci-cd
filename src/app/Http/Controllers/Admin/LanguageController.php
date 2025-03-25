@@ -10,7 +10,7 @@ class LanguageController extends Controller
 {
     public function index()
     {
-        $models = Language::paginate(10);
+        $models = Language::orderBy('id', 'asc  ')->paginate(10);
         return view('admin.languages.index', data: ['models' => $models]);
     }
     public function search(Request $request)
