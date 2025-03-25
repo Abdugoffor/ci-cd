@@ -18,7 +18,7 @@
                         <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th class="text-center">№</th>
+                                    <th class="text-center" width="3%">№</th>
                                     <th class="text-center">{{ getTranslation('name') }}</th>
                                     <th class="text-center">{{ getTranslation('arrival-date') }}</th>
                                     <th class="text-center"></th>

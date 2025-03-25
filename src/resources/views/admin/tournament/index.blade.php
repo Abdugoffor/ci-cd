@@ -38,14 +38,14 @@
                         <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th class="text-center">№</th>
+                                    <th class="text-center" width="3%">№</th>
                                     <th class="text-center">{{ getTranslation('name') }}</th>
                                     <th class="text-center">{{ getTranslation('competition-type') }}</th>
                                     <th class="text-center">{{ getTranslation('country') }}</th>
                                     <th class="text-center">{{ getTranslation('start-of-registration') }}</th>
                                     <th class="text-center">{{ getTranslation('start') }}</th>
-                                    <th class="text-center">{{ getTranslation('status') }}</th>
-                                    <th class="text-center">{{ getTranslation('function') }}</th>
+                                    <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
+                                    <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                 </tr>
                                 <form action="{{ route('tournaments.search', [], false) }}" method="get">
                                     <tr>

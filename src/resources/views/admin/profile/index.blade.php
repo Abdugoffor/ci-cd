@@ -36,12 +36,12 @@
                         <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th class="text-center">№</th>
+                                    <th class="text-center" width="3%">№</th>
                                     <th class="text-center">{{ getTranslation('name') }}</th>
                                     <th class="text-center">{{ getTranslation('role') }}</th>
                                     <th class="text-center">{{ getTranslation('email') }}</th>
-                                    <th class="text-center">{{ getTranslation('status') }}</th>
-                                    <th class="text-center">{{ getTranslation('function') }}</th>
+                                    <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
+                                    <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                     <th class="text-center">{{ getTranslation('history') }}</th>
                                 </tr>
                                 <form action="{{ route('users.search', [], false) }}" method="get">

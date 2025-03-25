@@ -82,7 +82,7 @@
 
                                 <!-- Photo maydoni (ko‘p tilli emas) -->
                                 <label class="col-form-label col-lg-2">{{ getTranslation('photo') }}</label>
-                                <input type="file" class="form-control" name="photo"
+                                <input type="file" class="form-control" name="photo" value="{{ $news->photo }}"
                                     placeholder="{{ getTranslation('photo') }}"
                                     onchange="previewImage(event, 'imagePreview')">
                                 @error('photo')

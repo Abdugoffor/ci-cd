@@ -36,11 +36,11 @@
                         <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th class="text-center">№</th>
+                                    <th class="text-center" width="3%">№</th>
                                     <th class="text-center">{{ getTranslation('name') }}</th>
                                     <th class="text-center">{{ getTranslation('description') }}</th>
-                                    <th class="text-center">{{ getTranslation('status') }}</th>
-                                    <th class="text-center">{{ getTranslation('function') }}</th>
+                                    <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
+                                    <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                 </tr>
                                 <form action="{{ route('categories.search', [], false) }}" method="get">
                                     @csrf
@@ -92,7 +92,7 @@
                                                 <span class="custom-control-label"></span>
                                             </label> --}}
                                         </td>
-                                        <td class="text-center">
+                                        <td>
                                             <div class="d-inline-flex gap-2">
                                                 <a href="{{ route('categories.show', $model->id, false) }}"
                                                     class="btn btn-outline-info">

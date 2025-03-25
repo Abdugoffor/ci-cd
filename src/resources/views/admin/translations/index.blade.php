@@ -36,9 +36,9 @@
                         <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th class="text-center">№</th>
+                                    <th class="text-center" width="3%">№</th>
                                     <th class="text-center">{{ getTranslation('standard') }}</th>
-                                    <th class="text-center">{{ getTranslation('function') }}</th>
+                                    <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                 </tr>
                                 <form action="{{ route('translations.search', [], false) }}" method="get">
                                     @csrf
@@ -58,7 +58,7 @@
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ getLocale($model->name) }}</td>
-                                        <td class="text-center">
+                                        <td>
                                             <div class="d-inline-flex gap-2">
                                                 <a href="{{ route('translations.show', $model->id, false) }}"
                                                     class="btn btn-outline-info">

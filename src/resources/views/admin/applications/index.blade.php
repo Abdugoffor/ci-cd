@@ -22,8 +22,8 @@
                                     <th class="text-center">{{ getTranslation('birth-date') }}</th>
                                     <th class="text-center">{{ getTranslation('email') }}</th>
                                     <th class="text-center">{{ getTranslation('registration-end') }}</th>
-                                    <th class="text-center">{{ getTranslation('status') }}</th>
-                                    <th class="text-center">{{ getTranslation('function') }}</th>
+                                    <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
+                                    <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                 </tr>
                                 <form action="{{ route('application.search', [], false) }}" method="get">
                                     @csrf

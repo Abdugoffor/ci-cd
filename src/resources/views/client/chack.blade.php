@@ -235,8 +235,8 @@
                         </tbody>
                     </table>
                 </div>
-            @else
-                <p class="text-danger">Ma’lumot topilmadi!</p>
+            {{-- @else
+                <p class="text-danger">Ma’lumot topilmadi!</p> --}}
             @endif
 
             <div style="margin-top: 200px;"></div>
