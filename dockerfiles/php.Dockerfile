@@ -1,16 +1,18 @@
 FROM php:8.2-fpm-alpine
 
-# Установка необходимых расширений PHP
+# Установка необходимых расширений PHP, shu jumladan zip
 RUN apk add --no-cache \
     postgresql-dev \
     libpq \
     freetype-dev \
     libjpeg-turbo-dev \
     libpng-dev \
+    libzip-dev \          # zip uchun kerakli paket
+    zip \                 # zip vositasi (ixtiyoriy, lekin foydali bo‘lishi mumkin)
     dos2unix \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pdo pdo_pgsql pgsql gd \
-    && docker-php-ext-enable gd
+    && docker-php-ext-install pdo pdo_pgsql pgsql gd zip \  # zip kengaytmasini qo‘shish
+    && docker-php-ext-enable gd zip                        # zip-ni faollashtirish
 
 # Установка Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
