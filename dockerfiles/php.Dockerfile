@@ -7,8 +7,8 @@ RUN apk add --no-cache \
     freetype-dev \
     libjpeg-turbo-dev \
     libpng-dev \
-    libzip-dev \          # zip kengaytmasi uchun
-    zip \                 # qo‘shimcha vosita sifatida
+    libzip-dev \
+    zip \
     dos2unix \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo pdo_pgsql pgsql gd zip \
