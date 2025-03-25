@@ -128,6 +128,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
             Route::post('/applications-cancel/{participant}', [AdminAppController::class, 'cancel'])->name('application.cancel');
             Route::get('/applications-show/{participant}', [AdminAppController::class, 'show'])->name('application.show');
             Route::get('/applications-search', [AdminAppController::class, 'search'])->name('application.search');
+            Route::get('/participant-export', [AdminAppController::class, 'participantExport'])->name('participant.export');
 
             Route::get('/skan', [SkanController::class, 'index'])->name('skan.index');
             Route::post('/skan', [SkanController::class, 'store'])->name('skan.store');

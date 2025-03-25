@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ParticipantExport;
 use App\Http\Controllers\Controller;
 use App\Jobs\Client\CencelAppJob;
 use App\Jobs\Client\SuccessAppJob;
@@ -12,6 +13,7 @@ use Endroid\QrCode\Writer\PngWriter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ApplicationController extends Controller
 {
@@ -78,7 +80,7 @@ class ApplicationController extends Controller
         if ($status == 'approved') {
 
             if ($participant->status != $status) {
-                
+
                 $qkCode = $participant->id . Str::random(70);
 
                 $participant->update([
@@ -142,13 +144,18 @@ class ApplicationController extends Controller
             'qk_code' => null,
         ]);
         $data = [
-            'participant'  => $participant,
-            'auth'         => Auth::user()->name,
+            'participant'   => $participant,
+            'auth'          => Auth::user()->name,
             'cancel_reason' => $request->cancel_reason,
         ];
         dispatch(new CencelAppJob($data));
 
         return back()->with('notification', getTranslation('notification'));
+    }
+
+    public function participantExport()
+    {
+        return Excel::download(new ParticipantExport, 'participants.xlsx');
     }
 
 }

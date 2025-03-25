@@ -7,6 +7,9 @@
         <div class="row">
             <div class="col-xl-12">
                 <!-- Support tickets -->
+                <a href="{{ route('participant.export', [], false) }}" class="btn btn-primary m-2">
+                    Exports
+                </a>
                 <div class="card">
                     <div class="table-responsive">
                         <table class="table text-nowrap table-bordered">
