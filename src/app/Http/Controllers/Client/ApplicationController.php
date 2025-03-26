@@ -72,7 +72,6 @@ class ApplicationController extends Controller
         $data = $request->all();
 
         $key = Str::random(8);
-        $old = $key;
 
         $data['fide_id'] = session()->get('player')['id_number'] ?? null;
         $data['key']     = Hash::make($key);

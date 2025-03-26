@@ -97,7 +97,7 @@
                         justify-content: center;
                         padding: 10px 12px;
                         margin-top: 16px;">
-                                        <img src="{{ ($data['fullFilePath']) }}" alt="qr"
+                                        <img src="{{ $message->embed($data['fullFilePath']) }}" alt="qr"
                                             style="width: 87px; height: 87px; padding: 10px;" /></span>
                                 </li>
                                 <li
