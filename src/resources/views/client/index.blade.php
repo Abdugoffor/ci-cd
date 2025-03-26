@@ -77,6 +77,7 @@
                 </div>
                 <div class="forms-div">
                     @if ($model)
+                        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
                         <form action="{{ route('application', $model->id, false) }}" id="fideForm1">
                             @csrf
                             <label for="fide-id">FIDE ID</label>

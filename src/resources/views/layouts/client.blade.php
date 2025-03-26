@@ -206,9 +206,8 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="frontend/js/main.js"></script>
     {{-- <script src="{{ asset('frontend/js/main.js') }}"></script> --}}
-    {{-- <script src="{{ secure_asset('frontend/js/main.js') }}"></script> --}}
+    <script src="{{ secure_asset('frontend/js/main.js') }}"></script>
 </body>
 <script>
     const toast = {
