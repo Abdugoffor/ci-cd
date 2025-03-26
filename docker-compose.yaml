@@ -13,7 +13,7 @@ services:
     ports:
       - "8010:80"
     volumes:
-      - fide_project:/var/www/laravel
+      - fide_project2:/var/www/laravel
       # - /srv/fide_chess/docker/uploaded:/var/www/laravel/public/uploaded
     depends_on:
       - fide_postgres
@@ -34,7 +34,7 @@ services:
     networks:
       - traefik-network
     volumes:
-      - fide_project:/var/www/laravel
+      - fide_project2:/var/www/laravel
       # - /srv/fide_chess/docker/uploaded:/var/www/laravel/public/uploaded
 
   fide_postgres:
@@ -49,4 +49,4 @@ services:
       - traefik-network 
 
 volumes:
-  fide_project:
+  fide_project2:
