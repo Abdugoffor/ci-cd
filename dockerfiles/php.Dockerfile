@@ -1,6 +1,5 @@
 FROM php:8.2-fpm-alpine
 
-# Kerakli paketlar va kengaytmalarni o‘rnatish
 RUN apk add --no-cache \
     postgresql-dev \
     libpq \
@@ -14,21 +13,16 @@ RUN apk add --no-cache \
     && docker-php-ext-install pdo pdo_pgsql pgsql gd zip \
     && docker-php-ext-enable gd zip
 
-# Composer o‘rnatish
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# PHP sozlamalarini o‘zgartirish
 #RUN echo "upload_max_filesize = 500M" >> /usr/local/etc/php/php.ini \
 #    && echo "post_max_size = 500M" >> /usr/local/etc/php/php.ini
 
-# Ishchi direktoriya
 WORKDIR /var/www/laravel
 
-# Composer fayllarini avval nusxalash va dependency o‘rnatish
 COPY src/composer.json src/composer.lock /var/www/laravel/
 RUN composer install --no-scripts --no-interaction --prefer-dist --optimize-autoloader || { echo "Composer install failed"; exit 1; }
 
-# Loyiha fayllarini nusxalash
 COPY src/ /var/www/laravel/
 
 chmod -R 755 /var/www/laravel/storage
@@ -40,9 +34,7 @@ chmod -R 755 /var/www/laravel/storage
 #    chmod 664 /var/www/laravel/storage/logs/laravel.log && \
 #    chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes
 
-# init.sh faylini nusxalash va ruxsat berish
 COPY dockerfiles/init.sh /usr/local/bin/init.sh
 RUN chmod +x /usr/local/bin/init.sh && dos2unix /usr/local/bin/init.sh
 
-# Konteyner ishga tushganda init.sh ni bajarish
 CMD ["sh", "/usr/local/bin/init.sh"]
