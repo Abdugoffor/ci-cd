@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chess Olympiad 2025</title>
+    <title>Chess Olympiad 2025 123</title>
 
 
     {{-- <link rel="icon" type="image/svg+xml" href="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}" />

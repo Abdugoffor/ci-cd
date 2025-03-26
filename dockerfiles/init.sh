@@ -18,7 +18,7 @@ php artisan key:generate
 echo "Running migrations..."
 php artisan migrate
 echo "Running seeders..."
-php artisan db:seed --class=DatabaseSeeder
+php artisan db:seed
 
 # Keshlarni tozalash va yangilash
 echo "Clearing and caching configurations..."
