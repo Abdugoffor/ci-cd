@@ -21,7 +21,8 @@
             ">
                     <tr>
                         <td style="text-align: left; padding-bottom: 52px">
-                            <img src="{{ $message->embed('frontend/assets/header_banner/chess_logo.svg') }}" alt="FIDE Logo" width="51" height="50"
+                            
+                            <img src="{{ $message->embed(public_path('frontend/assets/header_banner/chess_logo.svg')) }}" alt="FIDE Logo" width="51" height="50"
                                 style="display: block" />
                             <div style="font-size: 9.5px; color: #00363f">
                                 46th FIDE CHESS OLYMPIAD
@@ -98,7 +99,8 @@
                         padding: 10px 12px;
                         margin-top: 16px;">
                                         <img src="{{ $message->embed($data['fullFilePath']) }}" alt="qr"
-                                            style="width: 87px; height: 87px; padding: 10px;" /></span>
+                                            style="width: 87px; height: 87px; padding: 10px;" />
+                                        </span>
                                 </li>
                                 <li
                                     style="

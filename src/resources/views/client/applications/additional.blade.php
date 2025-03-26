@@ -195,14 +195,14 @@
                                 @endforeach
                             </select>
                         </div>
-                        
+
                         <div class="input-wrapper">
                             <label for="first-name" class="input-label">{{ getTranslation('phone') }}</label>
                             <input type="text" id="first-name" value="{{ old('phone') }}" name="phone"
                                 placeholder="{{ getTranslation('phone') }}" class="input-text" />
 
                         </div>
-            
+
                     </div>
                 </div>
                 <div class="group-additional">

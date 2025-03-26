@@ -94,9 +94,16 @@
                         <br>
                     @endif
                 </div>
-                @error('fide_id')
-                    <p style="color: red; font-size: 12px">{{ $message }}</p>
-                @enderror
+                @if ($errors->any())
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            @foreach ($errors->all() as $error)
+                                toast.create("{{ $error }}");
+                            @endforeach
+                        });
+                    </script>
+                @endif
+                <div class="toast-container"></div>
             </div>
             {{-- <div class="modal" id="modal">
                 <div class="modal-content">
