@@ -34,7 +34,7 @@ echo "Setting permissions..."
 
 # Queue ishga tushirish
 echo "Starting queue worker..."
-nohup php artisan queue:work --daemon > /var/www/laravel/storage/logs/queue.log 2>&1 &
+# nohup php artisan queue:work --daemon > /var/www/laravel/storage/logs/queue.log 2>&1 &
 
 # PHP-FPM ishga tushirish
 echo "Starting PHP-FPM..."
