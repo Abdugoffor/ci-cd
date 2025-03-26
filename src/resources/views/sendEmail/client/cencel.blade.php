@@ -15,7 +15,7 @@
                     style="max-width: 722px; width: 100%; padding: 53px; font-family: Arial, sans-serif;">
                     <tr>
                         <td style="text-align: left; padding-bottom: 52px;">
-                            <img src="/frontend/assets/header_banner/chess_logo.svg"
+                            <img src="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}"
                                 alt="FIDE Logo" width="51" height="50" style="display: block;" />
                             <div style="font-size: 9.5px; color: #00363f;">46th FIDE CHESS OLYMPIAD</div>
                             <div style="font-size: 14px; font-weight: bold; color: #00363f;">SAMARKAND 2025</div>
