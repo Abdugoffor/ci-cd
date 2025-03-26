@@ -105,7 +105,7 @@ class ApplicationController extends Controller
             $result = (new PngWriter())->write($qrCode);
 
             $fileName = "qrcode_{$participant->id}.png";
-            $filePath = "qrcodes/{$fileName}";
+            $filePath = "uploaded/qrcodes/{$fileName}";
 
             $fullFilePath = public_path($filePath);
 
