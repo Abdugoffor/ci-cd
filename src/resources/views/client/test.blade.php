@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PDF</title>
-    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -72,33 +73,36 @@
           display: flex;
           flex-direction: column;
           width: 148.5mm;
+          height: 794px;
           overflow: hidden;
         ">
             <div
                 style="
-            height: 440px;
-            border: 1.625px solid rgba(0, 0, 0, 0);
+            height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            overflow: hidden;
           ">
                 <div class="badge-header"
                     style="
-              height: 140px;
+              height: 150px;
               display: flex;
+              width: 100%;
               justify-content: space-between;
               align-items: center;
             ">
-                    <div class="logo" style="position: relative; width: 40%">
+                    <div class="logo"
+                        style="
+                position: relative;
+                width: 40%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              ">
                         <img src="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}" alt="logo"
-                            style="
-                  width: 100px;
-                  height: 80px;
-                  object-fit: contain;
-                  padding-left: 5px;
-                  border: 1px solid rgba(0, 54, 63, 0.25);
-                " />
+                            style="width: 100px; height: 100px; object-fit: contain" />
                     </div>
                     <div class="header-line"
                         style="
@@ -117,24 +121,14 @@
                         <div style="display: flex; align-items: center; gap: 20px">
                             <div style="position: relative; margin-top: 5px">
                                 <img src="{{ asset('frontend/assets/header_banner/fide.svg') }}" alt="sponsor1"
-                                    style="
-                      width: 80px;
-                      height: 80px;
-                      object-fit: contain;
-                      border: 1px solid rgba(0, 54, 63, 0.25);
-                    " />
+                                    style="width: 80px; height: 50px; object-fit: contain" />
                             </div>
                             <div style="position: relative; margin-top: 5px">
                                 <img src="{{ asset($participant->qk_code_path) }}" alt="sponsor2"
-                                    style="
-                      width: 80px;
-                      height: 80px;
-                      object-fit: contain;
-                      border: 1px solid rgba(0, 54, 63, 0.25);
-                    " />
+                                    style="width: 80px; height: 50px; object-fit: contain" />
                             </div>
                         </div>
-                        <div class="header-right-bottom" style="margin-bottom: 15px">
+                        <div class="header-right-bottom">
                             <div
                                 style="
                     color: #205f6a;
@@ -143,9 +137,9 @@
                     font-weight: 400;
                     line-height: normal;
                   ">
-                               {{ getLocale(optional($participant->tournament)->name) }}
+                                {{ getLocale(optional($participant->tournament)->name) }}
                             </div>
-                            <h3
+                            <div
                                 style="
                     color: #00363f;
                     font-size: 14.769px;
@@ -153,9 +147,10 @@
                     font-weight: 700;
                     line-height: normal;
                     letter-spacing: 0.886px;
+                    margin: 5px 0;
                   ">
                                 {{ getLocale(optional($participant->tournament)->category->name) }}
-                            </h3>
+                            </div>
                             <span
                                 style="
                     color: #0e3f47;
@@ -181,9 +176,8 @@
                 </div>
                 <div class="badge-info"
                     style="
-              height: 300px;
+              height: 450px;
               width: 148.5mm;
-              border: 1.625px solid rgba(0, 0, 0, 0);
               background: linear-gradient(
                 212deg,
                 #a52629 5.64%,
@@ -198,8 +192,8 @@
                         <div class="block-left" style="display: flex; flex-direction: column; gap: 15px">
                             <img src="{{ asset($participant->photo) }}" alt="photo-svg"
                                 style="
-                    width: 124.633px;
-                    height: 169.022px;
+                    width: 180px;
+                    height: 250px;
                     flex-shrink: 0;
                     object-fit: cover;
                     border-radius: 8px;
@@ -225,7 +219,9 @@
                     letter-spacing: -0.23px;
                     text-transform: uppercase;
                   ">
-                                <div>{{ $participant->first_name }} <br />{{ $participant->last_name }}</div>
+                                <div>
+                                    {{ $participant->first_name }}<br />{{ $participant->last_name }}
+                                </div>
                                 <br />
                                 <div
                                     class="color: #fff; font-size: 29.538px; font-style: normal; font-weight: 600; line-height: 102%; letter-spacing: 0.295px; margin-top : 12px;">
@@ -233,10 +229,11 @@
                                 </div>
                             </div>
                             <div class="block-right-bottom" style="display: flex; gap: 10px; align-items: center">
-                                <img src="{{ asset('frontend/assets/badge/img.svg') }}" alt="bottom-img" class="bottom-img"
+                                <img src="{{ asset('frontend/assets/badge/img.svg') }}" alt="bottom-img"
+                                    class="bottom-img"
                                     style="
-                      width: 90px;
-                      height: 90.951px;
+                      width: 112px;
+                      height: 112px;
                       border-radius: 5.103px;
                       object-fit: cover;
                     " />
@@ -249,8 +246,8 @@
                       border-radius: 6.564px;
                       background: rgba(168, 55, 60, 0.52);
                     ">
-                                    <img src="{{ asset($participant->qk_code_path) }}" alt="bottom-qr" class="bottom-qr"
-                                        style="width: 80px; height: 80px; object-fit: contain" />
+                                    <img src="{{ asset($participant->qk_code_path) }}" alt="bottom-qr"
+                                        class="bottom-qr" style="width: 100px; height: 100px; object-fit: contain" />
                                 </div>
                             </div>
                         </div>
@@ -265,6 +262,8 @@
             align-items: center;
             justify-content: center;
             gap: 27.897px;
+            height: 100px;
+            overflow: hidden;
           ">
                 <div
                     style="
@@ -285,17 +284,15 @@
             align-items: center;
             padding: 5px 0;
             justify-content: center;
-            gap: 15px;
+            gap: 30px;
+            height: 94px;
+            overflow: hidden;
           ">
-                <img src="{{ asset('frontend/assets/badge/footer1.svg') }}" alt="footer1" />
-                <img src="{{ asset('frontend/assets/badge/footer2.svg') }}" alt="footer2" />
-                <img src="{{ asset('frontend/assets/badge/footer3.svg') }}" alt="footer3" />
-                <img src="{{ asset('frontend/assets/badge/footer2.svg') }}" alt="footer4" />
-                <img src="{{ asset('frontend/assets/badge/footer4.svg') }}" alt="footer5" />
-                <img src="{{ asset('frontend/assets/badge/footer1.svg') }}" alt="footer6" />
+                @foreach ($partners as $partner)
+                    <img src="{{ asset($partner->photo) }}" alt="footer1" />
+                @endforeach
             </div>
         </div>
-
         <div class="badge"
             style="
           background: linear-gradient(
@@ -307,10 +304,12 @@
           position: relative;
           display: flex;
           flex-direction: column;
+          height: 794px;
+          overflow: hidden;
         ">
             <div
                 style="
-            height: 440px;
+            height: 600px;
             border: 1.625px solid rgba(0, 0, 0, 0);
             display: flex;
             align-items: center;
@@ -327,6 +326,8 @@
             align-items: center;
             justify-content: center;
             gap: 27.897px;
+            height: 100px;
+            overflow: hidden;
           ">
                 <div
                     style="
@@ -347,46 +348,39 @@
             align-items: center;
             padding: 5px 0;
             justify-content: center;
-            gap: 15px;
+            gap: 30px;
+            height: 94px;
+            overflow: hidden;
           ">
-                <img src="{{ asset('frontend/assets/badge/footer1.svg') }}" alt="footer1" />
-                <img src="{{ asset('frontend/assets/badge/footer2.svg') }}" alt="footer2" />
-                <img src="{{ asset('frontend/assets/badge/footer3.svg') }}" alt="footer3" />
-                <img src="{{ asset('frontend/assets/badge/footer2.svg') }}" alt="footer4" />
-                <img src="{{ asset('frontend/assets/badge/footer4.svg') }}" alt="footer5" />
-                <img src="{{ asset('frontend/assets/badge/footer1.svg') }}" alt="footer6" />
+                @foreach ($partners as $partner)
+                    <img src="{{ asset($partner->photo) }}" alt="footer1" />
+                @endforeach
             </div>
         </div>
     </div>
     <div class="download-btn" onclick="downloadPDF()">Скачать PDF</div>
 </body>
 <script>
-    function downloadPDF() {
+    async function downloadPDF() {
+        const {
+            jsPDF
+        } = window.jspdf;
+        const doc = new jsPDF({
+            format: "a5",
+            orientation: "landscape"
+        });
         const element = document.getElementById("badgeContainer");
-        const opt = {
-            margin: 0,
-            filename: "badge.pdf",
-            image: {
-                type: "jpeg",
-                quality: 1
-            },
-            html2canvas: {
-                scale: 2,
-                useCORS: true,
-                logging: true,
-                letterRendering: true,
-                scrollY: 0,
-                scrollX: 0,
-            },
-            jsPDF: {
-                unit: "mm",
-                format: "a5",
-                orientation: "landscape",
-                compress: true,
-            },
-        };
 
-        html2pdf().set(opt).from(element).save();
+        const canvas = await html2canvas(element, {
+            scale: 2,
+            useCORS: true
+        });
+        const imgData = canvas.toDataURL("image/png");
+        const imgWidth = 210;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        doc.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+        doc.save("badge.pdf");
     }
 </script>
 

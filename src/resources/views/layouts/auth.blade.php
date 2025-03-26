@@ -19,23 +19,7 @@
     <script src="/backend/global_assets/js/main/jquery.min.js"></script>
     <script src="/backend/global_assets/js/main/bootstrap.bundle.min.js"></script>
     <!-- /core JS files -->
-
-    <!-- Theme JS files -->
     <script src="/backend/assets/js/app.js"></script>
-
-    <!--server uchun -->
-    {{-- <link href="{{ secure_asset('backend/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ secure_asset('backend/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <!-- /global stylesheets -->
-
-    <!-- Core JS files -->
-    <script src="{{ secure_asset('backend/global_assets/js/main/jquery.min.js') }}"></script>
-    <script src="{{ secure_asset('backend/global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
-    <!-- /core JS files -->
-
-    <!-- Theme JS files -->
-    <script src="{{ secure_asset('backend/assets/js/app.js') }}"></script> --}}
-    <!-- /theme JS files -->
 
 </head>
 
