@@ -17,7 +17,7 @@
             <form action="{{ route('verify.code.post', $model->id, false) }}" method="GET">
                 @csrf
                 <div class="personal-info">{{ getTranslation('code_verifay') }},
-                    {{ cache()->get('email_verification_' . $model->email) }}, id: {{ $model->id }}, key: {{ $key }}
+                    {{ cache()->get('email_verification_' . $model->email) }}, 
                 </div>
                 <div class="input-section1" style="margin-bottom: 50px;">
                     <div class="input-group">
