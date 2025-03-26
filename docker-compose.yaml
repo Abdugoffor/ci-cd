@@ -14,7 +14,7 @@ services:
       - "8010:80"
     volumes:
       # - fide_project:/var/www/laravel
-      - /srv/fide/docker/uploaded:/var/www/laravel/public/uploaded
+      - /srv/fide_chess/docker/uploaded:/var/www/laravel/public/uploaded
     depends_on:
       - fide_postgres
       - fide_php
@@ -35,7 +35,7 @@ services:
       - traefik-network
     volumes:
       # - fide_project:/var/www/laravel
-      - /srv/fide/docker/uploaded:/var/www/laravel/public/uploaded
+      - /srv/fide_chess/docker/uploaded:/var/www/laravel/public/uploaded
 
   fide_postgres:
     image: postgres:15
@@ -43,8 +43,8 @@ services:
     env_file:
       - env/postgres.env
     volumes:
-      - ./pgdata:/var/lib/postgresql/data  # Lokal direktoriyaga bog'lash
-      - /srv/fide/docker/postgres/pgdata:/var/lib/postgresql/data
+      # - ./pgdata:/var/lib/postgresql/data  # Lokal direktoriyaga bog'lash
+      - /srv/fide_chess/docker/postgres/pgdata:/var/lib/postgresql/data
     networks:
       - traefik-network 
 
