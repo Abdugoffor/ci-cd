@@ -26,7 +26,7 @@ RUN composer install --no-scripts --no-interaction --prefer-dist --optimize-auto
 COPY src/ /var/www/laravel/
 
 RUN chown -R www-data:www-data /var/www/laravel/storage
-RUN chmod -R 755 /var/www/laravel/storage
+RUN chmod -R 777 /var/www/laravel/storage
 
 # Ruxsatlar va direktoriyalarni sozlash
 #RUN mkdir -p /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes /var/www/laravel/storage/logs && \
