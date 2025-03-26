@@ -16,11 +16,7 @@ class SkanController extends Controller
     {
         $qkCode = $request->qk_code;
 
-        $domain = request()->getSchemeAndHttpHost() . '/badge-verify';
-
         $cleaned = substr($qkCode, 7);
-
-        $cleaned = str_replace($domain . '/', '', $cleaned);
 
         $participant = Participant::where('qk_code', $cleaned)->first();
 

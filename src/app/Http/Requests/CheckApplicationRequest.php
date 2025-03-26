@@ -21,7 +21,7 @@ class CheckApplicationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'participant_id' => 'required|exists:participants,id',
+            'participant_id' => 'required',
             'key'            => 'required|min:8',
         ];
     }

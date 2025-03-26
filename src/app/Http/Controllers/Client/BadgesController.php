@@ -9,11 +9,14 @@ class BadgesController extends Controller
 {
     public function verify(string $badges)
     {
-        $participant = Participant::where('qk_code', $badges)->first();
+        $domain = request()->getSchemeAndHttpHost();
 
+        $qk_code = "{$domain}/badge-verify/{$badges}";
+
+        $participant = Participant::where('qk_code', $qk_code)->first();
+        
         $partners    = Partner::where('is_active', true)->orderByDesc('id')->limit(3)->get();
         
         return view('client.test', ['participant' => $participant, 'partners' => $partners]);
-        // return view('bejik', ['participant' => $participant, 'partners' => $partners]);
     }
 }

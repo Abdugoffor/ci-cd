@@ -1216,8 +1216,6 @@ body {
   line-height: 102%;
   /* 23.46px */
   letter-spacing: -0.23px;
-  margin-bottom: 36px;
-  margin-top: 52px;
 }
 
 .modal {
@@ -1322,10 +1320,10 @@ body {
   border-radius: 8px;
   background: white;
   font-size: 12px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 12.24px;
   letter-spacing: 0.12px;
-  color: #83acb1;
+  color: black;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -2559,4 +2557,40 @@ body {
     width: 100% !important;
     height: auto !important;
   }
+}
+
+/* input group */
+@media (max-width: 768px) {
+  .group-additional .input-group {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 548px) {
+  .group-additional .input-group {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}
+
+
+.input-groupGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.input-groupGrid .input-wrapper input, .input-groupGrid .input-wrapper .date-container {
+  width: 100%;
+}
+
+.group-additional .input-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.group-additional .input-group input, .group-additional .input-group .date-container{ 
+  width: 100%;
+} 
+
+.group-additional {
+  padding: 20px 0;
 }

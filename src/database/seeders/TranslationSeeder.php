@@ -1057,12 +1057,12 @@ class TranslationSeeder extends Seeder
                 ],
             ],
             [
-                'slug' => 'action_button',
+                'slug' => 'key',
                 'name' => [
-                    'uz'      => "Проверить",
-                    'ru'      => "Проверить",
-                    'en'      => "Проверить",
-                    'default' => 'Проверить',
+                    'uz'      => "Ключ",
+                    'ru'      => "Ключ",
+                    'en'      => "Ключ",
+                    'default' => 'Ключ',
                 ],
             ],
             [

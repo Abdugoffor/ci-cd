@@ -47,11 +47,41 @@
                     <tbody>
                         <tr>
                             <th width="45%">
+                                ID
+                            </th>
+                            <td>
+                                {{ $model->id }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="45%">
+                                {{ getTranslation('key') }}
+                            </th>
+                            <td>
+                                {{ $model->key }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="45%">
                                 {{ getTranslation('photo') }}
                             </th>
                             <td>
                                 @if ($model->photo)
                                     <img src="{{ asset($model->photo) }}" alt="Фото" width="100">
+                                @else
+                                    {{ getTranslation('no-photo') }}
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="45%">
+                                {{ getTranslation('qk_code') }}
+                            </th>
+                            <td>
+                                @if ($model->qk_code_path)
+                                    <a href="{{ asset($model->qk_code_path) }}" download>
+                                        <img src="{{ asset($model->qk_code_path) }}" alt="Фото" width="100">
+                                    </a>
                                 @else
                                     {{ getTranslation('no-photo') }}
                                 @endif
@@ -258,17 +288,20 @@
                     </tbody>
                 </table>
                 @if (!is_null($model->applicationCancellations) && $model->applicationCancellations->count() > 0)
-                    <div class="card shadow-sm p-3 mb-3">
+                    {{-- <div class="card shadow-sm p-3 mb-3"> --}}
                         <h5 class="card-title text-primary">{{ getTranslation('application_cancellations') }}</h5>
-                        <ul class="list-group list-group-flush">
-                            @foreach ($model->applicationCancellations as $applicationCancellation)
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>{{ $applicationCancellation->cancel_reason }}</span>
-                                    <span class="badge bg-danger">Cancelled</span>
+                        <ul class="list-group">
+                            @foreach ($model->applicationCancellations as $index => $applicationCancellation)
+                                <li class="list-group-item d-flex justify-content-between align-items-center border mb-2">
+                                    <span><strong>{{ $index + 1 }}.</strong>
+                                        {{ $applicationCancellation->cancel_reason }}</span>
+                                    <span class="badge bg-danger">Cancelled,
+                                        {{ $applicationCancellation->created_at->format('d-m-Y H:i') }}</span>
                                 </li>
                             @endforeach
                         </ul>
-                    </div>
+
+                    {{-- </div> --}}
                 @endif
 
             </div>

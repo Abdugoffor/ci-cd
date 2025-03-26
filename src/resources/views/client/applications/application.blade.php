@@ -26,8 +26,8 @@
             <form action="{{ route('application.store', [], false) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="personal-info">{{ getTranslation('personal_info') }}</div>
-                <div class="input-section1">
-                    <div class="input-group">
+                <div class="input-section1 ">
+                    <div class="input-group input-groupGrid">
                         <div class="input-wrapper">
                             <input type="hidden" name="tournament_id" value="{{ $tournament->id }}" id="">
                             <label for="first-name" class="input-label">{{ getTranslation('name') }}
@@ -43,6 +43,13 @@
                                 class="input-text" placeholder="{{ getTranslation('last-name') }}" />
 
                         </div>
+                    </div>
+                    <div class="input-group input-groupGrid">
+                        <div class="input-wrapper">
+                            <label for="passport-id" class="input-label">{{ getTranslation('email') }}</label>
+                            <input type="email" id="email" name="email" value="{{ old('email') }}"
+                                placeholder="{{ getTranslation('email') }}" class="input-text" />
+                        </div>
                         <div class="input-wrapper">
                             <label for="date-of-birth" class="input-label">{{ getTranslation('birth-date') }}</label>
                             <div class="date-container" onclick="openDatePicker('date_of_birth')">
@@ -55,7 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-group">
+                    <div class="input-group input-groupGrid">
 
                         <div class="radio-group">
                             <label for="gender" class="input-label">{{ getTranslation('gender') }}</label>
@@ -73,19 +80,7 @@
                                     {{ getTranslation('f') }}
                                 </label>
                             </div>
-                            {{-- @error('gender')
-                                <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                            @enderror --}}
                         </div>
-                        <div class="input-wrapper">
-                            <label for="passport-id" class="input-label">{{ getTranslation('email') }}</label>
-                            <input type="email" id="email" name="email" value="{{ old('email') }}"
-                                placeholder="{{ getTranslation('email') }}" class="input-text" />
-                            {{-- @error('email')
-                                <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                            @enderror --}}
-                        </div>
-
                     </div>
 
                     @if (session('player'))

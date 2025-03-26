@@ -84,19 +84,16 @@ class ApplicationController extends Controller
     {
         if ($status == 'approved') {
 
-            if ($participant->status != $status) {
-
-                $qkCode = $participant->id . Str::random(70);
-
-                $participant->update([
-                    'status'  => $status,
-                    'qk_code' => $qkCode,
-                ]);
-            }
+            $qkCode = $participant->id . Str::random(70);
 
             $domain = request()->getSchemeAndHttpHost();
 
-            $qk_code_url = "{$domain}/badge-verify/{$participant->qk_code}";
+            $qk_code_url = "{$domain}/badge-verify/{$qkCode}";
+
+            $participant->update([
+                'status'  => $status,
+                'qk_code' => $qk_code_url,
+            ]);
 
             $qrCode = QrCode::create($qk_code_url)
                 ->setSize(300)
@@ -105,6 +102,7 @@ class ApplicationController extends Controller
             $result = (new PngWriter())->write($qrCode);
 
             $fileName = "qrcode_{$participant->id}.png";
+
             $filePath = "uploaded/qrcodes/{$fileName}";
 
             $fullFilePath = public_path($filePath);

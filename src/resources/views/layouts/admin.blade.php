@@ -12,6 +12,30 @@
 
     <!--local uchun -->
 
+    <link href="backend/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="backend/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
+
+    <!-- /core JS files -->
+
+    <!-- Core JS files -->
+    <script src="backend/global_assets/js/main/jquery.min.js"></script>
+    <script src="backend/global_assets/js/main/bootstrap.bundle.min.js"></script>
+    <!-- /core JS files -->
+
+    <!-- Theme JS files -->
+    <script src="backend/global_assets/js/plugins/visualization/d3/d3.min.js"></script>
+    <script src="backend/global_assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
+    <script src="backend/global_assets/js/plugins/ui/moment/moment.min.js"></script>
+    <script src="backend/global_assets/js/plugins/pickers/daterangepicker.js"></script>
+
+    <script src="backend/assets/js/app.js"></script>
+    <script src="backend/global_assets/js/demo_pages/dashboard.js"></script>
+
+    <script src="backend/global_assets/js/plugins/editors/summernote/summernote.min.js"></script>
+
+    <script src="backend/global_assets/js/demo_pages/editor_summernote.js"></script>
     {{-- <link href="{{ asset('backend/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
@@ -41,7 +65,7 @@
 
     <!--server uchun -->
 
-    <link href="{{ secure_asset('backend/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet"
+    {{-- <link href="{{ secure_asset('backend/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet"
         type="text/css">
     <link href="{{ secure_asset('backend/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
@@ -59,7 +83,7 @@
     <script src="{{ secure_asset('backend/global_assets/js/demo_pages/dashboard.js') }}"></script>
 
     <script src="{{ secure_asset('backend/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
-    <script src="{{ secure_asset('backend/global_assets/js/demo_pages/editor_summernote.js') }}"></script>
+    <script src="{{ secure_asset('backend/global_assets/js/demo_pages/editor_summernote.js') }}"></script> --}}
 
 </head>
 

@@ -5,8 +5,9 @@
     <main class="container">
         <section class="register-personal">
             <div class="inner-img-content">
-                {!! getLocale($model->text) !!}
+                {!! getLocale(optional($model)->text) !!}
             </div>
+
         </section>
     </main>
 @endsection

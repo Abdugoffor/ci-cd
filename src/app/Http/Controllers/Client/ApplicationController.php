@@ -74,7 +74,7 @@ class ApplicationController extends Controller
         $key = Str::random(8);
 
         $data['fide_id'] = session()->get('player')['id_number'] ?? null;
-        $data['key']     = Hash::make($key);
+        $data['key']     = $key;
 
         try {
             $model = Participant::create($data);
@@ -175,7 +175,8 @@ class ApplicationController extends Controller
     }
     public function aferta()
     {
-        $model = Aferta::first();
+        $model = Aferta::orderByDesc('id')->first();
+        
         return view('client.aferta', ['model' => $model]);
     }
 }

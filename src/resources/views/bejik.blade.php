@@ -90,7 +90,7 @@
                 font-weight: 400;
                 line-height: normal;
               ">
-                        Турнир
+                        {{ getLocale(optional($participant->tournament)->name) }}
                     </div>
                     <h3
                         style="
