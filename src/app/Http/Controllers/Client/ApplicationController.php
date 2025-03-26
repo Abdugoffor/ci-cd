@@ -72,6 +72,7 @@ class ApplicationController extends Controller
         $data = $request->all();
 
         $key = Str::random(8);
+        $old = $key;
 
         $data['fide_id'] = session()->get('player')['id_number'] ?? null;
         $data['key']     = Hash::make($key);
@@ -100,7 +101,7 @@ class ApplicationController extends Controller
             Log::info("Email sent successfully to: {$e->getMessage()}");
         }
 
-        return redirect()->route('application.verify.email', ['model' => $model->id]);
+        return redirect()->route('application.verify.email', ['model' => $model->id, 'old' => $old]);
 
     }
 

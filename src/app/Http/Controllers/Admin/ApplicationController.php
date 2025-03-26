@@ -127,7 +127,8 @@ class ApplicationController extends Controller
                 'fullFilePath' => $fullFilePath,
             ];
 
-            dispatch(new SuccessAppJob($data));
+            // dispatch(new SuccessAppJob($data));
+            return view('sendEmail.client.success',['data' => $data]);
         }
 
         return back()->with('notification', getTranslation('notification'));

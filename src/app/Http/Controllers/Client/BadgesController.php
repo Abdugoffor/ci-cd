@@ -14,5 +14,6 @@ class BadgesController extends Controller
         $partners    = Partner::where('is_active', true)->orderByDesc('id')->limit(3)->get();
         
         return view('client.test', ['participant' => $participant, 'partners' => $partners]);
+        // return view('bejik', ['participant' => $participant, 'partners' => $partners]);
     }
 }

@@ -34,7 +34,7 @@ chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/c
 
 # Queue ishga tushirish
 echo "Starting queue worker..."
-# nohup php artisan queue:work --daemon > /var/www/laravel/storage/logs/queue.log 2>&1 &
+nohup php artisan queue:work --daemon > /var/www/laravel/storage/logs/queue.log 2>&1 &
 
 # PHP-FPM ishga tushirish
 echo "Starting PHP-FPM..."
