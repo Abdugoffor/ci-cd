@@ -42,6 +42,7 @@ services:
       - env/postgres.env
     volumes:
       - ./pgdata:/var/lib/postgresql/data  # Lokal direktoriyaga bog'lash
+      # - /srv/fide/docker/postgres/pgdata:/var/lib/postgresql/data
     networks:
       - traefik-network 
 
