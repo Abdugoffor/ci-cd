@@ -69,4 +69,8 @@ class Participant extends Model
     {
         return $this->belongsTo(Hotel::class, 'accommodation_details');
     }
+    public function applicationCancellations()
+    {
+        return $this->hasMany(ApplicationCancellation::class, 'participant_id');
+    }
 }

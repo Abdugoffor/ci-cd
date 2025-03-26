@@ -79,7 +79,7 @@ class ApplicationController extends Controller
         try {
             $model = Participant::create($data);
         } catch (\Exception $e) {
-            dd('Ma\'lumotni saqlashda xatolik: ' . $e->getMessage());
+            return response()->json('Ma\'lumotni saqlashda xatolik: ' . $e->getMessage());
         }
 
         $verificationCode = rand(100000, 999999);

@@ -10,7 +10,40 @@
         </div>
         <div class="card mt-2">
             <div class="card-body">
-                <table class="table text-nowrap table-bordered">
+                @if (!is_null($model->playerInfo))
+                    <div class="d-flex justify-content-between align-items-center example">
+                        <ul class="list-unstyled">
+                            <li><strong>{{ getTranslation('name') }}:</strong> <span>{{ $model->playerInfo->name }}</span>
+                            </li>
+                            <li><strong>{{ getTranslation('country') }}:</strong>
+                                <span>{{ $model->playerInfo->country ?? getTranslation('not_available') }}</span>
+                            </li>
+                            <li><strong>{{ getTranslation('gender') }}:</strong>
+                                <span>{{ $model->playerInfo->sex ?? getTranslation('not_available') }}</span>
+                            </li>
+                            <li><strong>{{ getTranslation('birth-date') }}:</strong>
+                                <span>{{ $model->playerInfo->birthyear ?? getTranslation('not_available') }}</span>
+                            </li>
+                            <li><strong>{{ getTranslation('title') }}:</strong>
+                                <span>{{ $model->playerInfo->title ?? getTranslation('not_available') }}</span>
+                            </li>
+                            <li><strong>{{ getTranslation('standard_rating') }}:</strong>
+                                <span>{{ $model->playerInfo->standard_rating ?? getTranslation('not_available') }}</span>
+                            </li>
+                            <li><strong>{{ getTranslation('blitz_rating') }}:</strong>
+                                <span>{{ $model->playerInfo->blitz_rating ?? getTranslation('not_available') }}</span>
+                            </li>
+                            <li><strong>{{ getTranslation('rapid_rating') }}:</strong>
+                                <span>{{ $model->playerInfo->rapid_rating ?? getTranslation('not_available') }}</span>
+                            </li>
+                        </ul>
+                        <img src="{{ asset($model->playerInfo->image_file ?? 'frontend/assets/player.png') }}"
+                            alt="Player Image" width="200px" class="rounded shadow-sm ms-4">
+                    </div>
+                @endif
+
+
+                <table class="table text-nowrap table-bordered mt-2">
                     <tbody>
                         <tr>
                             <th width="45%">
@@ -224,6 +257,20 @@
                         </tr>
                     </tbody>
                 </table>
+                @if (!is_null($model->applicationCancellations) && $model->applicationCancellations->count() > 0)
+                    <div class="card shadow-sm p-3 mb-3">
+                        <h5 class="card-title text-primary">{{ getTranslation('application_cancellations') }}</h5>
+                        <ul class="list-group list-group-flush">
+                            @foreach ($model->applicationCancellations as $applicationCancellation)
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>{{ $applicationCancellation->cancel_reason }}</span>
+                                    <span class="badge bg-danger">Cancelled</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
             </div>
         </div>
 

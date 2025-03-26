@@ -8,6 +8,8 @@ class PlayerInfo extends Model
     protected $fillable = [
         'participant_id',
         'name',
+        'country',
+        'sex',
         'birthyear',
         'title',
         'standard_rating',

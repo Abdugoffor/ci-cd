@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('participant_id')->constrained('participants')->onDelete('cascade');
             $table->string('name')->nullable();
+            $table->string('country')->nullable();
+            $table->string('sex')->nullable();
             $table->string('birthyear')->nullable();
             $table->string('title')->nullable();
             $table->string('standard_rating')->nullable();
