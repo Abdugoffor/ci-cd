@@ -101,11 +101,11 @@ class ApplicationController extends Controller
             Log::info("Email sent successfully to: {$e->getMessage()}");
         }
 
-        return redirect()->route('application.verify.email', ['model' => $model->id, 'old' => $old]);
+        return redirect()->route('application.verify.email', ['model' => $model->id, 'key' => $key]);
 
     }
 
-    public function applicationVerifyEmail(Participant $model)
+    public function applicationVerifyEmail(Participant $model, $key)
     {
         if (session()->get('model_id') != $model->id) {
 
@@ -114,7 +114,7 @@ class ApplicationController extends Controller
 
         $tournament = Tournament::findOrFail($model->tournament_id);
 
-        return view('client.verify_email', ['model' => $model, 'tournament' => $tournament]);
+        return view('client.verify_email', ['model' => $model, 'tournament' => $tournament, 'key' => $key]);
     }
     public function createAdditional(Participant $model)
     {
