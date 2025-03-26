@@ -29,8 +29,8 @@ php artisan view:cache
 
 # Ruxsatlarni qayta sozlash
 echo "Setting permissions..."
-chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes
-chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes
+# chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes
+# chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes
 
 # Queue ishga tushirish
 echo "Starting queue worker..."
