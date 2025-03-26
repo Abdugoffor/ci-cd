@@ -18,8 +18,8 @@ RUN apk add --no-cache \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # PHP sozlamalarini o‘zgartirish
-RUN echo "upload_max_filesize = 500M" >> /usr/local/etc/php/php.ini \
-    && echo "post_max_size = 500M" >> /usr/local/etc/php/php.ini
+#RUN echo "upload_max_filesize = 500M" >> /usr/local/etc/php/php.ini \
+#    && echo "post_max_size = 500M" >> /usr/local/etc/php/php.ini
 
 # Ishchi direktoriya
 WORKDIR /var/www/laravel
@@ -32,11 +32,11 @@ RUN composer install --no-scripts --no-interaction --prefer-dist --optimize-auto
 COPY src/ /var/www/laravel/
 
 # Ruxsatlar va direktoriyalarni sozlash
-RUN mkdir -p /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes /var/www/laravel/storage/logs && \
-    touch /var/www/laravel/storage/logs/laravel.log && \
-    chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes && \
-    chmod 664 /var/www/laravel/storage/logs/laravel.log && \
-    chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes
+#RUN mkdir -p /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes /var/www/laravel/storage/logs && \
+#    touch /var/www/laravel/storage/logs/laravel.log && \
+#    chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes && \
+#    chmod 664 /var/www/laravel/storage/logs/laravel.log && \
+#    chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache /var/www/laravel/storage/logs /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes
 
 # init.sh faylini nusxalash va ruxsat berish
 COPY dockerfiles/init.sh /usr/local/bin/init.sh
