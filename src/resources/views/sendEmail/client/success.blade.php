@@ -21,7 +21,7 @@
             ">
                     <tr>
                         <td style="text-align: left; padding-bottom: 52px">
-                            <img src="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}" alt="FIDE Logo" width="51" height="50"
+                            <img src="{{ $message->embed('frontend/assets/header_banner/chess_logo.svg') }}" alt="FIDE Logo" width="51" height="50"
                                 style="display: block" />
                             <div style="font-size: 9.5px; color: #00363f">
                                 46th FIDE CHESS OLYMPIAD
