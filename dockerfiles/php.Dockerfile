@@ -31,6 +31,8 @@ RUN composer install --no-scripts --no-interaction --prefer-dist --optimize-auto
 # Loyiha fayllarini nusxalash
 COPY src/ /var/www/laravel/
 
+chmod -R 755 /var/www/laravel/storage
+
 # Ruxsatlar va direktoriyalarni sozlash
 #RUN mkdir -p /var/www/laravel/public/uploaded /var/www/laravel/public/qrcodes /var/www/laravel/storage/logs && \
 #    touch /var/www/laravel/storage/logs/laravel.log && \
