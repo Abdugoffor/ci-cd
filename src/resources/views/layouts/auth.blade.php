@@ -11,20 +11,20 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 
     <!--localuchun uchun -->
-    {{-- <link href="{{ asset('backend/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('backend/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="/backend/global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
+    <link href="/backend/assets/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
-    <script src="{{ asset('backend/global_assets/js/main/jquery.min.js') }}"></script>
-    <script src="{{ asset('backend/global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
+    <script src="/backend/global_assets/js/main/jquery.min.js"></script>
+    <script src="/backend/global_assets/js/main/bootstrap.bundle.min.js"></script>
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
-    <script src="{{ asset('backend/assets/js/app.js') }}"></script> --}}
+    <script src="/backend/assets/js/app.js"></script>
 
     <!--server uchun -->
-    <link href="{{ secure_asset('backend/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    {{-- <link href="{{ secure_asset('backend/global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ secure_asset('backend/assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
@@ -34,7 +34,7 @@
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
-    <script src="{{ secure_asset('backend/assets/js/app.js') }}"></script>
+    <script src="{{ secure_asset('backend/assets/js/app.js') }}"></script> --}}
     <!-- /theme JS files -->
 
 </head>
@@ -45,7 +45,7 @@
     <div class="navbar navbar-expand-lg navbar-dark navbar-static">
         <div class="navbar-brand ml-2 ml-lg-0">
             <a href="/" class="d-inline-block">
-                <img src="{{ secure_asset('backend/global_assets/images/logo_light.png') }}" alt="">
+                <img src="/backend/global_assets/images/logo_light.png" alt="">
             </a>
         </div>
 
