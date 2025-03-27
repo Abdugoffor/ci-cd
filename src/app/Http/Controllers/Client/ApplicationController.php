@@ -47,12 +47,12 @@ class ApplicationController extends Controller
 
                     if ($tournament->status == 'pending') {
 
-                        return view('client.applications.application', ['tournament' => $tournament, 'fide_id_success' => 'Fide id topildi']);
+                        return view('client.applications.application', ['tournament' => $tournament, 'fide_id_success' => getTranslation('fide_id_success')]);
                     }
                     return redirect('/');
 
                 } else {
-                    return back()->withErrors(['fide_id' => 'ID noto‘g‘ri!'])->withInput();
+                    return back()->withErrors(['fide_id' => getTranslation('fide_id')])->withInput();
                 }
             } catch (\Exception $e) {
 
@@ -99,7 +99,7 @@ class ApplicationController extends Controller
             Log::info("Email sent successfully to: {$e->getMessage()}");
         }
 
-        return redirect()->route('application.verify.email', ['model' => $model->id, 'message' => 'Emailga ID, Key va Tasdiqlash ko`di yuborildi!']);
+        return redirect()->route('application.verify.email', ['model' => $model->id, 'message' => getTranslation('message')]);
 
     }
 

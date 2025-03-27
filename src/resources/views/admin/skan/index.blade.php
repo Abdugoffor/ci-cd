@@ -31,6 +31,19 @@
                 @if (isset($participant))
                     <table class="table table-bordered">
                         <tbody>
+
+                            <tr>
+                                <th class="text-center">
+                                    {{ getTranslation('photo') }}
+                                </th>
+                                <td>
+                                    @if ($participant->photo)
+                                        <img src="{{ asset($participant->photo) }}" alt="Фото" width="100">
+                                    @else
+                                        {{ getTranslation('no-photo') }}
+                                    @endif
+                                </td>
+                            </tr>
                             <tr>
                                 <th class="text-center">{{ getTranslation('name') }}</th>
                                 <td>{{ $participant->first_name }}</td>
@@ -111,18 +124,6 @@
                                     {{ getTranslation('phone') }}
                                 </th>
                                 <td>{{ $participant->phone }}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-center">
-                                    {{ getTranslation('photo') }}
-                                </th>
-                                <td>
-                                    @if ($participant->photo)
-                                        <img src="{{ asset($participant->photo) }}" alt="Фото" width="100">
-                                    @else
-                                        {{ getTranslation('no-photo') }}
-                                    @endif
-                                </td>
                             </tr>
                             <tr>
                                 <th class="text-center">

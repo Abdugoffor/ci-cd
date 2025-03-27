@@ -1074,6 +1074,36 @@ class TranslationSeeder extends Seeder
                     'default' => 'Aferta',
                 ],
             ],
+            [
+                'slug' => 'fide_id_success',
+                'name' => [
+                    'uz'      => "FIDE ID to‘g‘ri! Ro‘yxatdan o‘tish davom etmoqda.",
+                    'ru'      => "FIDE ID верный! Регистрация продолжается.",
+                    'en'      => "FIDE ID is correct! Registration is continuing.",
+                    'default' => "FIDE ID is correct! Registration is continuing.",
+                ],
+            ],
+
+            [
+                'slug' => 'fide_id',
+                'name' => [
+                    'uz'      => "FIDE ID noto‘g‘ri! Iltimos, qayta tekshirib kiriting.",
+                    'ru'      => "Неверный FIDE ID! Пожалуйста, проверьте и введите заново.",
+                    'en'      => "Invalid FIDE ID! Please check and enter again.",
+                    'default' => "Invalid FIDE ID! Please check and enter again.",
+                ],
+            ],
+
+            [
+                'slug' => 'message',
+                'name' => [
+                    'uz'      => "Emailga ID va Key yuborildi. 5 daqiqa ichida tasdiqlashingiz kerak!",
+                    'ru'      => "ID и ключ были отправлены на вашу электронную почту. Вам нужно подтвердить их в течение 5 минут!",
+                    'en'      => "ID and Key have been sent to your email. You must verify them within 5 minutes!",
+                    'default' => "ID and Key have been sent to your email. You must verify them within 5 minutes!",
+                ],
+            ],
+
         ];
 
         foreach ($translations as $translation) {

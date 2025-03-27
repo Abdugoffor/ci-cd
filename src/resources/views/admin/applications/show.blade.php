@@ -71,6 +71,7 @@
                                 @else
                                     {{ getTranslation('no-photo') }}
                                 @endif
+                                
                             </td>
                         </tr>
                         <tr>
@@ -85,6 +86,9 @@
                                 @else
                                     {{ getTranslation('no-photo') }}
                                 @endif
+                                <p style="margin-top: 10px;">
+                                    1234567{{ $model->qk_code }}
+                                </p>
                             </td>
                         </tr>
                         <tr>
