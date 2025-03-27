@@ -23,12 +23,47 @@
                     });
                 </script>
             @endif
-            @if (isset($notification))
-                <script>
+            @if (isset($notification) && !$errors->any())
+                {{-- <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         toast.create('{{ $notification }}', 'success')
 
                     });
+                </script> --}}
+                <style>
+                    .alert {
+                        position: fixed;
+                        top: 98px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background-color: #4ca89a;
+                        color: white;
+                        padding: 15px 20px;
+                        border-radius: 8px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        width: 95%;
+                        margin: 0 auto;
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    }
+
+                    .close {
+                        background: none;
+                        border: none;
+                        color: white;
+                        font-size: 18px;
+                        cursor: pointer;
+                    }
+                </style>
+                <div class="alert" id="alertBox">
+                    <span>{{ $notification }}</span>
+                    <button class="close" onclick="closeAlert()">×</button>
+                </div>
+                <script>
+                    function closeAlert() {
+                        document.getElementById("alertBox").style.display = "none";
+                    }
                 </script>
             @endif
             <form action="{{ route('application.store.additional', $model->id, false) }}" method="POST"
