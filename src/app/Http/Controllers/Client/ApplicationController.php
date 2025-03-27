@@ -15,7 +15,6 @@ use App\Models\Participant;
 use App\Models\PlayerInfo;
 use App\Models\Tournament;
 use App\Services\FileUploadService;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -48,7 +47,7 @@ class ApplicationController extends Controller
 
                     if ($tournament->status == 'pending') {
 
-                        return view('client.applications.application', ['tournament' => $tournament]);
+                        return view('client.applications.application', ['tournament' => $tournament, 'fide_id_success' => 'Fide id topildi']);
                     }
                     return redirect('/');
 
@@ -100,11 +99,11 @@ class ApplicationController extends Controller
             Log::info("Email sent successfully to: {$e->getMessage()}");
         }
 
-        return redirect()->route('application.verify.email', ['model' => $model->id]);
+        return redirect()->route('application.verify.email', ['model' => $model->id, 'message' => 'Emailga ID, Key va Tasdiqlash ko`di yuborildi!']);
 
     }
 
-    public function applicationVerifyEmail(Participant $model)
+    public function applicationVerifyEmail(Participant $model, $message)
     {
         if (session()->get('model_id') != $model->id) {
 
@@ -113,7 +112,7 @@ class ApplicationController extends Controller
 
         $tournament = Tournament::findOrFail($model->tournament_id);
 
-        return view('client.verify_email', ['model' => $model, 'tournament' => $tournament]);
+        return view('client.verify_email', ['model' => $model, 'message_notifay' => $message, 'tournament' => $tournament]);
     }
     public function createAdditional(Participant $model)
     {
@@ -128,7 +127,7 @@ class ApplicationController extends Controller
 
         $hotels = Hotel::where('is_active', true)->get();
 
-        return view('client.applications.additional', ['model' => $model, 'hotels' => $hotels, 'countries' => $countries, 'accreditationCategories' => $accreditationCategories]);
+        return view('client.applications.additional', ['model' => $model, 'hotels' => $hotels, 'notification' => getTranslation('notification'), 'countries' => $countries, 'accreditationCategories' => $accreditationCategories]);
     }
 
     public function storeAdditional(ApplicationAdditionRequest $request, Participant $model)
@@ -170,13 +169,16 @@ class ApplicationController extends Controller
 
         dispatch(new PendingAppJob($model));
 
-        return redirect()->route('chack.application')->with('notification', getTranslation('notification'));
+        return redirect()->route('chack.application')
+            ->with([
+                'notification' => getTranslation('notification'),
+            ]);
 
     }
     public function aferta()
     {
         $model = Aferta::orderByDesc('id')->first();
-        
+
         return view('client.aferta', ['model' => $model]);
     }
 }

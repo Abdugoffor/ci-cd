@@ -2573,24 +2573,25 @@ body {
 
 
 .input-groupGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 20px !important;
 }
 
 .input-groupGrid .input-wrapper input, .input-groupGrid .input-wrapper .date-container {
-  width: 100%;
+  width: 100% !important;
 }
 
 .group-additional .input-group {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  align-items: center !important;
 }
 
 .group-additional .input-group input, .group-additional .input-group .date-container{ 
-  width: 100%;
+  width: 100% !important;
 } 
 
 .group-additional {
-  padding: 20px 0;
+  padding: 20px 0 !important;
 }

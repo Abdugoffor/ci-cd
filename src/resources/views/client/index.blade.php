@@ -68,7 +68,7 @@
             </div>
         </section>
         <!-- history update end  -->
-        <section class="register container">
+        <section class="register container" id="fideForm1Anchor">
             <!-- register update start  -->
             <div class="register-form">
                 <h2>{{ getTranslation('register_event') }}</h2>
@@ -77,7 +77,6 @@
                 </div>
                 <div class="forms-div">
                     @if ($model)
-                        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
                         <form action="{{ route('application', $model->id, false) }}" id="fideForm1">
                             @csrf
                             <label for="fide-id">FIDE ID</label>
@@ -105,14 +104,6 @@
                 @endif
                 <div class="toast-container"></div>
             </div>
-            {{-- <div class="modal" id="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <h2>FIDE ID Check</h2>
-                    <p>Ваш FIDE ID успешно проверен!</p>
-                </div>
-            </div> --}}
-            <!-- register update end  -->
         </section>
 
         <section class="sponsor">
@@ -235,3 +226,13 @@
         </section>
     </main>
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Agar validatsiya xatoliklari bo'lsa, formaga fokuslash
+        @if ($errors->has('fide_id'))
+            document.getElementById('fideForm1Anchor').scrollIntoView({
+                behavior: 'smooth'
+            });
+        @endif
+    });
+</script>

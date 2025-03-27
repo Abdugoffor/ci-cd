@@ -35,7 +35,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('home');
 
     Route::get('/application/{tournament}', [ApplicationController::class, 'application'])->name('application');
-    Route::get('/applications-verify-email/{model}', [ApplicationController::class, 'applicationVerifyEmail'])->name('application.verify.email');
+    Route::get('/applications-verify-email/{model}/{message}', [ApplicationController::class, 'applicationVerifyEmail'])->name('application.verify.email');
     Route::post('/applications', [ApplicationController::class, 'store'])->name('application.store');
     Route::get('/aferta', [ApplicationController::class, 'aferta'])->name('aferta');
 

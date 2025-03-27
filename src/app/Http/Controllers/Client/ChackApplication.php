@@ -9,14 +9,14 @@ class ChackApplication extends Controller
 {
     public function chack()
     {
-        return view('client.chack');
+        return view('client.chack', ['notification' => 'Emialga yuborilga id va keyni kiriting']);
     }
     public function search(CheckApplicationRequest $request)
     {
         $id = $request->participant_id;
 
         $key = $request->key;
-        
+
         $participant = Participant::where('id', $id)->where('key', $key)->first();
 
         if ($participant) {

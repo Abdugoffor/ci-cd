@@ -54,10 +54,8 @@
 
         <div class="navbar-brand text-center text-lg-left">
             <a href="/" class="d-inline-block">
-                <img src="/backend/global_assets/images/logo_light.png') }}" class="d-none d-sm-block"
-                    alt="">
-                <img src="/backend/global_assets/images/logo_icon_light.png') }}" class="d-sm-none"
-                    alt="">
+                <img src="/backend/global_assets/images/logo_light.png" class="d-none d-sm-block" alt="">
+                <img src="/backend/global_assets/images/logo_icon_light.png" class="d-sm-none" alt="">
             </a>
         </div>
         <div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
@@ -204,7 +202,7 @@
                                     activeMenu('partners.index') ||
                                     activeMenu('media.index') ||
                                     activeMenu('users.index');
-                                    activeMenu('aferta.index');
+                                activeMenu('aferta.index');
                             @endphp
                             <li class="nav-item nav-item-submenu {{ $isActive ? 'nav-item-open' : '' }}">
                                 <a href="#" class="nav-link">
@@ -369,6 +367,8 @@
     <!-- /page content -->
 
 </body>
+
+
 <script>
     function previewImage(event, id) {
         var input = event.target;

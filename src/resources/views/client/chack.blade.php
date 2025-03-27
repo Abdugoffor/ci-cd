@@ -5,13 +5,15 @@
 @section('content')
     <main class="container">
         <section class="register-personal">
-            @if (session('notification'))
-                <div class="register-personal-top">
-                    <div class="alert alert-success" style="color: white;">
-                        {{ session('notification') }}
-                    </div>
-                </div>
+            @if (isset($notification))
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        toast.create('{{ $notification }}', 'success')
+
+                    });
+                </script>
             @endif
+            <div class="toast-container"></div>
             <form action="{{ route('chack.application.srach', [], false) }}" method="GET" enctype="multipart/form-data">
                 @csrf
                 <div class="input-group">

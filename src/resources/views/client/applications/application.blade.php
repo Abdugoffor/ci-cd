@@ -4,7 +4,7 @@
 @section('content')
     <main class="container">
         <section class="register-personal">
-            <div class="register-personal-top">
+            <div class="register-personal-top" style="margin-bottom: 30px">
                 <h1>{{ getTranslation('register_for_accreditation') }}</h1>
                 <div>
                     <img src="{{ asset('frontend/assets/register-page/chess-logo.svg') }}" alt="chess-logo" />
@@ -18,11 +18,22 @@
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         @foreach ($errors->all() as $error)
-                            toast.create("{{ $error }}");
+                            toast.create("{{ $error }}", 'error')
+                            toast.create("{{ $error }}", 'success')
                         @endforeach
                     });
                 </script>
             @endif
+
+            @if (isset($fide_id_success))
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        toast.create("{{ $fide_id_success }}", 'success')
+                       
+                    });
+                </script>
+            @endif
+
             <form action="{{ route('application.store', [], false) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="personal-info">{{ getTranslation('personal_info') }}</div>
