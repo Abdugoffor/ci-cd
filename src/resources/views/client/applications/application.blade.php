@@ -19,7 +19,6 @@
                     document.addEventListener('DOMContentLoaded', function() {
                         @foreach ($errors->all() as $error)
                             toast.create("{{ $error }}", 'error')
-                            toast.create("{{ $error }}", 'success')
                         @endforeach
                     });
                 </script>
@@ -29,7 +28,6 @@
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         toast.create("{{ $fide_id_success }}", 'success')
-                       
                     });
                 </script>
             @endif
