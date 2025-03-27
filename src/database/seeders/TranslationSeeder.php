@@ -1103,6 +1103,15 @@ class TranslationSeeder extends Seeder
                     'default' => "ID and Key have been sent to your email. You must verify them within 5 minutes!",
                 ],
             ],
+            [
+                'slug' => 'color',
+                'name' => [
+                    'uz'      => "Color",
+                    'ru'      => "Color",
+                    'en'      => "Color",
+                    'default' => "Color",
+                ],
+            ],
 
         ];
 

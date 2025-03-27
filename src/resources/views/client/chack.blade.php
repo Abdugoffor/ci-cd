@@ -5,33 +5,20 @@
 @section('content')
     <main class="container">
         <section class="register-personal">
-            @if (isset($notification))
-                <style>
-                    .alert_static {
-                        background-color: #4ca89a;
-                        color: white;
-                        padding: 15px 30px 15px 20px;
-                        border-radius: 8px;
-                        display: block;
-                        width: 100%;
-                        margin: 0 auto 25px auto;
-                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                        position: relative;
-                    }
-
-                    .close {
-                        background: none;
-                        border: none;
-                        color: white;
-                        font-size: 18px;
-                        cursor: pointer;
-                        position: absolute;
-                        right: 15px;
-                        top: 10px;
-                    }
-                </style>
-                <div class="alert" id="alertBox">
-                    <span>Действие успешно выполнено!</span>
+            @if ($errors->any())
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        @foreach ($errors->all() as $error)
+                            toast.create("{{ $error }}", 'error')
+                        @endforeach
+                    });
+                </script>
+            @endif
+            <div class="toast-container"></div>
+            @if (isset($notification) && !$errors->any())
+                
+                <div class="alert_static" id="alertBox">
+                    <span>{{ $notification }}</span>
                     <button class="close" onclick="closeAlert()">×</button>
                 </div>
                 <script>
@@ -49,17 +36,11 @@
                         <input type="text" id="first-name" name="participant_id"
                             placeholder="{{ getTranslation('participant_id') }}" value="{{ old('participant_id') }}"
                             class="input-text" />
-                        @error('participant_id')
-                            <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                        @enderror
                     </div>
                     <div class="input-wrapper">
                         <label for="first-name" class="input-label">{{ getTranslation('key') }} </label>
                         <input type="text" id="first-name" name="key" placeholder="{{ getTranslation('key') }}"
                             value="{{ old('key') }}" class="input-text" />
-                        @error('key')
-                            <p style="color: red; font-size: 12px;">{{ $message }}</p>
-                        @enderror
                     </div>
                     <div class="input-wrapper">
                         <button type="submit" class="btn"

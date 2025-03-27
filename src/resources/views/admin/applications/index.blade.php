@@ -15,6 +15,7 @@
                         <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
+                                    <th class="text-center" width="5%">No</th>
                                     <th class="text-center" width="10%">ID</th>
                                     <th class="text-center">{{ getTranslation('name') }}</th>
                                     <th class="text-center">{{ getTranslation('fide-id') }}</th>
@@ -28,6 +29,7 @@
                                 <form action="{{ route('application.search', [], false) }}" method="get">
                                     @csrf
                                     <tr>
+                                        <th></th>
                                         <th class="text-center">
                                             <input type="number" class="form-control" name="id" placeholder="ID"
                                                 value="{{ old('id', request('id')) }}">
@@ -96,6 +98,7 @@
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
+                                        <td>{{ $model->id }}</td>
                                         <td>{{ $model->first_name }}</td>
                                         <td>{{ $model->fide_id }}</td>
                                         <td>

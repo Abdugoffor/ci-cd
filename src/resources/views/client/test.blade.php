@@ -174,16 +174,23 @@
                         </div>
                     </div>
                 </div>
+                @php
+                    $color = optional($participant->accreditationCategory)->color;
+
+                    if (!isset($color)) {
+                        $color = '212deg,
+                        #a52629 5.64%,
+                        rgba(215, 46, 59, 0.54) 102.91%,
+                        rgba(239, 64, 87, 0) 137.49%';
+                    }
+
+                @endphp
+
                 <div class="badge-info"
                     style="
               height: 450px;
               width: 148.5mm;
-              background: linear-gradient(
-                212deg,
-                #a52629 5.64%,
-                rgba(215, 46, 59, 0.54) 102.91%,
-                rgba(239, 64, 87, 0) 137.49%
-              );
+              background: linear-gradient({{ $color }});
               display: flex;
               align-items: center;
               justify-content: center;
@@ -394,7 +401,7 @@
         const imgData = canvas.toDataURL("image/png");
         const imgWidth = 210;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
-        const dateBagik = new Date().toISOString().split('T')[0]; 
+        const dateBagik = new Date().toISOString().split('T')[0];
         doc.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
         doc.save(`badge_${dateBagik}.pdf`);
 

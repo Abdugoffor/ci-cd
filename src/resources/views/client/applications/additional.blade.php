@@ -24,30 +24,7 @@
                 </script>
             @endif
             @if (isset($notification) && !$errors->any())
-                <style>
-                    .alert_static {
-                        background-color: #4ca89a;
-                        color: white;
-                        padding: 15px 30px 15px 20px;
-                        border-radius: 8px;
-                        display: block;
-                        width: 100%;
-                        margin: 0 auto 25px auto;
-                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                        position: relative;
-                    }
-
-                    .close {
-                        background: none;
-                        border: none;
-                        color: white;
-                        font-size: 18px;
-                        cursor: pointer;
-                        position: absolute;
-                        right: 15px;
-                        top: 10px;
-                    }
-                </style>
+                
                 <div class="alert_static" id="alertBox">
                     <span>{{ $notification }}</span>
                     <button class="close" onclick="closeAlert()">×</button>

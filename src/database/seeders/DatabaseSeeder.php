@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             TranslationSeeder::class,
             // CountriesSeeder::class,
             // LanguageSeeder::class,
-            // AccreditationCategorySeeder::class,
+            AccreditationCategorySeeder::class,
             // CategorySeeder::class,
             // MenyuSeeder::class,
             // NewsSeeder::class,

@@ -33,6 +33,15 @@
                             </td>
                         </tr>
                         <tr>
+                            <th>
+                                {{ getTranslation('color') }}
+
+                            </th>
+                            <td>
+                                <span style="background: linear-gradient({{ $model->color }});width:100px;">color</span>
+                            </td>
+                        </tr>
+                        <tr>
                             <th>{{ getTranslation('created') }}</th>
                             <th>{{ $model->created_at->format('d-m-Y, H:i') }}</th>
                         </tr>
