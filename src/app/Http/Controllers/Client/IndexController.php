@@ -34,7 +34,7 @@ class IndexController extends Controller
 
             App::setLocale($lang->slug);
         }
-        return back();
+        return redirect()->back();
     }
 
 }

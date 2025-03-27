@@ -99,21 +99,32 @@ class ApplicationController extends Controller
             Log::info("Email sent successfully to: {$e->getMessage()}");
         }
 
-        return redirect()->route('application.verify.email', ['model' => $model->id, 'message' => getTranslation('message')]);
+        // return redirect()->route('application.verify.email', ['model' => $model->id, 'message' => getTranslation('message')]);
+        // return redirect()->route('application.verify.email', ['model' => $model->id])
+        //     ->with('message', getTranslation('message'));
+        return redirect()->route('application.verify.email', [
+            'model'   => $model->id,
+            'message' => urlencode(getTranslation('message') ?? 'Emailga kod yuborildi!'),
+        ]);
 
     }
 
     public function applicationVerifyEmail(Participant $model, $message)
     {
         if (session()->get('model_id') != $model->id) {
-
             return redirect('/');
         }
 
         $tournament = Tournament::findOrFail($model->tournament_id);
+        $message    = urldecode($message); // URL'dan kelgan xabarni dekodlash
 
-        return view('client.verify_email', ['model' => $model, 'message_notifay' => $message, 'tournament' => $tournament]);
+        return view('client.verify_email', [
+            'model'           => $model,
+            'message_notifay' => $message,
+            'tournament'      => $tournament,
+        ]);
     }
+
     public function createAdditional(Participant $model)
     {
         if (session()->get('model_id') != $model->id) {

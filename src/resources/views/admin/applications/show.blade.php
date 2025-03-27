@@ -71,7 +71,7 @@
                                 @else
                                     {{ getTranslation('no-photo') }}
                                 @endif
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -83,12 +83,13 @@
                                     <a href="{{ asset($model->qk_code_path) }}" download>
                                         <img src="{{ asset($model->qk_code_path) }}" alt="Фото" width="100">
                                     </a>
+                                    <p style="margin-top: 10px;">
+                                        1234567{{ $model->qk_code }}
+                                    </p>
                                 @else
                                     {{ getTranslation('no-photo') }}
                                 @endif
-                                <p style="margin-top: 10px;">
-                                    1234567{{ $model->qk_code }}
-                                </p>
+
                             </td>
                         </tr>
                         <tr>
@@ -293,17 +294,17 @@
                 </table>
                 @if (!is_null($model->applicationCancellations) && $model->applicationCancellations->count() > 0)
                     {{-- <div class="card shadow-sm p-3 mb-3"> --}}
-                        <h5 class="card-title text-primary">{{ getTranslation('application_cancellations') }}</h5>
-                        <ul class="list-group">
-                            @foreach ($model->applicationCancellations as $index => $applicationCancellation)
-                                <li class="list-group-item d-flex justify-content-between align-items-center border mb-2">
-                                    <span><strong>{{ $index + 1 }}.</strong>
-                                        {{ $applicationCancellation->cancel_reason }}</span>
-                                    <span class="badge bg-danger">Cancelled,
-                                        {{ $applicationCancellation->created_at->format('d-m-Y H:i') }}</span>
-                                </li>
-                            @endforeach
-                        </ul>
+                    <h5 class="card-title text-primary">{{ getTranslation('application_cancellations') }}</h5>
+                    <ul class="list-group">
+                        @foreach ($model->applicationCancellations as $index => $applicationCancellation)
+                            <li class="list-group-item d-flex justify-content-between align-items-center border mb-2">
+                                <span><strong>{{ $index + 1 }}.</strong>
+                                    {{ $applicationCancellation->cancel_reason }}</span>
+                                <span class="badge bg-danger">Cancelled,
+                                    {{ $applicationCancellation->created_at->format('d-m-Y H:i') }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
 
                     {{-- </div> --}}
                 @endif
