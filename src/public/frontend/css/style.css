@@ -285,7 +285,7 @@ body {
   background-repeat: repeat-x;
   top: 0;
   background-size: auto 861px;
-  background-position: center;
+  background-position: top center;
   opacity: 0.8;
 }
 
@@ -574,6 +574,7 @@ body {
       #b5ebf1 84.02%,
       #a4e4ea 105.2%);
   padding: 78px 0;
+  height: 247px;
 }
 
 .sponsor .container {
@@ -773,6 +774,7 @@ body {
   padding: 42px;
   border-radius: 18px;
   background: #c7f0f4;
+  height: 338px;
 }
 
 .hotels-slider__buttons {

@@ -18,7 +18,6 @@
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         @foreach ($errors->all() as $error)
-                            // toast.create("{{ $error }}");
                             toast.create("{{ $error }}", 'error')
                             toast.create('Success message!', 'success')
                         @endforeach
@@ -115,12 +114,26 @@
                 </div>
                 <div class="group-additional">
                     <div class="input-group">
-                        <div class="input-wrapper">
+                        {{-- <div class="input-wrapper">
                             <label for="last-name" class="input-label">{{ getTranslation('pcr-test-details') }}</label>
                             <input type="text" id="last-name" value="{{ old('pcr_test_details') }}"
                                 name="pcr_test_details" placeholder="Детали ПЦР-теста" class="input-text" />
 
+                        </div> --}}
+
+                        <div class="input-wrapper">
+                            <label for="national-federation"
+                                class="input-label">{{ getTranslation('pcr-test-details') }}</label>
+
+                            <select name="pcr_test_details" class="input-select">
+                                <option value="" disabled selected>
+
+                                </option>
+                                <option value="yes">{{ getTranslation('yes') }}</option>
+                                <option value="no">{{ getTranslation('no') }}</option>
+                            </select>
                         </div>
+
                         <div class="input-wrapper">
                             <label for="national-federation"
                                 class="input-label">{{ getTranslation('accreditation-category') }}</label>

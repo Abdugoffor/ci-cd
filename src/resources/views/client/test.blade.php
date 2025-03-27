@@ -121,11 +121,11 @@
                         <div style="display: flex; align-items: center; gap: 20px">
                             <div style="position: relative; margin-top: 5px">
                                 <img src="{{ asset('frontend/assets/header_banner/fide.svg') }}" alt="sponsor1"
-                                    style="width: 80px; height: 50px; object-fit: contain" />
+                                    style="width: 100%; height: 50px; object-fit: contain" />
                             </div>
                             <div style="position: relative; margin-top: 5px">
                                 <img src="{{ asset($participant->qk_code_path) }}" alt="sponsor2"
-                                    style="width: 80px; height: 50px; object-fit: contain" />
+                                    style="width: 100%; height: 50px; object-fit: contain" />
                             </div>
                         </div>
                         <div class="header-right-bottom">
@@ -242,12 +242,13 @@
                       display: flex;
                       padding: 12px;
                       align-items: center;
+                      justify-content: center;
                       gap: 16.41px;
                       border-radius: 6.564px;
                       background: rgba(168, 55, 60, 0.52);
                     ">
                                     <img src="{{ asset($participant->qk_code_path) }}" alt="bottom-qr"
-                                        class="bottom-qr" style="width: 100px; height: 100px; object-fit: contain" />
+                                        class="bottom-qr" style="width: 100%; height: 100px; object-fit: contain" />
                                 </div>
                             </div>
                         </div>
@@ -289,7 +290,14 @@
             overflow: hidden;
           ">
                 @foreach ($partners as $partner)
-                    <img src="{{ asset($partner->photo) }}" alt="footer1" />
+                    <img src="{{ asset($partner->photo) }}" alt="{{ $partner->photo }}"
+                        style="
+          max-width: 73px;
+          width: 100%;
+          object-fit: contain;
+          max-height: 44px;
+          height: 100%;
+        " />
                 @endforeach
             </div>
         </div>
@@ -353,8 +361,16 @@
             overflow: hidden;
           ">
                 @foreach ($partners as $partner)
-                    <img src="{{ asset($partner->photo) }}" alt="footer1" />
+                    <img src="{{ asset($partner->photo) }}" alt="footer1"
+                        style="
+              max-width: 73px;
+              width: 100%;
+              object-fit: contain;
+              max-height: 44px;
+              height: 100%;
+            " />
                 @endforeach
+
             </div>
         </div>
     </div>
@@ -378,9 +394,10 @@
         const imgData = canvas.toDataURL("image/png");
         const imgWidth = 210;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
+        const dateBagik = new Date().toISOString().split('T')[0]; 
         doc.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-        doc.save("badge.pdf");
+        doc.save(`badge_${dateBagik}.pdf`);
+
     }
 </script>
 
