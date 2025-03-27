@@ -42,6 +42,9 @@ class DatabaseSeeder extends Seeder
             // TurnirSeeder::class,
             // PartnerSeeder::class,
             // MediaSeeder::class,
+
+            
+            // MediaSeeder::class,
         ]);
     }
 }
