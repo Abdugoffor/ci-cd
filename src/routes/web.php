@@ -47,7 +47,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
     Route::get('/chack-application', [ChackApplication::class, 'chack'])->name('chack.application');
     Route::get('/chack-application-srach', [ChackApplication::class, 'search'])->name('chack.application.srach');
 
-    Route::get('/page/{page}', [PageController::class, 'index'])->name('page.index');
+    Route::get('/content/{content}', [PageController::class, 'index'])->name('page.index');
     Route::get('/hotel/{hotel}', [ClientHotelController::class, 'index'])->name('hotel.index');
     Route::get('/news-latest/{currentNews}', [ClientNewsController::class, 'index'])->name('news.latest');
 
