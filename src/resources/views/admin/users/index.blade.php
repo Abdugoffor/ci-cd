@@ -40,7 +40,7 @@
                                     <th class="text-center">{{ getTranslation('name') }}</th>
                                     <th class="text-center">{{ getTranslation('role') }}</th>
                                     <th class="text-center">{{ getTranslation('email') }}</th>
-                                    <th class="text-center">{{ getTranslation('country') }}</th>
+                                    {{-- <th class="text-center">{{ getTranslation('country') }}</th> --}}
                                     <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
                                     <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                 </tr>
@@ -63,7 +63,7 @@
                                                 placeholder="{{ getTranslation('email') }}"
                                                 value="{{ old('role', request('email')) }}">
                                         </th>
-                                        <th class="text-center">
+                                        {{-- <th class="text-center">
                                             <select class="form-control custom-select" name="country_id" id="select_date">
                                                 <option></option>
                                                 @foreach ($countrys as $country)
@@ -72,7 +72,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                        </th>
+                                        </th> --}}
                                         <th class="text-center">
                                             <select class="form-control custom-select" name="status" id="select_date">
                                                 <option></option>
@@ -101,9 +101,9 @@
                                         <td>
                                             {{ $model->email }}
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             {{ $model->country?->label_en }}
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             <span class="badge badge-{{ $model->status ? 'primary' : 'danger' }}">
                                                 {{ $model->status ? getTranslation('assets') : getTranslation('not-active') }}

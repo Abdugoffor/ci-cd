@@ -33,9 +33,9 @@ class UserController extends Controller
             $query->where('email', 'LIKE', "%{$request->email}%");
         }
 
-        if ($request->filled('country_id') && $request->country_id !== '') {
-            $query->where('country_id', $request->country_id); // To‘g‘ridan-to‘g‘ri ID ishlatish
-        }
+        // if ($request->filled('country_id') && $request->country_id !== '') {
+        //     $query->where('country_id', $request->country_id); // To‘g‘ridan-to‘g‘ri ID ishlatish
+        // }
 
         if ($request->filled('status') && $request->status !== '') {
             $query->where('status', $request->status); 
@@ -43,7 +43,7 @@ class UserController extends Controller
 
         $models = $query->paginate(10);
 
-        $models->appends($request->only(['name', 'role', 'email', 'country_id', 'status']));
+        $models->appends($request->only(['name', 'role', 'email', 'status']));
 
         $countrys = Country::all();
 
@@ -75,7 +75,7 @@ class UserController extends Controller
 
     public function update(UserUpdateRequest $request, User $user)
     {
-        $data = $request->only(['name', 'role', 'email', 'status', 'country_id']);
+        $data = $request->only(['name', 'role', 'email', 'status']);
 
         if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);
@@ -92,7 +92,6 @@ class UserController extends Controller
     }
     public function status(User $user)
     {
-        // dd(!$user->status);
         $user->update(['status' => ! $user->status]);
         return back()->with('notification', getTranslation('notification'));
     }
