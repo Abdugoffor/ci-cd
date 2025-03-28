@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Page extends Model
 {
-    use SoftDeletes, HasHistory;
+    use  HasHistory;
     protected $fillable = [
         'url',
         'title',

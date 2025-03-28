@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contact extends Model
 {
-    use HasHistory, SoftDeletes;
+    use SoftDeletes;
     protected $fillable = [
         'title',
         'path',
