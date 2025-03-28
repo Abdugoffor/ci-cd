@@ -269,6 +269,13 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
+                                            <a href="{{ route('pages.index', [], false) }}"
+                                                class="nav-link {{ activeMenu('pages.index') }}">
+                                                <i class="icon-list-unordered"></i>
+                                                <span>{{ getTranslation('pages') }}</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a href="{{ route('partners.index', [], false) }}"
                                                 class="nav-link {{ activeMenu('partners.index') }}">
                                                 <i class="icon-list-unordered"></i>

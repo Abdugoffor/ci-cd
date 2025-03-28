@@ -25,8 +25,7 @@ class NewsStoreRequest extends FormRequest
             'description' => 'required|array',
             'text'        => 'required|array',
             'date'        => 'required|date',
-            'photo'       => 'nullable|image|mimes:jpeg,png,jpg,svg|max:5120',
-            'menyu_id'     => 'required|exists:menyus,id',
+            'photo'       => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
             'is_active'   => 'required|boolean',
         ];
 

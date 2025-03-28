@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('menyus', function (Blueprint $table) {
             $table->id();
             $table->jsonb('name');
-            $table->string('path')->nullable();
+            $table->string('url')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

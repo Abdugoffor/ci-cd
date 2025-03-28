@@ -48,10 +48,10 @@
                                 </div>
 
                                 <!-- Path maydoni (ko‘p tilli emas) -->
-                                <label class="col-form-label col-lg-2">{{ getTranslation('path') }}</label>
-                                <input type="text" class="form-control" name="path" value="{{ old('path') }}"
-                                    placeholder="{{ getTranslation('path') }}">
-                                @error('path')
+                                <label class="col-form-label col-lg-2">{{ getTranslation('url') }}</label>
+                                <input type="text" class="form-control" name="url" value="{{ old('url') }}"
+                                    placeholder="{{ getTranslation('url') }}">
+                                @error('url')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
 

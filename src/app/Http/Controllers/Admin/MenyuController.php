@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MenyuStoreRequest;
 use App\Models\Menyu;
+use App\Models\Page;
 use App\Traits\SearchColumTranslations;
 use Illuminate\Http\Request;
 
@@ -49,6 +50,15 @@ class MenyuController extends Controller
 
         $data['name']['default'] = reset($data['name']);
 
+        $url = request()->getSchemeAndHttpHost() . $data['url'];
+
+        $page = Page::where('url', $url)->first();
+
+        if ($page) {
+
+            $data['url'] = $page->url;
+        }
+
         Menyu::create($data);
 
         return redirect()->route('menus.index')->with('notification', getTranslation('notification'));
@@ -66,6 +76,16 @@ class MenyuController extends Controller
     public function update(MenyuStoreRequest $request, Menyu $menu)
     {
         $data = $request->all();
+
+        $url  = request()->getSchemeAndHttpHost() . $data['url'];
+
+        $page = Page::where('url', $url)->first();
+
+        if ($page) {
+
+            $data['url'] = $page->url;
+        }
+        
         $menu->update($data);
 
         return redirect()->route('menus.index')->with('notification', getTranslation('notification'));

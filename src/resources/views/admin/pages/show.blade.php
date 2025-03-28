@@ -1,13 +1,13 @@
 @extends('layouts.admin')
-@section('title', getTranslation('news'))
+@section('title', getTranslation('pages'))
 @section('content')
     <!-- Content area -->
     <div class="content">
         <div class="d-inline-flex gap-2">
-            <a href="{{ route('news.index', [], false) }}" class="btn btn-sm btn-outline-secondary">
+            <a href="{{ route('pages.index', [], false) }}" class="btn btn-sm btn-outline-secondary">
                 {{ getTranslation('back') }}
             </a>
-            <a href="{{ route('news.edit', $model->id, false) }}" class="btn btn-outline-secondary ml-2">
+            <a href="{{ route('pages.edit', $model->id, false) }}" class="btn btn-outline-secondary ml-2">
                 {{ getTranslation('change') }}
             </a>
         </div>
@@ -24,19 +24,9 @@
                             <td>{{ getLocale($model->description) }}</td>
                         </tr>
                         <tr>
-                            <th>{{ getTranslation('text') }}</th>
-                            <td>{!! getLocale($model->text) !!}</td>
-                        </tr>
-                        <tr>
                             <th>{{ getTranslation('photo') }}</th>
                             <td>
                                 <img src="{{ asset($model->photo) }}" width="100px" alt="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{ getTranslation('date') }}</th>
-                            <td>
-                                {{ $model->date }}
                             </td>
                         </tr>
                         <tr>

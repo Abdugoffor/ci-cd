@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\MenyuController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\SkanController;
 use App\Http\Controllers\Admin\TournamentController;
@@ -28,6 +29,7 @@ use App\Http\Controllers\Client\PageController;
 use App\Http\Controllers\Client\PresenceController;
 use App\Http\Middleware\CheckEmailSession;
 use App\Http\Middleware\LangMiddleware;
+use App\Models\Page;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(LangMiddleware::class)->group(function () {
@@ -100,26 +102,24 @@ Route::middleware(LangMiddleware::class)->group(function () {
             Route::get('/menus-search', [MenyuController::class, 'search'])->name('menus.search');
 
             Route::resource('/hotels', HotelController::class);
-            Route::get('/hotels-status/{hotel}', [HotelController::class, 'status'])->name('hotels.status');
             Route::get('/hotels-search', [HotelController::class, 'search'])->name('hotels.search');
 
             Route::resource('/aferta', AfertaController::class);
             Route::get('/aferta-search', [AfertaController::class, 'search'])->name('aferta.search');
 
             Route::resource('/news', NewsController::class);
-            Route::get('/news-status/{hotel}', [NewsController::class, 'status'])->name('news.status');
             Route::get('/news-search', [NewsController::class, 'search'])->name('news.search');
 
+            Route::resource('/pages', AdminPageController::class);
+            Route::get('/pages-search', [AdminPageController::class, 'search'])->name('pages.search');
+
             Route::resource('/partners', PartnerController::class);
-            Route::get('/partners-status/{partner}', [PartnerController::class, 'status'])->name('partners.status');
             Route::get('/partners-search', [PartnerController::class, 'search'])->name('partners.search');
 
             Route::resource('/contacts', ContactController::class);
-            Route::get('/contacts-status/{contacts}', [ContactController::class, 'status'])->name('contacts.status');
             Route::get('/contacts-search', [ContactController::class, 'search'])->name('contacts.search');
 
             Route::resource('/media', MediaController::class);
-            Route::get('/media-status/{medium}', [MediaController::class, 'status'])->name('media.status');
 
             Route::get('/media-search', [MediaController::class, 'search'])->name('media.search');
 

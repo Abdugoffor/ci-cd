@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('title', getTranslation('news'))
+@section('title', getTranslation('pages'))
 @section('content')
     <!-- Content area -->
     <div class="content">
         <div class="d-inline-flex gap-2">
-            <a href="{{ route('news.index', [], false) }}" class="btn btn-sm btn-outline-secondary">
+            <a href="{{ route('pages.index', [], false) }}" class="btn btn-sm btn-outline-secondary">
                 {{ getTranslation('back') }}
             </a>
         </div>
@@ -12,11 +12,11 @@
 
             <div class="card-body">
 
-                <form action="{{ route('news.update', $news->id, false) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('pages.update', $pages->id, false) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <fieldset class="mb-3">
-                        <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('news') }}
+                        <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('pages') }}
                         </legend>
 
                         <div class="form-group row">
@@ -40,7 +40,7 @@
                                             <!-- Title maydoni -->
                                             <label class="col-form-label col-lg-2">{{ getTranslation('title') }}</label>
                                             <input type="text" class="form-control" name="title[{{ $model->slug }}]"
-                                                value="{{ old('title.' . $model->slug, $news->title[$model->slug] ?? '') }}"
+                                                value="{{ old('title.' . $model->slug, $pages->title[$model->slug] ?? '') }}"
                                                 placeholder="{{ $model->name }}">
                                             @error('title.' . $model->slug)
                                                 <p style="color: red;">{{ $message }}</p>
@@ -50,7 +50,7 @@
                                             <label
                                                 class="col-form-label col-lg-2">{{ getTranslation('description') }}</label>
                                             <textarea class="form-control" name="description[{{ $model->slug }}]" data-dashlane-classification="other"
-                                                placeholder="{{ $model->name }}">{{ old('description.' . $model->slug, $news->description[$model->slug] ?? '') }}</textarea>
+                                                placeholder="{{ $model->name }}">{{ old('description.' . $model->slug, $pages->description[$model->slug] ?? '') }}</textarea>
                                             @error('description.' . $model->slug)
                                                 <p style="color: red;">{{ $message }}</p>
                                             @enderror
@@ -58,7 +58,7 @@
                                             <!-- Text maydoni -->
                                             <label class="col-form-label col-lg-2">{{ getTranslation('text') }}</label>
                                             <textarea class="form-control summernote" name="text[{{ $model->slug }}]" data-dashlane-classification="other"
-                                                placeholder="{{ $model->name }}">{{ old('text.' . $model->slug, $news->text[$model->slug] ?? '') }}</textarea>
+                                                placeholder="{{ $model->name }}">{{ old('text.' . $model->slug, $pages->text[$model->slug] ?? '') }}</textarea>
                                             @error('text.' . $model->slug)
                                                 <p style="color: red;">{{ $message }}</p>
                                             @enderror
@@ -68,15 +68,15 @@
 
                                 <!-- Photo maydoni (ko‘p tilli emas) -->
                                 <label class="col-form-label col-lg-2">{{ getTranslation('photo') }}</label>
-                                <input type="file" class="form-control" name="photo" value="{{ $news->photo }}"
+                                <input type="file" class="form-control" name="photo" value="{{ $pages->photo }}"
                                     placeholder="{{ getTranslation('photo') }}"
                                     onchange="previewImage(event, 'imagePreview')">
                                 @error('photo')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
                                 <div class="mt-2">
-                                    @if ($news->photo)
-                                        <img id="imagePreview" src="{{ asset($news->photo) }}" alt="imagePreview"
+                                    @if ($pages->photo)
+                                        <img id="imagePreview" src="{{ asset($pages->photo) }}" alt="imagePreview"
                                             class="img-thumbnail" width="200">
                                     @else
                                         <img id="imagePreview" src="" alt="imagePreview"
@@ -84,20 +84,13 @@
                                     @endif
                                 </div>
                                 
-                                <!-- Date maydoni (ko‘p tilli emas) -->
-                                <label class="col-form-label col-lg-2">{{ getTranslation('date') }}</label>
-                                <input type="date" class="form-control" name="date" value="{{ $news->date }}"
-                                    placeholder="{{ getTranslation('date') }}">
-                                @error('date')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
 
                                 <!-- Is_active holat kaliti -->
                                 <div class="header-elements mt-3">
                                     <label class="custom-control custom-switch custom-control-right">
                                         <input type="hidden" name="is_active" value="0">
                                         <input type="checkbox" name="is_active" class="custom-control-input" value="1"
-                                            {{ $news->is_active == 1 ? 'checked' : '' }}>
+                                            {{ $pages->is_active == 1 ? 'checked' : '' }}>
                                         <span class="custom-control-label">{{ getTranslation('status') }}</span>
                                     </label>
                                 </div>

@@ -14,9 +14,7 @@ class NewsController extends Controller
     {
         $models = News::orderByDesc('id')->paginate(10);
 
-        $menus = Menyu::all();
-
-        return view('admin.news.index', data: ['models' => $models, 'menus' => $menus]);
+        return view('admin.news.index', data: ['models' => $models]);
     }
     public function search(Request $request)
     {
@@ -35,10 +33,6 @@ class NewsController extends Controller
             $query->where("text->$locale", 'LIKE', "%{$request->text}%");
         }
 
-        if ($request->filled('menyu_id')) {
-            $query->where('menyu_id', $request->menyu_id);
-        }
-
         if ($request->filled('is_active')) {
             $query->where('is_active', filter_var($request->is_active, FILTER_VALIDATE_BOOLEAN));
         }
@@ -46,14 +40,12 @@ class NewsController extends Controller
         $models = $query->paginate(10);
         $models->appends($request->only(['title', 'description', 'text', 'is_active']));
 
-        $menus = Menyu::all();
-        return view('admin.news.index', ['models' => $models, 'menus' => $menus]);
+        return view('admin.news.index', ['models' => $models]);
     }
 
     public function create()
     {
-        $menus = Menyu::all();
-        return view('admin.news.create', ['menus' => $menus]);
+        return view('admin.news.create');
     }
     public function store(NewsStoreRequest $request)
     {
@@ -69,7 +61,7 @@ class NewsController extends Controller
 
             $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
-        // dd($data);
+        
         News::create($data);
 
         return redirect()->route('news.index')->with('notification', getTranslation('notification'));

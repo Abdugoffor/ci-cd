@@ -3,7 +3,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MenyuStoreRequest extends FormRequest
+class PageStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,12 +21,14 @@ class MenyuStoreRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name'  => 'required|array',
-            'url'  => 'required|string',
-            'is_active' => 'required|boolean',
+            'title'       => 'required|array',
+            'description' => 'required|array',
+            'text'        => 'required|array',
+            'photo'       => 'required|image|mimes:jpeg,png,jpg|max:5120',
+            'is_active'   => 'required|boolean',
         ];
 
-        $rules = array_merge($rules, validateTranslation('name'));
+        $rules = array_merge($rules, validateTranslation('title'), validateTranslation('description'), validateTranslation('text'));
 
         return $rules;
     }

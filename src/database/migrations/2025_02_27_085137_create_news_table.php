@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->jsonb('title');
-            $table->foreignId('menyu_id')->constrained('menyus')->onDelete('cascade');
+            // $table->foreignId('menyu_id')->constrained('menyus')->onDelete('cascade');
             $table->jsonb('description');
             $table->jsonb('text');
             $table->string('photo')->nullable();

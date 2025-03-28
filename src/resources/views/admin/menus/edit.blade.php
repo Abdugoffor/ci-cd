@@ -48,12 +48,12 @@
                                     @endforeach
                                 </div>
 
-                                <!-- Path maydoni (ko‘p tilli emas) -->
-                                <label class="col-form-label col-lg-2">{{ getTranslation('path') }}</label>
-                                <input type="text" class="form-control" name="path"
-                                    value="{{ old('path', $menu->path ?? '') }}"
-                                    placeholder="{{ getTranslation('path') }}">
-                                @error('path')
+                                <!-- Url maydoni (ko‘p tilli emas) -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('url') }}</label>
+                                <input type="text" class="form-control" name="url"
+                                    value="{{ parse_url($menu->url, PHP_URL_PATH) }}"
+                                    placeholder="{{ getTranslation('url') }}">
+                                @error('url')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
 

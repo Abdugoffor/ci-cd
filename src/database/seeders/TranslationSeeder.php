@@ -1112,6 +1112,24 @@ class TranslationSeeder extends Seeder
                     'default' => "Color",
                 ],
             ],
+            [
+                'slug' => 'pages',
+                'name' => [
+                    'uz'      => "Sahifalar",
+                    'ru'      => "Страницы",
+                    'en'      => "Pages",
+                    'default' => "Pages",
+                ],
+            ],
+            [
+                'slug' => 'url',
+                'name' => [
+                    'uz'      => "url",
+                    'ru'      => "url",
+                    'en'      => "url",
+                    'default' => "url",
+                ],
+            ],
 
         ];
 

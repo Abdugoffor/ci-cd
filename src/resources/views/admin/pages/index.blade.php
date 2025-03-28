@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', getTranslation('menus'))
+@section('title', getTranslation('pages'))
 @section('content')
     <!-- Content area -->
     <div class="content">
@@ -27,7 +27,7 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('menus.create', [], false) }}" class="btn btn-teal">
+                            <a href="{{ route('pages.create', [], false) }}" class="btn btn-teal">
                                 <i class="icon-plus3 icon-1x mr-1"></i>{{ getTranslation('add') }}
                             </a>
                         </div>
@@ -37,19 +37,19 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
-                                    <th class="text-center">{{ getTranslation('name') }}</th>
-                                    <th class="text-center">{{ getTranslation('url') }}</th>
+                                    <th class="text-center">{{ getTranslation('title') }}</th>
+                                    <th class="text-center">{{ getTranslation('slug') }}</th>
+                                    <th class="text-center">{{ getTranslation('photo') }}</th>
                                     <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
                                     <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                 </tr>
-                                <form action="{{ route('menus.search', [], false) }}" method="get">
-                                    @csrf
+                                <form action="{{ route('pages.search', [], false) }}" method="get">
                                     <tr>
                                         <th class="text-center"></th>
                                         <th class="text-center">
-                                            <input type="text" class="form-control" name="name"
-                                                placeholder="{{ getTranslation('name') }}"
-                                                value="{{ old('name', request('name')) }}">
+                                            <input type="text" class="form-control" name="title"
+                                                placeholder="{{ getTranslation('title') }}"
+                                                value="{{ old('title', request('title')) }}">
                                         </th>
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="url"
@@ -57,8 +57,10 @@
                                                 value="{{ old('url', request('url')) }}">
                                         </th>
                                         <th class="text-center">
+                                        </th>
+                                        <th class="text-center">
                                             <select class="form-control custom-select" name="is_active" id="select_date">
-                                                <option value=""></option>
+                                                <option value="">{{ getTranslation('all') }}</option>
                                                 <option value="true"
                                                     {{ old('is_active', request('is_active')) === 'true' ? 'selected' : '' }}>
                                                     {{ getTranslation('assets') }}
@@ -78,24 +80,27 @@
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
-                                        <td>{{ getLocale($model->name) }}</td>
+                                        <td>{!! getLocale($model->title) !!}</td>
                                         <td>
                                             <a href="{{ $model->url }}" target="_blank">
-                                                {{ $model->url }}
+                                                {{ parse_url($model->url, PHP_URL_PATH) }}
                                             </a>
+                                            
                                         </td>
-                                        <td class="text-center">
+                                        <td><img src="{{ asset($model->photo) }}" width="100px" alt=""></td>
+                                        <td>
                                             <span class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
                                             </span>
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('menus.show', $model->id, false) }}"
+                                                <a href="{{ route('pages.show', $model->id, false) }}"
                                                     class="btn btn-outline-info">
                                                     <i class="icon-eye8"></i>
                                                 </a>
-                                                <a href="{{ route('menus.edit', $model->id, false) }}"
+
+                                                <a href="{{ route('pages.edit', $model->id, false) }}"
                                                     class="btn btn-outline-success ml-2">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
@@ -104,6 +109,7 @@
                                                     data-toggle="modal" data-target="#modal_full{{ $model->id }}"><i
                                                         class="icon-trash"></i>
                                                 </button>
+
                                                 <!-- Full width modal -->
                                                 <div id="modal_full{{ $model->id }}" class="modal fade" tabindex="-1">
                                                     <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -115,7 +121,7 @@
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
 
-                                                            <form action="{{ route('menus.destroy', $model->id, false) }}"
+                                                            <form action="{{ route('pages.destroy', $model->id, false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')
@@ -143,6 +149,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- /full width modal -->
+
                                                 {!! historyCheck($model) !!}
                                             </div>
                                         </td>

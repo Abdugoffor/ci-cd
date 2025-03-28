@@ -19,7 +19,7 @@ class MenyuSeeder extends Seeder
                     'en'      => 'Home',
                     'default' => 'Home',
                 ],
-                'path' => '/',
+                'url' => '/',
                 'is_active' => true,
             ],
             [
@@ -29,7 +29,7 @@ class MenyuSeeder extends Seeder
                     'en'      => 'News',
                     'default' => 'News',
                 ],
-                'path' => '/news',
+                'url' => '/news',
                 'is_active' => true,
             ],
             [
@@ -39,7 +39,7 @@ class MenyuSeeder extends Seeder
                     'en'      => 'Hotels',
                     'default' => 'Hotels',
                 ],
-                'path' => '/hotels',
+                'url' => '/hotels',
                 'is_active' => true,
             ],
             [
@@ -49,7 +49,7 @@ class MenyuSeeder extends Seeder
                     'en'      => 'Events',
                     'default' => 'Events',
                 ],
-                'path' => '/events',
+                'url' => '/events',
                 'is_active' => true,
             ],
             [
@@ -59,7 +59,7 @@ class MenyuSeeder extends Seeder
                     'en'      => 'About Us',
                     'default' => 'About Us',
                 ],
-                'path' => '/about',
+                'url' => '/about',
                 'is_active' => true,
             ],
             [
@@ -69,7 +69,7 @@ class MenyuSeeder extends Seeder
                     'en'      => 'Contact',
                     'default' => 'Contact',
                 ],
-                'path' => '/contact',
+                'url' => '/contact',
                 'is_active' => true,
             ],
             [
@@ -79,7 +79,7 @@ class MenyuSeeder extends Seeder
                     'en'      => 'Gallery',
                     'default' => 'Gallery',
                 ],
-                'path' => '/gallery',
+                'url' => '/gallery',
                 'is_active' => true,
             ],
             [
@@ -89,7 +89,7 @@ class MenyuSeeder extends Seeder
                     'en'      => 'Services',
                     'default' => 'Services',
                 ],
-                'path' => '/services',
+                'url' => '/services',
                 'is_active' => true,
             ],
             [
@@ -99,7 +99,7 @@ class MenyuSeeder extends Seeder
                     'en'      => 'Booking',
                     'default' => 'Booking',
                 ],
-                'path' => '/booking',
+                'url' => '/booking',
                 'is_active' => true,
             ],
             [
@@ -109,7 +109,7 @@ class MenyuSeeder extends Seeder
                     'en'      => 'FAQ',
                     'default' => 'FAQ',
                 ],
-                'path' => '/faq',
+                'url' => '/faq',
                 'is_active' => true,
             ],
         ];

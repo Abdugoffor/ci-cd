@@ -38,7 +38,6 @@
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
                                     <th class="text-center">{{ getTranslation('title') }}</th>
-                                    <th class="text-center">{{ getTranslation('menus') }}</th>
                                     <th class="text-center">{{ getTranslation('photo') }}</th>
                                     <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
                                     <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
@@ -50,17 +49,6 @@
                                             <input type="text" class="form-control" name="title"
                                                 placeholder="{{ getTranslation('title') }}"
                                                 value="{{ old('title', request('title')) }}">
-                                        </th>
-                                        <th class="text-center">
-                                            <select class="form-control custom-select" name="menyu_id" id="select_menyu">
-                                                <option value=""></option>
-                                                @foreach ($menus as $menu)
-                                                    <option value="{{ $menu->id }}"
-                                                        {{ old('menyu_id', request('menyu_id')) == $menu->id ? 'selected' : '' }}>
-                                                        {{ getLocale($menu->name) }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
                                         </th>
                                         <th class="text-center">
                                         </th>
@@ -87,7 +75,6 @@
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{!! getLocale($model->title) !!}</td>
-                                        <td>{{ getLocale($model->menyu->name) }}</td>
                                         <td><img src="{{ asset($model->photo) }}" width="100px" alt=""></td>
                                         <td>
                                             <span class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">

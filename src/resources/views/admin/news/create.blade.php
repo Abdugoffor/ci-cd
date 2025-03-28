@@ -62,17 +62,6 @@
                                     @endforeach
                                 </div>
 
-                                <!-- Menus maydoni (ko‘p tilli emas) -->
-                                <label class="col-form-label col-lg-2">{{ getTranslation('menus') }}</label>
-                                <select name="menyu_id" id="" class="form-control">
-                                    @foreach ($menus as $menu)
-                                        <option value="{{ $menu->id }}">{{ getLocale($menu->name) }}</option>
-                                    @endforeach
-                                </select>
-                                @error('menyu_id')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
-
                                 <!-- Photo maydoni (ko‘p tilli emas) -->
                                 <label class="col-form-label col-lg-2">{{ getTranslation('photo') }}</label>
                                 <input type="file" class="form-control" required name="photo" value="{{ old('photo') }}"
