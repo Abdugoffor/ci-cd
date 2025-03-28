@@ -33,9 +33,24 @@
                                     <option value="">{{ getTranslation('select_role') }}</option>
                                     <option value="admin">admin</option>
                                     <option value="moderator">moderator</option>
+                                    <option value="applicant">applicant</option>
                                     <option value="user">user</option>
                                 </select>
                                 @error('role')
+                                    <p style="color: red;">{{ $message }}</p>
+                                @enderror
+
+                                <!-- Country maydoni -->
+                                <label class="col-form-label col-lg-2">{{ getTranslation('country') }}</label>
+                                <select name="country_id" id="" class="form-control">
+                                    <option value="">{{ getTranslation('select_role') }}</option>
+                                    @foreach ($countrys as $country)
+                                        <option value="{{ $country->id }}"
+                                            {{ old('country_id') == $country->id ? 'selected' : '' }}>
+                                            {{ $country->label_en }}</option>
+                                    @endforeach
+                                </select>
+                                @error('country_id')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
 

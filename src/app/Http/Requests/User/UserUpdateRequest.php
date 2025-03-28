@@ -21,11 +21,12 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'     => 'required|string|max:255',
-            'role'     => 'required|string|max:255',
-            'email'    => 'required|email|max:255|unique:users,email,' . $this->user->id,
-            'password' => 'nullable|string|min:8|confirmed',
-            'status' => 'required|boolean',
+            'name'       => 'required|string|max:255',
+            'role'       => 'required|string|max:255',
+            'email'      => 'required|email|max:255|unique:users,email,' . $this->user->id,
+            'country_id' => 'nullable|exists:countries,id',
+            'password'   => 'nullable|string|min:8|confirmed',
+            'status'     => 'required|boolean',
         ];
     }
 }

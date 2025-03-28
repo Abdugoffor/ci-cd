@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('participant_id')->constrained('participants')->onDelete('cascade');
             $table->text('cancel_reason')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

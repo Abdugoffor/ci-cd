@@ -40,6 +40,7 @@
                                     <th class="text-center">{{ getTranslation('name') }}</th>
                                     <th class="text-center">{{ getTranslation('role') }}</th>
                                     <th class="text-center">{{ getTranslation('email') }}</th>
+                                    <th class="text-center">{{ getTranslation('country') }}</th>
                                     <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
                                     <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                 </tr>
@@ -61,6 +62,16 @@
                                             <input type="text" class="form-control" name="email"
                                                 placeholder="{{ getTranslation('email') }}"
                                                 value="{{ old('role', request('email')) }}">
+                                        </th>
+                                        <th class="text-center">
+                                            <select class="form-control custom-select" name="country_id" id="select_date">
+                                                <option></option>
+                                                @foreach ($countrys as $country)
+                                                    <option value="{{ $country->id }}" {{ old('country_id', request('country_id')) == $country->id ? 'selected' : '' }}>
+                                                        {{ $country->label_en }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </th>
                                         <th class="text-center">
                                             <select class="form-control custom-select" name="status" id="select_date">
@@ -89,6 +100,9 @@
                                         </td>
                                         <td>
                                             {{ $model->email }}
+                                        </td>
+                                        <td>
+                                            {{ $model->country?->label_en }}
                                         </td>
                                         <td>
                                             <span class="badge badge-{{ $model->status ? 'primary' : 'danger' }}">

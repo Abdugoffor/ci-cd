@@ -29,8 +29,8 @@ use App\Http\Controllers\Client\PageController;
 use App\Http\Controllers\Client\PresenceController;
 use App\Http\Middleware\CheckEmailSession;
 use App\Http\Middleware\LangMiddleware;
-use App\Models\Page;
 use Illuminate\Support\Facades\Route;
+
 
 Route::middleware(LangMiddleware::class)->group(function () {
 

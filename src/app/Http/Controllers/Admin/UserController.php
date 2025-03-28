@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserStoreRequest;
 use App\Http\Requests\User\UserUpdateRequest;
+use App\Models\Country;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -12,8 +13,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        $models = User::orderByDesc('id')->paginate(10);
-        return view('admin.users.index', data: ['models' => $models]);
+        $models   = User::orderByDesc('id')->paginate(10);
+        $countrys = Country::all();
+        return view('admin.users.index', data: ['models' => $models, 'countrys' => $countrys]);
     }
     public function search(Request $request)
     {
@@ -31,18 +33,29 @@ class UserController extends Controller
             $query->where('email', 'LIKE', "%{$request->email}%");
         }
 
-        if ($request->filled('status')) {
-            $query->where('status', filter_var($request->status, FILTER_VALIDATE_BOOLEAN));
+        if ($request->filled('country_id') && $request->country_id !== '') {
+            $query->where('country_id', $request->country_id); // To‘g‘ridan-to‘g‘ri ID ishlatish
+        }
+
+        if ($request->filled('status') && $request->status !== '') {
+            $query->where('status', $request->status); 
         }
 
         $models = $query->paginate(10);
-        $models->appends($request->only(['name', 'role', 'email', 'is_active']));
 
-        return view('admin.users.index', ['models' => $models]);
+        $models->appends($request->only(['name', 'role', 'email', 'country_id', 'status']));
+
+        $countrys = Country::all();
+
+        return view('admin.users.index', [
+            'models'   => $models,
+            'countrys' => $countrys,
+        ]);
     }
     public function create()
     {
-        return view('admin.users.create');
+        $countrys = Country::all();
+        return view('admin.users.create', ['countrys' => $countrys]);
     }
     public function store(UserStoreRequest $request)
     {
@@ -56,16 +69,18 @@ class UserController extends Controller
     }
     public function edit(User $user)
     {
-        return view('admin.users.edit', ['model' => $user]);
+        $countrys = Country::all();
+        return view('admin.users.edit', ['model' => $user, 'countrys' => $countrys]);
     }
 
     public function update(UserUpdateRequest $request, User $user)
     {
-        $data = $request->only(['name', 'role', 'email', 'status']);
+        $data = $request->only(['name', 'role', 'email', 'status', 'country_id']);
 
         if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);
         }
+
         $user->update($data);
         return redirect()->route('users.index')->with('notification', getTranslation('notification'));
     }

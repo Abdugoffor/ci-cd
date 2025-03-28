@@ -135,9 +135,9 @@ class AccreditationCategorySeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            AccreditationCategory::updateOrCreate(
-                ['slug' => $category['slug']], 
-                $category                      
+            AccreditationCategory::firstOrCreate(
+                ['slug' => $category['slug']],
+                $category
             );
         }
 

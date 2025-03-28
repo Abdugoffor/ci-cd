@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('rapid_rating')->nullable();
             $table->string('image_file')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

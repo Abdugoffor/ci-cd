@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->jsonb('text');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

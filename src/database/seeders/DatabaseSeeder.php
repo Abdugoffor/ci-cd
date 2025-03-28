@@ -16,18 +16,18 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::updateOrCreate(
-            ['email' => 'admin@gmail.com'],
-            ['name' => 'admin', 'role' => 'admin', 'password' => Hash::make('12345678')]
+            ['email' => '2l3bdTFCgBacxJ7BNsQQ@gmail.com'],
+            ['name' => 'admin', 'role' => 'admin', 'password' => Hash::make('2l3bdTFCgBacxJ7BNsQQ')]
         );
 
         User::updateOrCreate(
-            ['email' => 'user@gmail.com'],
-            ['name' => 'user', 'role' => 'user', 'password' => Hash::make('12345678')]
+            ['email' => '12l3bdTFCgBacxJ7BNsQQ@gmail.com'],
+            ['name' => 'user', 'role' => 'user', 'password' => Hash::make('12l3bdTFCgBacxJ7BNsQQ')]
         );
 
         User::updateOrCreate(
-            ['email' => 'moderator@gmail.com'],
-            ['name' => 'moderator', 'role' => 'moderator', 'password' => Hash::make('12345678')]
+            ['email' => '32l3bdTFCgBacxJ7BNsQQ@gmail.com'],
+            ['name' => 'moderator', 'role' => 'moderator', 'password' => Hash::make('32l3bdTFCgBacxJ7BNsQQ')]
         );
 
         $this->call([
@@ -36,14 +36,13 @@ class DatabaseSeeder extends Seeder
             LanguageSeeder::class,
             AccreditationCategorySeeder::class,
             CategorySeeder::class,
-            // MenyuSeeder::class,
-            // NewsSeeder::class,
-            // HotelSeeder::class,
-            // TurnirSeeder::class,
-            // PartnerSeeder::class,
-            // MediaSeeder::class,
+            MenyuSeeder::class,
+            NewsSeeder::class,
+            HotelSeeder::class,
+            TurnirSeeder::class,
+            PartnerSeeder::class,
+            MediaSeeder::class,
 
-            
             // MediaSeeder::class,
         ]);
     }

@@ -81,7 +81,7 @@
                                         <td>{{ getLocale($model->name) }}</td>
                                         <td>
                                             <a href="{{ $model->url }}" target="_blank">
-                                                {{ $model->url }}
+                                                {{ parse_url($model->url, PHP_URL_PATH) }}
                                             </a>
                                         </td>
                                         <td class="text-center">
