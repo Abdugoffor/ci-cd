@@ -14,5 +14,7 @@ jobs:
 
       - name: Build and Start Containers
         run: |
+          docker volume create fide_db || true
+          docker volume create fide_uploads || true
           docker compose down -v --remove-orphans || true
           docker compose up --build --force-recreate -d 
