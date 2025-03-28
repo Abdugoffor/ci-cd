@@ -144,7 +144,7 @@
             </button>
             <ul class="nav-list">
                 @foreach ($menus as $menu)
-                    <a href="{{ route('page.index', $menu->id, false) }}">
+                    <a href="{{ $menu->url }}">
                         <li class="nav-item">{{ getLocale($menu->name) }}</li>
                     </a>
                 @endforeach
@@ -178,7 +178,7 @@
                         </ul>
                     </li>
                     @foreach ($menus as $menu)
-                        <a href="{{ route('page.index', $menu->id, false) }}">
+                        <a href="{{ $menu->url }}">
                             <li class="nav-item">{{ getLocale($menu->name) }}</li>
                         </a>
                     @endforeach

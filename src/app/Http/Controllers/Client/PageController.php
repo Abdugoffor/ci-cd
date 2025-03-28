@@ -8,11 +8,9 @@ use App\Models\Page;
 
 class PageController extends Controller
 {
-    public function index(Page $page)
+    public function index(Page $content)
     {
-        $news = News::where("menyu_id", $page->id)->orderBy('id', 'desc')->paginate(9);
-
-        return view('client.page', ['news' => $news, 'page' => $page]);
+        return view('client.page', ['page' => $content]);
     }
 
 }
