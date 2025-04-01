@@ -75,4 +75,9 @@ class Participant extends Model
     {
         return $this->hasMany(ApplicationCancellation::class, 'participant_id');
     }
+
+    public function zones()
+    {
+        return $this->belongsToMany(Zone::class, 'participant_zones', 'participant_id', 'zone_id');
+    }
 }

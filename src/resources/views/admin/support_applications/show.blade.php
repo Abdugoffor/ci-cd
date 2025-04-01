@@ -145,12 +145,12 @@
                         <tr>
                             <th width="45%">{{ getTranslation('passport-issue-date') }}
                             </th>
-                            <td>{{ $model->passport_issue_date }}</td>
+                            <td>{{ $model->passport_issue_date->format('d-m-Y') }}</td>
                         </tr>
                         <tr>
-                            <th width="45%">{{ getTranslation('Passport-validity-period') }}
+                            <th width="45%">{{ getTranslation('passport-validity-period') }}
                             </th>
-                            <td>{{ $model->passport_expiry_date }}</td>
+                            <td>{{ $model->passport_expiry_date->format('d-m-Y') }}</td>
                         </tr>
                         <tr>
                             <th width="45%">{{ getTranslation('passport-issuing-authority') }}

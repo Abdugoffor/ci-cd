@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\SupportApplicationController;
 use App\Http\Controllers\Admin\TournamentController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ZoneController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\EmailVerifyController;
 use App\Http\Controllers\Auth\LoginController;
@@ -102,6 +103,8 @@ Route::middleware(LangMiddleware::class)->group(function () {
             Route::resource('/menus', MenyuController::class);
             Route::get('/menus-status/{menyu}', [MenyuController::class, 'status'])->name('menus.status');
             Route::get('/menus-search', [MenyuController::class, 'search'])->name('menus.search');
+            Route::resource('/zones', ZoneController::class);
+            Route::get('/zones-search', [ZoneController::class, 'search'])->name('zones.search');
 
             Route::resource('/hotels', HotelController::class);
             Route::get('/hotels-search', [HotelController::class, 'search'])->name('hotels.search');

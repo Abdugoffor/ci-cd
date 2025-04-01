@@ -1148,6 +1148,15 @@ class TranslationSeeder extends Seeder
                     'default' => "All",
                 ],
             ],
+            [
+                'slug' => 'zones',
+                'name' => [
+                    'uz'      => "Zonalar",
+                    'ru'      => "Зоны",
+                    'en'      => "Zones",
+                    'default' => "Zones",
+                ],
+            ],
 
         ];
 

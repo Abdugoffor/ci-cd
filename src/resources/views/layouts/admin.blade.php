@@ -205,6 +205,7 @@
                                     activeMenu('languages.index') ||
                                     activeMenu('translations.index') ||
                                     activeMenu('users.index') ||
+                                    activeMenu('zones.index') ||
                                     activeMenu('aferta.index');
                             @endphp
                             <li class="nav-item nav-item-submenu {{ $isActive ? 'nav-item-open' : '' }}">
@@ -234,6 +235,13 @@
                                                 class="nav-link {{ activeMenu('languages.index') }}">
                                                 <i class="icon-list-unordered"></i>
                                                 <span>{{ getTranslation('language') }}</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('zones.index', [], false) }}"
+                                                class="nav-link {{ activeMenu('zones.index') }}">
+                                                <i class="icon-list-unordered"></i>
+                                                <span>{{ getTranslation('zones') }}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
