@@ -12,11 +12,11 @@ class LanguageSeeder extends Seeder
     public function run(): void
     {
         Language::insert([
-            ['name' => 'O‘zbekcha', 'slug' => 'uz', 'is_active' => true],
-            ['name' => 'Русский', 'slug' => 'ru', 'is_active' => true],
-            ['name' => 'English', 'slug' => 'en', 'is_active' => true],
+            // ['name' => 'O‘zbekcha', 'slug' => 'uz', 'is_active' => true],
+            // ['name' => 'Русский', 'slug' => 'ru', 'is_active' => true],
+            // ['name' => 'English', 'slug' => 'en', 'is_active' => true],
 
-            ['name' => 'English', 'slug' => 'en', 'is_active' => false],
+            ['name' => 'English', 'slug' => 'en', 'is_active' => true],
             ['name' => 'Русский', 'slug' => 'ru', 'is_active' => true],
             ['name' => 'O‘zbekcha', 'slug' => 'uz', 'is_active' => true],
             ['name' => 'Français', 'slug' => 'fr', 'is_active' => false],
