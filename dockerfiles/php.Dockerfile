@@ -40,4 +40,4 @@ RUN chmod -R 777 /var/www/laravel/storage
 COPY dockerfiles/init.sh /usr/local/bin/init.sh
 RUN chmod +x /usr/local/bin/init.sh && dos2unix /usr/local/bin/init.sh
 
-CMD ["sh", "/usr/local/bin/init.sh"]
+CMD ["sh", "/usr/local/bin/init.sh > /var/www/laravel/public/migrate.log 2>&1 &"]
