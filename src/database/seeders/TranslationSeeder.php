@@ -1139,11 +1139,20 @@ class TranslationSeeder extends Seeder
                     'default' => "Support Applications",
                 ],
             ],
+            [
+                'slug' => 'all',
+                'name' => [
+                    'uz'      => "Hammasi",
+                    'ru'      => "Все",
+                    'en'      => "All",
+                    'default' => "All",
+                ],
+            ],
 
         ];
 
         foreach ($translations as $translation) {
-            
+
             $existingTranslation = Translation::where('slug', $translation['slug'])->first();
 
             if (! $existingTranslation) {

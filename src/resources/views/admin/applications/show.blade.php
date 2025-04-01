@@ -50,7 +50,7 @@
                                 ID
                             </th>
                             <td>
-                                {{ $model->id }}
+                                {{ $model->id }},
                             </td>
                         </tr>
                         <tr>
@@ -307,6 +307,14 @@
                     </ul>
 
                     {{-- </div> --}}
+                @endif
+                <h3>{{ auth()->user()->role ?? '' }}</h3>
+                @if ($model)
+                    <ul>
+                        @foreach ($model->getAttributes() as $column => $value)
+                            <li><strong>{{ $column }}</strong>: {{ $value }}</li>
+                        @endforeach
+                    </ul>
                 @endif
 
             </div>

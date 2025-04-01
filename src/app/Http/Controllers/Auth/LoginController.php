@@ -14,13 +14,19 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-        Auth()->attempt($request->only('email', 'password'));
+        if (Auth::attempt($request->only('email', 'password'))) {
 
-        isActive();
-        if (auth()->user()->role == 'admin' || auth()->user()->role == 'user' || auth()->user()->role == 'moderator') {
+            $user = auth()->user();
 
-            return redirect()->route('application.index');
+            isActive();
+
+            if (in_array($user->role, ['admin', 'user', 'moderator'])) {
+                return redirect()->route('application.index');
+            }
+
+            return redirect()->route('support-applications.index');
         }
-        return redirect()->route('support-applications.index');
+
+        return back()->withErrors(['email' => 'Email yoki parol noto‘g‘ri']);
     }
 }

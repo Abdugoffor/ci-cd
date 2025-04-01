@@ -49,7 +49,9 @@ Route::middleware(LangMiddleware::class)->group(function () {
 
     Route::get('/content/{content}', [PageController::class, 'index'])->name('page.index');
     Route::get('/hotel/{hotel}', [ClientHotelController::class, 'index'])->name('hotel.index');
+    Route::get('/hotel-all', [ClientHotelController::class, 'all'])->name('hotel.all');
     Route::get('/news-latest/{currentNews}', [ClientNewsController::class, 'index'])->name('news.latest');
+    Route::get('/news-all', [ClientNewsController::class, 'all'])->name('news.all');
 
     Route::get('/admin', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('loginSubmit');

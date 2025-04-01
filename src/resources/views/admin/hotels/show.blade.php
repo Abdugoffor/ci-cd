@@ -58,13 +58,15 @@
                         </tr>
                         <tr>
                             <th>{{ getTranslation('created') }}</th>
-                            <th class="text-center">
-                                {{ $model->created_at ? $model->created_at->format('d-m-Y, H:i') : '' }}</th>
+                            <td>
+                                {{ $model->created_at ? $model->created_at->format('d-m-Y, H:i') : '' }}
+                            </td>
                         </tr>
                         <tr>
                             <th>{{ getTranslation('change') }}</th>
-                            <th class="text-center">
-                                {{ $model->updated_at ? $model->updated_at->format('d-m-Y, H:i') : '' }}</th>
+                            <td>
+                                {{ $model->updated_at ? $model->updated_at->format('d-m-Y, H:i') : '' }}
+                            </td>
                         </tr>
                     </tbody>
                 </table>

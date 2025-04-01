@@ -12,4 +12,11 @@ class HotelController extends Controller
 
         return view('client.hotel', ['hotel' => $hotel, 'hotels' => $hotels]);
     }
+
+    public function all()
+    {
+        $hotels = Hotel::where('is_active', true)->orderByDesc('id')->paginate(9);
+
+        return view('client.hotel-all', ['hotels' => $hotels]);
+    }
 }

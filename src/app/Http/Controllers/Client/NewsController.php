@@ -19,4 +19,11 @@ class NewsController extends Controller
         ]);
     }
 
+    public function all()
+    {
+        $news = News::where('is_active', true)->orderByDesc('id')->paginate(9);
+
+        return view('client.news-all', ['news' => $news]);
+    }
+
 }

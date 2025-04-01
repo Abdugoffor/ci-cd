@@ -42,14 +42,14 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             // firstOrCreate
 
-            // CountriesSeeder::class,
-            // LanguageSeeder::class,
-            // MenyuSeeder::class,
-            // NewsSeeder::class,
-            // HotelSeeder::class,
-            // TurnirSeeder::class,
-            // PartnerSeeder::class,
-            // MediaSeeder::class,
+            CountriesSeeder::class,
+            LanguageSeeder::class,
+            MenyuSeeder::class,
+            NewsSeeder::class,
+            HotelSeeder::class,
+            TurnirSeeder::class,
+            PartnerSeeder::class,
+            MediaSeeder::class,
 
             // MediaSeeder::class,
         ]);

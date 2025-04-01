@@ -147,6 +147,12 @@
                     <!-- news update end  -->
                 @endforeach
             </div>
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="{{ route('news.all', [], false) }}" class="btn"
+                    style="display: inline-block; text-decoration: none;">
+                    {{ getTranslation('all') }}
+                </a>
+            </div>
         </section>
         <div class="hotels-line"></div>
         <section class="hotels">
@@ -222,6 +228,13 @@
                         @endforeach
                     </div>
                 </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="{{ route('hotel.all', [], false) }}" class="btn"
+                        style="display: inline-block; text-decoration: none;">
+                        {{ getTranslation('all') }}
+                    </a>
+                </div>
+
             </div>
         </section>
     </main>
