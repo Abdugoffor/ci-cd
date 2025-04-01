@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Aferta extends Model
 {
-    use HasHistory;
+    use SoftDeletes, HasHistory;
     protected $fillable = ['text'];
     protected $casts    = [
         'text' => 'array',

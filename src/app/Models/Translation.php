@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Translation extends Model
 {
-    use HasHistory;
+    use SoftDeletes, HasHistory;
     protected $fillable = [
         "slug",
         "name",

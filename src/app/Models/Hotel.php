@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Hotel extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasHistory;
     protected $fillable = [
         'title',
         'description',

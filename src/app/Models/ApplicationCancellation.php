@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ApplicationCancellation extends Model
 {
-    use HasHistory;
+    use SoftDeletes, HasHistory;
     protected $fillable = [
         'participant_id',
         'cancel_reason',

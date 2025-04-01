@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tournament extends Model
 {
-    use HasHistory;
+    use SoftDeletes, HasHistory;
 
     protected $fillable = [
         "name",

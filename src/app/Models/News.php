@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class News extends Model
 {
-    use HasHistory;
+    use SoftDeletes, HasHistory;
     protected $fillable = [
         'title',
         'description',

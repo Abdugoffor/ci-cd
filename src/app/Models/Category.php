@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasHistory;
+    use SoftDeletes, HasHistory;
     protected $fillable = ["name", "description", "slug",'is_active'];
     protected $casts    = [
         'name'        => 'array',

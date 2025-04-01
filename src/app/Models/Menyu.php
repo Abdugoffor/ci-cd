@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Menyu extends Model
 {
-    use HasHistory;
+    use SoftDeletes, HasHistory;
     protected $fillable = ["name", "url", 'is_active'];
     protected $casts    = [
         'name' => 'array',

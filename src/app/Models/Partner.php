@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Partner extends Model
 {
-    use HasHistory;
+    use SoftDeletes, HasHistory;
     protected $fillable = ["name", "path", 'photo','is_active'];
     protected $casts    = [
         'name' => 'array',
