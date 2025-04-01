@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PlayerInfo extends Model
 {
-    use SoftDeletes, HasHistory;
+    use HasHistory;
     protected $fillable = [
         'participant_id',
         'name',

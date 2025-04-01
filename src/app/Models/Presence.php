@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Presence extends Model
 {
-    use SoftDeletes, HasHistory;
+    use HasHistory;
     protected $fillable = [
         'participant_id',
     ];

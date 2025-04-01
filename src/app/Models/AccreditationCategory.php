@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AccreditationCategory extends Model
 {
-    use SoftDeletes, HasHistory;
+    use HasHistory;
     protected $fillable = ['name', 'slug', 'is_active','color'];
     protected $casts    = [
         'name' => 'array',
