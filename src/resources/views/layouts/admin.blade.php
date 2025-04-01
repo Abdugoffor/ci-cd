@@ -195,14 +195,8 @@
                                     activeMenu('accreditation-categories.index') ||
                                     activeMenu('languages.index') ||
                                     activeMenu('translations.index') ||
-                                    activeMenu('contacts.index') ||
-                                    activeMenu('hotels.index') ||
-                                    activeMenu('menus.index') ||
-                                    activeMenu('news.index') ||
-                                    activeMenu('partners.index') ||
-                                    activeMenu('media.index') ||
-                                    activeMenu('users.index');
-                                activeMenu('aferta.index');
+                                    activeMenu('users.index') ||
+                                    activeMenu('aferta.index');
                             @endphp
                             <li class="nav-item nav-item-submenu {{ $isActive ? 'nav-item-open' : '' }}">
                                 <a href="#" class="nav-link">
@@ -240,6 +234,45 @@
                                                 <span>{{ getTranslation('translations') }}</span>
                                             </a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('aferta.index', [], false) }}"
+                                                class="nav-link {{ activeMenu('aferta.index') }}">
+                                                <i class="icon-list-unordered"></i>
+                                                <span>{{ getTranslation('aferta') }}</span>
+                                            </a>
+                                        </li>
+                                    @endif
+                                    @if (hasRole(['admin']))
+                                        <li class="nav-item">
+                                            <a href="{{ route('users.index', [], false) }}"
+                                                class="nav-link {{ activeMenu('users.index') }}">
+                                                <i class="icon-list-unordered"></i>
+                                                <span>{{ getTranslation('users') }}</span>
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
+                        @if (hasRole(['admin', 'moderator']))
+                            @php
+                                $isActive =
+                                    activeMenu('contacts.index') ||
+                                    activeMenu('hotels.index') ||
+                                    activeMenu('menus.index') ||
+                                    activeMenu('news.index') ||
+                                    activeMenu('partners.index') ||
+                                    activeMenu('media.index') ||
+                                    activeMenu('pages.index');
+                            @endphp
+                            <li class="nav-item nav-item-submenu {{ $isActive ? 'nav-item-open' : '' }}">
+                                <a href="#" class="nav-link">
+                                    <i class="icon-gear"></i>
+                                    <span>{{ getTranslation('media') }}</span></a>
+
+                                <ul class="nav nav-group-sub {{ $isActive ? 'd-block' : '' }}"
+                                    data-submenu-title="Themes">
+                                    @if (hasRole(['admin', 'moderator']))
                                         <li class="nav-item">
                                             <a href="{{ route('contacts.index', [], false) }}"
                                                 class="nav-link {{ activeMenu('contacts.index') }}">
@@ -287,22 +320,6 @@
                                                 class="nav-link {{ activeMenu('media.index') }}">
                                                 <i class="icon-list-unordered"></i>
                                                 <span>{{ getTranslation('media') }}</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ route('aferta.index', [], false) }}"
-                                                class="nav-link {{ activeMenu('aferta.index') }}">
-                                                <i class="icon-list-unordered"></i>
-                                                <span>{{ getTranslation('aferta') }}</span>
-                                            </a>
-                                        </li>
-                                    @endif
-                                    @if (hasRole(['admin']))
-                                        <li class="nav-item">
-                                            <a href="{{ route('users.index', [], false) }}"
-                                                class="nav-link {{ activeMenu('users.index') }}">
-                                                <i class="icon-list-unordered"></i>
-                                                <span>{{ getTranslation('users') }}</span>
                                             </a>
                                         </li>
                                     @endif
