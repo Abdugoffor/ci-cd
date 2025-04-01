@@ -16,9 +16,9 @@ fi
 echo "Generating application key..."
 php artisan key:generate
 echo "Running migrations..."
-php artisan migrate:fresh --seed
+php artisan migrate:fresh
 echo "Running seeders..."
-# php artisan db:seed --class=DatabaseSeeder
+php artisan db:seed --class=DatabaseSeeder
 # php artisan db:seed --class=DatabaseSeeder
 
 # Keshlarni tozalash va yangilash

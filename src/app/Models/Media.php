@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Media extends Model
 {
-    use SoftDeletes, HasHistory;
+    use HasHistory;
     protected $fillable = [
         'name',
         'title',
