@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(100)->create();
+        // User::factory(100)->create();
 
         User::updateOrCreate(
             ['email' => '2l3bdTFCgBacxJ7BNsQQ@gmail.com'],
@@ -42,14 +42,14 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             // firstOrCreate
 
-            CountriesSeeder::class,
-            LanguageSeeder::class,
-            MenyuSeeder::class,
-            NewsSeeder::class,
-            HotelSeeder::class,
-            TurnirSeeder::class,
-            PartnerSeeder::class,
-            MediaSeeder::class,
+            // CountriesSeeder::class,
+            // LanguageSeeder::class,
+            // MenyuSeeder::class,
+            // NewsSeeder::class,
+            // HotelSeeder::class,
+            // TurnirSeeder::class,
+            // PartnerSeeder::class,
+            // MediaSeeder::class,
 
             // MediaSeeder::class,
         ]);
