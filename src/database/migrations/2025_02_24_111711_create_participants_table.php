@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['player', 'guest'])->default('guest');
-            $table->integer('accreditation_category_id')->nullable();
+            $table->bigInteger('user_id')->nullable();
+            $table->bigInteger('accreditation_category_id')->nullable();
             $table->foreignId('tournament_id')->constrained('tournaments')->onDelete('cascade');
             $table->string('fide_id')->nullable();
             $table->string('first_name');

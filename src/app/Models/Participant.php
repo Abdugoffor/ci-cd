@@ -9,6 +9,7 @@ class Participant extends Model
 {
     use HasHistory;
     protected $fillable = [
+        'user_id',
         'tournament_id',
         'fide_id',
         'first_name',    // Ism (pasportdagidek)
