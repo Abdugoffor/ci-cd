@@ -32,10 +32,10 @@
                                 </svg>
                                 {{ $hotel->location }}
                             </div>
-                            <div class="news-card__content">
-                                <h3>
+                            <div class="news-card__content" style="min-height: 500px; !important">
+                                <div>
                                     {{ getLocale($hotel->title) }}
-                                </h3>
+                                </div>
                                 <div class="hotel-rating">
                                     <svg width="18" height="17" viewBox="0 0 18 17" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +53,11 @@
                                     </svg>
                                     <span class="stars">{{ $hotel->rating }}</span>
                                 </div>
-                                <span>
+                                <span
+                                style="overflow: hidden;
+                                        display: -webkit-box;
+                                        -webkit-box-orient: vertical;
+                                        -webkit-line-clamp: 2;">
                                     {{ getLocale($hotel->description) }}
                                 </span>
                                 <div class="news-card__date">
