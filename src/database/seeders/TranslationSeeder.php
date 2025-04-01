@@ -1157,7 +1157,15 @@ class TranslationSeeder extends Seeder
                     'default' => "Zones",
                 ],
             ],
-
+            // [
+            //     'slug' => 'sub_zone',
+            //     'name' => [
+            //         'uz'      => "Quyi Zonani qo‘shish",
+            //         'ru'      => "Добавить подзону",
+            //         'en'      => "Add Sub Zone",
+            //         'default' => "Add Sub Zone",
+            //     ],
+            // ],
         ];
 
         foreach ($translations as $translation) {
