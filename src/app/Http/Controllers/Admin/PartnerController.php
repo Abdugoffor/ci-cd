@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PartnerStoreRequest;
+use App\Http\Requests\PartnerUpdateRequest;
 use App\Models\Partner;
 use App\Services\FileUploadService;
 use Illuminate\Http\Request;
@@ -63,7 +64,7 @@ class PartnerController extends Controller
         return view('admin.partners.edit', ['partner' => $partner]);
     }
 
-    public function update(PartnerStoreRequest $request, Partner $partner)
+    public function update(PartnerUpdateRequest $request, Partner $partner)
     {
         $data = $request->all();
 

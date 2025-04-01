@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HotelStoreRequest;
+use App\Http\Requests\HotelUpdateRequest;
 use App\Models\Hotel;
 use App\Services\FileUploadService;
 use Illuminate\Http\Request;
@@ -83,7 +84,7 @@ class HotelController extends Controller
         return view('admin.hotels.edit', ['hotel' => $hotel]);
     }
 
-    public function update(HotelStoreRequest $request, Hotel $hotel)
+    public function update(HotelUpdateRequest $request, Hotel $hotel)
     {
         $data = $request->all();
 

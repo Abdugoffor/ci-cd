@@ -1130,6 +1130,15 @@ class TranslationSeeder extends Seeder
                     'default' => "url",
                 ],
             ],
+            [
+                'slug' => 'support_applications',
+                'name' => [
+                    'uz'      => "Support Applications",
+                    'ru'      => "Support Applications",
+                    'en'      => "Support Applications",
+                    'default' => "Support Applications",
+                ],
+            ],
 
         ];
 

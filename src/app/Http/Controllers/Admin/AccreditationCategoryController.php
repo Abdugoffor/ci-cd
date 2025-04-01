@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AccreditationCategoryStoreRequest;
 use App\Models\AccreditationCategory;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class AccreditationCategoryController extends Controller
 {
     public function index()
     {
-        $models = AccreditationCategory::orderByDesc('id')->paginate(10);
+        $models   = AccreditationCategory::orderByDesc('id')->paginate(10);
+        
         return view('admin.accreditation-categories.index', ['models' => $models]);
     }
 
@@ -78,6 +80,6 @@ class AccreditationCategoryController extends Controller
     public function status(AccreditationCategory $category)
     {
         $category->update(['is_active' => ! $category->is_active]);
-        return back()->with('notification',getTranslation('notification'));
+        return back()->with('notification', getTranslation('notification'));
     }
 }

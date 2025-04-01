@@ -3,7 +3,6 @@ namespace App\Models;
 
 use App\Traits\HasHistory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Participant extends Model
 {
@@ -39,10 +38,12 @@ class Participant extends Model
         'status',
     ];
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'arrival_details'   => 'datetime',
-        'departure_details' => 'datetime',
-        'date_of_birth'     => 'date',
+        'email_verified_at'    => 'datetime',
+        'passport_issue_date'  => 'date',
+        'passport_expiry_date' => 'date',
+        'arrival_details'      => 'date',
+        'departure_details'    => 'date',
+        'date_of_birth'        => 'date',
     ];
 
     public function tournament()

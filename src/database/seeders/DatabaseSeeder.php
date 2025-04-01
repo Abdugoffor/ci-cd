@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::factory(100)->create();
 
         User::updateOrCreate(
             ['email' => '2l3bdTFCgBacxJ7BNsQQ@gmail.com'],
@@ -29,9 +29,13 @@ class DatabaseSeeder extends Seeder
             ['email' => '32l3bdTFCgBacxJ7BNsQQ@gmail.com'],
             ['name' => 'moderator', 'role' => 'moderator', 'password' => Hash::make('32l3bdTFCgBacxJ7BNsQQ')]
         );
+        
+        User::updateOrCreate(
+            ['email' => 'test@gmail.com'],
+            ['name' => 'moderator', 'role' => 'applicant', 'password' => Hash::make('123456789')]
+        );
 
         $this->call([
-            
             // firstOrCreate
             TranslationSeeder::class,
             AccreditationCategorySeeder::class,

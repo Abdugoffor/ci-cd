@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactStoreRequest;
+use App\Http\Requests\ContactUpdateRequest;
 use App\Models\Contact;
 use App\Services\FileUploadService;
 use Illuminate\Http\Request;
@@ -58,7 +59,7 @@ class ContactController extends Controller
         return view('admin.contacts.show', ['model' => $contact]);
     }
 
-    public function update(ContactStoreRequest $request, Contact $contact)
+    public function update(ContactUpdateRequest $request, Contact $contact)
     {
         $data = $request->all();
 

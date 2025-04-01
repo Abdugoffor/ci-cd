@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\SkanController;
+use App\Http\Controllers\Admin\SupportApplicationController;
 use App\Http\Controllers\Admin\TournamentController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\Admin\UserController;
@@ -30,7 +31,6 @@ use App\Http\Controllers\Client\PresenceController;
 use App\Http\Middleware\CheckEmailSession;
 use App\Http\Middleware\LangMiddleware;
 use Illuminate\Support\Facades\Route;
-
 
 Route::middleware(LangMiddleware::class)->group(function () {
 
@@ -137,6 +137,12 @@ Route::middleware(LangMiddleware::class)->group(function () {
             Route::get('/skan', [SkanController::class, 'index'])->name('skan.index');
             Route::post('/skan', [SkanController::class, 'store'])->name('skan.store');
             Route::get('/presence', [PresenceController::class, 'index'])->name('presence.index');
+        });
+
+        Route::middleware(['role:admin,applicant'])->group(function () {
+
+            Route::resource('/support-applications', SupportApplicationController::class);
+            Route::get('/support-applications-search', [SupportApplicationController::class, 'search'])->name('support-applications.search');
         });
 
     });

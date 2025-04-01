@@ -33,17 +33,16 @@ class UserController extends Controller
             $query->where('email', 'LIKE', "%{$request->email}%");
         }
 
-        // if ($request->filled('country_id') && $request->country_id !== '') {
-        //     $query->where('country_id', $request->country_id); // To‘g‘ridan-to‘g‘ri ID ishlatish
-        // }
+        if ($request->filled('country_id') && $request->country_id !== '') {
+            $query->where('country_id', $request->country_id);
+        }
 
         if ($request->filled('status') && $request->status !== '') {
-            $query->where('status', $request->status); 
+            $query->where('status', filter_var($request->status, FILTER_VALIDATE_BOOLEAN));
         }
 
         $models = $query->paginate(10);
-
-        $models->appends($request->only(['name', 'role', 'email', 'status']));
+        $models->appends($request->only(['name', 'role', 'email', 'country_id', 'status']));
 
         $countrys = Country::all();
 

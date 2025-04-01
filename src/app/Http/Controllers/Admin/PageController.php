@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PageStoreRequest;
+use App\Http\Requests\PageUpdateRequest;
 use App\Models\Page;
 use App\Services\FileUploadService;
 use Illuminate\Http\Request;
@@ -73,7 +74,7 @@ class PageController extends Controller
         return view('admin.pages.edit', ['pages' => $pages]);
     }
 
-    public function update(PageStoreRequest $request, int $pages)
+    public function update(PageUpdateRequest $request, int $pages)
     {
         $data  = $request->all();
         $pages = Page::findOrFail($pages);

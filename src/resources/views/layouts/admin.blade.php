@@ -151,6 +151,15 @@
                 <!-- Main navigation -->
                 <div class="sidebar-section">
                     <ul class="nav nav-sidebar" data-nav-type="accordion">
+                        @if (hasRole(['applicant']))
+                            <li class="nav-item">
+                                <a href="{{ route('support-applications.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('support-applications.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('support_applications') }}</span>
+                                </a>
+                            </li>
+                        @endif
                         @if (hasRole(['admin', 'moderator']))
                             <li class="nav-item">
                                 <a href="{{ route('tournaments.index', [], false) }}"

@@ -7,6 +7,7 @@ use App\Jobs\Client\CencelAppJob;
 use App\Jobs\Client\SuccessAppJob;
 use App\Models\AccreditationCategory;
 use App\Models\ApplicationCancellation;
+use App\Models\Country;
 use App\Models\Participant;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
@@ -23,7 +24,9 @@ class ApplicationController extends Controller
 
         $models = Participant::orderBy('id', 'desc')->paginate(perPage: 10);
 
-        return view("admin.applications.index", ['models' => $models, 'accreditationCategories' => $accreditationCategories]);
+        $countrys = Country::all();
+
+        return view("admin.applications.index", ['models' => $models, 'accreditationCategories' => $accreditationCategories, 'countrys' => $countrys]);
     }
     public function search(Request $request)
     {
@@ -45,6 +48,10 @@ class ApplicationController extends Controller
             $query->where('accreditation_category_id', $request->accreditation_category_id);
         }
 
+        if ($request->filled('country_id')) {
+            $query->where('country_id', $request->country_id);
+        }
+
         if ($request->filled('date_of_birth')) {
             $query->where('date_of_birth', $request->date_of_birth);
         }
@@ -60,13 +67,14 @@ class ApplicationController extends Controller
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
-
+        
         $models = $query->paginate(10);
         $models->appends($request->only([
             'id',
             'first_name',
             'fide_id',
             'accreditation_category_id',
+            'country_id',
             'date_of_birth',
             'email',
             'updated_at',
@@ -75,9 +83,12 @@ class ApplicationController extends Controller
 
         $accreditationCategories = AccreditationCategory::all();
 
+        $countrys = Country::all();
+
         return view("admin.applications.index", [
             'models'                  => $models,
             'accreditationCategories' => $accreditationCategories,
+            'countrys'                => $countrys,
         ]);
     }
     public function status(Participant $participant, string $status)

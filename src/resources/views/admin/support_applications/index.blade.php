@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', getTranslation('users'))
+@section('title', getTranslation('support_applications'))
 @section('content')
     <!-- Content area -->
     <div class="content">
@@ -27,7 +27,7 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('users.create', [], false) }}" class="btn btn-teal">
+                            <a href="{{ route('support-applications.create', [], false) }}" class="btn btn-teal">
                                 <i class="icon-plus3 icon-1x mr-1"></i>{{ getTranslation('add') }}
                             </a>
                         </div>
@@ -37,25 +37,33 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
+                                    <th class="text-center" width="7%">ID</th>
                                     <th class="text-center">{{ getTranslation('name') }}</th>
-                                    <th class="text-center">{{ getTranslation('role') }}</th>
+                                    <th class="text-center">{{ getTranslation('fide-id') }}</th>
                                     <th class="text-center">{{ getTranslation('email') }}</th>
+                                    <th class="text-center">{{ getTranslation('competitions') }}</th>
                                     <th class="text-center">{{ getTranslation('country') }}</th>
+                                    <th class="text-center">{{ getTranslation('photo') }}</th>
                                     <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
                                     <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                 </tr>
-                                <form action="{{ route('users.search', [], false) }}" method="get">
+                                <form action="{{ route('support-applications.search', [], false) }}" method="get">
                                     <tr>
-                                        <th class="text-center"></th>
                                         <th class="text-center">
-                                            <input type="text" class="form-control" name="name"
-                                                placeholder="{{ getTranslation('name') }}"
-                                                value="{{ old('name', request('name')) }}">
+                                        <th class="text-center">
+                                            <input type="text" class="form-control" name="id" placeholder="ID"
+                                                value="{{ old('id', request('id')) }}">
+                                        </th>
                                         </th>
                                         <th class="text-center">
-                                            <input type="text" class="form-control" name="role"
-                                                placeholder="{{ getTranslation('role') }}"
-                                                value="{{ old('role', request('role')) }}">
+                                            <input type="text" class="form-control" name="first_name"
+                                                placeholder="{{ getTranslation('name') }}"
+                                                value="{{ old('first_name', request('first_name')) }}">
+                                        </th>
+                                        <th class="text-center">
+                                            <input type="text" class="form-control" name="fide_id"
+                                                placeholder="{{ getTranslation('fide-id') }}"
+                                                value="{{ old('fide_id', request('fide_id')) }}">
                                         </th>
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="email"
@@ -63,33 +71,15 @@
                                                 value="{{ old('email', request('email')) }}">
                                         </th>
                                         <th class="text-center">
-                                            <select class="form-control custom-select" name="country_id"
-                                                id="select_country">
-                                                <option value="">{{ getTranslation('select_country') }}</option>
-                                                @foreach ($countrys as $country)
-                                                    <option value="{{ $country->id }}"
-                                                        {{ old('country_id', request('country_id')) == $country->id ? 'selected' : '' }}>
-                                                        {{ $country->label_en }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
                                         </th>
                                         <th class="text-center">
-                                            <select class="form-control custom-select" name="status" id="select_status">
-                                                <option value="">{{ getTranslation('select_status') }}</option>
-                                                <option value="1"
-                                                    {{ old('status', request('status')) === '1' ? 'selected' : '' }}>
-                                                    {{ getTranslation('assets') }}
-                                                </option>
-                                                <option value="0"
-                                                    {{ old('status', request('status')) === '0' ? 'selected' : '' }}>
-                                                    {{ getTranslation('not-active') }}
-                                                </option>
-                                            </select>
                                         </th>
                                         <th class="text-center">
-                                            <button class="btn btn-teal">{{ getTranslation('search') }}</button>
                                         </th>
+                                        <th class="text-center">
+                                        </th>
+                                        <th class="text-center"><button
+                                                class="btn btn-teal">{{ getTranslation('search') }}</button></th>
                                     </tr>
                                 </form>
                             </thead>
@@ -97,48 +87,48 @@
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
-                                        <td>{{ $model->name }}</td>
+                                        <td>{{ $model->id }}</td>
+                                        <td>{{ $model->first_name }}</td>
+                                        <td>{{ $model->fide_id }}</td>
+                                        <td>{{ $model->email }}</td>
+                                        <td>{{ getLocale($model->tournament->name ?? 'N/A') }}</td>
+                                        <td>{{ $model->country?->label_en }}</td>
                                         <td>
-                                            {{ $model->role }}
+                                            @if ($model->photo)
+                                                <img src="{{ asset($model->photo) }}" width="100px" alt="Photo">
+                                            @else
+                                                {{ getTranslation('no-photo') }}
+                                            @endif
                                         </td>
                                         <td>
-                                            {{ $model->email }}
-                                        </td>
-                                        <td>
-                                            {{ $model->country?->label_en }}
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-{{ $model->status ? 'primary' : 'danger' }}">
-                                                {{ $model->status ? getTranslation('assets') : getTranslation('not-active') }}
-                                            </span>
+                                            <span
+                                                class="badge badge-{{ $model->status == 'unfinished' ? 'secondary' : ($model->status == 'pending' ? 'warning' : ($model->status == 'approved' ? 'success' : 'danger')) }} badge-pill ml-auto">
+                                                {{ getTranslation($model->status == 'unfinished' ? 'unfinished' : ($model->status == 'pending' ? 'pending' : ($model->status == 'approved' ? 'approved' : 'canceled'))) }}
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('users.show', $model->id, false) }}"
+                                                <a href="{{ route('support-applications.show', $model->id, false) }}"
                                                     class="btn btn-outline-info">
                                                     <i class="icon-eye8"></i>
                                                 </a>
-                                                <a href="{{ route('users.edit', $model->id, false) }}"
+                                                <a href="{{ route('support-applications.edit', $model->id, false) }}"
                                                     class="btn btn-outline-success ml-2">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
-
                                                 <button type="button" class="btn btn-outline-danger ml-2"
-                                                    data-toggle="modal" data-target="#modal_full{{ $model->id }}"><i
-                                                        class="icon-trash"></i>
+                                                    data-toggle="modal" data-target="#modal_full{{ $model->id }}">
+                                                    <i class="icon-trash"></i>
                                                 </button>
                                                 <!-- Full width modal -->
                                                 <div id="modal_full{{ $model->id }}" class="modal fade" tabindex="-1">
                                                     <div class="modal-dialog modal-dialog-centered modal-sm">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                {{-- <h5 class="modal-title">{{ getTranslation('competitions') }}
-                                                            </h5> --}}
                                                                 <button type="button" class="close"
-                                                                    data-dismiss="modal">&times;</button>
+                                                                    data-dismiss="modal">×</button>
                                                             </div>
-
-                                                            <form action="{{ route('users.destroy', $model->id, false) }}"
+                                                            <form
+                                                                action="{{ route('support-applications.destroy', $model->id, false) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')
@@ -150,16 +140,16 @@
                                                                             </h3>
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
-
                                                                 <div
                                                                     class="modal-footer d-flex justify-content-center pb-4">
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal"
-                                                                        data-dashlane-label="true">{{ getTranslation('close') }}</button>
-                                                                    <button type="submit" class="btn btn-danger"
-                                                                        data-dashlane-label="true">{{ getTranslation('confirm') }}</button>
+                                                                        data-dismiss="modal">
+                                                                        {{ getTranslation('close') }}
+                                                                    </button>
+                                                                    <button type="submit" class="btn btn-danger">
+                                                                        {{ getTranslation('confirm') }}
+                                                                    </button>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -171,7 +161,6 @@
                                         </td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>

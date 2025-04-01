@@ -15,14 +15,15 @@
                         <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th class="text-center" width="5%">№</th>
-                                    <th class="text-center" width="10%">ID</th>
+                                    <th class="text-center" width="2%">№</th>
+                                    <th class="text-center" width="7%">ID</th>
                                     <th class="text-center">{{ getTranslation('name') }}</th>
                                     <th class="text-center">{{ getTranslation('fide-id') }}</th>
+                                    <th class="text-center" width="15%">{{ getTranslation('country') }}</th>
                                     <th class="text-center">{{ getTranslation('type') }}</th>
-                                    <th class="text-center">{{ getTranslation('birth-date') }}</th>
+                                    {{-- <th class="text-center">{{ getTranslation('birth-date') }}</th> --}}
                                     <th class="text-center">{{ getTranslation('email') }}</th>
-                                    <th class="text-center">{{ getTranslation('registration-end') }}</th>
+                                    {{-- <th class="text-center">{{ getTranslation('registration-end') }}</th> --}}
                                     <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
                                     <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                 </tr>
@@ -45,6 +46,18 @@
                                                 value="{{ old('fide_id', request('fide_id')) }}">
                                         </th>
                                         <th class="text-center">
+                                            <select class="form-control custom-select" name="country_id"
+                                                id="select_country">
+                                                <option></option>
+                                                @foreach ($countrys as $country)
+                                                    <option value="{{ $country->id }}"
+                                                        {{ old('country_id', request('country_id')) == $country->id ? 'selected' : '' }}>
+                                                        {{ $country->label_en }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </th>
+                                        <th class="text-center">
                                             <select class="form-control custom-select" name="accreditation_category_id"
                                                 id="select_date">
                                                 <option></option>
@@ -55,19 +68,19 @@
                                                 @endforeach
                                             </select>
                                         </th>
-                                        <th class="text-center">
+                                        {{-- <th class="text-center">
                                             <input type="date" class="form-control" name="date_of_birth"
                                                 value="{{ old('date_of_birth', request('date_of_birth')) }}">
-                                        </th>
+                                        </th> --}}
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="email"
                                                 placeholder="{{ getTranslation('email') }}"
                                                 value="{{ old('email', request('email')) }}">
                                         </th>
-                                        <th class="text-center">
+                                        {{-- <th class="text-center">
                                             <input type="date" class="form-control" name="updated_at"
                                                 value="{{ old('updated_at', request('updated_at')) }}">
-                                        </th>
+                                        </th> --}}
                                         <th class="text-center">
                                             <select class="form-control custom-select" name="status" id="select_date">
                                                 <option></option>
@@ -102,17 +115,20 @@
                                         <td>{{ $model->first_name }}</td>
                                         <td>{{ $model->fide_id }}</td>
                                         <td>
-                                            {{ $model->accreditationCategory ? getLocale($model->accreditationCategory->name) : '' }}
+                                            {{ $model->country ? $model->country->label_en : '' }}
                                         </td>
                                         <td>
-                                            {{ $model->date_of_birth->format('d-m-Y') }}
+                                            {{ $model->accreditationCategory ? getLocale($model->accreditationCategory->name) : '' }}
                                         </td>
+                                        {{-- <td>
+                                            {{ $model->date_of_birth->format('d-m-Y') }}
+                                        </td> --}}
                                         <td>
                                             {{ $model->email }}
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             {{ $model->email_verified_at ? $model->email_verified_at->format('d-m-Y, H:i') : '' }}
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             <span
                                                 class="badge badge-{{ $model->status == 'unfinished' ? 'secondary' : ($model->status == 'pending' ? 'warning' : ($model->status == 'approved' ? 'success' : 'danger')) }} badge-pill ml-auto">

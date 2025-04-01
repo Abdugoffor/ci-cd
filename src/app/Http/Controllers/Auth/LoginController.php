@@ -17,7 +17,10 @@ class LoginController extends Controller
         Auth()->attempt($request->only('email', 'password'));
 
         isActive();
+        if (auth()->user()->role == 'admin' || auth()->user()->role == 'user' || auth()->user()->role == 'moderator') {
 
-        return redirect()->route('application.index');
+            return redirect()->route('application.index');
+        }
+        return redirect()->route('support-applications.index');
     }
 }
