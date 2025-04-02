@@ -1166,42 +1166,24 @@ class TranslationSeeder extends Seeder
                     'default' => "Add Sub Zone",
                 ],
             ],
-            [
-                'slug' => 'sub_zone_view',
-                'name' => [
-                    'uz'      => "Quyi Zonalar",
-                    'ru'      => "Подзону",
-                    'en'      => "Sub Zone",
-                    'default' => "Sub Zone",
-                ],
-            ],
-            [
-                'slug' => 'error_notification',
-                'name' => [
-                    'uz'      => "Xatolik yuz berdi",
-                    'ru'      => "Произошла ошибка",
-                    'en'      => "An error occurred",
-                    'default' => "Sub Zone",
-                ],
-            ],
-            [
-                'slug' => 'error_notification',
-                'name' => [
-                    'uz'      => "Xatolik yuz berdi",
-                    'ru'      => "Произошла ошибка",
-                    'en'      => "An error occurred",
-                    'default' => "Sub Zone",
-                ],
-            ],
-            [
-                'slug' => 'no_zone',
-                'name' => [
-                    'uz'      => "Zo'na biriktirilmagan",
-                    'ru'      => "Зона не назначена",
-                    'en'      => "Zone not assigned",
-                    'default' => "Zone not assigned",
-                ],
-            ],
+            // [
+            //     'slug' => 'sub_zone_view',
+            //     'name' => [
+            //         'uz'      => "Quyi Zonalar",
+            //         'ru'      => "Подзону",
+            //         'en'      => "Sub Zone",
+            //         'default' => "Sub Zone",
+            //     ],
+            // ],
+            // [
+            //     'slug' => 'error_notification',
+            //     'name' => [
+            //         'uz'      => "Xatolik yuz berdi",
+            //         'ru'      => "Произошла ошибка",
+            //         'en'      => "An error occurred",
+            //         'default' => "Sub Zone",
+            //     ],
+            // ],
         ];
 
         foreach ($translations as $translation) {
