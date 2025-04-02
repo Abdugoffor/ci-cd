@@ -224,6 +224,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="/frontend/js/main.js"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script type="text/javascript">
+        var onloadCallback = function() {
+            grecaptcha.render('html_element', {
+                'sitekey': {{ env('RECAPTCHA_SITE_KEY') }}
+            });
+        };
+    </script>
 </body>
 <script>
     const toast = {

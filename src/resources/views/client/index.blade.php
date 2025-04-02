@@ -63,7 +63,7 @@
                         {{ getLocale($siteSettings?->text) ?:
                             'Hosted in the historic city of Samarkand, this event will be an unforgettable fusion of strategy, culture, and global unity' }}
                     </div>
-                    <a href='/chack-application' class="btn">{{ getTranslation('action_button') }}</a>
+                    <a href='/chack-application' class="btn" style="width: 20%;">{{ getTranslation('action_button') }}</a>
                 </div>
             </div>
         </section>
@@ -149,7 +149,7 @@
             </div>
             <div style="text-align: center; margin-top: 15px;">
                 <a href="{{ route('news.all', [], false) }}" class="btn"
-                    style="display: inline-block; text-decoration: none;">
+                    style="display: inline-block; text-decoration: none; width: 10%;">
                     {{ getTranslation('all') }}
                 </a>
             </div>
@@ -230,7 +230,7 @@
                 </div>
                 <div style="text-align: center; margin-top: 15px;">
                     <a href="{{ route('hotel.all', [], false) }}" class="btn"
-                        style="display: inline-block; text-decoration: none;">
+                        style="display: inline-block; text-decoration: none; width: 10%;">
                         {{ getTranslation('all') }}
                     </a>
                 </div>

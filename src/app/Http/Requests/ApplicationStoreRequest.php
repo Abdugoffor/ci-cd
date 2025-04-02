@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Requests;
 
+use App\Rules\ReCaptcha;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ApplicationStoreRequest extends FormRequest
@@ -22,11 +23,12 @@ class ApplicationStoreRequest extends FormRequest
     {
         return [
             'tournament_id' => 'required|exists:tournaments,id',
-            'first_name'    => 'required|max:255',
-            'last_name'     => 'required|max:255',
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
             'date_of_birth' => 'required|date',
-            'gender'        => 'required',
-            'email'         => 'required|email',
+            'gender' => 'required',
+            'email' => 'required|email',
+            'g-recaptcha-response' => ['required', new ReCaptcha()],
         ];
     }
 }

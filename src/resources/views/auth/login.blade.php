@@ -2,7 +2,8 @@
 @section('title', 'Login')
 @section('content')
     <!-- Register form -->
-    <form class="login-form" action="{{ route('loginSubmit',[], false) }}" method="POST">
+    
+    <form class="login-form" action="{{ route('loginSubmit', [], false) }}" method="POST">
         @csrf
         <div class="card mb-0">
             <div class="card-body">
@@ -32,16 +33,31 @@
                         <p style="color: red;">{{ $message }}</p>
                     @enderror
                 </div>
+                <div class="form-group form-group-feedback form-group-feedback-left">
+                    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+                    @error('g-recaptcha-response')
+                        <p style="color: red;">{{ $message }}</p>
+                    @enderror
+                </div>
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
                 </div>
 
                 <div class="text-center">
-                    <a href="{{ route('verify.email',[], false) }}">Forgot password?</a>
+                    <a href="{{ route('verify.email', [], false) }}">Forgot password?</a>
                 </div>
             </div>
         </div>
     </form>
     <!-- /Register form -->
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script type="text/javascript">
+        var onloadCallback = function() {
+            grecaptcha.render('html_element', {
+                'sitekey': {{ env('RECAPTCHA_SITE_KEY') }}
+            });
+        };
+    </script>
 @endsection

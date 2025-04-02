@@ -140,6 +140,12 @@
                     </label>
                     <a href="/aferta" target="_blank"> {{ getTranslation('aferta') }}</a>
                 </div>
+
+                <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+                @error('g-recaptcha-response')
+                    <p style="color: red;">{{ $message }}</p>
+                @enderror
+                
                 <button type="submit" class="btn">{{ getTranslation('add') }}</button>
             </form>
         </section>
