@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AfertaController;
 use App\Http\Controllers\Admin\ApplicationController as AdminAppController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HotelController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\MediaController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Client\ApplicationController;
 use App\Http\Controllers\Client\BadgesController;
 use App\Http\Controllers\Client\ChackApplication;
+use App\Http\Controllers\Client\FaqController as ClientFaqController;
 use App\Http\Controllers\Client\HotelController as ClientHotelController;
 use App\Http\Controllers\Client\IndexController;
 use App\Http\Controllers\Client\NewsController as ClientNewsController;
@@ -53,6 +55,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
     Route::get('/hotel-all', [ClientHotelController::class, 'all'])->name('hotel.all');
     Route::get('/news-latest/{currentNews}', [ClientNewsController::class, 'index'])->name('news.latest');
     Route::get('/news-all', [ClientNewsController::class, 'all'])->name('news.all');
+    Route::get('/faqs-all', [ClientFaqController::class, 'all'])->name('faq.all');
 
     Route::get('/admin', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('loginSubmit');
@@ -118,6 +121,9 @@ Route::middleware(LangMiddleware::class)->group(function () {
 
             Route::resource('/news', NewsController::class);
             Route::get('/news-search', [NewsController::class, 'search'])->name('news.search');
+
+            Route::resource('/faqs', FaqController::class);
+            Route::get('/faqs-search', [FaqController::class, 'search'])->name('faqs.search');
 
             Route::resource('/pages', AdminPageController::class);
             Route::get('/pages-search', [AdminPageController::class, 'search'])->name('pages.search');

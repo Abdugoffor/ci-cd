@@ -280,6 +280,7 @@
                                     activeMenu('news.index') ||
                                     activeMenu('partners.index') ||
                                     activeMenu('media.index') ||
+                                    activeMenu('faqs.index') ||
                                     activeMenu('pages.index');
                             @endphp
                             <li class="nav-item nav-item-submenu {{ $isActive ? 'nav-item-open' : '' }}">
@@ -302,6 +303,13 @@
                                                 class="nav-link {{ activeMenu('hotels.index') }}">
                                                 <i class="icon-list-unordered"></i>
                                                 <span>{{ getTranslation('hotels') }}</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('faqs.index', [], false) }}"
+                                                class="nav-link {{ activeMenu('faqs.index') }}">
+                                                <i class="icon-list-unordered"></i>
+                                                <span>{{ getTranslation('faqs') }}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">

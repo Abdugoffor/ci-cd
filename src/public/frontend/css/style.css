@@ -308,7 +308,7 @@ body {
 
 .banner-img {
   position: absolute;
-  bottom: 0;
+  bottom: 50px;
   right: 0;
   z-index: 1;
 }
@@ -492,6 +492,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .register-form {
@@ -564,6 +565,7 @@ body {
 
 .form-btn {
   min-width: 185px !important;
+  width: 100% !important;
 }
 
 /* Sponsor section */
@@ -1078,7 +1080,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 140px;
   width: 100%;
   padding: 12px;
 }
@@ -1218,6 +1219,8 @@ body {
   line-height: 102%;
   /* 23.46px */
   letter-spacing: -0.23px;
+  margin-bottom: 15px;
+
 }
 
 .modal {
@@ -1335,7 +1338,7 @@ body {
   background-size: 16px;
 }
 
-.input-select option { 
+.input-select option {
   min-width: 200px;
   width: 100%;
 }
@@ -1351,7 +1354,7 @@ body {
   border: 1px solid #83acb1;
   border-radius: 6px;
   padding: 10px;
-  width: 214px;
+  width: 100%;
   cursor: pointer;
 }
 
@@ -1786,8 +1789,8 @@ body {
 }
 
 .inner-img-content img {
-  width: 100%;
-  min-height: 315px;
+  max-width: 1012px;
+  max-height: 306px;
   object-fit: cover;
   border-radius: 13px;
 }
@@ -2567,12 +2570,12 @@ body {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
+
 @media (max-width: 548px) {
   .group-additional .input-group {
     grid-template-columns: repeat(1, 1fr) !important;
   }
 }
-
 
 .input-groupGrid {
   display: grid !important;
@@ -2580,7 +2583,8 @@ body {
   gap: 20px !important;
 }
 
-.input-groupGrid .input-wrapper input, .input-groupGrid .input-wrapper .date-container {
+.input-groupGrid .input-wrapper input,
+.input-groupGrid .input-wrapper .date-container {
   width: 100% !important;
 }
 
@@ -2590,10 +2594,31 @@ body {
   align-items: center !important;
 }
 
-.group-additional .input-group input, .group-additional .input-group .date-container{ 
+.group-additional .input-group input,
+.group-additional .input-group .date-container {
   width: 100% !important;
-} 
+}
 
 .group-additional {
   padding: 20px 0 !important;
+}
+
+@media (max-width: 768px) {
+  .group-additional .input-group {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 548px) {
+  .group-additional .input-group {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+
+  .form-btn {
+    margin-bottom: 10px;
+  }
+
+  .forms-div {
+    gap: 0;
+  }
 }

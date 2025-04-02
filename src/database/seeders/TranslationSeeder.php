@@ -1184,6 +1184,42 @@ class TranslationSeeder extends Seeder
                     'default' => "Sub Zone",
                 ],
             ],
+            [
+                'slug' => 'faqs',
+                'name' => [
+                    'uz'      => "Faqs",
+                    'ru'      => "Faqs",
+                    'en'      => "Faqs",
+                    'default' => "Faqs",
+                ],
+            ],
+            [
+                'slug' => 'question',
+                'name' => [
+                    'uz'      => "Вопрос",
+                    'ru'      => "Вопрос",
+                    'en'      => "Вопрос",
+                    'default' => "Question",
+                ],
+            ],
+            [
+                'slug' => 'answer',
+                'name' => [
+                    'uz'      => "Ответ",
+                    'ru'      => "Ответ",
+                    'en'      => "Ответ",
+                    'default' => "Answer",
+                ],
+            ],
+            [
+                'slug' => 'ask_question',
+                'name' => [
+                    'uz'      => "Часто задаваемые вопросы",
+                    'ru'      => "Часто задаваемые вопросы",
+                    'en'      => "Frequently Asked Questions",
+                    'default' => "Frequently Asked Questions",
+                ],
+            ],
         ];
 
         foreach ($translations as $translation) {

@@ -5,21 +5,17 @@ use App\Traits\HasHistory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class News extends Model
+class Faq extends Model
 {
     use HasHistory, SoftDeletes;
     protected $fillable = [
-        'title',
-        'description',
-        'text',
-        'photo',
-        'date',
+        'question',
+        'answer',
         'is_active',
     ];
     protected $casts = [
-        'title'       => 'array',
-        'description' => 'array',
-        'text'        => 'array',
-        'is_active'   => 'boolean',
+        'question'  => 'array',
+        'answer'    => 'array',
+        'is_active' => 'boolean',
     ];
 }
