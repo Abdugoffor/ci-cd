@@ -331,7 +331,28 @@
             justify-content: center;
             flex-direction: column;
           ">
-                <div style="height: 255px; width: 241px; border: 1px solid black"></div>
+                <div style="height: 255px; width: 241px; border: 1px solid black">
+                    <ul style="list-style-type: none; padding: 0;">
+                        @foreach ($participant->zones as $zone)
+                            <li
+                                style="
+                                    font-size: 18px;
+                                    font-family: Times New Roman;
+                                    color: #333;
+                                    font-weight: bold;
+                                    margin-bottom: 10px;
+                                    text-align: center;
+                                    background-color: #e0e0e0;
+                                    padding: 5px;
+                                    border-radius: 5px;
+                                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                                    transition: all 0.3s ease;
+                                ">
+                                {{ $zone->title }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
             <div class="badge-number"
                 style="

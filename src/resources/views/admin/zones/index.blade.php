@@ -3,6 +3,24 @@
 @section('content')
     <!-- Content area -->
     <div class="content">
+        @if (isset($zone) && $zone->parent_id != null)
+            <a href="{{ route('sub-zones.view', $zone->parent_id, false) }}" class="btn btn-sm btn-outline-secondary mb-3">
+                {{ getTranslation('back') }} 
+                {{-- {{ isset($zone) ? $zone->title : '' }} --}}
+            </a>
+            {{-- <a href="#" class="btn btn-sm btn-outline-secondary mb-3">
+                {{ isset($zone) ? $zone->title : '' }}
+            </a> --}}
+        @elseif(isset($zone))
+            <a href="{{ route('zones.index', [], false) }}" class="btn btn-sm btn-outline-secondary mb-3">
+                {{ getTranslation('back') }} 
+                {{-- {{ isset($zone) ? $zone->title : '' }} --}}
+            </a>
+            {{-- <a href="#" class="btn btn-sm btn-outline-secondary mb-3">
+                {{ isset($zone) ? $zone->title : '' }}
+            </a> --}}
+        @endif
+
         <!-- Dashboard content -->
         <div class="row">
             <div class="col-xl-12">
@@ -14,6 +32,7 @@
                     </div>
                 @endif
                 <div class="card">
+
                     <div class="card-body d-lg-flex align-items-lg-center justify-content-lg-between flex-lg-wrap">
                         <div class="d-flex align-items-center mb-3 mb-lg-0">
                             <div class="ml-3">
@@ -27,9 +46,16 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('zones.create', [], false) }}" class="btn btn-teal">
-                                <i class="icon-plus3 icon-1x mr-1"></i>{{ getTranslation('add') }}
-                            </a>
+                            @if (isset($zone))
+                                <a href="{{ route('sub-zones.create', $zone->id, false) }}" class="btn btn-teal">
+                                    <i class="icon-plus3 icon-1x mr-1"></i>{{ getTranslation('add') }}
+                                </a>
+                            @else
+                                <a href="{{ route('zones.create', [], false) }}" class="btn btn-teal">
+                                    <i class="icon-plus3 icon-1x mr-1"></i>{{ getTranslation('add') }}
+                                </a>
+                            @endif
+
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -55,6 +81,10 @@
                                             <input type="text" class="form-control" name="description"
                                                 placeholder="{{ getTranslation('description') }}"
                                                 value="{{ old('description', request('description')) }}">
+                                            @if (isset($zone))
+                                                <input type="hidden" name="parent_id" value="{{ $zone->id }}"
+                                                    id="">
+                                            @endif
                                         </th>
                                         <th class="text-center">
                                             <select class="form-control custom-select" name="is_active" id="select_date">
@@ -89,8 +119,12 @@
                                         </td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
+                                                <a href="{{ route('sub-zones.view', $model->id, false) }}"
+                                                    class="btn btn-outline-secondary ml-2">
+                                                    {{ getTranslation('sub_zone_view') }}
+                                                </a>
                                                 <a href="{{ route('zones.show', $model->id, false) }}"
-                                                    class="btn btn-outline-info">
+                                                    class="btn btn-outline-info ml-2">
                                                     <i class="icon-eye8"></i>
                                                 </a>
                                                 <a href="{{ route('zones.edit', $model->id, false) }}"

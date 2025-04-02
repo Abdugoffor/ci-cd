@@ -10,8 +10,8 @@
             <a href="{{ route('zones.edit', $model->id, false) }}" class="btn btn-outline-secondary ml-2">
                 {{ getTranslation('change') }}
             </a>
-            <a href="#" class="btn btn-outline-secondary ml-2">
-                {{ getTranslation('') }}
+            <a href="{{ route('sub-zones.create', $model->id, false) }}" class="btn btn-outline-secondary ml-2">
+                {{ getTranslation('sub_zone') }}
             </a>
         </div>
         <div class="card mt-2">

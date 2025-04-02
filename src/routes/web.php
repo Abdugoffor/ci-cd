@@ -104,7 +104,11 @@ Route::middleware(LangMiddleware::class)->group(function () {
             Route::get('/menus-status/{menyu}', [MenyuController::class, 'status'])->name('menus.status');
             Route::get('/menus-search', [MenyuController::class, 'search'])->name('menus.search');
             Route::resource('/zones', ZoneController::class);
+            Route::get('/sub-zones-view/{zone}', [ZoneController::class, 'viewSub'])->name('sub-zones.view');
+            Route::get('/sub-zones-create/{zone}', [ZoneController::class, 'createSub'])->name('sub-zones.create');
             Route::get('/zones-search', [ZoneController::class, 'search'])->name('zones.search');
+            Route::get('/zones-select/{zone}/{turnir}', [ZoneController::class, 'select'])->name('zones.select');
+            Route::post('/zones-store-app/{app}', [ZoneController::class, 'storeZone'])->name('zones.store.app');
 
             Route::resource('/hotels', HotelController::class);
             Route::get('/hotels-search', [HotelController::class, 'search'])->name('hotels.search');

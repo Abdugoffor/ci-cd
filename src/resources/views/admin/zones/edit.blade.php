@@ -4,9 +4,16 @@
     <!-- Content area -->
     <div class="content">
         <div class="d-inline-flex gap-2">
-            <a href="{{ route('zones.index', [], false) }}" class="btn btn-sm btn-outline-secondary">
-                {{ getTranslation('back') }}
-            </a>
+            @if (isset($zone) && $zone->parent_id != null)
+                <a href="{{ route('sub-zones.view', $zone->parent_id, false) }}"
+                    class="btn btn-sm btn-outline-secondary mb-3">
+                    {{ getTranslation('back') }}
+                </a>
+            @else
+                <a href="{{ route('zones.index', [], false) }}" class="btn btn-sm btn-outline-secondary mb-3">
+                    {{ getTranslation('back') }}
+                </a>
+            @endif
         </div>
         <div class="card mt-2">
 

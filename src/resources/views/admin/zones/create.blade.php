@@ -9,13 +9,13 @@
             </a>
         </div>
         <div class="card mt-2">
-
+            
             <div class="card-body">
 
                 <form action="{{ route('zones.store', [], false) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <fieldset class="mb-3">
-                        <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('zones') }}
+                        <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('zones') }}: {{ $zone->title ?? '' }}
                         </legend>
                         <div class="form-group row">
                             <div class="card-body">
@@ -26,6 +26,9 @@
                                 @error('title')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
+                                @if (isset($zone))
+                                    <input type="hidden" name="parent_id" value="{{ $zone->id }}">
+                                @endif
 
                                 <!-- Tablar qismi -->
                                 <ul class="nav nav-tabs mt-2">

@@ -3,6 +3,12 @@
 @section('content')
     <!-- Content area -->
     <div class="content">
+        @if (session('notification'))
+            <div class="alert bg-teal text-white alert-rounded alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+                <span class="font-weight-semibold">{{ session('notification') }}</span>
+            </div>
+        @endif
         <div class="d-inline-flex gap-2">
             <a href="{{ route('application.index', [], false) }}" class="btn btn-sm btn-outline-secondary">
                 {{ getTranslation('back') }}
@@ -142,12 +148,12 @@
                         <tr>
                             <th width="45%">{{ getTranslation('passport-issue-date') }}
                             </th>
-                            <td>{{ $model->passport_issue_date->format('d-m-Y') }}</td>
+                            <td>{{ optional($model->passport_issue_date)->format('d-m-Y') }}</td>
                         </tr>
                         <tr>
                             <th width="45%">{{ getTranslation('passport-validity-period') }}
                             </th>
-                            <td>{{ $model->passport_expiry_date->format('d-m-Y') }}</td>
+                            <td>{{ optional($model->passport_expiry_date)->format('d-m-Y') }}</td>
                         </tr>
                         <tr>
                             <th width="45%">{{ getTranslation('passport-issuing-authority') }}
@@ -267,6 +273,7 @@
                                                             {{ getTranslation('reason-for-cancellation') }}:
                                                         </label>
                                                         <textarea name="cancel_reason" class="form-control" required></textarea>
+
                                                     </div>
                                                 </div>
 
@@ -280,6 +287,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </td>
                         </tr>
                         <tr>
@@ -289,6 +297,77 @@
                         <tr>
                             <th width="45%">{{ getTranslation('change') }}</th>
                             <th>{{ $model->updated_at->format('d-m-Y, H:i') }}</th>
+                        </tr>
+                        <tr>
+                            <th>{{ getTranslation('zones') }}</th>
+                            <td>
+                                <!-- Zone Modal (Har bir model uchun alohida) -->
+                                <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal"
+                                    data-target="#zoneModal{{ $model->id }}">
+                                    {{ getTranslation('add') }}
+                                </button>
+
+                                <!-- Zone Modal (Har bir model uchun alohida) -->
+                                <div id="zoneModal{{ $model->id }}" class="modal fade" tabindex="-1">
+                                    <div class="modal-dialog modal-lg"> <!-- Katta modal o'lcham -->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">
+                                                    {{ getTranslation('zones') }}
+                                                </h5>
+                                                <button type="button" class="close"
+                                                    data-dismiss="modal">&times;</button>
+                                            </div>
+
+                                            <form action="{{ route('zones.store.app', $model->id, false) }}"
+                                                method="POST">
+                                                @csrf
+                                                <div class="modal-body">
+                                                    <div class="form-group" style="text-wrap: wrap; text-align: justify;">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <select name="zones[0]" class="form-control selectZones"
+                                                                    data-level="0">
+                                                                    <option value=""></option>
+                                                                    @foreach ($zones as $zone)
+                                                                        <option value="{{ $zone->id }}"
+                                                                            data-description="{{ getLocale($zone->description) }}">
+                                                                            {{ $zone->title }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            {{-- <div class="col-6">
+                                                                <p id="zoneDescription"></p>
+                                                            </div> --}}
+                                                        </div>
+                                                        <div id="childZones"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">{{ getTranslation('close') }}</button>
+                                                    <button type="submit"
+                                                        class="btn btn-danger">{{ getTranslation('confirm') }}</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Zone Modal (Har bir model uchun alohida) -->
+                                @if ($model->zones->isEmpty())
+
+                                    {{ getTranslation('no_zones_selected') }} <!-- Agar zona tanlanmagan bo'lsa -->
+                                @else
+                                    <span class="badge badge-success badge-pill ml-2" style="font-size: 15px">
+                                        @foreach ($model->zones as $zone)
+                                            {{ $zone->title }},
+                                        @endforeach
+                                    </span>
+                                @endif
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -308,14 +387,6 @@
 
                     {{-- </div> --}}
                 @endif
-                {{-- <h3>{{ auth()->user()->role ?? '' }}</h3>
-                @if ($model)
-                    <ul>
-                        @foreach ($model->getAttributes() as $column => $value)
-                            <li><strong>{{ $column }}</strong>: {{ $value }}</li>
-                        @endforeach
-                    </ul>
-                @endif --}}
 
             </div>
         </div>
@@ -323,3 +394,68 @@
     </div>
     <!-- /content area -->
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function handleZoneChange(event) {
+            const select = event.target;
+            const level = parseInt(select.dataset.level);
+            const selectedZoneId = select.value;
+            const tournamentId = {{ $model->tournament_id }};
+            const description = select.options[select.selectedIndex]?.getAttribute('data-description');
+            // const descriptionElement = document.getElementById('zoneDescription');
+
+            // descriptionElement.textContent = description || "Ma'lumot yo'q";
+
+            const childZonesContainer = document.getElementById('childZones');
+            const existingSelects = childZonesContainer.querySelectorAll(`select[data-level]`);
+            existingSelects.forEach(existingSelect => {
+                if (parseInt(existingSelect.dataset.level) > level) {
+                    existingSelect.parentElement.parentElement.remove();
+                }
+            });
+
+            if (selectedZoneId) {
+                $.ajax({
+                    url: '/dashboard/zones-select/' + selectedZoneId + '/' + tournamentId,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+
+                        if (response.children && response.children.length > 0) {
+                            const newRow = document.createElement('div');
+                            newRow.className = 'row mt-2';
+                            newRow.innerHTML = `
+                                <div class="col-12">
+                                    <select required name="zones[${level + 1}]" class="form-control selectZones" data-level="${level + 1}">
+                                        <option></option>
+                                        ${response.children.map(zone => `
+                                            <option value="${zone.id}" 
+                                                data-description="${zone.description}">
+                                                ${zone.title}
+                                            </option>
+                                        `).join('')}
+                                    </select>
+                                </div>
+                            `;
+
+                            // <div class="col-6">
+                            //     <p></p>
+                            // </div>
+                            childZonesContainer.appendChild(newRow);
+
+                            const newSelect = newRow.querySelector('.selectZones');
+                            newSelect.addEventListener('change', handleZoneChange);
+                        }
+                    },
+                    error: function(xhr) {
+                        console.error('Xatolik yuz berdi:', xhr);
+                    }
+                });
+            }
+        }
+
+        const initialSelect = document.querySelector('.selectZones');
+        initialSelect.addEventListener('change', handleZoneChange);
+    });
+</script>

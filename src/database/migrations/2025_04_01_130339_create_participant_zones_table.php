@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('participant_zones', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('tournament_id')->constrained('tournaments')->onDelete('cascade');
             $table->foreignId('participant_id')->constrained('participants')->onDelete('cascade');
             $table->foreignId('zone_id')->constrained('zones')->onDelete('cascade');
             $table->timestamps();
