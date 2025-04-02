@@ -39,13 +39,6 @@ class DatabaseSeeder extends Seeder
             ['name' => 'moderator', 'role' => 'applicant', 'password' => Hash::make('123456789')]
         );
 
-        TestDB::create([
-            'name' => 'test -1',
-        ]);
-        TestDB::create([
-            'name' => 'test -2',
-        ]);
-
         $this->call([
             // firstOrCreate
             TranslationSeeder::class,
@@ -53,15 +46,15 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             // firstOrCreate
 
-            // CountriesSeeder::class,
-            // LanguageSeeder::class,
+            CountriesSeeder::class,
+            LanguageSeeder::class,
 
-            // MenyuSeeder::class,
-            // NewsSeeder::class,
-            // HotelSeeder::class,
-            // TurnirSeeder::class,
-            // PartnerSeeder::class,
-            // MediaSeeder::class,
+            MenyuSeeder::class,
+            NewsSeeder::class,
+            HotelSeeder::class,
+            TurnirSeeder::class,
+            PartnerSeeder::class,
+            MediaSeeder::class,
 
             // MediaSeeder::class,
         ]);

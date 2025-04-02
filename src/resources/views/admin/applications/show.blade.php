@@ -367,9 +367,6 @@
                                         @endforeach
                                     </span>
                                 @endif
-                                @foreach ($tests as $test)
-                                    <h4>{{ $test->name }}</h4>
-                                @endforeach
                             </td>
                         </tr>
                     </tbody>

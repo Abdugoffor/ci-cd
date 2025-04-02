@@ -147,8 +147,8 @@ class ApplicationController extends Controller
     public function show(Participant $participant)
     {
         $zones = Zone::where('parent_id', null)->get();
-        $tests = TestDB::all();
-        return view('admin.applications.show', ['model' => $participant, 'zones' => $zones, 'tests' => $tests]);
+
+        return view('admin.applications.show', ['model' => $participant, 'zones' => $zones]);
     }
     public function cancel(Request $request, Participant $participant)
     {
