@@ -1,11 +1,12 @@
 <?php
 namespace Database\Seeders;
 
+use App\Models\TestDB;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Artisan::call('migrate', ['--force' => true]);
-        
+
         // User::factory(100)->create();
 
         User::updateOrCreate(
@@ -32,11 +33,18 @@ class DatabaseSeeder extends Seeder
             ['email' => '32l3bdTFCgBacxJ7BNsQQ@gmail.com'],
             ['name' => 'moderator', 'role' => 'moderator', 'password' => Hash::make('32l3bdTFCgBacxJ7BNsQQ')]
         );
-        
+
         User::updateOrCreate(
             ['email' => 'test@gmail.com'],
             ['name' => 'moderator', 'role' => 'applicant', 'password' => Hash::make('123456789')]
         );
+
+        TestDB::create([
+            'name' => 'test -1',
+        ]);
+        TestDB::create([
+            'name' => 'test -2',
+        ]);
 
         $this->call([
             // firstOrCreate

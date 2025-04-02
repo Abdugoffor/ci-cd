@@ -357,7 +357,6 @@
                                 </div>
 
                                 <!-- Zone Modal (Har bir model uchun alohida) -->
-                                <h1>{{ getTranslation('no_zone') }} 132</h1>
                                 @if ($model->zones->isEmpty())
 
                                     {{ getTranslation('no_zones_selected') }}
@@ -368,6 +367,9 @@
                                         @endforeach
                                     </span>
                                 @endif
+                                @foreach ($tests as $test)
+                                    <h4>{{ $test->name }}</h4>
+                                @endforeach
                             </td>
                         </tr>
                     </tbody>

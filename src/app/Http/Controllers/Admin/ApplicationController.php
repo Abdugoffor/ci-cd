@@ -9,6 +9,7 @@ use App\Models\AccreditationCategory;
 use App\Models\ApplicationCancellation;
 use App\Models\Country;
 use App\Models\Participant;
+use App\Models\TestDB;
 use App\Models\Zone;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
@@ -146,8 +147,8 @@ class ApplicationController extends Controller
     public function show(Participant $participant)
     {
         $zones = Zone::where('parent_id', null)->get();
-        
-        return view('admin.applications.show', ['model' => $participant, 'zones' => $zones]);
+        $tests = TestDB::all();
+        return view('admin.applications.show', ['model' => $participant, 'zones' => $zones, 'tests' => $tests]);
     }
     public function cancel(Request $request, Participant $participant)
     {
