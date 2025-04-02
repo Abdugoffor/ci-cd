@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('participant_id')->constrained('participants')->onDelete('cascade');
             $table->foreignId('zone_id')->constrained('zones')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
