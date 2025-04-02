@@ -33,4 +33,5 @@ class NewsStoreRequest extends FormRequest
 
         return $rules;
     }
+    
 }
