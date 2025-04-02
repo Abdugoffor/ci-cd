@@ -140,6 +140,12 @@ if (! function_exists('getLocale')) {
     }
 }
 
+if (! function_exists('getTranslationValidate')) {
+    function getTranslationValidate($key)
+    {
+
+    }
+}
 if (! function_exists('validateTranslation')) {
     function validateTranslation($col)
     {

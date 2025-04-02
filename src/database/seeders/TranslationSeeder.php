@@ -1220,6 +1220,15 @@ class TranslationSeeder extends Seeder
                     'default' => "Frequently Asked Questions",
                 ],
             ],
+            [
+                'slug' => 'nomer_application',
+                'name' => [
+                    'uz'      => "Ariza raqami",
+                    'ru'      => "Ariza raqami",
+                    'en'      => "Number Application",
+                    'default' => "Number Application",
+                ],
+            ],
         ];
 
         foreach ($translations as $translation) {

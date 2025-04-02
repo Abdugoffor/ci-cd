@@ -7,13 +7,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
 @section('content')
     <main class="container">
-        <section class="register-personal mt-5">
+        <section class="register-personal mb-5">
             <h2 class="section-title">{{ getTranslation('ask_question') }}</h2>
-            <div class="accordion mb-5" id="faqAccordion">
+            <div class="accordion mb-5 mt-5" id="faqAccordion">
                 @foreach ($models as $key => $model)
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"  style="background-color: #e6fbfd; !important"
                                 data-bs-target="#faq{{ $model->id }}">
                                 {{ getLocale($model->question) }}
                             </button>

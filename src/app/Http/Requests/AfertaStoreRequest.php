@@ -28,4 +28,5 @@ class AfertaStoreRequest extends FormRequest
 
         return $rules;
     }
+
 }

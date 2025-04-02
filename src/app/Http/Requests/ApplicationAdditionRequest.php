@@ -38,4 +38,6 @@ class ApplicationAdditionRequest extends FormRequest
             'pcr_test_details'           => 'required|string',
         ];
     }
+
+
 }

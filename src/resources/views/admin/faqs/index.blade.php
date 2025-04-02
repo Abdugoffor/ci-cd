@@ -38,7 +38,7 @@
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
                                     <th class="text-center">{{ getTranslation('question') }}</th>
-                                    <th class="text-center">{{ getTranslation('answer') }}</th>
+                                    {{-- <th class="text-center">{{ getTranslation('answer') }}</th> --}}
                                     <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
                                     <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                 </tr>
@@ -50,11 +50,11 @@
                                                 placeholder="{{ getTranslation('question') }}"
                                                 value="{{ old('question', request('question')) }}">
                                         </th>
-                                        <th class="text-center">
+                                        {{-- <th class="text-center">
                                             <input type="text" class="form-control" name="answer"
                                                 placeholder="{{ getTranslation('answer') }}"
                                                 value="{{ old('answer', request('answer')) }}">
-                                        </th>
+                                        </th> --}}
 
                                         <th class="text-center">
                                             <select class="form-control custom-select" name="is_active" id="select_date">
@@ -81,9 +81,9 @@
                                         <td>
                                             {{ getLocale($model->question) }}
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             {{ getLocale($model->answer) }}
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             <span class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}

@@ -32,7 +32,7 @@
                 @csrf
                 <div class="input-group">
                     <div class="input-wrapper">
-                        <label for="first-name" class="input-label">ID</label>
+                        <label for="first-name" class="input-label">{{ getTranslation('nomer_application') }}</label>
                         <input type="text" id="first-name" name="participant_id"
                             placeholder="{{ getTranslation('participant_id') }}" value="{{ old('participant_id') }}"
                             class="input-text" />

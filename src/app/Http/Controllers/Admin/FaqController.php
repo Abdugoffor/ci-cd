@@ -24,9 +24,9 @@ class FaqController extends Controller
             $query->where("question->$locale", 'LIKE', "%{$request->question}%");
         }
 
-        if ($request->filled('answer')) {
-            $query->where("answer->$locale", 'LIKE', "%{$request->answer}%");
-        }
+        // if ($request->filled('answer')) {
+        //     $query->where("answer->$locale", 'LIKE', "%{$request->answer}%");
+        // }
 
         if ($request->filled('is_active')) {
             $query->where('is_active', filter_var($request->is_active, FILTER_VALIDATE_BOOLEAN));
@@ -45,7 +45,7 @@ class FaqController extends Controller
     public function store(FaqStoreRequest $request)
     {
         $data = $request->all();
-        // dd($data);
+        
         $data['question']['default'] = reset($data['question']);
 
         $data['answer']['default'] = reset($data['answer']);

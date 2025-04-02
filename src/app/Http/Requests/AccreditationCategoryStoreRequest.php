@@ -21,7 +21,7 @@ class AccreditationCategoryStoreRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => 'required|array',
+            'name'      => 'required|array',
             'is_active' => 'required|boolean',
         ];
 
@@ -29,4 +29,5 @@ class AccreditationCategoryStoreRequest extends FormRequest
 
         return $rules;
     }
+
 }

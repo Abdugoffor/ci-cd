@@ -3,6 +3,7 @@ namespace Database\Seeders;
 
 use App\Models\TestDB;
 use App\Models\User;
+use App\Models\ValidationMessages;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
@@ -44,11 +45,11 @@ class DatabaseSeeder extends Seeder
             TranslationSeeder::class,
             AccreditationCategorySeeder::class,
             CategorySeeder::class,
+            LanguageSeeder::class,
             
             // firstOrCreate
 
             // CountriesSeeder::class,
-            // LanguageSeeder::class,
 
             // MenyuSeeder::class,
             // NewsSeeder::class,
