@@ -91,8 +91,8 @@ class CategorySeeder extends Seeder
 
         foreach ($categories as $category) {
             Category::firstOrCreate(
-                ['slug' => $category['slug']], // Tekshiriladigan unikal maydon
-                $category                      // Agar mavjud bo‘lmasa, shu qiymatlar bilan yaratadi
+                ['slug' => $category['slug']],
+                $category
             );
         }
 

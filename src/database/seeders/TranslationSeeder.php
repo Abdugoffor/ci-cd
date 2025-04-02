@@ -1184,15 +1184,32 @@ class TranslationSeeder extends Seeder
                     'default' => "Sub Zone",
                 ],
             ],
+            [
+                'slug' => 'error_notification',
+                'name' => [
+                    'uz'      => "Xatolik yuz berdi",
+                    'ru'      => "Произошла ошибка",
+                    'en'      => "An error occurred",
+                    'default' => "Sub Zone",
+                ],
+            ],
+            [
+                'slug' => 'no_zone',
+                'name' => [
+                    'uz'      => "Zo'na biriktirilmagan",
+                    'ru'      => "Зона не назначена",
+                    'en'      => "Zone not assigned",
+                    'default' => "Zone not assigned",
+                ],
+            ],
         ];
 
         foreach ($translations as $translation) {
-
-            $existingTranslation = Translation::where('slug', $translation['slug'])->first();
-
-            if (! $existingTranslation) {
-                Translation::create($translation);
-            }
+            Translation::firstOrCreate(
+                ['slug' => $translation['slug']],
+                $translation
+            );
         }
+
     }
 }

@@ -5,6 +5,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Artisan::call('migrate', ['--force' => true]);
+        
         // User::factory(100)->create();
 
         User::updateOrCreate(
@@ -42,15 +45,15 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             // firstOrCreate
 
-            CountriesSeeder::class,
-            LanguageSeeder::class,
-            
-            MenyuSeeder::class,
-            NewsSeeder::class,
-            HotelSeeder::class,
-            TurnirSeeder::class,
-            PartnerSeeder::class,
-            MediaSeeder::class,
+            // CountriesSeeder::class,
+            // LanguageSeeder::class,
+
+            // MenyuSeeder::class,
+            // NewsSeeder::class,
+            // HotelSeeder::class,
+            // TurnirSeeder::class,
+            // PartnerSeeder::class,
+            // MediaSeeder::class,
 
             // MediaSeeder::class,
         ]);

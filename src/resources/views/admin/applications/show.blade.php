@@ -357,9 +357,10 @@
                                 </div>
 
                                 <!-- Zone Modal (Har bir model uchun alohida) -->
+                                <h1>{{ getTranslation('no_zone') }} 132</h1>
                                 @if ($model->zones->isEmpty())
 
-                                    {{ getTranslation('no_zones_selected') }} <!-- Agar zona tanlanmagan bo'lsa -->
+                                    {{ getTranslation('no_zones_selected') }}
                                 @else
                                     <span class="badge badge-success badge-pill ml-2" style="font-size: 15px">
                                         @foreach ($model->zones as $zone)
