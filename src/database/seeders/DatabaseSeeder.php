@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
             TranslationSeeder::class,
             AccreditationCategorySeeder::class,
             CategorySeeder::class,
+            
             // firstOrCreate
 
             // CountriesSeeder::class,
