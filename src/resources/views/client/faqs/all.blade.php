@@ -10,7 +10,7 @@
         <section class="register-personal mt-5">
             <h2 class="section-title">{{ getTranslation('ask_question') }}</h2>
             <div class="accordion mb-5" id="faqAccordion">
-                @foreach ($models as $model)
+                @foreach ($models as $key => $model)
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -18,7 +18,7 @@
                                 {{ getLocale($model->question) }}
                             </button>
                         </h2>
-                        <div id="faq{{ $model->id }}" class="accordion-collapse collapse show"
+                        <div id="faq{{ $model->id }}" class="accordion-collapse collapse {{ $key === 0 ? 'show' : '' }}"
                             data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
                                 {{ getLocale($model->answer) }}
