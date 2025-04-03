@@ -43,6 +43,8 @@ services:
     volumes:
       - fide_project:/var/www/laravel
       - fide_uploads:/var/www/laravel/public/uploaded
+    depends_on:
+      - fide_postgres
 
   fide_postgres:
     image: postgres:15
