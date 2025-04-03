@@ -9,7 +9,7 @@ class ChackApplication extends Controller
 {
     public function chack()
     {
-        return view('client.chack', ['notification' => 'Emialga yuborilga id va keyni kiriting']);
+        return view('client.chack', ['notification' => getTranslation('chack_application')]);
     }
     public function search(CheckApplicationRequest $request)
     {

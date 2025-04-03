@@ -1229,6 +1229,15 @@ class TranslationSeeder extends Seeder
                     'default' => "Number Application",
                 ],
             ],
+            [
+                'slug' => 'chack_application',
+                'name' => [
+                    'uz'      => "Emialga yuborilga id va keyni kiriting",
+                    'ru'      => "Emialga yuborilga id va keyni kiriting",
+                    'en'      => "Emialga yuborilga id va keyni kiriting",
+                    'default' => "Emialga yuborilga id va keyni kiriting",
+                ],
+            ],
         ];
 
         foreach ($translations as $translation) {
