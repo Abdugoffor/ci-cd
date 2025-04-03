@@ -1,53 +1,36 @@
+volumes:
+    fide_project:
 
 services:
-  local_nginx:
+  fide_nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
     image: "nginx:stable-alpine"
     ports:
       - "8010:80"
     volumes:
-      - ./nginx/local.conf:/etc/nginx/conf.d/default.conf  # ":ro" olib tashlandi
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./src:/var/www/laravel
     depends_on:
-      - local_postgres
-      - local_php
+      - fide_postgres
+      - fide_php
 
-  local_php:
+  fide_php:
     build:
-      context: dockerfiles
-      dockerfile: phplocal.Dockerfile
+      context: .
+      dockerfile: dockerfiles/php.Dockerfile
     volumes:
       - ./src:/var/www/laravel
-    depends_on:
-      - local_postgres
     environment:
       - PHP_EXTENSION=pdo_pgsql,pgsql
+    depends_on:
+      - fide_postgres
 
-  local_postgres:
+  fide_postgres:
     image: postgres:15
     restart: always
-    ports:
-      - "5434:5432"
     env_file:
       - env/postgres.env
     volumes:
-      - pgdata:/var/lib/postgresql/data
-
-  local_composer:
-    build:
-      context: dockerfiles
-      dockerfile: composer.local.Dockerfile
-    volumes:
-      - ./src:/var/www/laravel
-
-  local_artisan:
-    build:
-      context: dockerfiles
-      dockerfile: phplocal.Dockerfile
-    volumes:
-      - ./src:/var/www/laravel
-    depends_on:
-      - local_postgres
-    entrypoint: ["php", "/var/www/laravel/artisan"]
-
-volumes:
-  pgdata:
+      - ./fide_db:/var/lib/postgresql/data

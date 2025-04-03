@@ -157,7 +157,7 @@
                     <label for="terms">
                         {{ getTranslation('i_agree') }} |
                     </label>
-                    <a href="/aferta" target="_blank"> {{ getTranslation('aferta') }}</a>
+                    <a href="/offer" target="_blank"> {{ getTranslation('aferta') }}</a>
                 </div>
 
                 <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>

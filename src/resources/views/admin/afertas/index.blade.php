@@ -58,7 +58,7 @@
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
-                                        <td>{!! getLocale($model->text) !!}</td>
+                                        <td>{{ getTranslation('aferta') }}</td>
                                         <td>
                                             <div class="d-inline-flex gap-2">
                                                 <a href="{{ route('aferta.show', $model->id, false) }}"
