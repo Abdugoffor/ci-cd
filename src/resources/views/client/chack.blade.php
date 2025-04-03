@@ -3,17 +3,9 @@
 @section('banner')
 @endsection
 @section('content')
-    <main class="container">
-        <section class="register-personal">
-            @if ($errors->any())
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        @foreach ($errors->all() as $error)
-                            toast.create("{{ $error }}", 'error')
-                        @endforeach
-                    });
-                </script>
-            @endif
+    <main class="container montserrat">
+        <section class="register-personal register-chack">
+            
             <div class="toast-container"></div>
             @if (isset($notification) && !$errors->any())
                 <div class="alert_static" id="alertBox">
@@ -35,7 +27,7 @@
                         <input type="text" id="first-name" name="participant_id"
                             placeholder="{{ getTranslation('nomer_application') }}" value="{{ old('participant_id') }}"
                             class="input-text" />
-                        @error('nomer_application')
+                        @error('participant_id')
                             <span style="color: red;">{{ $message }}</span>
                         @enderror
                     </div>
@@ -43,7 +35,7 @@
                         <label for="first-name" class="input-label">{{ getTranslation('key') }} </label>
                         <input type="text" id="first-name" name="key" placeholder="{{ getTranslation('key') }}"
                             value="{{ old('key') }}" class="input-text" />
-                        @error('nomer_application')
+                        @error('key')
                             <span style="color: red;">{{ $message }}</span>
                         @enderror
                     </div>

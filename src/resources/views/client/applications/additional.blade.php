@@ -2,7 +2,7 @@
 @section('banner')
 @endsection
 @section('content')
-    <main class="container">
+    <main class="container montserrat">
         <section class="register-personal">
             <div class="register-personal-top" style="margin-bottom: 30px">
                 <h1>{{ getTranslation('register_for_accreditation') }}</h1>
@@ -35,7 +35,7 @@
                                 placeholder="{{ getTranslation('passport-number') }}" value="{{ old('passport_number') }}"
                                 class="input-text" />
                             @error('passport_number')
-                                <span style="color: red;">{{ $message }}</span>
+                                <span style="color: red; font-size:12px;">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -51,7 +51,7 @@
                                     class="calendar-icon" />
                             </div>
                             @error('passport_issue_date')
-                                <span style="color: red;">{{ $message }}</span>
+                                <span style="color: red; font-size:12px;">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -68,7 +68,7 @@
                                     class="calendar-icon" />
                             </div>
                             @error('passport_expiry_date')
-                                <span style="color: red;">{{ $message }}</span>
+                                <span style="color: red; font-size:12px;">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                                     class="calendar-icon" />
                             </div>
                             @error('arrival_details')
-                                <span style="color: red;">{{ $message }}</span>
+                                <span style="color: red; font-size:12px;">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -102,7 +102,7 @@
                                     class="calendar-icon" />
                             </div>
                             @error('departure_details')
-                                <span style="color: red;">{{ $message }}</span>
+                                <span style="color: red; font-size:12px;">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -114,7 +114,7 @@
                                     placeholder="{{ getTranslation('passport-issuing-authority') }}"
                                     value="{{ old('passport_issuing_authority') }}" class="input-text" />
                                 @error('passport_issuing_authority')
-                                    <span style="color: red;">{{ $message }}</span>
+                                    <span style="color: red; font-size:12px;">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                                 <option value="no">{{ getTranslation('no') }}</option>
                             </select>
                             @error('pcr_test_details')
-                                <span style="color: red;">{{ $message }}</span>
+                                <span style="color: red; font-size:12px;">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -155,7 +155,7 @@
                                 @endforeach
                             </select>
                             @error('accreditation_category_id')
-                                <span style="color: red;">{{ $message }}</span>
+                                <span style="color: red; font-size:12px;">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -164,7 +164,7 @@
                             <input type="text" id="first-name" value="{{ old('phone') }}" name="phone"
                                 placeholder="{{ getTranslation('phone') }}" class="input-text" />
                             @error('phone')
-                                <span style="color: red;">{{ $message }}</span>
+                                <span style="color: red; font-size:12px;">{{ $message }}</span>
                             @enderror
 
                         </div>
@@ -190,7 +190,7 @@
                                 @endforeach
                             </select>
                             @error('country_id')
-                                <span style="color: red;">{{ $message }}</span>
+                                <span style="color: red; font-size:12px;">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -210,7 +210,7 @@
                                 @endforeach
                             </select>
                             @error('accommodation_details')
-                                <span style="color: red;">{{ $message }}</span>
+                                <span style="color: red; font-size:12px;">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -232,7 +232,7 @@
                                 </label>
                             </div>
                             @error('requires_visa')
-                                <span style="color: red;">{{ $message }}</span>
+                                <span style="color: red; font-size:12px;">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -264,7 +264,7 @@
                                 </div>
                             </div>
                             @error('passport_copy')
-                                <span style="color: red;">{{ $message }}</span>
+                                <span style="color: red; font-size:12px;">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -292,7 +292,7 @@
                                 </div>
                             </div>
                             @error('photo')
-                                <span style="color: red;">{{ $message }}</span>
+                                <span style="color: red; font-size:12px;">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>

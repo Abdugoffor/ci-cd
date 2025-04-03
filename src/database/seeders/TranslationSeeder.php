@@ -1232,9 +1232,9 @@ class TranslationSeeder extends Seeder
             [
                 'slug' => 'chack_application',
                 'name' => [
-                    'uz'      => "Emialga yuborilga id va keyni kiriting",
-                    'ru'      => "Emialga yuborilga id va keyni kiriting",
-                    'en'      => "Emialga yuborilga id va keyni kiriting",
+                    'uz'      => "Emialga yuborilga id va keyni kiriting uz",
+                    'ru'      => "Emialga yuborilga id va keyni kiriting ru",
+                    'en'      => "Emialga yuborilga id va keyni kiriting en",
                     'default' => "Emialga yuborilga id va keyni kiriting",
                 ],
             ],

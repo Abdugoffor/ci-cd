@@ -3,7 +3,7 @@
 @endsection
 @section('content')
     <main class="container">
-        <section class="register-personal">
+        <section class="register-personal register-chack">
             <div class="register-personal-top">
                 <h1>{{ getTranslation('register_for_accreditation') }}</h1>
                 <div>
@@ -40,7 +40,7 @@
                             <input type="number" id="first-name" name="code" class="input-text"
                                 placeholder="{{ getTranslation('code_verifay') }}" />
                             @error('code')
-                                <p style="color: red;">{{ $message }}</p>
+                                <p style="color: red; font-size:12px;">{{ $message }}</p>
                             @enderror
 
                         </div>

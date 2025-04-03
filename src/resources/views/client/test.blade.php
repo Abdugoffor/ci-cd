@@ -331,8 +331,8 @@
             justify-content: center;
             flex-direction: column;
           ">
-                <div style="height: 255px; width: 241px; border: 1px solid black">
-                    <ul style="list-style-type: none; padding: 0;">
+                <div style="height: 255px; width: 241px; border: 1px solid black; display: flex; align-items: center; justify-content: center">
+                    <ul style="list-style-type: none; padding: 0; display: flex; flex-direction: column; align-items: center">
                         @foreach ($participant->zones as $zone)
                             <li
                                 style="
@@ -342,13 +342,11 @@
                                     font-weight: bold;
                                     margin-bottom: 10px;
                                     text-align: center;
-                                    background-color: #e0e0e0;
                                     padding: 5px;
                                     border-radius: 5px;
-                                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                                     transition: all 0.3s ease;
                                 ">
-                                {{ $zone->title }}
+                                {{ $zone->title }} |
                             </li>
                         @endforeach
                     </ul>

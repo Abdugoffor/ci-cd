@@ -2,7 +2,7 @@
 @section('banner')
 @endsection
 @section('content')
-    <main class="container">
+    <main class="container montserrat">
         <section class="register-personal">
             <div class="breadcrumb">
                 <a href="/">

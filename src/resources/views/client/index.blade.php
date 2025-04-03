@@ -64,7 +64,7 @@
                             'Hosted in the historic city of Samarkand, this event will be an unforgettable fusion of strategy, culture, and global unity' }}
                     </div>
                     <a href='/chack-application' class="btn"
-                        style="width: 20%;">{{ getTranslation('action_button') }}</a>
+                        >{{ getTranslation('action_button') }}</a>
                 </div>
             </div>
         </section>
@@ -95,7 +95,7 @@
                     @endif
                 </div>
                 @error('fide_id')
-                    <span style="color: red;">{{ $message }}</span>
+                    <span style="color: red; text-align: left; font-size: 12px;">{{ $message }}</span>
                 @enderror
                 <div class="toast-container"></div>
             </div>
@@ -143,8 +143,8 @@
                 @endforeach
             </div>
             <div style="text-align: center; margin-top: 15px;">
-                <a href="{{ route('news.all', [], false) }}" class="btn"
-                    style="display: inline-block; text-decoration: none; width: 10%;">
+                <a href="{{ route('news.all', [], false) }}" class="btn news-all"
+                    style="display: inline-block; text-decoration: none">
                     {{ getTranslation('all') }}
                 </a>
             </div>
@@ -224,8 +224,8 @@
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 15px;">
-                    <a href="{{ route('hotel.all', [], false) }}" class="btn"
-                        style="display: inline-block; text-decoration: none; width: 10%;">
+                    <a href="{{ route('hotel.all', [], false) }}" class="btn news-all"
+                        style="display: inline-block; text-decoration: none;">
                         {{ getTranslation('all') }}
                     </a>
                 </div>

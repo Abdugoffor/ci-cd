@@ -66,7 +66,7 @@ class ApplicationController extends Controller
     public function store(ApplicationStoreRequest $request)
     {
         $data = $request->all();
-        $key = Str::random(8);
+        $key  = Str::random(8);
 
         $data['fide_id'] = session()->get('player')['id_number'] ?? null;
         $data['key']     = $key;
@@ -97,7 +97,7 @@ class ApplicationController extends Controller
 
         return redirect()->route('application.verify.email', [
             'model'   => $model->id,
-            'message' => urlencode(getTranslation('message') ?? 'Emailga kod yuborildi!'),
+            'message' => getTranslation('message'),
         ]);
 
     }
@@ -109,7 +109,7 @@ class ApplicationController extends Controller
         }
 
         $tournament = Tournament::findOrFail($model->tournament_id);
-        $message    = urldecode($message); 
+        $message    = urldecode($message);
 
         return view('client.verify_email', [
             'model'           => $model,
