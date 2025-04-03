@@ -22,7 +22,7 @@
                     <!-- news update start  -->
                     <div class="news-card">
                         <a href="{{ route('hotel.index', $hotel->id, false) }}">
-                            <img src="{{ asset($hotel->photo) }}" alt="" />
+                            <img src="/{{ ($hotel->photo) }}" alt="" />
                             <div class="hotel-distance">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="13" viewBox="0 0 10 13"
                                     fill="none">

@@ -22,7 +22,7 @@
                     <!-- news update start  -->
                     <div class="news-card">
                         <a href="{{ route('news.latest', $new->id, false) }}">
-                            <img src="{{ asset($new->photo) }}" alt="" />
+                            <img src="/{{ ($new->photo) }}" alt="" />
                             <div class="news-card__content">
                                 <h3>
                                     {{ getLocale($new->title) }}

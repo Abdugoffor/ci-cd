@@ -20,7 +20,7 @@
                 </div>
                 <div class="info-blocks-wrapper">
                     <div class="info-block">
-                        <img src="{{ asset('frontend/assets/header_banner/calendar.svg') }}" alt="calendar" />
+                        <img src="/{{ ('frontend/assets/header_banner/calendar.svg') }}" alt="calendar" />
                         <div class="info-block__content">
                             <div>
                                 {{ $model?->registration_start?->format('d') ?? '' }} -
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="info-block info-block__secondary">
-                        <img src="{{ asset('frontend/assets/header_banner/location.svg') }}" alt="location" />
+                        <img src="/{{ ('frontend/assets/header_banner/location.svg') }}" alt="location" />
                         <div class="info-block__content">
                             <div>{{ isset($model) ? $model->country->label_en : '' }}</div>
                             <span>{{ isset($model) ? getLocale($model->category->name) : '' }}</span>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <img src="{{ asset($siteSettings?->photo_1 ?? 'frontend/assets/header_banner/banner-chess.svg') }}"
+            <img src="/{{ ($siteSettings?->photo_1 ?? 'frontend/assets/header_banner/banner-chess.svg') }}"
                 alt="banner-chess" class="banner-img" />
         </div>
     </div>
@@ -50,9 +50,9 @@
     <main>
         <!-- history update start  -->
         <section class="history">
-            <img src="{{ asset($siteSettings?->photo_2 ?? 'frontend/assets/main/history-image.svg') }}" alt="history"
+            <img src="/{{ $siteSettings?->photo_2 ?? 'frontend/assets/main/history-image.svg' }}" alt="history"
                 class="history-img" />
-            <img src="{{ asset('frontend/assets/main/substract.svg') }}" alt="substract" class="substract" />
+            <img src="/frontend/assets/main/substract.svg" alt="substract test" class="substract" />
             <div class="container">
                 <div class="history-content">
                     <div class="history-title">
@@ -63,7 +63,8 @@
                         {{ getLocale($siteSettings?->text) ?:
                             'Hosted in the historic city of Samarkand, this event will be an unforgettable fusion of strategy, culture, and global unity' }}
                     </div>
-                    <a href='/chack-application' class="btn" style="width: 20%;">{{ getTranslation('action_button') }}</a>
+                    <a href='/chack-application' class="btn"
+                        style="width: 20%;">{{ getTranslation('action_button') }}</a>
                 </div>
             </div>
         </section>
@@ -93,15 +94,9 @@
                         <br>
                     @endif
                 </div>
-                @if ($errors->any())
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            @foreach ($errors->all() as $error)
-                                toast.create("{{ $error }}");
-                            @endforeach
-                        });
-                    </script>
-                @endif
+                @error('fide_id')
+                    <span style="color: red;">{{ $message }}</span>
+                @enderror
                 <div class="toast-container"></div>
             </div>
         </section>
@@ -112,7 +107,7 @@
                     <div class="swiper-wrapper">
                         @foreach ($partners as $partner)
                             <div class="swiper-slide">
-                                <img src="{{ asset($partner->photo) }}" alt="FIDE" />
+                                <img src="/{{ ($partner->photo) }}" alt="FIDE" />
                             </div>
                         @endforeach
                     </div>
@@ -127,7 +122,7 @@
                     <!-- news update start  -->
                     <div class="news-card">
                         <a href="{{ route('news.latest', $new->id, false) }}">
-                            <img src="{{ asset($new->photo) }}" alt="" />
+                            <img src="/{{ ($new->photo) }}" alt="" />
                             <div class="news-card__content">
                                 <h3>
                                     {{ getLocale($new->title) }}
@@ -184,7 +179,7 @@
                         @foreach ($hotels as $hotel)
                             <div class="swiper-slide">
                                 <div class="hotel-card">
-                                    <img src="{{ asset($hotel->photo) }}" alt="Hilton Samarkand" />
+                                    <img src="/{{ ($hotel->photo) }}" alt="Hilton Samarkand" />
                                     <div class="hotel-info">
                                         <div class="hotel-distance">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="13"

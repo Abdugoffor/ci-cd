@@ -204,7 +204,6 @@
                                     activeMenu('accreditation-categories.index') ||
                                     activeMenu('languages.index') ||
                                     activeMenu('translations.index') ||
-                                    activeMenu('users.index') ||
                                     activeMenu('zones.index') ||
                                     activeMenu('aferta.index');
                             @endphp
@@ -259,15 +258,7 @@
                                             </a>
                                         </li>
                                     @endif
-                                    @if (hasRole(['admin']))
-                                        <li class="nav-item">
-                                            <a href="{{ route('users.index', [], false) }}"
-                                                class="nav-link {{ activeMenu('users.index') }}">
-                                                <i class="icon-list-unordered"></i>
-                                                <span>{{ getTranslation('users') }}</span>
-                                            </a>
-                                        </li>
-                                    @endif
+
                                 </ul>
                             </li>
                         @endif
@@ -285,7 +276,7 @@
                             @endphp
                             <li class="nav-item nav-item-submenu {{ $isActive ? 'nav-item-open' : '' }}">
                                 <a href="#" class="nav-link">
-                                    <i class="icon-gear"></i>
+                                    <i class="icon-stack2"></i>
                                     <span>{{ getTranslation('media') }}</span></a>
 
                                 <ul class="nav nav-group-sub {{ $isActive ? 'd-block' : '' }}"
@@ -349,6 +340,15 @@
                                         </li>
                                     @endif
                                 </ul>
+                            </li>
+                        @endif
+                        @if (hasRole(['admin']))
+                            <li class="nav-item">
+                                <a href="{{ route('users.index', [], false) }}"
+                                    class="nav-link {{ activeMenu('users.index') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('users') }}</span>
+                                </a>
                             </li>
                         @endif
                     </ul>
