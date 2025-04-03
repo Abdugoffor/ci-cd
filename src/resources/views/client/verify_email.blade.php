@@ -9,19 +9,12 @@
                 <div>
                     <img src="{{ asset('frontend/assets/register-page/chess-logo.svg') }}" alt="chess-logo" />
                     <div class="register-logo-text">
-                        <span>{{ getLocale($tournament->name) }}</span>
-                        <strong>{{ getLocale($tournament->title) }}</strong>
+                        {{-- <span>{{ getLocale($tournament->name) }}</span>
+                        <strong>{{ getLocale($tournament->title) }}</strong> --}}
                     </div>
                 </div>
             </div>
 
-            {{-- @if (isset($message_notifay))
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        toast.create("{{ $message_notifay }}", 'success')
-                    });
-                </script>
-            @endif --}}
             @if (isset($message_notifay) && !$errors->any())
                 <div class="alert_static" id="alertBox">
                     <span>{{ $message_notifay }}</span>
@@ -34,15 +27,6 @@
                 </script>
             @endif
 
-            {{-- @if ($errors->any())
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        @foreach ($errors->all() as $error)
-                            toast.create("{{ $error }}", 'error')
-                        @endforeach
-                    });
-                </script>
-            @endif --}}
 
             <form action="{{ route('verify.code.post', $model->id, false) }}" method="GET">
                 @csrf

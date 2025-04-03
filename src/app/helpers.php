@@ -33,7 +33,9 @@ if (! function_exists('isActive')) {
 if (! function_exists('getLanguage')) {
     function getLanguage()
     {
-        return Language::where('is_active', true)->get();
+        return Cache::remember('active_languages', now()->addMinutes(180), function () {
+            return Language::where('is_active', true)->get();
+        });
     }
 }
 

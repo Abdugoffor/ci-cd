@@ -9,8 +9,6 @@
                 <div>
                     <img src="/{{ 'frontend/assets/register-page/chess-logo.svg' }}" alt="chess-logo" />
                     <div class="register-logo-text">
-                        {{-- <span>{{ getLocale($tournament->name) }}</span>
-                        <strong>{{ getLocale($tournament->title) }}</strong> --}}
                     </div>
                 </div>
             </div>
