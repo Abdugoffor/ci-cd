@@ -15,15 +15,26 @@
                 </div>
             </div>
 
-            @if (isset($message_notifay))
+            {{-- @if (isset($message_notifay))
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         toast.create("{{ $message_notifay }}", 'success')
                     });
                 </script>
+            @endif --}}
+            @if (isset($message_notifay) && !$errors->any())
+                <div class="alert_static" id="alertBox">
+                    <span>{{ $message_notifay }}</span>
+                    <button class="close" onclick="closeAlert()">×</button>
+                </div>
+                <script>
+                    function closeAlert() {
+                        document.getElementById("alertBox").style.display = "none";
+                    }
+                </script>
             @endif
 
-            @if ($errors->any())
+            {{-- @if ($errors->any())
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         @foreach ($errors->all() as $error)
@@ -31,7 +42,7 @@
                         @endforeach
                     });
                 </script>
-            @endif
+            @endif --}}
 
             <form action="{{ route('verify.code.post', $model->id, false) }}" method="GET">
                 @csrf
@@ -44,6 +55,9 @@
                             <label for="first-name" class="input-label">{{ getTranslation('code_verifay') }}</label>
                             <input type="number" id="first-name" name="code" class="input-text"
                                 placeholder="{{ getTranslation('code_verifay') }}" />
+                            @error('code')
+                                <p style="color: red;">{{ $message }}</p>
+                            @enderror
 
                         </div>
                         <div class="input-wrapper" style="margin-top: 15px;">

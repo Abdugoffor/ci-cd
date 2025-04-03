@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            @if ($errors->any())
+            {{-- @if ($errors->any())
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         @foreach ($errors->all() as $error)
@@ -22,7 +22,7 @@
                         @endforeach
                     });
                 </script>
-            @endif
+            @endif --}}
 
             @if (isset($fide_id_success) && !$errors->any())
                 <div class="alert_static" id="alertBox">
@@ -40,6 +40,7 @@
                 @csrf
                 <div class="personal-info">{{ getTranslation('personal_info') }}</div>
                 <div class="input-section1 ">
+                    
                     <div class="input-group input-groupGrid">
                         <div class="input-wrapper">
                             <input type="hidden" name="tournament_id" value="{{ $tournament->id }}" id="">
@@ -47,22 +48,33 @@
                                 <span>({{ getTranslation('in_passport') }})</span></label>
                             <input type="text" id="first-name" name="first_name" value="{{ old('first_name') }}"
                                 class="input-text" placeholder="{{ getTranslation('name') }}" />
+                            @error('first_name')
+                                <p style="color: red;">{{ $message }}</p>
+                            @enderror
 
                         </div>
+                    
                         <div class="input-wrapper">
                             <label for="last-name"
                                 class="input-label">{{ getTranslation('last-name') }}<span>({{ getTranslation('in_passport') }})</span></label>
                             <input type="text" id="last-name" name="last_name" value="{{ old('last_name') }}"
                                 class="input-text" placeholder="{{ getTranslation('last-name') }}" />
-
+                            @error('last_name')
+                                <p style="color: red;">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
+
                     <div class="input-group input-groupGrid">
                         <div class="input-wrapper">
                             <label for="passport-id" class="input-label">{{ getTranslation('email') }}</label>
                             <input type="email" id="email" name="email" value="{{ old('email') }}"
                                 placeholder="{{ getTranslation('email') }}" class="input-text" />
+                            @error('email')
+                                <p style="color: red;">{{ $message }}</p>
+                            @enderror
                         </div>
+
                         <div class="input-wrapper">
                             <label for="date-of-birth" class="input-label">{{ getTranslation('birth-date') }}</label>
                             <div class="date-container" onclick="openDatePicker('date_of_birth')">
@@ -73,8 +85,12 @@
                                 <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
                             </div>
+                            @error('date_of_birth')
+                                <p style="color: red;">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
+                    
                     <div class="input-group input-groupGrid">
 
                         <div class="radio-group">
@@ -93,6 +109,9 @@
                                     {{ getTranslation('f') }}
                                 </label>
                             </div>
+                            @error('gender')
+                                <p style="color: red;">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
 
@@ -145,7 +164,7 @@
                 @error('g-recaptcha-response')
                     <p style="color: red;">{{ $message }}</p>
                 @enderror
-                
+
                 <button type="submit" class="btn">{{ getTranslation('add') }}</button>
             </form>
         </section>

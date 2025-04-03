@@ -42,7 +42,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
     Route::get('/application/{tournament}', [ApplicationController::class, 'application'])->name('application');
     Route::get('/applications-verify-email/{model}/{message}', [ApplicationController::class, 'applicationVerifyEmail'])->name('application.verify.email');
     Route::post('/applications', [ApplicationController::class, 'store'])->name('application.store');
-    Route::get('/aferta', [ApplicationController::class, 'aferta'])->name('aferta');
+    Route::get('/offer', [ApplicationController::class, 'aferta'])->name('aferta');
 
     Route::get('/applications-additional/{model}', [ApplicationController::class, 'createAdditional'])->middleware(CheckEmailSession::class)->name('application.additional');
     Route::post('/applications-additional/{model}', [ApplicationController::class, 'storeAdditional'])->middleware(CheckEmailSession::class)->name('application.store.additional');
@@ -106,6 +106,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
             Route::resource('/menus', MenyuController::class);
             Route::get('/menus-status/{menyu}', [MenyuController::class, 'status'])->name('menus.status');
             Route::get('/menus-search', [MenyuController::class, 'search'])->name('menus.search');
+           
             Route::resource('/zones', ZoneController::class);
             Route::get('/sub-zones-view/{zone}', [ZoneController::class, 'viewSub'])->name('sub-zones.view');
             Route::get('/sub-zones-create/{zone}', [ZoneController::class, 'createSub'])->name('sub-zones.create');
@@ -158,6 +159,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
 
             Route::resource('/support-applications', SupportApplicationController::class);
             Route::get('/support-applications-search', [SupportApplicationController::class, 'search'])->name('support-applications.search');
+            Route::get('/applications-status/{participant}/{ststus}', [AdminAppController::class, 'status'])->name('application.status');
         });
 
     });

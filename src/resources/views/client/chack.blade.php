@@ -16,7 +16,6 @@
             @endif
             <div class="toast-container"></div>
             @if (isset($notification) && !$errors->any())
-                
                 <div class="alert_static" id="alertBox">
                     <span>{{ $notification }}</span>
                     <button class="close" onclick="closeAlert()">×</button>
@@ -34,13 +33,19 @@
                     <div class="input-wrapper">
                         <label for="first-name" class="input-label">{{ getTranslation('nomer_application') }}</label>
                         <input type="text" id="first-name" name="participant_id"
-                            placeholder="{{ getTranslation('participant_id') }}" value="{{ old('participant_id') }}"
+                            placeholder="{{ getTranslation('nomer_application') }}" value="{{ old('participant_id') }}"
                             class="input-text" />
+                        @error('nomer_application')
+                            <span style="color: red;">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="input-wrapper">
                         <label for="first-name" class="input-label">{{ getTranslation('key') }} </label>
                         <input type="text" id="first-name" name="key" placeholder="{{ getTranslation('key') }}"
                             value="{{ old('key') }}" class="input-text" />
+                        @error('nomer_application')
+                            <span style="color: red;">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="input-wrapper">
                         <button type="submit" class="btn"

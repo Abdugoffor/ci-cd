@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            @if ($errors->any())
+            {{-- @if ($errors->any())
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         @foreach ($errors->all() as $error)
@@ -22,9 +22,8 @@
                         @endforeach
                     });
                 </script>
-            @endif
+            @endif --}}
             @if (isset($notification) && !$errors->any())
-                
                 <div class="alert_static" id="alertBox">
                     <span>{{ $notification }}</span>
                     <button class="close" onclick="closeAlert()">×</button>
@@ -42,11 +41,15 @@
                 <div class="personal-info">{{ getTranslation('personal_info') }}</div>
                 <div class="group-additional">
                     <div class="input-group">
+
                         <div class="input-wrapper">
                             <label for="first-name" class="input-label">{{ getTranslation('passport-number') }}</label>
                             <input type="text" id="first-name" name="passport_number"
                                 placeholder="{{ getTranslation('passport-number') }}" value="{{ old('passport_number') }}"
                                 class="input-text" />
+                            @error('passport_number')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="input-wrapper">
@@ -60,6 +63,9 @@
                                 <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
                             </div>
+                            @error('passport_issue_date')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="input-wrapper">
@@ -74,11 +80,15 @@
                                 <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
                             </div>
+                            @error('passport_expiry_date')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
                 <div class="group-additional">
                     <div class="input-group">
+
                         <div class="input-wrapper">
                             <label for="date-of-issue" class="input-label">{{ getTranslation('arrival-date') }}</label>
                             <div class="date-container" onclick="openDatePicker('arrival_details')">
@@ -89,8 +99,11 @@
                                 <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
                             </div>
-
+                            @error('arrival_details')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
                         </div>
+
                         <div class="input-wrapper">
                             <label for="date-of-expiry" class="input-label">{{ getTranslation('departure-date') }}</label>
                             <div class="date-container" onclick="openDatePicker('departure_details')">
@@ -101,8 +114,11 @@
                                 <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
                                     class="calendar-icon" />
                             </div>
-
+                            @error('departure_details')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
                         </div>
+
                         <div class="input-wrapper">
                             <div class="input-wrapper">
                                 <label for="first-name"
@@ -110,7 +126,9 @@
                                 <input type="text" id="first-name" name="passport_issuing_authority"
                                     placeholder="{{ getTranslation('passport-issuing-authority') }}"
                                     value="{{ old('passport_issuing_authority') }}" class="input-text" />
-
+                                @error('passport_issuing_authority')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -129,6 +147,9 @@
                                 <option value="yes">{{ getTranslation('yes') }}</option>
                                 <option value="no">{{ getTranslation('no') }}</option>
                             </select>
+                            @error('pcr_test_details')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="input-wrapper">
@@ -146,12 +167,18 @@
                                         {{ getLocale($category->name) }}</option>
                                 @endforeach
                             </select>
+                            @error('accreditation_category_id')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="input-wrapper">
                             <label for="first-name" class="input-label">{{ getTranslation('phone') }}</label>
                             <input type="text" id="first-name" value="{{ old('phone') }}" name="phone"
                                 placeholder="{{ getTranslation('phone') }}" class="input-text" />
+                            @error('phone')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
 
                         </div>
 
@@ -175,6 +202,9 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @error('country_id')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="input-wrapper">
@@ -192,6 +222,9 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @error('accommodation_details')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="radio-group radio-group-2">
@@ -211,6 +244,9 @@
                                     {{ getTranslation('no') }}
                                 </label>
                             </div>
+                            @error('requires_visa')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -240,6 +276,9 @@
 
                                 </div>
                             </div>
+                            @error('passport_copy')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
                         </div>
 
 
@@ -265,6 +304,9 @@
 
                                 </div>
                             </div>
+                            @error('photo')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>

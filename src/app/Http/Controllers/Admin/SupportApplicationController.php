@@ -80,6 +80,8 @@ class SupportApplicationController extends Controller
 
         $data['user_id'] = auth()->user()->id;
 
+        $data['status'] = 'pending';
+
         Participant::create($data);
 
         return redirect()->route('support-applications.index')->with('notification', getTranslation('notification'));

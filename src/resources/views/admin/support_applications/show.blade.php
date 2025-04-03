@@ -241,10 +241,10 @@
                                                     {{ getTranslation('acceptance') }}
                                                 </a>
                                                 <!-- Canceled tugmasi: Modalni ochadi -->
-                                                <span href="#" class="dropdown-item canceled-btn" data-toggle="modal"
+                                                {{-- <span href="#" class="dropdown-item canceled-btn" data-toggle="modal"
                                                     data-target="#cancelModal{{ $model->id }}">
                                                     <i class="icon-cross2 text-danger"></i>{{ getTranslation('canceled') }}
-                                                </span>
+                                                </span> --}}
                                             </div>
                                         </div>
                                     </div>
