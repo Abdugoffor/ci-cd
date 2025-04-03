@@ -7,22 +7,13 @@
             <div class="register-personal-top" style="margin-bottom: 30px">
                 <h1>{{ getTranslation('register_for_accreditation') }}</h1>
                 <div>
-                    <img src="{{ asset('frontend/assets/register-page/chess-logo.svg') }}" alt="chess-logo" />
+                    <img src="/{{ 'frontend/assets/register-page/chess-logo.svg' }}" alt="chess-logo" />
                     <div class="register-logo-text">
-                        <span>{{ getLocale($tournament->name) }}</span>
-                        <strong>{{ getLocale($tournament->title) }}</strong>
+                        {{-- <span>{{ getLocale($tournament->name) }}</span>
+                        <strong>{{ getLocale($tournament->title) }}</strong> --}}
                     </div>
                 </div>
             </div>
-            {{-- @if ($errors->any())
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        @foreach ($errors->all() as $error)
-                            toast.create("{{ $error }}", 'error')
-                        @endforeach
-                    });
-                </script>
-            @endif --}}
 
             @if (isset($fide_id_success) && !$errors->any())
                 <div class="alert_static" id="alertBox">
@@ -40,12 +31,11 @@
                 @csrf
                 <div class="personal-info">{{ getTranslation('personal_info') }}</div>
                 <div class="input-section1 ">
-                    
+
                     <div class="input-group input-groupGrid">
                         <div class="input-wrapper">
-                            <input type="hidden" name="tournament_id" value="{{ $tournament->id }}" id="">
                             <label for="first-name" class="input-label">{{ getTranslation('name') }}
-                                <span>({{ getTranslation('in_passport') }})</span></label>
+                                <span>( {{ getTranslation('in_passport') }})</span></label>
                             <input type="text" id="first-name" name="first_name" value="{{ old('first_name') }}"
                                 class="input-text" placeholder="{{ getTranslation('name') }}" />
                             @error('first_name')
@@ -53,10 +43,10 @@
                             @enderror
 
                         </div>
-                    
+
                         <div class="input-wrapper">
-                            <label for="last-name"
-                                class="input-label">{{ getTranslation('last-name') }}<span>({{ getTranslation('in_passport') }})</span></label>
+                            <label for="last-name" class="input-label">{{ getTranslation('last-name') }}<span>(
+                                    {{ getTranslation('in_passport') }})</span></label>
                             <input type="text" id="last-name" name="last_name" value="{{ old('last_name') }}"
                                 class="input-text" placeholder="{{ getTranslation('last-name') }}" />
                             @error('last_name')
@@ -82,7 +72,7 @@
                                     value="{{ old('date_of_birth') }}" class="date-input"
                                     onchange="updateDate('date_of_birth')" oninput="updateDate('date_of_birth')" />
                                 <span id="date_of_birthPlaceholder" class="placeholder">DD/MM/YYYY</span>
-                                <img src="{{ asset('frontend/assets/register-page/calendar-icon.svg') }}"
+                                <img src="/{{ 'frontend/assets/register-page/calendar-icon.svg' }}"
                                     class="calendar-icon" />
                             </div>
                             @error('date_of_birth')
@@ -90,8 +80,22 @@
                             @enderror
                         </div>
                     </div>
-                    
+
                     <div class="input-group input-groupGrid">
+                        <div class="input-wrapper">
+                            <label for="first-name" class="input-label">{{ getTranslation('competitions') }}</label>
+                            <select name="tournament_id" class="input-select">
+                                <option></option>
+                                @foreach ($tournaments as $tournament)
+                                    <option {{ old('tournament_id') == $tournament->id ? 'selected' : '' }}
+                                        value="{{ $tournament->id }}">{{ getLocale($tournament->name) }}</option>
+                                @endforeach
+                            </select>
+                            @error('tournament_id')
+                                <p style="color: red;">{{ $message }}</p>
+                            @enderror
+
+                        </div>
 
                         <div class="radio-group">
                             <label for="gender" class="input-label">{{ getTranslation('gender') }}</label>

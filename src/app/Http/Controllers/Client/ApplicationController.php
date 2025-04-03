@@ -21,7 +21,7 @@ use Illuminate\Support\Str;
 
 class ApplicationController extends Controller
 {
-    public function application(FideIdRequest $request, Tournament $tournament)
+    public function application(FideIdRequest $request)
     {
         session()->forget('player');
 
@@ -45,11 +45,9 @@ class ApplicationController extends Controller
 
                     session()->put('player', $player);
 
-                    if ($tournament->status == 'pending') {
+                    $tournaments = Tournament::where('status', 'pending')->get();
 
-                        return view('client.applications.application', ['tournament' => $tournament, 'fide_id_success' => getTranslation('fide_id_success')]);
-                    }
-                    return redirect('/');
+                    return view('client.applications.application', ['tournaments' => $tournaments, 'fide_id_success' => getTranslation('fide_id_success')]);
 
                 } else {
                     return back()->withErrors(['fide_id' => getTranslation('fide_id')])->withInput();
@@ -60,16 +58,14 @@ class ApplicationController extends Controller
             }
         }
 
-        if ($tournament->status == 'pending') {
+        $tournaments = Tournament::where('status', 'pending')->get();
 
-            return view('client.applications.application', ['tournament' => $tournament]);
-        }
-        return redirect('/');
+        return view('client.applications.application', ['tournaments' => $tournaments]);
+
     }
     public function store(ApplicationStoreRequest $request)
     {
         $data = $request->all();
-
         $key = Str::random(8);
 
         $data['fide_id'] = session()->get('player')['id_number'] ?? null;
@@ -99,9 +95,6 @@ class ApplicationController extends Controller
             Log::info("Email sent successfully to: {$e->getMessage()}");
         }
 
-        // return redirect()->route('application.verify.email', ['model' => $model->id, 'message' => getTranslation('message')]);
-        // return redirect()->route('application.verify.email', ['model' => $model->id])
-        //     ->with('message', getTranslation('message'));
         return redirect()->route('application.verify.email', [
             'model'   => $model->id,
             'message' => urlencode(getTranslation('message') ?? 'Emailga kod yuborildi!'),
