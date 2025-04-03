@@ -21,8 +21,8 @@
             ">
                     <tr>
                         <td style="text-align: left; padding-bottom: 52px">
-                            <img src="{{ $message->embed(public_path('frontend/assets/1.png')) }}" alt="FIDE Logo" width="51" height="50"
-                                style="display: block" />
+                            <img src="{{ $message->embed(public_path('frontend/assets/1.png')) }}" alt="FIDE Logo"
+                                width="51" height="50" style="display: block" />
                             <div style="font-size: 9.5px; color: #00363f">
                                 46th FIDE CHESS OLYMPIAD
                             </div>
@@ -69,12 +69,12 @@
                             </h1>
                             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
                                 <h2 style="color: #121d1f; font-size: 18px; font-weight: 600">
-                                    ID Заявки: {{ $data['participant_id'] }}
+                                    Номер Заявки: {{ $data['participant_id'] }}
                                 </h2>
                             </div>
                             <div style="display: flex; align-items: center; gap: 12px;">
                                 <h2 style="color: #121d1f; font-size: 18px; font-weight: 600">
-                                    Ключ: {{ $data['key'] }}
+                                    Логин: {{ $data['key'] }}
                                 </h2>
                             </div>
                         </td>
