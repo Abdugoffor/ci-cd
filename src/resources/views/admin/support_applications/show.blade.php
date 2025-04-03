@@ -235,7 +235,7 @@
                                                     class="icon-menu7"></i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <!-- Qabul qilish tugmasi -->
-                                                <a href="{{ route('application.status', [$model->id, 'approved'], false) }}"
+                                                <a href="{{ route('application.status.applicant', [$model->id, 'approved'], false) }}"
                                                     class="dropdown-item">
                                                     <i class="icon-checkmark3 text-success"></i>
                                                     {{ getTranslation('acceptance') }}

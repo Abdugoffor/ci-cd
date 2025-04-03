@@ -159,7 +159,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
 
             Route::resource('/support-applications', SupportApplicationController::class);
             Route::get('/support-applications-search', [SupportApplicationController::class, 'search'])->name('support-applications.search');
-            Route::get('/applications-status/{participant}/{ststus}', [AdminAppController::class, 'status'])->name('application.status');
+            Route::get('/applications-status/{participant}/{ststus}', [AdminAppController::class, 'status'])->name('application.status.applicant');
         });
 
     });
