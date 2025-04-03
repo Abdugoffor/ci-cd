@@ -109,7 +109,7 @@ class ApplicationController extends Controller
         }
 
         $tournament = Tournament::findOrFail($model->tournament_id);
-        $message    = urldecode($message); // URL'dan kelgan xabarni dekodlash
+        $message    = urldecode($message); 
 
         return view('client.verify_email', [
             'model'           => $model,
