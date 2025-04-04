@@ -5,9 +5,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
 <link rel="stylesheet" href="style.css" />
-<style>
-
-</style>
 @section('content')
     <main class="container montserrat">
         <section class="register-personal">
@@ -24,7 +21,7 @@
             </div>
         </section>
         <section class="register-personal mb-5">
-            <h2 class="section-title">{{ getTranslation('ask_question') }}</h2>
+            <h2 align="center">{{ getTranslation('ask_question') }}</h2>
             <div class="accordion mb-5 mt-5" id="faqAccordion">
                 @foreach ($models as $key => $model)
                     <div class="accordion-item">

@@ -3,7 +3,7 @@
 @endsection
 @section('content')
     <main class="container montserrat">
-        <section class="news container">
+        <section class="news container news-all-container">
             <section class="register-personal">
                 <div class="breadcrumb">
                     <a href="/"><svg width="22" height="23" viewBox="0 0 22 23" fill="none"

@@ -15,9 +15,9 @@
                 <div>{{ getTranslation('back_to_homepage') }}</div>
             </div>
         </section>
-        <section class="news container" style="margin-top: 10px; !important">
+        <section class="news container news-all-container">
             <h1>{{ getTranslation('latest_news') }}</h1>
-            <div class="news-cards"  style="margin-top: 10px; !important">
+            <div class="news-cards">
                 @foreach ($news as $new)
                     <!-- news update start  -->
                     <div class="news-card">

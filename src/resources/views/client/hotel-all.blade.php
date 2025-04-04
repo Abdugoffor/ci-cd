@@ -15,7 +15,7 @@
                 <div>{{ getTranslation('back_to_homepage') }}</div>
             </div>
         </section>
-        <section class="news container">
+        <section class="news container news-all-container">
             <h1>{{ getTranslation('hotel_title') }}</h1>
             <div class="news-cards">
                 @foreach ($hotels as $hotel)

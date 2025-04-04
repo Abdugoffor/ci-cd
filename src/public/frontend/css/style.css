@@ -625,7 +625,12 @@ body {
 /* News section */
 
 .news {
+    padding: 70px 0 120px 0;
+}
+
+.news-all-container {
     padding: 0px 0 120px 0;
+
 }
 
 .news-all {
@@ -1826,7 +1831,7 @@ body {
     line-height: 182%;
     /* 25.48px */
     letter-spacing: -0.14px;
-    margin-bottom: 35px;
+    margin-bottom: 25px;
 }
 
 /* news page */
