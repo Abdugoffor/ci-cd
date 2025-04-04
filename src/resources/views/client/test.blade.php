@@ -12,7 +12,11 @@
             margin: 0;
             background: #f5f5f5;
             min-height: 100vh;
-            width: fit-content;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .badge-container {
@@ -331,8 +335,10 @@
             justify-content: center;
             flex-direction: column;
           ">
-                <div style="height: 255px; width: 241px; border: 1px solid black; display: flex; align-items: center; justify-content: center">
-                    <ul style="list-style-type: none; padding: 0; display: flex; flex-direction: column; align-items: center">
+                <div
+                    style="height: 255px; width: 241px; border: 1px solid black; display: flex; align-items: center; justify-content: center">
+                    <ul
+                        style="list-style-type: none; padding: 0; display: flex; flex-direction: column; align-items: center">
                         @foreach ($participant->zones as $zone)
                             <li
                                 style="

@@ -62,7 +62,7 @@
                                                 id="select_date">
                                                 <option></option>
                                                 @foreach ($accreditationCategories as $categories)
-                                                    <option value="{{ $categories->id }}">
+                                                    <option {{ old('accreditation_category_id', request('accreditation_category_id')) == $categories->id ? 'selected' : '' }} value="{{ $categories->id }}">
                                                         {{ getLocale($categories->name) }}
                                                     </option>
                                                 @endforeach

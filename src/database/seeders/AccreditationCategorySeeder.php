@@ -14,6 +14,16 @@ class AccreditationCategorySeeder extends Seeder
         $categories = [
             [
                 'name'  => [
+                    'uz'      => 'O`yinchi',
+                    'ru'      => 'Игрок',
+                    'en'      => 'Player',
+                    'default' => 'Player',
+                ],
+                'slug'  => 'player',
+                'color' => '34deg, #29B7D0 -52.14%, #064B5A 142.1%',
+            ],
+            [
+                'name'  => [
                     'uz'      => 'FIDE',
                     'ru'      => 'FIDE',
                     'en'      => 'FIDE',

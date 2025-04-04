@@ -32,7 +32,7 @@
                                 </svg>
                                 {{ $hotel->location }}
                             </div>
-                            <div class="news-card__content" style="min-height: 500px; !important">
+                            <div class="news-card__content" >
                                 <div>
                                     {{ getLocale($hotel->title) }}
                                 </div>

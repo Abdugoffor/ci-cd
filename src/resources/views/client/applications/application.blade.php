@@ -2,7 +2,7 @@
 @section('banner')
 @endsection
 @section('content')
-    <main class="container">
+    <main class="container montserrat">
         <section class="register-personal">
             <div class="register-personal-top" style="margin-bottom: 30px">
                 <h1>{{ getTranslation('register_for_accreditation') }}</h1>
@@ -37,7 +37,7 @@
                             <input type="text" id="first-name" name="first_name" value="{{ old('first_name') }}"
                                 class="input-text" placeholder="{{ getTranslation('name') }}" />
                             @error('first_name')
-                                <p style="color: red; font-size:12px">{{ $message }}</p>
+                                <p style="color: red; font-size:12px;font-weight: 500">{{ $message }}</p>
                             @enderror
 
                         </div>
@@ -48,7 +48,7 @@
                             <input type="text" id="last-name" name="last_name" value="{{ old('last_name') }}"
                                 class="input-text" placeholder="{{ getTranslation('last-name') }}" />
                             @error('last_name')
-                                <p style="color: red; font-size:12px">{{ $message }}</p>
+                                <p style="color: red; font-size:12px;font-weight: 500">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                             <input type="email" id="email" name="email" value="{{ old('email') }}"
                                 placeholder="{{ getTranslation('email') }}" class="input-text" />
                             @error('email')
-                                <p style="color: red; font-size:12px">{{ $message }}</p>
+                                <p style="color: red; font-size:12px;font-weight: 500">{{ $message }}</p>
                             @enderror
                         </div>
 
@@ -74,7 +74,7 @@
                                     class="calendar-icon" />
                             </div>
                             @error('date_of_birth')
-                                <p style="color: red; font-size:12px">{{ $message }}</p>
+                                <p style="color: red; font-size:12px;font-weight: 500">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                                 @endforeach
                             </select>
                             @error('tournament_id')
-                                <p style="color: red; font-size:12px">{{ $message }}</p>
+                                <p style="color: red; font-size:12px;font-weight: 500">{{ $message }}</p>
                             @enderror
 
                         </div>
@@ -112,7 +112,7 @@
                                 </label>
                             </div>
                             @error('gender')
-                                <p style="color: red; font-size:12px">{{ $message }}</p>
+                                <p style="color: red; font-size:12px;font-weight: 500">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -164,7 +164,7 @@
 
                 <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
                 @error('g-recaptcha-response')
-                    <p style="color: red; font-size:12px">{{ $message }}</p>
+                    <p style="color: red; font-size:12px;font-weight: 500">{{ $message }}</p>
                 @enderror
 
                 <button type="submit" class="btn btn-application">{{ getTranslation('add') }}</button>
