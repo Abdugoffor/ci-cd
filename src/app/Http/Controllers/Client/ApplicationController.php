@@ -87,19 +87,22 @@ class ApplicationController extends Controller
         ];
 
         cache()->put('email_verification_' . $model->email, $verificationCode, now()->addMinutes(5));
+        
         session()->put('model_id', $model->id);
 
         try {
+            
             dispatch(new VerifyEmailJob($model->email, $data));
+            Log::info("Email job dispatched for: {$model->email}");
+
         } catch (\Exception $e) {
-            Log::info("Email sent successfully to: {$e->getMessage()}");
+            Log::error("Email job dispatch failed: {$e->getMessage()}");
         }
 
         return redirect()->route('application.verify.email', [
             'model'   => $model->id,
             'message' => getTranslation('message'),
         ]);
-
     }
 
     public function applicationVerifyEmail(Participant $model, $message)

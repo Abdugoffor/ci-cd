@@ -1238,6 +1238,24 @@ class TranslationSeeder extends Seeder
                     'default' => "Emialga yuborilga id va keyni kiriting",
                 ],
             ],
+            [
+                'slug' => 'yes_vise',
+                'name' => [
+                    'uz'      => "Visa kerak",
+                    'ru'      => "Visa keraku",
+                    'en'      => "Visa kerak",
+                    'default' => "Visa kerak",
+                ],
+            ],
+            [
+                'slug' => 'no_visa',
+                'name' => [
+                    'uz'      => "Виза не требуется.",
+                    'ru'      => "Виза не требуется.",
+                    'en'      => "Виза не требуется.",
+                    'default' => "Виза не требуется.",
+                ],
+            ],
         ];
 
         foreach ($translations as $translation) {

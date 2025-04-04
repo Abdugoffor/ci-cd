@@ -32,8 +32,8 @@
 
                     <div class="input-group input-groupGrid">
                         <div class="input-wrapper">
-                            <label for="first-name" class="input-label">{{ getTranslation('name') }}
-                                <span>( {{ getTranslation('in_passport') }})</span></label>
+                            <label for="first-name" class="input-label">{{ getTranslation('name') }} 
+                                <span>( {{ getTranslation('in_passport') }} )</span></label>
                             <input type="text" id="first-name" name="first_name" value="{{ old('first_name') }}"
                                 class="input-text" placeholder="{{ getTranslation('name') }}" />
                             @error('first_name')
@@ -43,8 +43,8 @@
                         </div>
 
                         <div class="input-wrapper">
-                            <label for="last-name" class="input-label">{{ getTranslation('last-name') }}<span>(
-                                    {{ getTranslation('in_passport') }})</span></label>
+                            <label for="last-name" class="input-label">{{ getTranslation('last-name') }}<span> (
+                                    {{ getTranslation('in_passport') }} )</span></label>
                             <input type="text" id="last-name" name="last_name" value="{{ old('last_name') }}"
                                 class="input-text" placeholder="{{ getTranslation('last-name') }}" />
                             @error('last_name')

@@ -20,37 +20,59 @@ class AppServiceProvider extends ServiceProvider
         App::alias('Excel', Excel::class);
     }
 
-    
     public function boot(): void
     {
-        // HTTPS majburiy qilish
         if (config('app.env') !== 'local') {
             URL::forceScheme('https');
         }
 
-        // Barcha sahifalarda `siteSettings` va `languages` mavjud bo'lishi
-        View::composer('*', function ($view) {
-            $view->with([
-                'languages'    => getLanguage(),
-                'siteSettings' => cache()->remember('site_settings', 60 * 60, function () {
-                    return Media::where('is_active', true)->orderByDesc('id')->first();
-                }),
-            ]);
-        });
+        // View::composer('*', function ($view) {
+        //     $view->with([
+        //         'languages'    => getLanguage(),
+        //         'siteSettings' => cache()->remember('site_settings', 60 * 60, function () {
+        //             return Media::where('is_active', true)->orderByDesc('id')->first();
+        //         }),
+        //     ]);
+        // });
 
-        // Admin panel uchun alohida `View::composer`
+        // View::composer('layouts.admin', function ($view) {
+        //     $view->with('languages', getLanguage());
+        // });
+
+        // View::composer(['layouts.client', 'client.index'], function ($view) {
+        //     $view->with('menus', cache()->remember('menus', 60 * 60, function () {
+        //         return Menyu::where('is_active', true)->orderByDesc('id')->limit(5)->get();
+        //     }));
+        // });
+
         View::composer('layouts.admin', function ($view) {
             $view->with('languages', getLanguage());
         });
 
-        // Faqat `client` sahifalarida `menus` qo'shish
-        View::composer(['layouts.client', 'client.index'], function ($view) {
-            $view->with('menus', cache()->remember('menus', 60 * 60, function () {
-                return Menyu::where('is_active', true)->orderByDesc('id')->limit(5)->get();
-            }));
+        View::composer('layouts.client', function ($view) {
+
+            $menus = Menyu::where('is_active', true)->orderByDesc('id')->limit(5)->get();
+
+            $languages = getLanguage();
+
+            $siteSettings = Media::where('is_active', true)->orderByDesc('id')->first();
+
+            $view->with([
+                'menus'        => $menus,
+                'languages'    => $languages,
+                'siteSettings' => $siteSettings,
+            ]);
         });
 
-        // Bootstrap uchun pagination
+        View::composer('client.index', function ($view) {
+
+            $siteSettings = Media::where('is_active', true)->orderByDesc('id')->first();
+
+            $view->with([
+                'siteSettings' => $siteSettings,
+            ]);
+        });
+
         Paginator::useBootstrapFive();
         Paginator::useBootstrapFour();
     }

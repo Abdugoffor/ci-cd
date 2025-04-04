@@ -11,9 +11,6 @@ class VerifyEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
     public $data;
 
     public function __construct($data)
@@ -21,9 +18,6 @@ class VerifyEmail extends Mailable
         $this->data = $data;
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope
     {
         return new Envelope(
@@ -31,21 +25,14 @@ class VerifyEmail extends Mailable
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
     public function content(): Content
     {
         return new Content(
             view: 'sendEmail.client.verify_email',
+            with: ['data' => $this->data]
         );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
     public function attachments(): array
     {
         return [];
