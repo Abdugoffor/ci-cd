@@ -72,6 +72,14 @@ class AppServiceProvider extends ServiceProvider
                 'siteSettings' => $siteSettings,
             ]);
         });
+        View::composer('client.test', function ($view) {
+
+            $siteSettings = Media::where('is_active', true)->orderByDesc('id')->first();
+
+            $view->with([
+                'siteSettings' => $siteSettings,
+            ]);
+        });
 
         Paginator::useBootstrapFive();
         Paginator::useBootstrapFour();

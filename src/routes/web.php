@@ -106,7 +106,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
             Route::resource('/menus', MenyuController::class);
             Route::get('/menus-status/{menyu}', [MenyuController::class, 'status'])->name('menus.status');
             Route::get('/menus-search', [MenyuController::class, 'search'])->name('menus.search');
-           
+
             Route::resource('/zones', ZoneController::class);
             Route::get('/sub-zones-view/{zone}', [ZoneController::class, 'viewSub'])->name('sub-zones.view');
             Route::get('/sub-zones-create/{zone}', [ZoneController::class, 'createSub'])->name('sub-zones.create');
@@ -166,4 +166,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
 
     Route::get('/badge-verify/{badges}', [BadgesController::class, 'verify'])->name('badges.verify');
 
+});
+Route::get('/phpinfo', function () {
+    phpinfo();
 });

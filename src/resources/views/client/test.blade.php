@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         body {
-            margin: 0;
+            margin: 0 auto;
             background: #f5f5f5;
             min-height: 100vh;
             width: fit-content;
@@ -95,87 +95,49 @@
               height: 150px;
               display: flex;
               width: 100%;
-              justify-content: space-between;
+              justify-content: space-around;
               align-items: center;
             ">
-                    <div class="logo"
-                        style="
-                position: relative;
-                width: 40%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-              ">
-                        <img src="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}" alt="logo"
-                            style="width: 100px; height: 100px; object-fit: contain" />
-                    </div>
-                    <div class="header-line"
-                        style="
-                width: 2px;
-                height: 100%;
-                background: rgba(0, 54, 63, 0.25);
-              ">
+                    <div class="nav-left" style="    display: flex;
+    align-items: center;
+    gap: 20px;">
+                        <div class="logo-wrapper" style="  display: flex;
+    align-items: center;
+    gap: 12px;">
+                            <img src="/frontend/assets/header_banner/chess_logo.svg" alt="Chess Olympiad 2025"
+                                style="  width: 70px;
+    height: 80px;
+    object-fit: contain;" />
+
+                            <div class="logo-text"
+                                style="  font-size: 9.575px;
+    font-style: normal;
+    font-weight: 400;">
+                                <div>{{ getLocale($siteSettings?->name) ?: 'Chess Olympiad' }}</div>
+                                <strong
+                                    style="font-size: 13.88px;">{{ getLocale($siteSettings?->title) ?: 'Chess Olympiad' }}</strong>
+                            </div>
+                        </div>
+                        <div class="nav-line"
+                            style="   height: 49.8px;
+    width: 1.9px;
+    background-color: #00363f;"></div>
+                        <img class="fide-logo" style=" width: 60px;
+    height: 60px;
+    object-fit: contain;"
+                            src="{{ asset('frontend/assets/header_banner/fide.svg') }}" alt="fide" />
                     </div>
                     <div class="header-right"
                         style="
                 display: flex;
                 flex-direction: column;
-                width: 60%;
                 margin-left: 20px;
               ">
                         <div style="display: flex; align-items: center; gap: 20px">
-                            <div style="position: relative; margin-top: 5px">
-                                <img src="{{ asset('frontend/assets/header_banner/fide.svg') }}" alt="sponsor1"
-                                    style="width: 100%; height: 50px; object-fit: contain" />
-                            </div>
-                            <div style="position: relative; margin-top: 5px">
+                            <div style="position: relative; margin-top: 5px;">
                                 <img src="{{ asset($participant->qk_code_path) }}" alt="sponsor2"
-                                    style="width: 100%; height: 50px; object-fit: contain" />
+                                    style="width: 100%; height: 60px; object-fit: contain" />
                             </div>
-                        </div>
-                        <div class="header-right-bottom">
-                            <div
-                                style="
-                    color: #205f6a;
-                    font-size: 10px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: normal;
-                  ">
-                                {{ getLocale(optional($participant->tournament)->name) }}
-                            </div>
-                            <div
-                                style="
-                    color: #00363f;
-                    font-size: 14.769px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: normal;
-                    letter-spacing: 0.886px;
-                    margin: 5px 0;
-                  ">
-                                {{ getLocale(optional($participant->tournament)->category->name) }}
-                            </div>
-                            <span
-                                style="
-                    color: #0e3f47;
-                    font-size: 11.487px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: normal;
-                    letter-spacing: -0.23px;
-                    display: flex;
-                  ">{{ optional($participant->tournament)->country->label_en }}</span>
-                            <span
-                                style="
-                    color: #0e3f47;
-                    font-size: 11.487px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: normal;
-                    letter-spacing: -0.23px;
-                    display: flex;
-                  ">{{ optional($participant->tournament)->start_date->format('Y') }}</span>
                         </div>
                     </div>
                 </div>
@@ -219,7 +181,7 @@
                     line-height: 102%;
                     letter-spacing: 1.378px;
                     text-align: center;
-                  ">{{ optional($participant->country)->name }}</span>
+                  ">{{ optional($participant->country)->label_en }}</span>
                         </div>
                         <div class="block-right" style="display: flex; flex-direction: column; gap: 15px">
                             <div class="block-right-top"
@@ -337,12 +299,13 @@
             flex-direction: column;
           ">
                 <div
-                    style="height: 255px; width: 241px; border: 1px solid black; padding: 30px; display: flex; align-items: center; justify-content: center">
+                    style="height: 255px; width: 241px; border: 1px solid black; padding: 30px; display: flex; justify-content: center">
                     <div style="width: 100%; display: flex; flex-direction: column; gap: 15px; align-items: center;">
-                        @foreach ($participant->zones as $zone)
-                            @if ($loop->index == 0)
-                                <div
-                                    style="
+                        @if ($participant->zones && count($participant->zones) > 0)
+                            @foreach ($participant->zones as $zone)
+                                @if ($loop->index == 0)
+                                    <div
+                                        style="
                                     width: 100%;
                                     background: #176670;
                                     color: white;
@@ -354,18 +317,33 @@
                                     margin-bottom: 5px;
                                     text-transform: uppercase;
                                 ">
-                                    {{ $zone->title }}
-                                </div>
-                            @else
-                                @if ($loop->index % 2 == 1)
-                                    <div
-                                        style="
+                                        {{ $zone->title }}
+                                    </div>
+                                @else
+                                    @if ($loop->index % 2 == 1)
+                                        <div
+                                            style="
                                         display: grid;
                                         grid-template-columns: 1fr auto 1fr;
                                         gap: 10px;
                                         align-items: center;
                                         width: 100%;
                                     ">
+                                            <div
+                                                style="
+                                            background: #f5f5f5;
+                                            padding: 5px 10px;
+                                            border-radius: 4px;
+                                            text-align: center;
+                                            font-size: 16px;
+                                            text-transform: uppercase;
+                                            font-weight: 500;
+                                        ">
+                                                {{ $zone->title }}
+                                            </div>
+                                            <div style="color: #176670; font-weight: bold;">|</div>
+                                    @endif
+                                    @if ($loop->index % 2 == 0)
                                         <div
                                             style="
                                             background: #f5f5f5;
@@ -378,27 +356,13 @@
                                         ">
                                             {{ $zone->title }}
                                         </div>
-                                        <div style="color: #176670; font-weight: bold;">|</div>
-                                @endif
-                                @if ($loop->index % 2 == 0)
-                                    <div
-                                        style="
-                                            background: #f5f5f5;
-                                            padding: 5px 10px;
-                                            border-radius: 4px;
-                                            text-align: center;
-                                            font-size: 16px;
-                                            text-transform: uppercase;
-                                            font-weight: 500;
-                                        ">
-                                        {{ $zone->title }}
-                                    </div>
                     </div>
                     @endif
                     @endif
                     @endforeach
                     @if (count($participant->zones) % 2 == 0)
                 </div>
+                @endif
                 @endif
             </div>
         </div>

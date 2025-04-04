@@ -16,7 +16,8 @@ RUN apk add --no-cache \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN echo "upload_max_filesize = 50M" >> /usr/local/etc/php/php.ini \
-   && echo "post_max_size = 50M" >> /usr/local/etc/php/php.ini
+   && echo "post_max_size = 50M" >> /usr/local/etc/php/php.ini \
+   && echo "memory_limit = 512M" >> /usr/local/etc/php/php.ini
 
 WORKDIR /var/www/laravel
 

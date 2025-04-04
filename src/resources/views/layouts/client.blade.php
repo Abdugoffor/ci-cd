@@ -193,6 +193,7 @@
         </nav>
         @yield('banner')
     </header>
+
     @yield('content')
     <footer class="footer">
         <div class="container">

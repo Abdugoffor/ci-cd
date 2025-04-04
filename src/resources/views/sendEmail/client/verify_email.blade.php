@@ -93,7 +93,7 @@
                       line-height: 167%;
                       letter-spacing: -0.18px;
                       text-decoration: none;
-                    ">{{ $data['link'] }}</a>.
+                    ">api.uzchess.sriss.uz</a>
                         </td>
                     </tr>
 
