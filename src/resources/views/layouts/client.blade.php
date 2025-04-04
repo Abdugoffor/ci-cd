@@ -22,8 +22,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <link rel="stylesheet" href="/frontend/css/style.css?v=1.2" />
-    <link rel="stylesheet" href="/frontend/css/media.css?v=1.2" />
+    <link rel="stylesheet" href="/frontend/css/style.css?v=1.3" />
+    <link rel="stylesheet" href="/frontend/css/media.css?v=1.3" />
 
 </head>
 <style>
