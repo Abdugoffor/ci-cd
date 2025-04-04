@@ -43,7 +43,7 @@
                                     <th class="text-center">{{ getTranslation('competition-type') }}</th>
                                     <th class="text-center">{{ getTranslation('country') }}</th>
                                     <th class="text-center">{{ getTranslation('start-of-registration') }}</th>
-                                    <th class="text-center">{{ getTranslation('start') }}</th>
+                                    <th class="text-center">{{ getTranslation('view') }}</th>
                                     <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
                                     <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                 </tr>
@@ -84,8 +84,17 @@
                                                 value="{{ old('registration_start', request('registration_start')) }}">
                                         </th>
                                         <th class="text-center">
-                                            <input type="date" class="form-control" name="start_date"
-                                                value="{{ old('start_date', request('start_date')) }}">
+                                            <select class="form-control custom-select" name="is_active" id="select_date">
+                                                <option value="">{{ getTranslation('all') }}</option>
+                                                <option value="true"
+                                                    {{ old('is_active', request('is_active')) === 'true' ? 'selected' : '' }}>
+                                                    {{ getTranslation('yes') }}
+                                                </option>
+                                                <option value="false"
+                                                    {{ old('is_active', request('is_active')) === 'false' ? 'selected' : '' }}>
+                                                    {{ getTranslation('no') }}
+                                                </option>
+                                            </select>
                                         </th>
                                         <th class="text-center">
                                             <select class="form-control custom-select" name="status" id="select_status">
@@ -104,7 +113,8 @@
                                                 </option>
                                             </select>
                                         </th>
-                                        <th class="text-center"><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                        <th class="text-center"><button
+                                                class="btn btn-teal">{{ getTranslation('search') }}</button></th>
                                     </tr>
                                 </form>
                             </thead>
@@ -135,8 +145,9 @@
                                             {{ $model->registration_start->format('d-m-Y') }}
                                         </td>
                                         <td>
-
-                                            {{ $model->start_date->format('d-m-Y') }}
+                                            <span class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
+                                                {{ $model->is_active ? getTranslation('yes') : getTranslation('no') }}
+                                            </span>
                                         </td>
                                         <td>
                                             <span class="badge badge-teal badge-pill ml-auto">
@@ -191,7 +202,8 @@
                                                                 data-dismiss="modal">&times;</button>
                                                         </div>
 
-                                                        <form action="{{ route('tournaments.destroy', $model->id, false) }}"
+                                                        <form
+                                                            action="{{ route('tournaments.destroy', $model->id, false) }}"
                                                             method="post">
                                                             @csrf
                                                             @method('DELETE')

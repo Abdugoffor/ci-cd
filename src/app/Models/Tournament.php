@@ -21,15 +21,17 @@ class Tournament extends Model
         "end_date",
         "logo",
         "status",
+        'is_active',
     ];
     protected $casts = [
         'name'               => 'array',
-        'title'               => 'array',
+        'title'              => 'array',
         'description'        => 'array',
         'registration_start' => 'date',
         'registration_end'   => 'date',
         'start_date'         => 'date',
         'end_date'           => 'date',
+        'is_active'          => 'boolean',
     ];
 
     public function country()

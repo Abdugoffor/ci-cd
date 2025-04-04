@@ -47,16 +47,8 @@ class TournamentController extends Controller
             $query->whereDate('registration_start', $request->registration_start);
         }
 
-        if ($request->filled('registration_end')) {
-            $query->whereDate('registration_end', $request->registration_end);
-        }
-
-        if ($request->filled('start_date')) {
-            $query->whereDate('start_date', $request->start_date);
-        }
-
-        if ($request->filled('end_date')) {
-            $query->whereDate('end_date', $request->end_date);
+        if ($request->filled('is_active')) {
+            $query->where('is_active', filter_var($request->is_active, FILTER_VALIDATE_BOOLEAN));
         }
 
         if ($request->filled('status')) {
@@ -69,9 +61,7 @@ class TournamentController extends Controller
             'category_id',
             'country_id',
             'registration_start',
-            'registration_end',
-            'start_date',
-            'end_date',
+            'is_active',
             'status',
         ]));
 

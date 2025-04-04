@@ -145,6 +145,15 @@
                                             class="img-thumbnail d-none" width="200">
                                     @endif
                                 </div>
+                                <!-- Is_active holat kaliti -->
+                                <div class="header-elements mt-3">
+                                    <label class="custom-control custom-switch custom-control-right">
+                                        <input type="hidden" name="is_active" value="0">
+                                        <input type="checkbox" name="is_active" class="custom-control-input"
+                                            value="1" {{ $tournament->is_active == 1 ? 'checked' : '' }}>
+                                        <span class="custom-control-label">{{ getTranslation('view') }}</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </fieldset>

@@ -105,6 +105,14 @@
                             <th>{{ getTranslation('change') }}</th>
                             <td>{{ $model->updated_at->format('d-m-Y, H:i') }}</td>
                         </tr>
+                        <tr>
+                            <th>{{ getTranslation('view') }}</th>
+                            <td>
+                                <span class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
+                                    {{ $model->is_active ? getTranslation('yes') : getTranslation('no') }}
+                                </span>
+                            </td>
+                        </tr>
                     </thead>
                 </table>
             </div>

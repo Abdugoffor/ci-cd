@@ -132,6 +132,14 @@
                                     <img id="imagePreview" src="" alt="imagePreview" class="img-thumbnail d-none"
                                         width="200">
                                 </div>
+                                <!-- Is_active holat kaliti -->
+                                <div class="header-elements mt-3">
+                                    <label class="custom-control custom-switch custom-control-right">
+                                        <input type="hidden" name="is_active" value="0" checked>
+                                        <input type="checkbox" name="is_active" class="custom-control-input" value="1">
+                                        <span class="custom-control-label">{{ getTranslation('view') }}</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </fieldset>

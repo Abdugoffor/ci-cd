@@ -53,9 +53,8 @@
         </div>
 
         <div class="navbar-brand text-center text-lg-left">
-            <a href="/" class="d-inline-block">
-                <img src="/backend/global_assets/images/logo_light.png" class="d-none d-sm-block" alt="">
-                <img src="/backend/global_assets/images/logo_icon_light.png" class="d-sm-none" alt="">
+            <a href="/" target="_blank" class="d-inline-block">
+                <span style="color: white; font-size: 15px;">International Chess Federation</span>
             </a>
         </div>
         <div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
@@ -121,7 +120,9 @@
                     <div class="sidebar-section-body">
                         <div class="media">
                             <a href="/" target="_blank" class="mr-3">
-                                <img src="{{ asset('frontend/assets/1.png') }}" class="rounded-circle" alt="">
+                                <img src="https://cdn-icons-png.flaticon.com/512/8664/8664801.png"
+                                    class="rounded-circle" alt="">
+                                {{-- <img src="{{ asset('frontend/assets/1.png') }}" class="rounded-circle" alt=""> --}}
                             </a>
 
                             <div class="media-body">

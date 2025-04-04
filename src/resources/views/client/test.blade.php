@@ -12,7 +12,7 @@
             margin: 0;
             background: #f5f5f5;
             min-height: 100vh;
-            width: 100%;
+            width: fit-content;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -55,6 +55,7 @@
             align-items: center;
             justify-content: center;
             margin: 0px;
+            margin-top: 10px;
         }
 
         .download-btn:hover {
@@ -136,7 +137,7 @@
                             <div
                                 style="
                     color: #205f6a;
-                    font-size: 9.846px;
+                    font-size: 10px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: normal;
@@ -336,30 +337,74 @@
             flex-direction: column;
           ">
                 <div
-                    style="height: 255px; width: 241px; border: 1px solid black; display: flex; align-items: center; justify-content: center">
-                    <ul
-                        style="list-style-type: none; padding: 0; display: flex; flex-direction: column; align-items: center">
+                    style="height: 255px; width: 241px; border: 1px solid black; padding: 30px; display: flex; align-items: center; justify-content: center">
+                    <div style="width: 100%; display: flex; flex-direction: column; gap: 15px; align-items: center;">
                         @foreach ($participant->zones as $zone)
-                            <li
-                                style="
-                                    font-size: 18px;
-                                    font-family: Times New Roman;
-                                    color: #333;
-                                    font-weight: bold;
-                                    margin-bottom: 10px;
+                            @if ($loop->index == 0)
+                                <div
+                                    style="
+                                    width: 100%;
+                                    background: #176670;
+                                    color: white;
+                                    padding: 8px 15px;
                                     text-align: center;
-                                    padding: 5px;
                                     border-radius: 5px;
-                                    transition: all 0.3s ease;
+                                    font-size: 22px;
+                                    font-weight: 600;
+                                    margin-bottom: 5px;
+                                    text-transform: uppercase;
                                 ">
-                                {{ $zone->title }} |
-                            </li>
-                        @endforeach
-                    </ul>
+                                    {{ $zone->title }}
+                                </div>
+                            @else
+                                @if ($loop->index % 2 == 1)
+                                    <div
+                                        style="
+                                        display: grid;
+                                        grid-template-columns: 1fr auto 1fr;
+                                        gap: 10px;
+                                        align-items: center;
+                                        width: 100%;
+                                    ">
+                                        <div
+                                            style="
+                                            background: #f5f5f5;
+                                            padding: 5px 10px;
+                                            border-radius: 4px;
+                                            text-align: center;
+                                            font-size: 16px;
+                                            text-transform: uppercase;
+                                            font-weight: 500;
+                                        ">
+                                            {{ $zone->title }}
+                                        </div>
+                                        <div style="color: #176670; font-weight: bold;">|</div>
+                                @endif
+                                @if ($loop->index % 2 == 0)
+                                    <div
+                                        style="
+                                            background: #f5f5f5;
+                                            padding: 5px 10px;
+                                            border-radius: 4px;
+                                            text-align: center;
+                                            font-size: 16px;
+                                            text-transform: uppercase;
+                                            font-weight: 500;
+                                        ">
+                                        {{ $zone->title }}
+                                    </div>
+                    </div>
+                    @endif
+                    @endif
+                    @endforeach
+                    @if (count($participant->zones) % 2 == 0)
                 </div>
+                @endif
             </div>
-            <div class="badge-number"
-                style="
+        </div>
+    </div>
+    <div class="badge-number"
+        style="
             height: 60.951px;
             background: #fff;
             display: inline-flex;
@@ -369,8 +414,8 @@
             height: 100px;
             overflow: hidden;
           ">
-                <div
-                    style="
+        <div
+            style="
               color: #23292c;
               font-size: 26.256px;
               font-style: normal;
@@ -378,11 +423,11 @@
               line-height: 102%;
               letter-spacing: 0.525px;
             ">
-                    Доп информация
-                </div>
-            </div>
-            <div class="badge-footer"
-                style="
+            Доп информация
+        </div>
+    </div>
+    <div class="badge-footer"
+        style="
             background: rgba(210, 231, 237, 0.56);
             display: flex;
             align-items: center;
@@ -392,19 +437,19 @@
             height: 94px;
             overflow: hidden;
           ">
-                @foreach ($partners as $partner)
-                    <img src="{{ asset($partner->photo) }}" alt="footer1"
-                        style="
+        @foreach ($partners as $partner)
+            <img src="{{ asset($partner->photo) }}" alt="footer1"
+                style="
               max-width: 73px;
               width: 100%;
               object-fit: contain;
               max-height: 44px;
               height: 100%;
             " />
-                @endforeach
+        @endforeach
 
-            </div>
-        </div>
+    </div>
+    </div>
     </div>
     <div class="download-btn" onclick="downloadPDF()">Скачать PDF</div>
 </body>

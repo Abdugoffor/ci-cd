@@ -22,9 +22,9 @@
             left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 12px;
-            max-width: 900px;
+            max-width: 800px;
             width: 90%;
-            height: 80vh;
+            height: 70vh;
             display: flex;
             flex-direction: column;
             background: white;

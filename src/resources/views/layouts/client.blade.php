@@ -22,7 +22,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <link rel="stylesheet" href="/frontend/css/style.css?v=1.1" />
+    <link rel="stylesheet" href="/frontend/css/style.css?v=1.2" />
+    <link rel="stylesheet" href="/frontend/css/media.css?v=1.2" />
 
 </head>
 <style>
@@ -126,7 +127,7 @@
 
 <body>
     <header class="header">
-        <nav class="nav container">
+        <nav class="nav container" style="flex-wrap: nowrap">
             <div class="nav-left">
                 <div class="logo-wrapper">
                     <a href="/" class="logo">
