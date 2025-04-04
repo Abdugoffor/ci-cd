@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <!-- Support tickets -->
-                <a href="{{ route('participant.export', [], false) }}" class="btn btn-primary m-2">
+                <a href="{{ route('participant.export', [], false) }}" class="btn btn-teal mb-2">
                     Export
                 </a>
                 <div class="card">
@@ -62,25 +62,19 @@
                                                 id="select_date">
                                                 <option></option>
                                                 @foreach ($accreditationCategories as $categories)
-                                                    <option {{ old('accreditation_category_id', request('accreditation_category_id')) == $categories->id ? 'selected' : '' }} value="{{ $categories->id }}">
+                                                    <option
+                                                        {{ old('accreditation_category_id', request('accreditation_category_id')) == $categories->id ? 'selected' : '' }}
+                                                        value="{{ $categories->id }}">
                                                         {{ getLocale($categories->name) }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                         </th>
-                                        {{-- <th class="text-center">
-                                            <input type="date" class="form-control" name="date_of_birth"
-                                                value="{{ old('date_of_birth', request('date_of_birth')) }}">
-                                        </th> --}}
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="email"
                                                 placeholder="{{ getTranslation('email') }}"
                                                 value="{{ old('email', request('email')) }}">
                                         </th>
-                                        {{-- <th class="text-center">
-                                            <input type="date" class="form-control" name="updated_at"
-                                                value="{{ old('updated_at', request('updated_at')) }}">
-                                        </th> --}}
                                         <th class="text-center">
                                             <select class="form-control custom-select" name="status" id="select_date">
                                                 <option></option>

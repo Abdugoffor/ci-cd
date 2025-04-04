@@ -1256,6 +1256,15 @@ class TranslationSeeder extends Seeder
                     'default' => "Виза не требуется.",
                 ],
             ],
+            [
+                'slug' => 'crop_image',
+                'name' => [
+                    'uz'      => "Crop Image",
+                    'ru'      => "Crop Image",
+                    'en'      => "Crop Image",
+                    'default' => "Crop Image",
+                ],
+            ],
         ];
 
         foreach ($translations as $translation) {

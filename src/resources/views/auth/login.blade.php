@@ -2,10 +2,10 @@
 @section('title', 'Login')
 @section('content')
     <!-- Register form -->
-    
+
     <form class="login-form" action="{{ route('loginSubmit', [], false) }}" method="POST">
         @csrf
-        <div class="card mb-0">
+        <div class="card mb-0" style="width: 350px;">
             <div class="card-body">
                 <div class="text-center mb-3">
                     <i class="icon-reading icon-2x text-secondary border-secondary border-3 rounded-pill p-3 mb-3 mt-1"></i>

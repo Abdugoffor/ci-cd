@@ -484,7 +484,7 @@
                                         <img id="preview" src="#" alt="Preview" />
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn" id="cropBtn">Crop Image</button>
+                                        <button type="button" class="btn" id="cropBtn">{{ getTranslation('crop_image') }}</button>
                                     </div>
                                 </div>
                             </div>

@@ -28,8 +28,8 @@
     <!-- Main navbar -->
     <div class="navbar navbar-expand-lg navbar-dark navbar-static">
         <div class="navbar-brand ml-2 ml-lg-0">
-            <a href="/" class="d-inline-block">
-                <img src="/backend/global_assets/images/logo_light.png" alt="">
+            <a href="/" target="_blank" class="d-inline-block">
+                <span style="color: white; font-size: 15px;">International Chess Federation</span>
             </a>
         </div>
 
