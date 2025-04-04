@@ -15,14 +15,11 @@
                     style="max-width: 722px; width: 100%; padding: 53px; font-family: Arial, sans-serif;">
                     <tr>
                         <td style="text-align: left; padding-bottom: 52px;">
-                            <img src="{{ $message->embed(public_path('frontend/assets/1.png')) }}" alt="FIDE Logo"
-                                width="51" height="50" style="display: block;" />
-                            <div style="font-size: 9.5px; color: #00363f">
-                                {{ getLocale(optional($data->tournament)->name) ?? '' }}
+                            <img src="{{ $message->embed(public_path('frontend/assets/1.png')) }}"
+                                alt="FIDE Logo" width="51" height="50" style="display: block;" />
+                            <div style="font-size: 9.5px; color: #00363f;">46th FIDE CHESS OLYMPIAD
                             </div>
-                            <div style="font-size: 14px; font-weight: bold; color: #00363f">
-                                {{ getLocale(optional($data->tournament)->title) ?? '' }}
-                            </div>
+                            <div style="font-size: 14px; font-weight: bold; color: #00363f;">SAMARKAND 2025</div>
                         </td>
                     </tr>
                     <tr>

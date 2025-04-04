@@ -21,14 +21,14 @@
             ">
                     <tr>
                         <td style="text-align: left; padding-bottom: 52px">
-
-                            <img src="{{ $message->embed(public_path('frontend/assets/1.png')) }}" alt="FIDE Logo"
-                                width="51" height="50" style="display: block" />
+                            
+                            <img src="{{ $message->embed(public_path('frontend/assets/1.png')) }}" alt="FIDE Logo" width="51" height="50"
+                                style="display: block" />
                             <div style="font-size: 9.5px; color: #00363f">
-                                {{ getLocale(optional($data['participant']->tournament)->name) ?? '' }}
+                                46th FIDE CHESS OLYMPIAD
                             </div>
                             <div style="font-size: 14px; font-weight: bold; color: #00363f">
-                                {{ getLocale(optional($data['participant']->tournament)->title) ?? '' }}
+                                SAMARKAND 2025
                             </div>
                         </td>
                     </tr>
@@ -100,7 +100,7 @@
                         margin-top: 16px;">
                                         <img src="{{ $message->embed($data['fullFilePath']) }}" alt="qr"
                                             style="width: 87px; height: 87px; padding: 10px;" />
-                                    </span>
+                                        </span>
                                 </li>
                             </ul>
                         </td>
