@@ -21,9 +21,7 @@
                                     <th class="text-center">{{ getTranslation('fide-id') }}</th>
                                     <th class="text-center" width="15%">{{ getTranslation('country') }}</th>
                                     <th class="text-center">{{ getTranslation('type') }}</th>
-                                    {{-- <th class="text-center">{{ getTranslation('birth-date') }}</th> --}}
                                     <th class="text-center">{{ getTranslation('email') }}</th>
-                                    {{-- <th class="text-center">{{ getTranslation('registration-end') }}</th> --}}
                                     <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
                                     <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                 </tr>
@@ -114,15 +112,9 @@
                                         <td>
                                             {{ $model->accreditationCategory ? getLocale($model->accreditationCategory->name) : '' }}
                                         </td>
-                                        {{-- <td>
-                                            {{ $model->date_of_birth->format('d-m-Y') }}
-                                        </td> --}}
                                         <td>
                                             {{ $model->email }}
                                         </td>
-                                        {{-- <td>
-                                            {{ $model->email_verified_at ? $model->email_verified_at->format('d-m-Y, H:i') : '' }}
-                                        </td> --}}
                                         <td>
                                             <span
                                                 class="badge badge-{{ $model->status == 'unfinished' ? 'secondary' : ($model->status == 'pending' ? 'warning' : ($model->status == 'approved' ? 'success' : 'danger')) }} badge-pill ml-auto">
@@ -189,7 +181,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('application.show', $model->id, false) }}"
-                                                class="btn btn-outline-info mr-2">
+                                                class="btn btn-outline-info">
                                                 <i class="icon-eye8"></i>
                                             </a>
                                             {!! historyCheck($model) !!}

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -12,6 +13,25 @@ class SkanController extends Controller
     {
         return view("admin.skan.index");
     }
+    public function check()
+    {
+        return view("admin.skan.check");
+    }
+    public function checkStore(QkCodeRequest $request)
+    {
+        $qkCode = $request->qk_code;
+
+        $cleaned = substr($qkCode, 7);
+
+        $participant = Participant::where('qk_code', $cleaned)->first();
+
+        if ($participant) {
+
+            return view('admin.skan.check', ['participant' => $participant]);
+        }
+        return view('admin.skan.check', ['errorMessage' => getTranslation('scanner_messages')]);
+    }
+
     public function store(QkCodeRequest $request)
     {
         $qkCode = $request->qk_code;

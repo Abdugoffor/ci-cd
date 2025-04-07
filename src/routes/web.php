@@ -74,14 +74,14 @@ Route::middleware(LangMiddleware::class)->group(function () {
         Route::post('/profile', [AuthController::class, 'update'])->name('profile.update');
         Route::post('/profile/logout', [AuthController::class, 'logout'])->name('profile.logout');
 
-        Route::middleware(['role:admin'])->group(function () {
+        Route::middleware(['role:Administrator'])->group(function () {
 
             Route::resource('/users', UserController::class);
             Route::get('/users-status/{user}', [UserController::class, 'status'])->name('users.status');
             Route::get('/users-search', [UserController::class, 'search'])->name('users.search');
         });
 
-        Route::middleware(['role:admin,moderator'])->group(function () {
+        Route::middleware(['role:Administrator,Manager'])->group(function () {
 
             Route::resource('/tournaments', TournamentController::class);
             Route::get('/tournament/{tournament}/{status}', [TournamentController::class, 'statusUpdate'])->name('status.update');
@@ -138,10 +138,9 @@ Route::middleware(LangMiddleware::class)->group(function () {
             Route::resource('/media', MediaController::class);
 
             Route::get('/media-search', [MediaController::class, 'search'])->name('media.search');
-
         });
 
-        Route::middleware(['role:admin,moderator,user'])->group(function () {
+        Route::middleware(['role:Administrator,Manager,Security'])->group(function () {
 
             Route::get('/applications', [AdminAppController::class, 'index'])->name('application.index');
             Route::get('/applications-status/{participant}/{ststus}', [AdminAppController::class, 'status'])->name('application.status');
@@ -150,22 +149,24 @@ Route::middleware(LangMiddleware::class)->group(function () {
             Route::get('/applications-search', [AdminAppController::class, 'search'])->name('application.search');
             Route::get('/participant-export', [AdminAppController::class, 'participantExport'])->name('participant.export');
 
+            Route::get('/skan-check', [SkanController::class, 'check'])->name('skan.check');
+            Route::post('/skan-check', [SkanController::class, 'checkStore'])->name('skan.check.store');
+
             Route::get('/skan', [SkanController::class, 'index'])->name('skan.index');
             Route::post('/skan', [SkanController::class, 'store'])->name('skan.store');
+
             Route::get('/presence', [PresenceController::class, 'index'])->name('presence.index');
         });
 
-        Route::middleware(['role:admin,applicant'])->group(function () {
+        Route::middleware(['role:Administrator,"Regional applicant"'])->group(function () {
 
             Route::resource('/support-applications', SupportApplicationController::class);
             Route::get('/support-applications-search', [SupportApplicationController::class, 'search'])->name('support-applications.search');
             Route::get('/applications-status-applicant/{participant}/{ststus}', [AdminAppController::class, 'status'])->name('application.status.applicant');
         });
-
     });
 
     Route::get('/badge-verify/{badges}', [BadgesController::class, 'verify'])->name('badges.verify');
-
 });
 Route::get('/phpinfo', function () {
     phpinfo();

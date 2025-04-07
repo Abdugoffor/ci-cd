@@ -5,6 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PDF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -17,6 +21,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .badge-container {
@@ -104,15 +109,14 @@
                         <div class="logo-wrapper" style="  display: flex;
     align-items: center;
     gap: 12px;">
-                            <img src="/frontend/assets/header_banner/chess_logo.svg" alt="Chess Olympiad 2025"
+                            <img src="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}"
+                                alt="Chess Olympiad 2025"
                                 style="  width: 70px;
     height: 80px;
     object-fit: contain;" />
 
                             <div class="logo-text"
-                                style="  font-size: 9.575px;
-    font-style: normal;
-    font-weight: 400;">
+                                style="font-family: 'Montserrat', sans-serif; font-size: 9.575px; font-style: normal; font-weight: 400;">
                                 <div>{{ getLocale($siteSettings?->name) ?: 'Chess Olympiad' }}</div>
                                 <strong
                                     style="font-size: 13.88px;">{{ getLocale($siteSettings?->title) ?: 'Chess Olympiad' }}</strong>
@@ -299,7 +303,7 @@
             flex-direction: column;
           ">
                 <div
-                    style="height: 255px; width: 241px; border: 1px solid black; padding: 30px; display: flex; justify-content: center">
+                    style="height: 255px; width: 241px; border: 1px solid black; padding: 30px; display: flex;  justify-content: center">
                     <div style="width: 100%; display: flex; flex-direction: column; gap: 15px; align-items: center;">
                         @if ($participant->zones && count($participant->zones) > 0)
                             @foreach ($participant->zones as $zone)

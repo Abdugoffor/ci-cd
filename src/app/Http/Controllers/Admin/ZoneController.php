@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -131,6 +132,7 @@ class ZoneController extends Controller
         // }
 
         $children = $zone->children()
+            ->where('is_active', true)
             ->get(['id', 'title', 'description']);
 
         return response()->json([
@@ -145,7 +147,9 @@ class ZoneController extends Controller
 
         $tournamentId = $app->tournament_id;
 
-        $data = ParticipantZone::where('tournament_id', $tournamentId)->where('zone_id', end($zones))->exists();
+        $id = end($zones);
+
+        $data = ParticipantZone::where('tournament_id', $tournamentId)->where('zone_id', $id)->exists();
 
         $syncData = [];
 
@@ -156,13 +160,13 @@ class ZoneController extends Controller
             }
         }
 
-        // dd($syncData, $zones);
-
         if (count($zones) > 2) {
 
             if (! $data) {
 
                 $app->zones()->sync($syncData);
+
+                Zone::findOrFail($id)->update(['is_active' => false]);
 
                 return redirect()->back()->with('notification', getTranslation('notification'));
             }

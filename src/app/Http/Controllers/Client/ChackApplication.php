@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
@@ -22,8 +23,7 @@ class ChackApplication extends Controller
         if ($participant) {
             return view('client.chack', ['participant' => $participant]);
         } else {
-            return back()->withErrors(['key' => __('lang.invalid_key')]);
+            return back()->withErrors(['key' => getTranslation('invalid_key')]);
         }
-
     }
 }

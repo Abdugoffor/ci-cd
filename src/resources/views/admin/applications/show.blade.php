@@ -90,7 +90,12 @@
                                         <img src="{{ asset($model->qk_code_path) }}" alt="Фото" width="100">
                                     </a>
                                     <p style="margin-top: 10px;">
-                                        1234567{{ $model->qk_code }}
+                                        0000000{{ $model->qk_code }}
+                                    </p>
+                                    <p>
+                                        <a href="{{ asset($model->qk_code) }}" target="_blank">
+                                            {{ getTranslation('badge') }}
+                                        </a>
                                     </p>
                                 @else
                                     {{ getTranslation('no-photo') }}

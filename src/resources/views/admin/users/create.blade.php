@@ -31,10 +31,11 @@
                                 <label class="col-form-label col-lg-2">{{ getTranslation('role') }}</label>
                                 <select name="role" id="" class="form-control">
                                     <option value="">{{ getTranslation('select_role') }}</option>
-                                    <option value="admin">admin</option>
-                                    <option value="moderator">moderator</option>
-                                    <option value="applicant">applicant</option>
-                                    <option value="user">user</option>
+                                    <option value="Administrator">Administrator</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="Regional applicant">Regional applicant</option>
+                                    <option value="Security">Security</option>
+                                    <option value="Guest">Guest</option>
                                 </select>
                                 @error('role')
                                     <p style="color: red;">{{ $message }}</p>

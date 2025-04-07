@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', getTranslation('scanner_check'))
+@section('title', getTranslation('scanner'))
 @section('content')
     <!-- Content area -->
     <div class="content">
@@ -7,10 +7,10 @@
 
             <div class="card-body">
 
-                <form action="{{ route('skan.store', [], false) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('skan.check.store', [], false) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <fieldset class="mb-3">
-                        <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('scanner_check') }}
+                        <legend class="text-uppercase font-size-sm font-weight-bold">{{ getTranslation('scanner') }}
                         </legend>
 
                         <div class="form-group row">
@@ -177,12 +177,26 @@
                             </tr>
                             <tr>
                                 <th>
+                                    {{ getTranslation('zones') }}
+                                </th>
+                                <td>
+                                    <span class="badge badge-success badge-pill ml-2" style="font-size: 15px">
+                                        @foreach ($participant->zones as $zone)
+                                            {{ $zone->title }},
+                                        @endforeach
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
                                     {{ getTranslation('badge') }}
                                 </th>
                                 <td>
-                                    <a href="{{ asset($participant->qk_code) }}" target="_blank">
-                                        {{ getTranslation('badge') }}
-                                    </a>
+                                    @if ($participant->qk_code)
+                                        <a href="{{ asset($participant->qk_code) }}" target="_blank">
+                                            {{ getTranslation('badge') }}
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>

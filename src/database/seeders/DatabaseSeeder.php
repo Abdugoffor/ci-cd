@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use App\Models\TestDB;
@@ -22,22 +23,22 @@ class DatabaseSeeder extends Seeder
 
         User::updateOrCreate(
             ['email' => '2l3bdTFCgBacxJ7BNsQQ@gmail.com'],
-            ['name' => 'admin', 'role' => 'admin', 'password' => Hash::make('2l3bdTFCgBacxJ7BNsQQ')]
+            ['name' => 'admin', 'role' => 'Administrator', 'password' => Hash::make('2l3bdTFCgBacxJ7BNsQQ')]
         );
 
         User::updateOrCreate(
             ['email' => '12l3bdTFCgBacxJ7BNsQQ@gmail.com'],
-            ['name' => 'user', 'role' => 'user', 'password' => Hash::make('12l3bdTFCgBacxJ7BNsQQ')]
+            ['name' => 'user', 'role' => 'Security', 'password' => Hash::make('12l3bdTFCgBacxJ7BNsQQ')]
         );
 
         User::updateOrCreate(
             ['email' => '32l3bdTFCgBacxJ7BNsQQ@gmail.com'],
-            ['name' => 'moderator', 'role' => 'moderator', 'password' => Hash::make('32l3bdTFCgBacxJ7BNsQQ')]
+            ['name' => 'moderator', 'role' => 'Manager', 'password' => Hash::make('32l3bdTFCgBacxJ7BNsQQ')]
         );
 
         User::updateOrCreate(
             ['email' => 'test@gmail.com'],
-            ['name' => 'moderator', 'role' => 'applicant', 'password' => Hash::make('123456789')]
+            ['name' => 'moderator', 'role' => 'Regional applicant', 'password' => Hash::make('123456789')]
         );
 
         $this->call([
@@ -46,7 +47,7 @@ class DatabaseSeeder extends Seeder
             AccreditationCategorySeeder::class,
             CategorySeeder::class,
             LanguageSeeder::class,
-            
+
             // firstOrCreate
 
             // CountriesSeeder::class,

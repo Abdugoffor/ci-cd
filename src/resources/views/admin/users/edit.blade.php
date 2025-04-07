@@ -33,18 +33,23 @@
                                 <label class="col-form-label col-lg-2">{{ getTranslation('role') }}</label>
                                 <select name="role" id="" class="form-control">
                                     <option value="">{{ getTranslation('select_role') }}</option>
-                                    <option value="admin" {{ old('role', $model->role) == 'admin' ? 'selected' : '' }}>
-                                        admin
+                                    <option value="admin"
+                                        {{ old('role', $model->role) == 'Administrator' ? 'selected' : '' }}>
+                                        Administrator
                                     </option>
-                                    <option value="moderator"
-                                        {{ old('role', $model->role) == 'moderator' ? 'selected' : '' }}>moderator
+                                    <option value="Manager" {{ old('role', $model->role) == 'Manager' ? 'selected' : '' }}>
+                                        Manager
                                     </option>
-                                    <option value="applicant"
-                                        {{ old('role', $model->role) == 'applicant' ? 'selected' : '' }}>
-                                        applicant
+                                    <option value="Regional applicant"
+                                        {{ old('role', $model->role) == 'Regional applicant' ? 'selected' : '' }}>
+                                        Regional applicant
                                     </option>
-                                    <option value="user" {{ old('role', $model->role) == 'user' ? 'selected' : '' }}>
-                                        user
+                                    <option value="Security"
+                                        {{ old('role', $model->role) == 'Security' ? 'selected' : '' }}>
+                                        Security
+                                    </option>
+                                    <option value="Guest" {{ old('role', $model->role) == 'Guest' ? 'selected' : '' }}>
+                                        Guest
                                     </option>
                                 </select>
                                 @error('role')
@@ -56,7 +61,9 @@
                                 <select name="country_id" id="" class="form-control">
                                     <option value="">{{ getTranslation('select_role') }}</option>
                                     @foreach ($countrys as $country)
-                                        <option value="{{ $country->id }}" {{ old('country_id', $model->country_id) == $country->id ? 'selected' : '' }}>{{ $country->label_en }}</option>
+                                        <option value="{{ $country->id }}"
+                                            {{ old('country_id', $model->country_id) == $country->id ? 'selected' : '' }}>
+                                            {{ $country->label_en }}</option>
                                     @endforeach
                                 </select>
                                 @error('country_id')

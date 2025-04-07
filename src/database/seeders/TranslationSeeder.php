@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use App\Models\Translation;
@@ -1265,6 +1266,69 @@ class TranslationSeeder extends Seeder
                     'default' => "Crop Image",
                 ],
             ],
+            [
+                'slug' => 'scanner_check',
+                'name' => [
+                    'uz'      => "QR Enter verification",
+                    'ru'      => "QR Enter verification",
+                    'en'      => "QR Enter verification",
+                    'default' => "QR Enter verification",
+                ],
+            ],
+            [
+                'slug' => 'badge',
+                'name' => [
+                    'uz'      => "Badge",
+                    'ru'      => "Badge",
+                    'en'      => "Badge",
+                    'default' => "Badge",
+                ],
+            ],
+            [
+                'slug' => 'media_menyu',
+                'name' => [
+                    'uz'      => "Media menyu",
+                    'ru'      => "Media menyu",
+                    'en'      => "Media menyu",
+                    'default' => "Media menyu",
+                ],
+            ],
+            [
+                'slug' => 'main',
+                'name' => [
+                    'uz'      => "main",
+                    'ru'      => "main",
+                    'en'      => "main",
+                    'default' => "main",
+                ],
+            ],
+            [
+                'slug' => 'main_yes',
+                'name' => [
+                    'uz'      => "main_yes",
+                    'ru'      => "main_yes",
+                    'en'      => "main_yes",
+                    'default' => "main_yes",
+                ],
+            ],
+            [
+                'slug' => 'main_no',
+                'name' => [
+                    'uz'      => "main_no",
+                    'ru'      => "main_no",
+                    'en'      => "main_no",
+                    'default' => "main_no",
+                ],
+            ],
+            [
+                'slug' => 'invalid_key',
+                'name' => [
+                    'uz'      => "invalid_key",
+                    'ru'      => "invalid_key",
+                    'en'      => "invalid_key",
+                    'default' => "invalid_key",
+                ],
+            ],
         ];
 
         foreach ($translations as $translation) {
@@ -1273,6 +1337,5 @@ class TranslationSeeder extends Seeder
                 $translation
             );
         }
-
     }
 }

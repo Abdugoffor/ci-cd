@@ -53,10 +53,13 @@
         </div>
 
         <div class="navbar-brand text-center text-lg-left">
-            <a href="/" target="_blank" class="d-inline-block">
-                <span style="color: white; font-size: 15px;">International Chess Federation</span>
+            <a href="/" target="_blank" class="d-inline-block d-flex align-items-center">
+                <img src="/backend/admin_logo.webp" class="d-none d-sm-block" alt=""
+                    style="height: 35px; margin-right: 10px;">
+                <span style="color: white; font-size: 14px;">International Chess Federation</span>
             </a>
         </div>
+
         <div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
 
         </div>
@@ -67,7 +70,8 @@
                 <a href="#"
                     class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100"
                     data-toggle="dropdown">
-                    <span class="d-none d-lg-inline-block">{{ app()->getLocale() }}</span>
+                    <span class="d-none d-lg-inline-block"
+                        style="text-transform: capitalize; !important">{{ app()->getLocale() }}</span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
@@ -127,9 +131,11 @@
 
                             <div class="media-body">
                                 <div class="font-weight-semibold">{{ auth()->user()->name }}</div>
-                                <div class="font-size-sm line-height-sm opacity-50">
-                                    {{ auth()->user()->email }}
+                                <div class="font-size-sm line-height-sm opacity-50"
+                                    title="{{ auth()->user()->email }}">
+                                    {{ Str::limit(auth()->user()->email, 15) }}
                                 </div>
+
                             </div>
 
                             <div class="ml-3 align-self-center">
@@ -152,7 +158,7 @@
                 <!-- Main navigation -->
                 <div class="sidebar-section">
                     <ul class="nav nav-sidebar" data-nav-type="accordion">
-                        @if (hasRole(['applicant']))
+                        @if (hasRole(['Regional applicant']))
                             <li class="nav-item">
                                 <a href="{{ route('support-applications.index', [], false) }}"
                                     class="nav-link {{ activeMenu('support-applications.index') }}">
@@ -161,7 +167,7 @@
                                 </a>
                             </li>
                         @endif
-                        @if (hasRole(['admin', 'moderator']))
+                        @if (hasRole(['Administrator', 'Manager']))
                             <li class="nav-item">
                                 <a href="{{ route('tournaments.index', [], false) }}"
                                     class="nav-link {{ activeMenu('tournaments.index') }}">
@@ -171,7 +177,7 @@
                             </li>
                         @endif
 
-                        @if (hasRole(['admin', 'moderator', 'user']))
+                        @if (hasRole(['Administrator', 'Manager', 'Security']))
                             <li class="nav-item">
                                 <a href="{{ route('application.index', [], false) }}"
                                     class="nav-link {{ activeMenu('application.index') }}">
@@ -181,7 +187,14 @@
                             </li>
                         @endif
 
-                        @if (hasRole(['admin', 'moderator', 'user']))
+                        @if (hasRole(['Administrator', 'Manager', 'Security']))
+                            <li class="nav-item">
+                                <a href="{{ route('skan.check', [], false) }}"
+                                    class="nav-link {{ activeMenu('skan.check') }}">
+                                    <i class="icon-list-unordered"></i>
+                                    <span>{{ getTranslation('scanner_check') }}</span>
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a href="{{ route('skan.index', [], false) }}"
                                     class="nav-link {{ activeMenu('skan.index') }}">
@@ -198,7 +211,7 @@
                                 </a>
                             </li>
                         @endif
-                        @if (hasRole(['admin', 'moderator']))
+                        @if (hasRole(['Administrator', 'Manager']))
                             @php
                                 $isActive =
                                     activeMenu('categories.index') ||
@@ -215,7 +228,7 @@
 
                                 <ul class="nav nav-group-sub {{ $isActive ? 'd-block' : '' }}"
                                     data-submenu-title="Themes">
-                                    @if (hasRole(['admin', 'moderator']))
+                                    @if (hasRole(['Administrator', 'Manager']))
                                         <li class="nav-item">
                                             <a href="{{ route('categories.index', [], false) }}"
                                                 class="nav-link {{ activeMenu('categories.index') }}">
@@ -263,7 +276,7 @@
                                 </ul>
                             </li>
                         @endif
-                        @if (hasRole(['admin', 'moderator']))
+                        @if (hasRole(['Administrator', 'Manager']))
                             @php
                                 $isActive =
                                     activeMenu('contacts.index') ||
@@ -278,18 +291,18 @@
                             <li class="nav-item nav-item-submenu {{ $isActive ? 'nav-item-open' : '' }}">
                                 <a href="#" class="nav-link">
                                     <i class="icon-stack2"></i>
-                                    <span>{{ getTranslation('media') }}</span></a>
+                                    <span>{{ getTranslation('media_menyu') }}</span></a>
 
                                 <ul class="nav nav-group-sub {{ $isActive ? 'd-block' : '' }}"
                                     data-submenu-title="Themes">
-                                    @if (hasRole(['admin', 'moderator']))
-                                        <li class="nav-item">
+                                    @if (hasRole(['Administrator', 'Manager']))
+                                        {{-- <li class="nav-item">
                                             <a href="{{ route('contacts.index', [], false) }}"
                                                 class="nav-link {{ activeMenu('contacts.index') }}">
                                                 <i class="icon-list-unordered"></i>
                                                 <span>{{ getTranslation('contacts') }}</span>
                                             </a>
-                                        </li>
+                                        </li> --}}
                                         <li class="nav-item">
                                             <a href="{{ route('hotels.index', [], false) }}"
                                                 class="nav-link {{ activeMenu('hotels.index') }}">
@@ -343,7 +356,7 @@
                                 </ul>
                             </li>
                         @endif
-                        @if (hasRole(['admin']))
+                        @if (hasRole(['Administrator']))
                             <li class="nav-item">
                                 <a href="{{ route('users.index', [], false) }}"
                                     class="nav-link {{ activeMenu('users.index') }}">

@@ -5,7 +5,7 @@
 @section('content')
     <main class="container montserrat">
         <section class="register-personal register-chack">
-            
+
             <div class="toast-container"></div>
             @if (isset($notification) && !$errors->any())
                 <div class="alert_static" id="alertBox">

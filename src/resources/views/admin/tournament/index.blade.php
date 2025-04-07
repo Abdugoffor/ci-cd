@@ -43,7 +43,7 @@
                                     <th class="text-center">{{ getTranslation('competition-type') }}</th>
                                     <th class="text-center">{{ getTranslation('country') }}</th>
                                     <th class="text-center">{{ getTranslation('start-of-registration') }}</th>
-                                    <th class="text-center">{{ getTranslation('view') }}</th>
+                                    <th class="text-center">{{ getTranslation('main') }}</th>
                                     <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
                                     <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                 </tr>
@@ -88,11 +88,11 @@
                                                 <option value="">{{ getTranslation('all') }}</option>
                                                 <option value="true"
                                                     {{ old('is_active', request('is_active')) === 'true' ? 'selected' : '' }}>
-                                                    {{ getTranslation('yes') }}
+                                                    {{ getTranslation('main_yes') }}
                                                 </option>
                                                 <option value="false"
                                                     {{ old('is_active', request('is_active')) === 'false' ? 'selected' : '' }}>
-                                                    {{ getTranslation('no') }}
+                                                    {{ getTranslation('main_no') }}
                                                 </option>
                                             </select>
                                         </th>
@@ -146,7 +146,7 @@
                                         </td>
                                         <td>
                                             <span class="badge badge-{{ $model->is_active ? 'primary' : 'danger' }}">
-                                                {{ $model->is_active ? getTranslation('yes') : getTranslation('no') }}
+                                                {{ $model->is_active ? getTranslation('main_yes') : getTranslation('main_no') }}
                                             </span>
                                         </td>
                                         <td>
@@ -180,7 +180,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('tournaments.show', $model->id, false) }}"
-                                                class="btn btn-outline-info">
+                                                class="btn btn-sm btn-outline-info">
                                                 <i class="icon-eye8"></i>
                                             </a>
                                             <a href="{{ route('tournaments.edit', $model->id, false) }}"

@@ -20,6 +20,9 @@
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
                                     <th class="text-center">{{ getTranslation('name') }}</th>
+                                    <th class="text-center">{{ getTranslation('competitions') }}</th>
+                                    <th class="text-center">{{ getTranslation('country') }}</th>
+                                    <th class="text-center">{{ getTranslation('zones') }}</th>
                                     <th class="text-center">{{ getTranslation('arrival-date') }}</th>
                                     <th class="text-center"></th>
                                 </tr>
@@ -33,9 +36,38 @@
                                                 value="{{ old('name', request('name')) }}">
                                         </th>
                                         <th class="text-center">
-                                            <input type="date" class="form-control" name="date" value="{{ old('date', request('date')) }}">
+                                            <select class="form-control custom-select" name="tournament_id"
+                                                id="select_country">
+                                                <option></option>
+                                                @foreach ($tournements as $tournement)
+                                                    <option value="{{ $tournement->id }}"
+                                                        {{ old('tournament_id', request('tournament_id')) == $tournement->id ? 'selected' : '' }}>
+                                                        {{ getLocale($tournement->name) }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </th>
-                                        <th class="text-center"><button class="btn btn-teal">{{ getTranslation('search') }}</button></th>
+                                        <th class="text-center">
+                                            <select class="form-control custom-select" name="country_id"
+                                                id="select_country">
+                                                <option></option>
+                                                @foreach ($countries as $country)
+                                                    <option value="{{ $country->id }}"
+                                                        {{ old('country_id', request('country_id')) == $country->id ? 'selected' : '' }}>
+                                                        {{ $country->label_en }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </th>
+                                        <th class="text-center">
+
+                                        </th>
+                                        <th class="text-center">
+                                            <input type="date" class="form-control" name="date"
+                                                value="{{ old('date', request('date')) }}">
+                                        </th>
+                                        <th class="text-center"><button
+                                                class="btn btn-teal">{{ getTranslation('search') }}</button></th>
                                     </tr>
                                 </form>
                             </thead>
@@ -44,6 +76,19 @@
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ $model->participant->first_name }}</td>
+                                        <td>{{ getLocale($model->participant->tournament->name ?? 'N/A') }}</td>
+                                        <td>{{ $model->participant->tournament->country->label_en ?? 'N/A' }}</td>
+                                        <td>
+                                            @foreach ($model->participant->zones as $zone)
+                                                <li style="display: inline;">
+                                                    {{ $zone->title }}
+                                                    @if (!$loop->last)
+                                                        ,
+                                                    @endif
+                                                </li>
+                                            @endforeach
+
+                                        </td>
                                         <td>
                                             {{ $model->created_at->format('Y-m-d, H:i') }}
                                         </td>

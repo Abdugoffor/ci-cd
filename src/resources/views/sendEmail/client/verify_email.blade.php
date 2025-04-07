@@ -93,7 +93,8 @@
                       line-height: 167%;
                       letter-spacing: -0.18px;
                       text-decoration: none;
-                    ">api.uzchess.sriss.uz</a>
+                    ">Проверить
+                                статус</a>
                         </td>
                     </tr>
 
