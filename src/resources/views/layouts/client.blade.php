@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chess Olympiad 2025</title>
+    <title>@yield('title')</title>
 
 
     <link rel="icon" type="image/svg+xml" href="/frontend/assets/header_banner/chess_logo.svg" />
@@ -26,105 +26,6 @@
     <link rel="stylesheet" href="/frontend/css/media.css?v=1.3" />
 
 </head>
-<style>
-    .alert_static {
-        background-color: #4ca89a;
-        color: white;
-        padding: 15px 30px 15px 20px;
-        border-radius: 8px;
-        display: block;
-        width: 100%;
-        margin: 0 auto 30px auto;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        position: relative;
-    }
-
-    .close {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 18px;
-        cursor: pointer;
-        position: absolute;
-        right: 15px;
-        top: 10px;
-    }
-</style>
-<style>
-    .toast-container {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 9999;
-    }
-
-    .toast {
-        background: #fff;
-        border-radius: 8px;
-        padding: 12px 24px;
-        margin-bottom: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        animation: slideIn 0.3s ease-in-out;
-        min-width: 300px;
-        max-width: 500px;
-    }
-
-    .toast.error {
-        border-left: 4px solid #ff4b4b;
-    }
-
-    .toast-icon {
-        width: 20px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .toast-message {
-        color: #333;
-        font-size: 14px;
-        flex: 1;
-    }
-
-    .toast-close {
-        cursor: pointer;
-        opacity: 0.7;
-        transition: opacity 0.2s;
-    }
-
-    .toast-close:hover {
-        opacity: 1;
-    }
-
-    @keyframes slideIn {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slideOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-    }
-</style>
-
 <body>
     <header class="header">
         <nav class="nav container" style="flex-wrap: nowrap">
@@ -194,6 +95,9 @@
         @yield('banner')
     </header>
 
+    @if (Breadcrumbs::exists(Route::currentRouteName()))
+        {{ Breadcrumbs::render(Route::currentRouteName(), Route::current()->parameters()) }}
+    @endif
     @yield('content')
     <footer class="footer">
         <div class="container">
@@ -294,66 +198,7 @@
     });
 </script>
 <style>
-    nav {
-        display: flex;
-        justify-content: center;
-        margin: 20px 0;
-    }
-
-    .pagination {
-        display: flex;
-        align-items: center;
-        list-style: none;
-        padding: 0;
-        gap: 10px;
-    }
-
-    .page-item {
-        display: inline-block;
-    }
-
-    .page-link {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-    }
-
-    .page-item .page-link {
-        background-color: #ffffff;
-        color: #333;
-        border: 1px solid #ddd;
-    }
-
-    .page-item .page-link:hover {
-        background-color: #f0f0f0;
-        border-color: #bbb;
-    }
-
-    .page-item.active .page-link {
-        background-color: #0b5e76;
-        color: #ffffff;
-        border: none;
-
-    }
-
-    .page-item.disabled .page-link {
-        background-color: #e9ecef;
-        color: #6c757d;
-        border: none;
-        cursor: not-allowed;
-    }
-
-    .page-item:first-child .page-link,
-    .page-item:last-child .page-link {
-        font-size: 18px;
-    }
+    
 </style>
 
 </html>

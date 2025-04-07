@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -21,7 +22,7 @@ class CheckApplicationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'participant_id' => 'required',
+            'participant_id' => 'required|numeric',
             'key'            => 'required|min:8',
         ];
     }

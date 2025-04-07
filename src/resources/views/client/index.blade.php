@@ -1,4 +1,5 @@
 @extends('layouts.client')
+@section('title', isset($model) && $model->name ? getLocale($model->name) : '')
 @section('banner')
     <div class="banner">
 
@@ -20,7 +21,7 @@
                 </div>
                 <div class="info-blocks-wrapper">
                     <div class="info-block">
-                        <img src="/{{ ('frontend/assets/header_banner/calendar.svg') }}" alt="calendar" />
+                        <img src="/{{ 'frontend/assets/header_banner/calendar.svg' }}" alt="calendar" />
                         <div class="info-block__content">
                             <div>
                                 {{ $model?->registration_start?->format('d') ?? '' }} -
@@ -33,7 +34,7 @@
                         </div>
                     </div>
                     <div class="info-block info-block__secondary">
-                        <img src="/{{ ('frontend/assets/header_banner/location.svg') }}" alt="location" />
+                        <img src="/{{ 'frontend/assets/header_banner/location.svg' }}" alt="location" />
                         <div class="info-block__content">
                             <div>{{ isset($model) ? $model->country->label_en : '' }}</div>
                             <span>{{ isset($model) ? getLocale($model->category->name) : '' }}</span>
@@ -41,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <img src="/{{ ($siteSettings?->photo_1 ?? 'frontend/assets/header_banner/banner-chess.svg') }}"
+            <img src="/{{ $siteSettings?->photo_1 ?? 'frontend/assets/header_banner/banner-chess.svg' }}"
                 alt="banner-chess" class="banner-img" />
         </div>
     </div>
@@ -63,8 +64,7 @@
                         {{ getLocale($siteSettings?->text) ?:
                             'Hosted in the historic city of Samarkand, this event will be an unforgettable fusion of strategy, culture, and global unity' }}
                     </div>
-                    <a href='/chack-application' class="btn"
-                        >{{ getTranslation('action_button') }}</a>
+                    <a href='/chack-application' class="btn">{{ getTranslation('action_button') }}</a>
                 </div>
             </div>
         </section>
@@ -107,7 +107,7 @@
                     <div class="swiper-wrapper">
                         @foreach ($partners as $partner)
                             <div class="swiper-slide">
-                                <img src="/{{ ($partner->photo) }}" alt="FIDE" />
+                                <img src="/{{ $partner->photo }}" alt="FIDE" />
                             </div>
                         @endforeach
                     </div>
@@ -122,7 +122,7 @@
                     <!-- news update start  -->
                     <div class="news-card">
                         <a href="{{ route('news.latest', $new->id, false) }}">
-                            <img src="/{{ ($new->photo) }}" alt="" />
+                            <img src="/{{ $new->photo }}" alt="" />
                             <div class="news-card__content">
                                 <h3>
                                     {{ getLocale($new->title) }}
@@ -179,7 +179,7 @@
                         @foreach ($hotels as $hotel)
                             <div class="swiper-slide">
                                 <div class="hotel-card">
-                                    <img src="/{{ ($hotel->photo) }}" alt="Hilton Samarkand" />
+                                    <img src="/{{ $hotel->photo }}" alt="Hilton Samarkand" />
                                     <div class="hotel-info">
                                         <div class="hotel-distance">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="13"

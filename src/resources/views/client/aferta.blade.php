@@ -1,4 +1,5 @@
 @extends('layouts.client')
+@section('title', getTranslation('aferta'))
 @section('banner')
 @endsection
 @section('content')

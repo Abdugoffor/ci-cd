@@ -180,14 +180,14 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('tournaments.show', $model->id, false) }}"
-                                                class="btn btn-sm btn-outline-info">
+                                                class="btn btn-outline-info">
                                                 <i class="icon-eye8"></i>
                                             </a>
                                             <a href="{{ route('tournaments.edit', $model->id, false) }}"
-                                                class="btn btn-sm btn-outline-success ml-1">
+                                                class="btn btn-outline-success ml-1">
                                                 <i class="icon-pencil3"></i>
                                             </a>
-                                            <button type="button" class="btn btn-sm btn-outline-danger ml-1"
+                                            <button type="button" class="btn btn-outline-danger ml-1"
                                                 data-toggle="modal" data-target="#modal_full{{ $model->id }}"><i
                                                     class="icon-trash"></i>
                                             </button>

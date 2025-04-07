@@ -40,15 +40,15 @@ if (! function_exists('getLanguage')) {
     }
 }
 
-if (! function_exists('historyCheck')) {
+if (!function_exists('historyCheck')) {
     function historyCheck($model)
     {
-        if (! $model || ! $model->histories()->count()) {
+        if (!$model || !$model->histories()->count()) {
             return '';
         }
 
         $html = '<!-- Button trigger modal -->
-        <a href="#" class="btn btn-sm btn-outline-warning ml-2"
+        <a href="#" class="btn btn-outline-warning ml-2"
             data-toggle="modal" data-target="#panel_right' . $model->id . '">
             <i class="icon-history"></i>
         </a>
@@ -74,31 +74,34 @@ if (! function_exists('historyCheck')) {
                     <span class="text-muted">' . $history->action . ', ' . $createdAt . '</span>
                     <ul class="list-unstyled mt-2">';
 
-            // JSON obyektlarini normal ko‘rinishda chiqarish
             $changes = is_string($history->changes) ? json_decode($history->changes, true) : $history->changes;
 
             if (is_array($changes)) {
                 foreach ($changes as $key => $value) {
-                    if ($key !== 'logo' && $key !== 'updated_at') {
+                    if ($key !== 'updated_at') {
                         $formattedKey = ucfirst(str_replace('_', ' ', $key));
 
-                        // Agar qiymat JSON formatida bo‘lsa, uni to‘g‘ri chiqarish
                         if (is_string($value) && $jsonDecoded = json_decode($value, true)) {
                             $value = $jsonDecoded;
                         }
 
-                        // Agar massiv bo‘lsa, uni yaxshi formatda chiqarish
-                        if (is_array($value)) {
+                        if (in_array($key, ['photo', 'logo']) && is_string($value)) {
+                            // Rasm maydoni bo‘lsa <img> bilan chiqarish
+                            $formattedValue = '<img src="' . asset($value) . '" width="100" alt="' . $formattedKey . '">';
+                        } elseif ($key === 'is_active') {
+                            // is_active maydoni bo‘lsa tarjimalangan qiymat chiqarish
+                            $formattedValue = $value == 1 ? getTranslation('assets') : getTranslation('not-active');
+                        } elseif (is_array($value)) {
                             $formattedValue = implode('', array_map(fn($lang, $val) => "<strong><br>$lang</strong>: $val", array_keys($value), $value));
                         } else {
                             $formattedValue = $value;
                         }
 
-                        $html .= '<li>' . $formattedKey . ': <span>' . $formattedValue . '</span></li>';
+                        $html .= '<li>' . $formattedKey . ': <span style="word-wrap: break-word; white-space: normal; overflow: hidden;">' . $formattedValue . '</span></li>';
                     }
                 }
             } else {
-                $html .= '<li>' . $history->changes . '</li>';
+                $html .= '<li style="word-wrap: break-word; white-space: normal; overflow: hidden;">' . $history->changes . '</li>';
             }
 
             $html .= '</ul></div>';
@@ -107,8 +110,8 @@ if (! function_exists('historyCheck')) {
         $html .= '</div></div></div></div></div></div><!-- /right panel -->';
         return $html;
     }
-
 }
+
 
 if (! function_exists('getTranslation')) {
     function getTranslation($slug)
@@ -139,15 +142,11 @@ if (! function_exists('getLocale')) {
         }
 
         return $model['default'] ?? '';
-
     }
 }
 
 if (! function_exists('getTranslationValidate')) {
-    function getTranslationValidate($key)
-    {
-
-    }
+    function getTranslationValidate($key) {}
 }
 if (! function_exists('validateTranslation')) {
     function validateTranslation($col)
@@ -187,5 +186,4 @@ if (! function_exists('hasRole')) {
     {
         return Auth::check() && in_array(Auth::user()->role, $roles);
     }
-
 }

@@ -168,6 +168,7 @@ Route::middleware(LangMiddleware::class)->group(function () {
 
     Route::get('/badge-verify/{badges}', [BadgesController::class, 'verify'])->name('badges.verify');
 });
+
 Route::get('/phpinfo', function () {
     phpinfo();
 });

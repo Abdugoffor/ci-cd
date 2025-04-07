@@ -36,7 +36,16 @@
     <script src="/backend/global_assets/js/plugins/editors/summernote/summernote.min.js"></script>
 
     <script src="/backend/global_assets/js/demo_pages/editor_summernote.js"></script>
-
+    <style>
+        .list-feed-item li span {
+            word-wrap: break-word;
+            /* Uzun so‘zlar avtomatik ravishda keyingi qatorga tushadi */
+            white-space: normal;
+            /* Matn qatorlar bo‘yicha o‘tadi */
+            overflow: hidden;
+            /* Gorizontal scrollni oldini oladi */
+        }
+    </style>
 </head>
 
 <body>

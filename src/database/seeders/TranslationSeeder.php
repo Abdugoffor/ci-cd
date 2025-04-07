@@ -1329,6 +1329,16 @@ class TranslationSeeder extends Seeder
                     'default' => "invalid_key",
                 ],
             ],
+            [
+                'slug' => 'home',
+                'name' => [
+                    'uz'      => "Bosh sahifa",
+                    'ru'      => "Главная",
+                    'en'      => "Home",
+                    'default' => "Bosh sahifa",
+                ],
+            ]
+
         ];
 
         foreach ($translations as $translation) {

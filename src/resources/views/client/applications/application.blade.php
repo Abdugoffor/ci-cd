@@ -1,4 +1,5 @@
 @extends('layouts.client')
+@section('title', getTranslation('register_for_accreditation'))
 @section('banner')
 @endsection
 @section('content')

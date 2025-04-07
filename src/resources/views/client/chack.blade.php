@@ -1,5 +1,5 @@
 @extends('layouts.client')
-
+@section('title', getTranslation('action_button'))
 @section('banner')
 @endsection
 @section('content')

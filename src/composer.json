@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "anhskohbo/no-captcha": "^3.7",
+        "diglactic/laravel-breadcrumbs": "^10.0",
         "endroid/qr-code": "^5.0",
         "intervention/image": "^3.11",
         "laravel/framework": "^11.31",
