@@ -19,7 +19,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="{{ getLocale($model->name) ?? 'Homepage' }}" />
+    <meta name="twitter:title" content="{{ getLocale($siteSettings->name) ?? 'Homepage' }}" />
     <meta name="twitter:description" content="{{ getLocale($siteSettings->description) }}" />
     <meta name="twitter:image"
         content="{{ $siteSettings->photo_1 ?? asset('frontend/assets/seo/default-twitter.jpg') }}" />
