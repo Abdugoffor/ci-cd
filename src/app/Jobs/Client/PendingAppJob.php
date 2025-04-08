@@ -24,6 +24,6 @@ class PendingAppJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->data->email)->send(new PendingAppMail($this->data));
+        Mail::to($this->data['email'])->send(new PendingAppMail($this->data));
     }
 }

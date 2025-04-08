@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
@@ -48,7 +49,6 @@ class ApplicationController extends Controller
                     $tournaments = Tournament::where('status', 'pending')->get();
 
                     return view('client.applications.application', ['tournaments' => $tournaments, 'fide_id_success' => getTranslation('fide_id_success')]);
-
                 } else {
                     return back()->withErrors(['fide_id' => getTranslation('fide_id')])->withInput();
                 }
@@ -61,7 +61,6 @@ class ApplicationController extends Controller
         $tournaments = Tournament::where('status', 'pending')->get();
 
         return view('client.applications.application', ['tournaments' => $tournaments]);
-
     }
     public function store(ApplicationStoreRequest $request)
     {
@@ -80,6 +79,8 @@ class ApplicationController extends Controller
         $verificationCode = rand(100000, 999999);
 
         $data = [
+            'name'              => getLocale($model->tournament->name),
+            'title'             => getLocale($model->tournament->title),
             'participant_id'    => $model->id,
             'verification_code' => $verificationCode,
             'key'               => $key,
@@ -87,14 +88,13 @@ class ApplicationController extends Controller
         ];
 
         cache()->put('email_verification_' . $model->email, $verificationCode, now()->addMinutes(5));
-        
+
         session()->put('model_id', $model->id);
 
         try {
-            
+
             dispatch(new VerifyEmailJob($model->email, $data));
             Log::info("Email job dispatched for: {$model->email}");
-
         } catch (\Exception $e) {
             Log::error("Email job dispatch failed: {$e->getMessage()}");
         }
@@ -171,16 +171,22 @@ class ApplicationController extends Controller
             Log::error('Sessiya bilan ishlashda xatolik: ' . $e->getMessage());
 
             return response()->json(['Sessiya bilan ishlashda xatolik: ' . $e->getMessage()]);
-
         }
 
-        dispatch(new PendingAppJob($model));
+        $dataEmail = [
+            'name' => getLocale($model->tournament->name),
+            'title' => getLocale($model->tournament->title),
+            'first_name' => $model->first_name,
+            'email' => $model->email, 
+        ];
+
+
+        dispatch(new PendingAppJob($dataEmail));
 
         return redirect()->route('chack.application')
             ->with([
                 'notification' => getTranslation('notification'),
             ]);
-
     }
     public function aferta()
     {

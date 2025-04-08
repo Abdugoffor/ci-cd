@@ -54,12 +54,14 @@ body {
 .nav-left {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 20px;
 }
 
 .logo-wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
 }
 
@@ -1191,9 +1193,7 @@ body {
     background-repeat: repeat-y;
 }
 
-.register-personal {
-    padding-top: 40px;
-}
+
 
 .register-chack {
     padding-top: 40px;
@@ -1831,6 +1831,7 @@ body {
     font-size: 30px;
     font-weight: 600;
     line-height: 147.424%;
+    margin-bottom: 20px;
     /* 44.227px */
 }
 
@@ -2327,7 +2328,6 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 15px;
     font-weight: 500;
     transition: all 0.2s ease;
 }
@@ -2446,18 +2446,14 @@ body {
     opacity: 1;
 }
 
-nav {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-
 .pagination {
     display: flex;
     align-items: center;
     list-style: none;
     padding: 0;
     gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .page-item {

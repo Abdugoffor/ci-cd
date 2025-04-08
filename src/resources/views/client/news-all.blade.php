@@ -4,8 +4,8 @@
 @endsection
 @section('content')
     <main class="container montserrat">
-        <section class="news container news-all-container">
-            <h1>{{ getTranslation('latest_news') }}</h1>
+        <section class="container news-all-container ">
+            <h1 class="inner-title">{{ getTranslation('latest_news') }}</h1>
             <div class="news-cards">
                 @foreach ($news as $new)
                     <!-- news update start  -->

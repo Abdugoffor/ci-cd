@@ -13,10 +13,13 @@
     });
 </script>
 <style>
-    .faq-item {
+    .faq {
+
         border: 1px solid #ddd;
         border-radius: 8px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    .faq-item {
         overflow: hidden;
     }
 
@@ -73,11 +76,16 @@
         transform: rotate(-135deg);
         top: 8px;
     }
+
+    .section-title {
+        margin-bottom: 20px;
+    }
 </style>
 @section('content')
-    <main class="container">
+    <main class="container montserrat">
         <section class="register-personal faq-section">
-            <h2 class="section-title">{{ getTranslation('ask_question') }}</h2>
+            <h2 class="inner-title section-title">{{ getTranslation('ask_question') }}</h2>
+            <div class="faq">
             @foreach ($models as $key => $model)
                 <div class="faq-item">
                     <div class="faq-question">
@@ -89,6 +97,7 @@
                     </div>
                 </div>
             @endforeach
+        </div>
         </section>
     </main>
 @endsection

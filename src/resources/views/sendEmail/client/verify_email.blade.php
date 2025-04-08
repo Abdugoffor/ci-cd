@@ -24,10 +24,10 @@
                             <img src="{{ $message->embed(public_path('frontend/assets/1.png')) }}" alt="FIDE Logo"
                                 width="51" height="50" style="display: block" />
                             <div style="font-size: 9.5px; color: #00363f">
-                                46th FIDE CHESS OLYMPIAD
+                                {{ $data['name'] }}
                             </div>
                             <div style="font-size: 14px; font-weight: bold; color: #00363f">
-                                SAMARKAND 2025
+                                {{ $data['title'] }}
                             </div>
                         </td>
                     </tr>

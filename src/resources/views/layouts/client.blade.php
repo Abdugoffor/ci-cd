@@ -94,10 +94,12 @@
         </nav>
         @yield('banner')
     </header>
+<div class="container">
 
     @if (Breadcrumbs::exists(Route::currentRouteName()))
         {{ Breadcrumbs::render(Route::currentRouteName(), Route::current()->parameters()) }}
     @endif
+</div>
     @yield('content')
     <footer class="footer">
         <div class="container">

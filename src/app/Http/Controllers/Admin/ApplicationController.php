@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Exports\ParticipantExport;
@@ -133,6 +134,8 @@ class ApplicationController extends Controller
             ]);
 
             $data = [
+                'name'         => getLocale($participant->tournament->name),
+                'title'         => getLocale($participant->tournament->title),
                 'participant'  => $participant,
                 'auth'         => Auth::user()->name,
                 'fullFilePath' => $fullFilePath,
@@ -162,6 +165,8 @@ class ApplicationController extends Controller
             'qk_code' => null,
         ]);
         $data = [
+            'name'         => getLocale($participant->tournament->name),
+            'title'         => getLocale($participant->tournament->title),
             'participant'   => $participant,
             'auth'          => Auth::user()->name,
             'cancel_reason' => $request->cancel_reason,
@@ -175,5 +180,4 @@ class ApplicationController extends Controller
     {
         return Excel::download(new ParticipantExport, 'participants.xlsx');
     }
-
 }

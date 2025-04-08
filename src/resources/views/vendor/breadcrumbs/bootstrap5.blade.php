@@ -4,59 +4,38 @@
         return;
     }
 @endphp
+<div class="breadcrumb">
+    <a href="{{ url('/') }}">
 
-<nav aria-label="breadcrumb" class="breadcrumb-wrapper">
-    <ol class="custom-breadcrumb">
-        @foreach ($breadcrumbs as $breadcrumb)
-            @if ($breadcrumb->url && !$loop->last)
-                <li><a href="{{ $breadcrumb->url }}">{{ $breadcrumb->title }}</a></li>
-            @else
-                <li class="active">{{ $breadcrumb->title }}</li>
-            @endif
-        @endforeach
-    </ol>
-</nav>
+    </a>
+
+    @foreach ($breadcrumbs as $breadcrumb)
+        @if (!$loop->first)
+            <div>/</div>
+        @endif
+
+        @if ($breadcrumb->url && !$loop->last)
+            <div><a class="breadcrumb-link" href="{{ $breadcrumb->url }}">{{ $breadcrumb->title }}</a></div>
+        @else
+            <div>{{ $breadcrumb->title }}</div>
+        @endif
+    @endforeach
+</div>
 
 <style>
-    .breadcrumb-wrapper {
-        margin: 1rem 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    .breadcrumb {
+        margin-top: 30px;
     }
-
-    .custom-breadcrumb {
-        list-style: none;
+    .breadcrumb,
+    .breadcrumb-link {
         display: flex;
-        flex-wrap: wrap;
-        padding: 0;
-        margin: 0;
-        font-size: 0.95rem;
-    }
-
-    .custom-breadcrumb li {
-        display: flex;
-        align-items: center;
-        color: #555;
-    }
-
-    .custom-breadcrumb li+li::before {
-        content: "›";
-        padding: 0 8px;
-        color: #999;
-    }
-
-    .custom-breadcrumb li a {
+        gap: 10px;
+        color: #5a808b;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 182%;
+        /* 25.48px */
+        letter-spacing: -0.14px;
         text-decoration: none;
-        color: #007bff;
-        transition: color 0.2s;
-    }
-
-    .custom-breadcrumb li a:hover {
-        color: #0056b3;
-        text-decoration: underline;
-    }
-
-    .custom-breadcrumb li.active {
-        color: #6c757d;
-        font-weight: 500;
     }
 </style>
