@@ -20,58 +20,33 @@ class LangMiddleware
     {
         $defaultLocale = Session::get('lang');
 
-        if (! $defaultLocale) {
-            $defaultLocale = getLanguage()->first()->slug;
-
+        // Agar sessiyada til yo'q bo'lsa, birinchi faol tilni olish
+        if (!$defaultLocale) {
+            $defaultLocale = Language::where('is_active', true)->first()->slug ?? 'en'; // Agar til topilmasa default 'en'
             Session::put('lang', $defaultLocale);
         }
 
         $availableLocales = Language::where('is_active', true)->pluck('slug')->toArray();
-
         $locale = $request->query('lang');
 
+        // Agar URL'da lang parametri bo'lsa
         if ($locale) {
-
             if (in_array($locale, $availableLocales)) {
-
                 Session::put('lang', $locale);
             } else {
-
-                $locale = Session::get('lang', $defaultLocale);
-
-                if (!in_array($locale, $availableLocales)) {
-
-                    $locale = $defaultLocale;
-                }
-
-                if ($request->method() === 'GET' && !$request->routeIs('change.language')) {
-
-                    $url = $request->url();
-
-                    $existingQuery = $request->except('lang');
-
-                    $queryString = http_build_query(array_merge($existingQuery, ['lang' => $locale]));
-
-                    return redirect()->to($url . ($queryString ? '?' . $queryString : ''));
-                }
+                $locale = $defaultLocale; // Noto'g'ri til kiritilsa, default tilga o'tish
             }
         } else {
-
             $locale = Session::get('lang', $defaultLocale);
-
             if (!in_array($locale, $availableLocales)) {
-
                 $locale = $defaultLocale;
             }
 
+            // Redirect faqat lang parametri yo'q bo'lsa va kerak bo'lganda amalga oshiriladi
             if (!$request->has('lang') && $request->method() === 'GET' && !$request->routeIs('change.language')) {
-
                 $url = $request->url();
-
                 $existingQuery = $request->except('lang');
-
                 $queryString = http_build_query(array_merge($existingQuery, ['lang' => $locale]));
-
                 return redirect()->to($url . ($queryString ? '?' . $queryString : ''));
             }
         }
