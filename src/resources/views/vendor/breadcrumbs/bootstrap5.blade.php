@@ -1,5 +1,4 @@
 @php
-    // Faqat bitta element (masalan: Home) bo‘lsa, breadcrumb ko‘rsatilmaydi
     if ($breadcrumbs->count() <= 1) {
         return;
     }
@@ -11,9 +10,13 @@
         @endif
 
         @if ($breadcrumb->url && !$loop->last)
-            <div><a class="breadcrumb-link" href="{{ $breadcrumb->url }}">{{ $breadcrumb->title }}</a></div>
+            <div>
+                <a class="breadcrumb-link" href="{{ $breadcrumb->url }}">
+                    {{ mb_strimwidth($breadcrumb->title, 0, 25, '...') }}
+                </a>
+            </div>
         @else
-            <div>{{ $breadcrumb->title }}</div>
+            <div>{{ mb_strimwidth($breadcrumb->title, 0, 25, '...') }}</div>
         @endif
     @endforeach
 </div>

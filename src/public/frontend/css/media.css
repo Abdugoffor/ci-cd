@@ -8,6 +8,7 @@
 @media (max-width: 992px) {
     .nav-list {
         gap: 20px;
+        margin-right: 10px;
     }
 
     .banner-titles {
@@ -298,9 +299,6 @@
         font-size: 14px;
     }
 
-    .register-personal {
-        padding-top: 40px;
-    }
     .register-form form {
         display: flex;
         flex-direction: column;

@@ -26,12 +26,13 @@
     <link rel="stylesheet" href="/frontend/css/media.css?v=1.3" />
 
 </head>
+
 <body>
     <header class="header">
         <nav class="nav container" style="flex-wrap: nowrap">
             <div class="nav-left">
                 <div class="logo-wrapper">
-                    <a href="/" class="logo">
+                    <a href="/" class="logo" style="height: 60px;">
                         <img src="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}"
                             alt="Chess Olympiad 2025" />
                     </a>
@@ -94,12 +95,12 @@
         </nav>
         @yield('banner')
     </header>
-<div class="container">
+    <div class="container">
 
-    @if (Breadcrumbs::exists(Route::currentRouteName()))
-        {{ Breadcrumbs::render(Route::currentRouteName(), Route::current()->parameters()) }}
-    @endif
-</div>
+        @if (Breadcrumbs::exists(Route::currentRouteName()))
+            {{ Breadcrumbs::render(Route::currentRouteName(), Route::current()->parameters()) }}
+        @endif
+    </div>
     @yield('content')
     <footer class="footer">
         <div class="container">
@@ -200,7 +201,7 @@
     });
 </script>
 <style>
-    
+
 </style>
 
 </html>
