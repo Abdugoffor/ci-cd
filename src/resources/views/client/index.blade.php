@@ -1,5 +1,5 @@
 @extends('layouts.client')
-@section('title', 'Fide')
+@section('title', 'FIDE - Международная шахматная федерация')
 @section('banner')
     <div class="banner">
 

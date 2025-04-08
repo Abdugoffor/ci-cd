@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title')</title>
 
-    <meta name="description" content="" />
-    <meta name="keywords" content="">
+    <meta name="description" content="Международная шахматная федерация. Мировые шахматные новости, турниры, отели, обновления шахматной олимпиады и интересные вопросы и ответы по FIDE" />
+    <meta name="keywords" content="FIDE международный шахматный чемпионат, FIDE шахматная олимпиада, Новости Международной шахматной федерации, Новости Международной шахматной федерацииРазвитие шахмат FIDE">
     <meta name="author" content="Chess Federation">
 
     <!-- Open Graph -->
