@@ -27,7 +27,9 @@ class ApplicationController extends Controller
         session()->forget('player');
 
         if ($request->has("fide_id")) {
+            
             $fideId = $request->fide_id;
+            
             $url = "https://api.fide.com/regform/{$fideId}";
 
             try {
