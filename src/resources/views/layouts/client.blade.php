@@ -6,7 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title')</title>
 
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Chess Federation">
 
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ getLocale($siteSettings->name) }}" />
+    <meta property="og:description" content="{{ getLocale($siteSettings->title) }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:image" content="{{ $siteSettings->photo_1 }}" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ getLocale($model->name) ?? 'Homepage' }}" />
+    <meta name="twitter:description" content="{{ getLocale($siteSettings->description) }}" />
+    <meta name="twitter:image"
+        content="{{ $siteSettings->photo_1 ?? asset('frontend/assets/seo/default-twitter.jpg') }}" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="{{ url()->current() }}" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/frontend/assets/header_banner/chess_logo.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/frontend/assets/header_banner/chess_logo.svg" />
 

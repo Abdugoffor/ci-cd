@@ -2503,6 +2503,13 @@ body {
     font-size: 18px;
 }
 
+.main_header {
+    color: #000;
+    font-size: 29.392px;
+    font-weight: 500;
+    letter-spacing: 1.176px;
+}
+
 @media (max-width:548px) {
     .previewabsolute {
         position: relative;

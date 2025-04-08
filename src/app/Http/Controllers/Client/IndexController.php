@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
@@ -26,15 +27,39 @@ class IndexController extends Controller
 
     public function changeLanguage($lang)
     {
-        $lang = Language::where('slug', $lang)->where('is_active', true)->first();
+        $language = Language::where('slug', $lang)->where('is_active', true)->first();
 
-        if ($lang) {
+        if ($language) {
 
-            session()->put('lang', $lang->slug);
+            session()->put('lang', $language->slug);
 
-            App::setLocale($lang->slug);
+            App::setLocale($language->slug);
         }
-        return redirect()->back();
-    }
 
+        $previousUrl = url()->previous();
+
+        $urlParts = parse_url($previousUrl);
+
+        $path = $urlParts['path'] ?? '/';
+
+        $query = isset($urlParts['query']) ? $urlParts['query'] : '';
+
+        parse_str($query, $params);
+
+        $params['lang'] = $language->slug ?? $lang;
+
+        $newQuery = http_build_query($params);
+
+        return redirect()->to($path . ($newQuery ? '?' . $newQuery : ''));
+
+        // $lang = Language::where('slug', $lang)->where('is_active', true)->first();
+
+        // if ($lang) {
+
+        //     session()->put('lang', $lang->slug);
+
+        //     App::setLocale($lang->slug);
+        // }
+        // return redirect()->back();
+    }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.client')
-@section('title', isset($model) && $model->name ? getLocale($model->name) : '')
+@section('title', 'Fide')
 @section('banner')
     <div class="banner">
 
@@ -12,8 +12,8 @@
                             {{ session('notification') }}
                         </div>
                     @endif
-                    <span>{{ isset($model) && $model->name ? getLocale($model->name) : '' }}</span>
-                    <h1>{{ isset($model) && $model->category ? getLocale($model->category->name) : '' }}</h1>
+                    <h2 class="main_header">{{ isset($model) && $model->name ? getLocale($model->name) : '' }}</h2>
+                    <h1>{{ isset($model) && $model->category ? getLocale($model->category->name) : '' }} 123</h1>
                     <!-- banner update end text -->
                     <div>
                         {{ isset($model) ? getLocale($model->title) : '' }}
