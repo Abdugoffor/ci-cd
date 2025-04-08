@@ -5,10 +5,6 @@
     }
 @endphp
 <div class="breadcrumb">
-    <a href="{{ url('/') }}">
-
-    </a>
-
     @foreach ($breadcrumbs as $breadcrumb)
         @if (!$loop->first)
             <div>/</div>
@@ -26,6 +22,7 @@
     .breadcrumb {
         margin-top: 30px;
     }
+
     .breadcrumb,
     .breadcrumb-link {
         display: flex;
