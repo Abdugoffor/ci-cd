@@ -13,7 +13,7 @@
                         </div>
                     @endif
                     <h2 class="main_header">{{ isset($model) && $model->name ? getLocale($model->name) : '' }}</h2>
-                    <h1>{{ isset($model) && $model->category ? getLocale($model->category->name) : '' }} 123</h1>
+                    <h1>{{ isset($model) && $model->category ? getLocale($model->category->name) : '' }}</h1>
                     <!-- banner update end text -->
                     <div>
                         {{ isset($model) ? getLocale($model->title) : '' }}
