@@ -27,33 +27,39 @@ class ApplicationController extends Controller
         session()->forget('player');
 
         if ($request->has("fide_id")) {
-            
+
             $fideId = $request->fide_id;
-            
+
             $url = "https://api.fide.com/regform/{$fideId}";
 
             try {
+
                 $response = Http::get($url);
+
                 $data = $response->body();
+
                 $decodedData = json_decode($data, true);
 
-                if (!empty($decodedData) && is_array($decodedData)) {
+                if (! empty($decodedData) && is_array($decodedData)) {
+
                     $player = $decodedData[0];
+
                     session()->put('player', $player);
+
                     $tournaments = Tournament::where('status', 'pending')->get();
-                    return view('client.applications.application', [
-                        'tournaments' => $tournaments,
-                        'fide_id_success' => getTranslation('fide_id_success')
-                    ]);
+
+                    return view('client.applications.application', ['tournaments' => $tournaments, 'fide_id_success' => getTranslation('fide_id_success')]);
                 } else {
                     return back()->withErrors(['fide_id' => getTranslation('fide_id')])->withInput();
                 }
             } catch (\Exception $e) {
-                return back()->withErrors(['fide_id' => $e->getMessage()])->withInput();
+
+                return back()->withErrors(['fide_id', $e->getMessage()]);
             }
         }
 
         $tournaments = Tournament::where('status', 'pending')->get();
+
         return view('client.applications.application', ['tournaments' => $tournaments]);
     }
     public function store(ApplicationStoreRequest $request)
@@ -171,7 +177,7 @@ class ApplicationController extends Controller
             'name' => getLocale($model->tournament->name),
             'title' => getLocale($model->tournament->title),
             'first_name' => $model->first_name,
-            'email' => $model->email,
+            'email' => $model->email, 
         ];
 
 
