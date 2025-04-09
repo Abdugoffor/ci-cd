@@ -49,7 +49,7 @@
             padding: 12px 24px;
             border-radius: 8px;
             cursor: pointer;
-            font-family: "Unbounded";
+            font-family: 'Montserrat', sans-serif;
             font-size: 16px;
             transition: background 0.3s;
             margin-top: 20px;

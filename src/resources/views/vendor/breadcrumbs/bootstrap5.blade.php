@@ -12,11 +12,11 @@
         @if ($breadcrumb->url && !$loop->last)
             <div>
                 <a class="breadcrumb-link" href="{{ $breadcrumb->url }}">
-                    {{ mb_strimwidth($breadcrumb->title, 0, 25, '...') }}
+                    {{ mb_strimwidth($breadcrumb->title, 0, 35, '...') }}
                 </a>
             </div>
         @else
-            <div>{{ mb_strimwidth($breadcrumb->title, 0, 25, '...') }}</div>
+            <div>{{ mb_strimwidth($breadcrumb->title, 0, 35, '...') }}</div>
         @endif
     @endforeach
 </div>
