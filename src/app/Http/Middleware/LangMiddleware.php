@@ -59,6 +59,7 @@ class LangMiddleware
         App::setLocale($locale);
 
         // Agar lang_redirected flag bo'lsa, uni tozalash
+        // Agar lang_redirected flag bo'lsa, uni tozalash
         if ($request->session()->has('lang_redirected')) {
             $request->session()->forget('lang_redirected');
         }
