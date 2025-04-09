@@ -40,6 +40,7 @@ if (! function_exists('getLanguage')) {
     }
 }
 
+
 if (!function_exists('historyCheck')) {
     function historyCheck($model)
     {
