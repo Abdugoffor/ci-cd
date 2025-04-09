@@ -57,8 +57,7 @@ class LangMiddleware
                     $queryString = http_build_query(array_merge($existingQuery, ['lang' => $locale]));
 
                     $newUrl = $request->url() . ($queryString ? '?' . $queryString : '');
-                    // Log qo'shish (ixtiyoriy, debug uchun)
-                    // Log::info('Redirecting to: ' . $newUrl);
+                    
                     return redirect()->to($newUrl);
                 }
             }
