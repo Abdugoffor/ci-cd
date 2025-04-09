@@ -94,9 +94,6 @@
                         <br>
                     @endif
                 </div>
-                @if (session('fide_id'))
-                    <span style="color: red; text-align: left; font-size: 12px;">{{ session('fide_id') }}</span>
-                @endif
                 @error('fide_id')
                     <span style="color: red; text-align: left; font-size: 12px;">{{ $message }}</span>
                 @enderror
@@ -240,7 +237,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Agar validatsiya xatoliklari bo'lsa, formaga fokuslash
-        @if ($errors->has('fide_id') || session('fide_id'))
+        @if ($errors->has('fide_id'))
             document.getElementById('fideForm1Anchor').scrollIntoView({
                 behavior: 'smooth'
             });

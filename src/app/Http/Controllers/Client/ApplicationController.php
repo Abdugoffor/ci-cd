@@ -50,8 +50,7 @@ class ApplicationController extends Controller
 
                     return view('client.applications.application', ['tournaments' => $tournaments, 'fide_id_success' => getTranslation('fide_id_success')]);
                 } else {
-                    // return redirect()->back()->with('fide_id', getTranslation('fide_id'));
-                    return redirect()->route('home')->with('fide_id', getTranslation('fide_id'));
+                    return back()->withErrors(['fide_id' => getTranslation('fide_id')])->withInput();
                 }
             } catch (\Exception $e) {
 

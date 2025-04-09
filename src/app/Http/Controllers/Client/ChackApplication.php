@@ -23,7 +23,7 @@ class ChackApplication extends Controller
         if ($participant) {
             return view('client.chack', ['participant' => $participant]);
         } else {
-            return redirect()->back()->with('key', getTranslation('invalid_key'));
+            return back()->withErrors(['key' => getTranslation('invalid_key')])->withInput();
         }
     }
 }

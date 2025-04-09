@@ -35,9 +35,9 @@
                         <label for="first-name" class="input-label">{{ getTranslation('key') }} </label>
                         <input type="text" id="first-name" name="key" placeholder="{{ getTranslation('key') }}"
                             value="{{ old('key') }}" class="input-text" />
-                        @if (session('key'))
-                            <span style="color: red;">{{ session('key') }}</span>
-                        @endif
+                        @error('key')
+                            <span style="color: red;">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="input-wrapper">
                         <button type="submit" class="btn"
