@@ -18,65 +18,65 @@ class LangMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $defaultLocale = Session::get('lang');
+        // $defaultLocale = Session::get('lang');
 
-        if (!$defaultLocale) {
+        // if (!$defaultLocale) {
             
-            $defaultLocale = Language::where('is_active', true)->first()->slug ?? 'en';
+        //     $defaultLocale = Language::where('is_active', true)->first()->slug ?? 'en';
             
-            Session::put('lang', $defaultLocale);
-        }
+        //     Session::put('lang', $defaultLocale);
+        // }
 
-        $availableLocales = Language::where('is_active', true)->pluck('slug')->toArray();
+        // $availableLocales = Language::where('is_active', true)->pluck('slug')->toArray();
         
-        $locale = $request->query('lang');
+        // $locale = $request->query('lang');
 
-        if ($locale) {
+        // if ($locale) {
 
-            if (in_array($locale, $availableLocales)) {
-                Session::put('lang', $locale);
-            } else {
-                $locale = $defaultLocale;
-            }
-        } else {
+        //     if (in_array($locale, $availableLocales)) {
+        //         Session::put('lang', $locale);
+        //     } else {
+        //         $locale = $defaultLocale;
+        //     }
+        // } else {
 
-            $locale = Session::get('lang', $defaultLocale);
+        //     $locale = Session::get('lang', $defaultLocale);
             
-            if (!in_array($locale, $availableLocales)) {
-                $locale = $defaultLocale;
-            }
+        //     if (!in_array($locale, $availableLocales)) {
+        //         $locale = $defaultLocale;
+        //     }
 
-            if (!$request->has('lang') && $request->method() === 'GET' && !$request->routeIs('change.language')) {
+        //     if (!$request->has('lang') && $request->method() === 'GET' && !$request->routeIs('change.language')) {
 
-                $fullUrl = $request->fullUrl();
+        //         $fullUrl = $request->fullUrl();
 
-                if (!str_contains($fullUrl, 'lang=')) {
+        //         if (!str_contains($fullUrl, 'lang=')) {
 
-                    $existingQuery = $request->except('lang');
+        //             $existingQuery = $request->except('lang');
 
-                    $queryString = http_build_query(array_merge($existingQuery, ['lang' => $locale]));
+        //             $queryString = http_build_query(array_merge($existingQuery, ['lang' => $locale]));
 
-                    $newUrl = $request->url() . ($queryString ? '?' . $queryString : '');
+        //             $newUrl = $request->url() . ($queryString ? '?' . $queryString : '');
                     
-                    return redirect()->to($newUrl);
-                }
-            }
-        }
-
-        App::setLocale($locale);
-
-        return $next($request);
-
-        // $locale = Session::get('lang');
-
-        // if (! $locale) {
-        //     $locale = getLanguage()->first()->slug;
-
-        //     Session::put('lang', $locale);
+        //             return redirect()->to($newUrl);
+        //         }
+        //     }
         // }
 
         // App::setLocale($locale);
 
         // return $next($request);
+
+        $locale = Session::get('lang');
+
+        if (! $locale) {
+            $locale = getLanguage()->first()->slug;
+
+            Session::put('lang', $locale);
+        }
+
+        App::setLocale($locale);
+
+        return $next($request);
     }
 }

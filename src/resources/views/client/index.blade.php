@@ -97,9 +97,9 @@
                 @if (session('fide_id'))
                     <span style="color: red; text-align: left; font-size: 12px;">{{ session('fide_id') }}</span>
                 @endif
-                {{-- @error('fide_id')
+                @error('fide_id')
                     <span style="color: red; text-align: left; font-size: 12px;">{{ $message }}</span>
-                @enderror --}}
+                @enderror
                 <div class="toast-container"></div>
             </div>
         </section>
