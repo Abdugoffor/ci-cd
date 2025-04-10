@@ -10,7 +10,7 @@ class BadgesController extends Controller
     public function verify(string $badges)
     {
         $domain = request()->getSchemeAndHttpHost();
-
+        
         $qk_code = "{$domain}/badge-verify/{$badges}";
 
         $participant = Participant::where('qk_code', $qk_code)->first();
