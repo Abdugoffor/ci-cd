@@ -86,7 +86,7 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     @foreach ($languages as $language)
                         <a
-                            href="{{ route('change.language', $language->slug, false) }}"class="dropdown-item {{ app()->getLocale() == $language->slug ? 'active' : '' }}">
+                            href="{{ route('change.language', ['lang' => $language->slug], false) }}"class="dropdown-item {{ app()->getLocale() == $language->slug ? 'active' : '' }}">
                             {{ $language->name }}
                         </a>
                     @endforeach
