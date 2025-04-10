@@ -31,8 +31,10 @@ use App\Http\Controllers\Client\IndexController;
 use App\Http\Controllers\Client\NewsController as ClientNewsController;
 use App\Http\Controllers\Client\PageController;
 use App\Http\Controllers\Client\PresenceController;
+use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\CheckEmailSession;
 use App\Http\Middleware\LangMiddleware;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -80,7 +82,7 @@ Route::prefix('{lang}')->middleware(LangMiddleware::class)->group(function () {
     Route::get('/verify-code', [EmailVerifyController::class, 'codeForm'])->name('verify.code');
     Route::get('/verify-code/{participant}', [EmailVerifyController::class, 'verifyCode'])->name('verify.code.post');
 
-    Route::prefix('dashboard')->middleware(['auth'])->group(function () {
+    Route::prefix('dashboard')->middleware(AuthMiddleware::class)->group(function () {
 
         Route::get('/profile', [AuthController::class, 'edit'])->name('profile.edit');
         Route::post('/profile', [AuthController::class, 'update'])->name('profile.update');
@@ -177,7 +179,6 @@ Route::prefix('{lang}')->middleware(LangMiddleware::class)->group(function () {
             Route::get('/applications-status-applicant/{participant}/{ststus}', [AdminAppController::class, 'status'])->name('application.status.applicant');
         });
     });
-
 });
 
 Route::get('/badge-verify/{badges}', [BadgesController::class, 'verify'])->name('badges.verify');

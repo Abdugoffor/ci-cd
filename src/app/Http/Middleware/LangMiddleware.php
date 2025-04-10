@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Language;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -37,6 +36,11 @@ class LangMiddleware
         URL::defaults(['lang' => $lang]);
 
         $request->route()->forgetParameter('lang');
+
+        if (!$request->user() && $request->is('*/dashboard/*')) {
+            
+            return redirect()->route('login', ['lang' => $lang]);
+        }
 
         return $next($request);
 
