@@ -19,7 +19,7 @@ class LoginController extends Controller
         if (auth()->attempt($request->only('email', 'password'))) {
 
             $user = auth()->user();
-            // dd($user);
+            
             isActive();
 
             if (in_array($user->role, ['Administrator', 'Manager', 'Security'])) {

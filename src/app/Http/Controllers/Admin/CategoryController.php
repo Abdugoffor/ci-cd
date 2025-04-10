@@ -48,7 +48,7 @@ class CategoryController extends Controller
         $data['description']['default'] = reset($data['description']);
 
         $data['slug'] = slug($data['name']['default']);
-        // dd($data);
+        
         Category::create($data);
 
         return redirect()->route('categories.index')->with('notification', getTranslation('notification'));

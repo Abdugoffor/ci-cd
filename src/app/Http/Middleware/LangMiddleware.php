@@ -7,6 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 use Symfony\Component\HttpFoundation\Response;
 
 class LangMiddleware
@@ -18,6 +19,61 @@ class LangMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $lang = $request->segment(1);
+
+        $langs = getLanguage()->pluck('slug')->toArray();
+
+        if (!$lang || !in_array($lang, $langs)) {
+
+            $lang = Session::get('lang', $langs[0] ?? 'en');
+
+            return redirect("/{$lang}" . $request->getPathInfo());
+        }
+
+        Session::put('lang', $lang);
+
+        App::setLocale($lang);
+
+        URL::defaults(['lang' => $lang]);
+
+        $request->route()->forgetParameter('lang');
+
+        return $next($request);
+
+        // $lang = $request->segment(1);
+
+        // $langs = getLanguage()->pluck('slug')->toArray();
+
+        // if (!$lang || !in_array($lang, $langs)) {
+
+        //     $lang = Session::get('lang', $langs[0] ?? 'en');
+
+        //     if ($request->path() === '/' || !str_starts_with($request->path(), $lang)) {
+
+        //         return redirect("/{$lang}" . $request->getPathInfo());
+        //     }
+        // }
+
+        // Session::put('lang', $lang);
+
+        // App::setLocale($lang);
+        // URL::defaults(['lang' => $lang]);
+
+        // return $next($request);
+
+        // ?get so'rov
+        // $locale = Session::get('lang');
+
+        // if (! $locale) {
+        //     $locale = getLanguage()->first()->slug;
+
+        //     Session::put('lang', $locale);
+        // }
+
+        // App::setLocale($locale);
+
+        // return $next($request);
+
         // $defaultLocale = Session::get('lang');
 
         // // Agar sessiyada til yo'q bo'lsa, birinchi faol tilni olish
@@ -61,17 +117,5 @@ class LangMiddleware
         // App::setLocale($locale);
 
         // return $next($request);
-
-        $locale = Session::get('lang');
-
-        if (! $locale) {
-            $locale = getLanguage()->first()->slug;
-
-            Session::put('lang', $locale);
-        }
-
-        App::setLocale($locale);
-
-        return $next($request);
     }
 }

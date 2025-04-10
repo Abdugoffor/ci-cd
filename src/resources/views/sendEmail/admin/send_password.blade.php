@@ -39,7 +39,7 @@
                             </h1>
                             <br />
                             <p style="color: #546668; font-size: 18px">
-                                Ваш пароль для подтверждения электронной почты:
+                                Ваш пароль для входа в систему:
                                 <strong style="color: #1f3a3e">{{ $code }}</strong>
                             </p>
                             <p style="color: #546668; font-size: 18px">

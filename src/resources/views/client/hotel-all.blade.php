@@ -10,7 +10,7 @@
                 @foreach ($hotels as $hotel)
                     <!-- news update start  -->
                     <div class="news-card">
-                        <a href="{{ route('hotel.index', $hotel->id, false) }}" style="color: #083f4f;">
+                        <a href="{{ route('hotel.index', $hotel->id, false) }}" style="color: #083f4f; font-size: 16px;">
                             <img src="/{{ $hotel->photo }}" alt="" />
                             <div class="hotel-distance">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="13" viewBox="0 0 10 13"

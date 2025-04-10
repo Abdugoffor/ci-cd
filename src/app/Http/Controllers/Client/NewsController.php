@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
@@ -26,4 +25,5 @@ class NewsController extends Controller
 
         return view('client.news-all', ['news' => $news]);
     }
+
 }

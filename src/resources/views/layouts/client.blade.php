@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title')</title>
 
-    <meta name="description" content="Международная шахматная федерация. Мировые шахматные новости, турниры, отели, обновления шахматной олимпиады и интересные вопросы и ответы по FIDE" />
-    <meta name="keywords" content="FIDE международный шахматный чемпионат, FIDE шахматная олимпиада, Новости Международной шахматной федерации, Новости Международной шахматной федерацииРазвитие шахмат FIDE">
+    <meta name="description"
+        content="Международная шахматная федерация. Мировые шахматные новости, турниры, отели, обновления шахматной олимпиады и интересные вопросы и ответы по FIDE" />
+    <meta name="keywords"
+        content="FIDE международный шахматный чемпионат, FIDE шахматная олимпиада, Новости Международной шахматной федерации, Новости Международной шахматной федерацииРазвитие шахмат FIDE">
     <meta name="author" content="Chess Federation">
 
     <!-- Open Graph -->
@@ -56,7 +58,7 @@
         <nav class="nav container" style="flex-wrap: nowrap">
             <div class="nav-left">
                 <div class="logo-wrapper">
-                    <a href="/" class="logo" style="height: 60px;">
+                    <a href="{{ route('home', [],false) }}" class="logo" style="height: 60px;">
                         <img src="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}"
                             alt="Chess Olympiad 2025" />
                     </a>
@@ -85,7 +87,7 @@
                     <ul class="lang-dropdown">
                         @foreach ($languages as $language)
                             <li>
-                                <a href="{{ route('change.language', $language->slug) }}"
+                                <a href="{{ route('change.language', ['lang' => $language->slug], false) }}"
                                     class="{{ app()->getLocale() == $language->slug ? 'active' : '' }}"
                                     style="text-transform: uppercase;">
                                     {{ $language->slug }}

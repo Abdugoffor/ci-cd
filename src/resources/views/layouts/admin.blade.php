@@ -62,7 +62,7 @@
         </div>
 
         <div class="navbar-brand text-center text-lg-left">
-            <a href="/" target="_blank" class="d-inline-block d-flex align-items-center">
+            <a href="{{ route('home', [], false) }}" target="_blank" class="d-inline-block d-flex align-items-center">
                 <img src="/backend/admin_logo.webp" class="d-none d-sm-block" alt=""
                     style="height: 35px; margin-right: 10px;">
                 <span style="color: white; font-size: 14px;">International Chess Federation</span>
@@ -132,7 +132,7 @@
                 <div class="sidebar-section sidebar-user my-1">
                     <div class="sidebar-section-body">
                         <div class="media">
-                            <a href="/" target="_blank" class="mr-3">
+                            <a href="{{ route('home', [], false) }}" target="_blank" class="mr-3">
                                 <img src="https://cdn-icons-png.flaticon.com/512/8664/8664801.png"
                                     class="rounded-circle" alt="">
                                 {{-- <img src="{{ asset('frontend/assets/1.png') }}" class="rounded-circle" alt=""> --}}

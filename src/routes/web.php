@@ -33,9 +33,23 @@ use App\Http\Controllers\Client\PageController;
 use App\Http\Controllers\Client\PresenceController;
 use App\Http\Middleware\CheckEmailSession;
 use App\Http\Middleware\LangMiddleware;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(LangMiddleware::class)->group(function () {
+
+Route::get('/', function () {
+    $lang = session()->get('lang');
+
+    if (!$lang) {
+        $lang = getLanguage()->first()->slug ?? 'en';
+        session()->put('lang', $lang);
+        App::setLocale($lang);
+    }
+
+    return redirect("/{$lang}");
+});
+
+Route::prefix('{lang}')->middleware(LangMiddleware::class)->group(function () {
 
     Route::get('/', [IndexController::class, 'index'])->name('home');
 
@@ -59,8 +73,6 @@ Route::middleware(LangMiddleware::class)->group(function () {
 
     Route::get('/admin', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('loginSubmit');
-
-    Route::get('/lang/{lang}', [IndexController::class, 'changeLanguage'])->name('change.language');
 
     Route::get('/verify-email', [EmailVerifyController::class, 'showVerifyForm'])->name('verify.email');
     Route::post('/verify-email', [EmailVerifyController::class, 'verifyEmailCode'])->name('verify.email.post');
@@ -167,5 +179,6 @@ Route::middleware(LangMiddleware::class)->group(function () {
     });
 
     Route::get('/badge-verify/{badges}', [BadgesController::class, 'verify'])->name('badges.verify');
-}); 
+});
 
+Route::get('/lang/{lang}', [IndexController::class, 'changeLanguage'])->name('change.language');

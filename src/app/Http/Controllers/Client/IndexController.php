@@ -27,6 +27,51 @@ class IndexController extends Controller
 
     public function changeLanguage($lang)
     {
+        $langs = getLanguage()->pluck('slug')->toArray();
+
+        if (in_array($lang, $langs)) {
+
+            session()->put('lang', $lang);
+
+            App::setLocale($lang);
+
+            $referer = request()->header('referer');
+
+            $refererPath = parse_url($referer, PHP_URL_PATH);
+
+
+            if ($refererPath) {
+
+                $segments = explode('/', trim($refererPath, '/'));
+
+
+                if (!empty($segments) && in_array($segments[0], $langs)) {
+                    $segments[0] = $lang;
+                }
+
+
+                $newUrl = '/' . implode('/', $segments);
+
+                return redirect($newUrl);
+            }
+
+
+            return redirect("/$lang");
+        }
+
+        return redirect()->back();
+
+        // $lang = Language::where('slug', $lang)->where('is_active', true)->first();
+
+        // if ($lang) {
+
+        //     session()->put('lang', $lang->slug);
+
+        //     App::setLocale($lang->slug);
+        // }
+        // return redirect()->back();
+        
+
         // $language = Language::where('slug', $lang)->where('is_active', true)->first();
 
         // if ($language) {
@@ -52,14 +97,5 @@ class IndexController extends Controller
 
         // return redirect()->to($path . ($newQuery ? '?' . $newQuery : ''));
 
-        $lang = Language::where('slug', $lang)->where('is_active', true)->first();
-
-        if ($lang) {
-
-            session()->put('lang', $lang->slug);
-
-            App::setLocale($lang->slug);
-        }
-        return redirect()->back();
     }
 }
