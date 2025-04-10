@@ -49,17 +49,17 @@ class MenyuController extends Controller
     public function store(MenyuStoreRequest $request)
     {
         $data = $request->all();
-
+        
         $data['name']['default'] = reset($data['name']);
 
-        $url = request()->getSchemeAndHttpHost() . $data['url'];
+        // $url = request()->getSchemeAndHttpHost() . $data['url'];
 
-        $page = Page::where('url', $url)->first();
+        // $page = Page::where('url', $url)->first();
 
-        if ($page) {
+        // if ($page) {
 
-            $data['url'] = $page->url;
-        }
+        //     $data['url'] = $page->url;
+        // }
 
         Menyu::create($data);
 
@@ -80,15 +80,15 @@ class MenyuController extends Controller
     public function update(MenyuStoreRequest $request, Menyu $menu)
     {
         $data = $request->all();
+        
+        // $url  = request()->getSchemeAndHttpHost() . $data['url'];
+        
+        // $page = Page::where('url', $url)->first();
 
-        $url  = request()->getSchemeAndHttpHost() . $data['url'];
+        // if ($page) {
 
-        $page = Page::where('url', $url)->first();
-
-        if ($page) {
-
-            $data['url'] = $page->url;
-        }
+        //     $data['url'] = $page->url;
+        // }
 
         $menu->update($data);
 

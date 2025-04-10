@@ -30,9 +30,9 @@ class Page extends Model
 
         static::created(function ($page) {
 
-            $domain = request()->getSchemeAndHttpHost();
+            // $domain = request()->getSchemeAndHttpHost();
 
-            $page->url = $domain . '/content/' . $page->id;
+            $page->url = '/content/' . $page->id;
 
             $page->save();
         });

@@ -19,7 +19,7 @@ class LangMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $lang = $request->segment(1);
-
+        
         $langs = getLanguage()->pluck('slug')->toArray();
 
         if (!$lang || !in_array($lang, $langs)) {

@@ -51,6 +51,17 @@ Route::get('/', function () {
     return redirect("/{$lang}");
 });
 
+Route::get('/content/{content}', function ($content) {
+    $lang = session()->get('lang');
+
+    if (!$lang) {
+        $lang = getLanguage()->first()->slug ?? 'en';
+        session()->put('lang', $lang);
+        App::setLocale($lang);
+    }
+    
+    return redirect("/{$lang}/content/{$content}");
+});
 
 Route::prefix('{lang}')->middleware(LangMiddleware::class)->group(function () {
 

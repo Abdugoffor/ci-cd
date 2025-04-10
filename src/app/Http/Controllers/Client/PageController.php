@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
@@ -12,5 +13,4 @@ class PageController extends Controller
     {
         return view('client.page', ['page' => $content]);
     }
-
 }
