@@ -14,7 +14,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $model = Tournament::where('is_active', true)->orderByDesc('id')->first();
+        $model = Tournament::with('category', 'country')->where('is_active', true)->orderByDesc('id')->first();
 
         $news = News::where('is_active', true)->orderByDesc('id')->limit(3)->get();
 

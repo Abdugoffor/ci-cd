@@ -12,7 +12,7 @@ class TranslationController extends Controller
 {
     public function index()
     {
-        $models = Translation::orderByDesc('id')->paginate(10);
+        $models = Translation::with('histories')->orderByDesc('id')->paginate(10);
         return view('admin.translations.index', data: ['models' => $models]);
     }
 

@@ -12,7 +12,7 @@ class PresenceController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Presence::query();
+        $query = Presence::query()->with('participant');
 
         // Name bo'yicha qidiruv
         if ($request->has('name') && $request->name) {

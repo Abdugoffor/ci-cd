@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -11,8 +12,8 @@ class AccreditationCategoryController extends Controller
 {
     public function index()
     {
-        $models   = AccreditationCategory::orderByDesc('id')->paginate(10);
-        
+        $models   = AccreditationCategory::with('histories')->orderByDesc('id')->paginate(10);
+
         return view('admin.accreditation-categories.index', ['models' => $models]);
     }
 
@@ -50,6 +51,8 @@ class AccreditationCategoryController extends Controller
 
         $data['slug'] = slug($data['name']['default']);
 
+        $data['color'] = "34deg, #DF9582 -52.14%, #7A184A 142.1%";
+
         AccreditationCategory::create($data);
 
         return redirect()->route('accreditation-categories.index')->with('notification', getTranslation('notification'));
@@ -67,6 +70,11 @@ class AccreditationCategoryController extends Controller
     public function update(AccreditationCategoryStoreRequest $request, AccreditationCategory $accreditation_category)
     {
         $data = $request->all();
+
+        if ($accreditation_category->slug == 'player') {
+            $data['color'] = "212deg, #A52629 5.64%, rgba(215, 46, 59, 0.54) 102.91%, rgba(239, 64, 87, 0.00) 137.49%";
+        }
+
         $accreditation_category->update($data);
 
         return redirect()->route('accreditation-categories.index')->with('notification', getTranslation('notification'));

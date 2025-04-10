@@ -37,11 +37,6 @@ class LangMiddleware
 
         $request->route()->forgetParameter('lang');
 
-        if (!$request->user() && $request->is('*/dashboard/*')) {
-            
-            return redirect()->route('login', ['lang' => $lang]);
-        }
-
         return $next($request);
 
         // $lang = $request->segment(1);

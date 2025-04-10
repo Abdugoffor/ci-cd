@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -7,6 +8,7 @@ use App\Models\Menyu;
 use App\Models\Page;
 use App\Traits\SearchColumTranslations;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class MenyuController extends Controller
 {
@@ -16,7 +18,7 @@ class MenyuController extends Controller
     use SearchColumTranslations;
     public function index()
     {
-        $models = Menyu::orderByDesc('id')->paginate(10);
+        $models = Menyu::with('histories')->orderByDesc('id')->paginate(10);
         return view(view: 'admin.menus.index', data: ['models' => $models]);
     }
 
@@ -61,6 +63,8 @@ class MenyuController extends Controller
 
         Menyu::create($data);
 
+        Cache::forget('getMenus');
+
         return redirect()->route('menus.index')->with('notification', getTranslation('notification'));
     }
 
@@ -85,8 +89,10 @@ class MenyuController extends Controller
 
             $data['url'] = $page->url;
         }
-        
+
         $menu->update($data);
+
+        Cache::forget('getMenus');
 
         return redirect()->route('menus.index')->with('notification', getTranslation('notification'));
     }
@@ -94,6 +100,9 @@ class MenyuController extends Controller
     public function destroy(Menyu $menu)
     {
         $menu->delete();
+
+        Cache::forget('getMenus');
+
         return redirect()->route('menus.index')->with('notification', getTranslation('notification'));
     }
     public function status(Menyu $menyu)

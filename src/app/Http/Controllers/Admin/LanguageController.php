@@ -5,12 +5,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LanguageRequest;
 use App\Models\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class LanguageController extends Controller
 {
     public function index()
     {
-        $models = Language::orderBy('id', 'asc')->paginate(10);
+        $models = Language::with('histories')->orderBy('id', 'asc')->paginate(10);
         return view('admin.languages.index', ['models' => $models]);
     }
     public function search(Request $request)    
@@ -43,6 +44,8 @@ class LanguageController extends Controller
 
         Language::create($data);
 
+        Cache::forget('getLanguage');
+        
         return redirect()->route('languages.index')->with('notification', getTranslation('notification'));
     }
 
@@ -60,6 +63,8 @@ class LanguageController extends Controller
         $data = $request->all();
 
         $language->update($data);
+        
+        Cache::forget('getLanguage');
 
         return redirect()->route('languages.index')->with('notification', getTranslation('notification'));
     }
@@ -67,6 +72,9 @@ class LanguageController extends Controller
     public function destroy(Language $language)
     {
         $language->delete();
+        
+        Cache::forget('getLanguage');
+
         return redirect()->route('languages.index')->with('notification', getTranslation('notification'));
     }
     public function status(Language $language)

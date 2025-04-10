@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -17,7 +18,7 @@ class TournamentController extends Controller
 
         $countries = Country::all();
 
-        $models = Tournament::orderByDesc('id')->paginate(10);
+        $models = Tournament::with('category', 'country', 'histories')->orderByDesc('id')->paginate(10);
 
         return view('admin.tournament.index', ['models' => $models, 'categories' => $categories, 'countries' => $countries]);
     }
@@ -27,7 +28,7 @@ class TournamentController extends Controller
 
         $countries = Country::all();
 
-        $query = Tournament::query();
+        $query = Tournament::query()->with('category', 'country', 'histories');
 
         $locale = app()->getLocale();
 
@@ -131,5 +132,4 @@ class TournamentController extends Controller
         }
         return back()->with('notification', getTranslation('notification'));
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Providers;
 
 use App\Models\Media;
@@ -50,12 +51,12 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('layouts.client', function ($view) {
-
-            $menus = Menyu::where('is_active', true)->orderByDesc('id')->limit(5)->get();
+            
+            $menus = getMenus();
 
             $languages = getLanguage();
 
-            $siteSettings = Media::where('is_active', true)->orderByDesc('id')->first();
+            $siteSettings = getMedias();
 
             $view->with([
                 'menus'        => $menus,
@@ -66,7 +67,7 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('client.index', function ($view) {
 
-            $siteSettings = Media::where('is_active', true)->orderByDesc('id')->first();
+            $siteSettings = getMedias();
 
             $view->with([
                 'siteSettings' => $siteSettings,
@@ -74,7 +75,7 @@ class AppServiceProvider extends ServiceProvider
         });
         View::composer('client.test', function ($view) {
 
-            $siteSettings = Media::where('is_active', true)->orderByDesc('id')->first();
+            $siteSettings = getMedias();
 
             $view->with([
                 'siteSettings' => $siteSettings,

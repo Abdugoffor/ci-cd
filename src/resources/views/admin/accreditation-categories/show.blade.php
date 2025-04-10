@@ -38,7 +38,8 @@
 
                             </th>
                             <td>
-                                <span style="background: linear-gradient({{ $model->color }});width:100px;">color</span>
+                                <span
+                                    style="background: linear-gradient({{ $model->color }});width:100px; padding: 5px; border-radius: 5px; color: #fff">{{ getTranslation('color') }}</span>
                             </td>
                         </tr>
                         <tr>

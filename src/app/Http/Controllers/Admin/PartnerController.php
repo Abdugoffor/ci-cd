@@ -13,7 +13,7 @@ class PartnerController extends Controller
 {
     public function index()
     {
-        $models = Partner::orderByDesc('id')->paginate(10);
+        $models = Partner::with('histories')->orderByDesc('id')->paginate(10);
 
         return view(view: 'admin.partners.index', data: ['models' => $models]);
     }

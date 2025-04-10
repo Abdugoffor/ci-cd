@@ -7,13 +7,14 @@ use App\Http\Requests\MediaUpdateRequest;
 use App\Models\Media;
 use App\Services\FileUploadService;
 use Exception;
+use Illuminate\Support\Facades\Cache;
 
 class MediaController extends Controller
 {
 
     public function index()
     {
-        $models = Media::orderBy('id', 'desc')->paginate(10);
+        $models = Media::with('histories')->orderBy('id', 'desc')->paginate(10);
 
         return view("admin.media.index", ['models' => $models]);
     }
@@ -47,6 +48,8 @@ class MediaController extends Controller
 
             Media::create($data);
 
+            Cache::forget('getMedias');
+            
             return redirect()->route('media.index')->with('notification', getTranslation('notification'));
 
         } catch (Exception $e) {
@@ -90,6 +93,8 @@ class MediaController extends Controller
 
             $medium->update($data);
 
+            Cache::forget('getMedias');
+
             return redirect()->route('media.index')->with('notification', getTranslation('notification'));
 
         } catch (Exception $e) {
@@ -100,6 +105,9 @@ class MediaController extends Controller
     public function destroy(Media $medium)
     {
         $medium->delete();
+        
+        Cache::forget('getMedias');
+
         return back()->with('notification', getTranslation('notification'));
     }
     public function status(Media $medium)

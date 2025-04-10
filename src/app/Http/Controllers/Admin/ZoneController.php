@@ -14,12 +14,12 @@ class ZoneController extends Controller
 {
     public function viewSub(Zone $zone)
     {
-        $models = $zone->children()->orderBy('id', 'desc')->paginate(10);
+        $models = $zone->children()->with('parent','histories')->orderBy('id', 'desc')->paginate(10);
         return view('admin.zones.index', ['models' => $models, 'zone' => $zone]);
     }
     public function index()
     {
-        $models = Zone::where('parent_id', null)->orderByDesc('id')->paginate(10);
+        $models = Zone::with('parent','histories')->where('parent_id', null)->orderByDesc('id')->paginate(10);
         return view('admin.zones.index', ['models' => $models]);
     }
 
@@ -160,7 +160,7 @@ class ZoneController extends Controller
             }
         }
 
-        if (count($zones) > 2) {
+        if (count($zones) > 3) {
 
             if (! $data) {
 

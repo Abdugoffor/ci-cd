@@ -12,7 +12,7 @@ class HotelController extends Controller
 {
     public function index()
     {
-        $models = Hotel::orderByDesc('id')->paginate(10);
+        $models = Hotel::with('histories')->orderByDesc('id')->paginate(10);
         return view('admin.hotels.index', data: ['models' => $models]);
     }
     public function search(Request $request)

@@ -23,7 +23,7 @@ class SkanController extends Controller
 
         $cleaned = substr($qkCode, 7);
 
-        $participant = Participant::where('qk_code', $cleaned)->first();
+        $participant = Participant::with('zones', 'country', 'accreditationCategory')->where('qk_code', $cleaned)->first();
 
         if ($participant) {
 

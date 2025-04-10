@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use App\Models\AccreditationCategory;
@@ -20,7 +21,7 @@ class AccreditationCategorySeeder extends Seeder
                     'default' => 'Player',
                 ],
                 'slug'  => 'player',
-                'color' => '34deg, #29B7D0 -52.14%, #064B5A 142.1%',
+                'color' => '212deg, #A52629 5.64%, rgba(215, 46, 59, 0.54) 102.91%, rgba(239, 64, 87, 0.00) 137.49%',
             ],
             [
                 'name'  => [
@@ -150,6 +151,5 @@ class AccreditationCategorySeeder extends Seeder
                 $category
             );
         }
-
     }
 }

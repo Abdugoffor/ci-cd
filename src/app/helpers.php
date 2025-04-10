@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Language;
+use App\Models\Media;
+use App\Models\Menyu;
 use App\Models\Translation;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +37,24 @@ if (!function_exists('getLanguage')) {
     {
         return Cache::remember("getLanguage", now()->addMinutes(180), function () {
             return Language::where('is_active', true)->get();
+        });
+    }
+}
+
+if (!function_exists('getMedias')) {
+    function getMedias()
+    {
+        return Cache::remember("getMedias", now()->addMinutes(180), function () {
+            return Media::where('is_active', true)->orderByDesc('id')->first();
+        });
+    }
+}
+
+if (!function_exists('getMenus')) {
+    function getMenus()
+    {
+        return Cache::remember("getMenus", now()->addMinutes(180), function () {
+            return Menyu::where('is_active', true)->orderByDesc('id')->limit(5)->get();
         });
     }
 }

@@ -25,7 +25,7 @@ class ApplicationController extends Controller
     {
         $accreditationCategories = AccreditationCategory::all();
 
-        $models = Participant::orderBy('id', 'desc')->paginate(perPage: 10);
+        $models = Participant::with('accreditationCategory', 'country','histories')->orderBy('id', 'desc')->paginate(perPage: 10);
 
         $countrys = Country::all();
 
@@ -33,7 +33,7 @@ class ApplicationController extends Controller
     }
     public function search(Request $request)
     {
-        $query = Participant::query();
+        $query = Participant::query()->with('accreditationCategory', 'country','histories');
 
         if ($request->filled('id')) {
             $query->where('id', 'LIKE', "%{$request->id}%");

@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $models = Category::orderByDesc('id')->paginate(10);
+        $models = Category::with('histories')->orderByDesc('id')->paginate(10);
         return view('admin.categories.index', ['models' => $models]);
     }
 

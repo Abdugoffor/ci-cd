@@ -12,7 +12,7 @@ class FaqController extends Controller
 {
     public function index()
     {
-        $models = Faq::orderByDesc('id')->paginate(10);
+        $models = Faq::with('histories')->orderByDesc('id')->paginate(10);
         return view('admin.faqs.index', data: ['models' => $models]);
     }
     public function search(Request $request)

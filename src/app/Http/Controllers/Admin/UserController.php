@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $models   = User::orderByDesc('id')->paginate(10);
+        $models   = User::with('histories', 'country')->orderByDesc('id')->paginate(10);
         $countrys = Country::all();
         return view('admin.users.index', data: ['models' => $models, 'countrys' => $countrys]);
     }

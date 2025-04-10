@@ -12,7 +12,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $models = News::orderByDesc('id')->paginate(10);
+        $models = News::with('histories')->orderByDesc('id')->paginate(10);
 
         return view('admin.news.index', data: ['models' => $models]);
     }

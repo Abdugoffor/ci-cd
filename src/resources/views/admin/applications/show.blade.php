@@ -306,15 +306,15 @@
                         <tr>
                             <th>{{ getTranslation('zones') }}</th>
                             <td>
-                                <!-- Zone Modal (Har bir model uchun alohida) -->
+                                <!-- Zone Modal  -->
                                 <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal"
                                     data-target="#zoneModal{{ $model->id }}">
                                     {{ getTranslation('add') }}
                                 </button>
 
-                                <!-- Zone Modal (Har bir model uchun alohida) -->
+                                <!-- Zone Modal  -->
                                 <div id="zoneModal{{ $model->id }}" class="modal fade" tabindex="-1">
-                                    <div class="modal-dialog modal-lg"> <!-- Katta modal o'lcham -->
+                                    <div class="modal-dialog modal-lg"> 
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title">
@@ -361,7 +361,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Zone Modal (Har bir model uchun alohida) -->
                                 @if ($model->zones->isEmpty())
 
                                     {{ getTranslation('no_zones_selected') }}
@@ -402,14 +401,16 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         function handleZoneChange(event) {
+            // const descriptionElement = document.getElementById('zoneDescription');
+            // descriptionElement.textContent = description || "Ma'lumot yo'q";
+
             const select = event.target;
             const level = parseInt(select.dataset.level);
             const selectedZoneId = select.value;
             const tournamentId = {{ $model->tournament_id }};
+            const lang = "{{ app()->getLocale() }}";
             const description = select.options[select.selectedIndex]?.getAttribute('data-description');
-            // const descriptionElement = document.getElementById('zoneDescription');
 
-            // descriptionElement.textContent = description || "Ma'lumot yo'q";
 
             const childZonesContainer = document.getElementById('childZones');
             const existingSelects = childZonesContainer.querySelectorAll(`select[data-level]`);
@@ -420,12 +421,13 @@
             });
 
             if (selectedZoneId) {
+
                 $.ajax({
-                    url: '/dashboard/zones-select/' + selectedZoneId + '/' + tournamentId,
+                    url: '/' + lang + '/dashboard/zones-select/' + selectedZoneId + '/' + tournamentId,
                     method: 'GET',
                     dataType: 'json',
                     success: function(response) {
-                        console.log(response);
+                        // console.log(response);
 
                         if (response.children && response.children.length > 0) {
                             const newRow = document.createElement('div');

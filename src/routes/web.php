@@ -51,6 +51,7 @@ Route::get('/', function () {
     return redirect("/{$lang}");
 });
 
+
 Route::prefix('{lang}')->middleware(LangMiddleware::class)->group(function () {
 
     Route::get('/', [IndexController::class, 'index'])->name('home');

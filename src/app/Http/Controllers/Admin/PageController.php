@@ -12,7 +12,7 @@ class PageController extends Controller
 {
     public function index()
     {
-        $models = Page::orderByDesc('id')->paginate(10);
+        $models = Page::with('histories')->orderByDesc('id')->paginate(10);
 
         return view('admin.pages.index', data: ['models' => $models]);
     }
