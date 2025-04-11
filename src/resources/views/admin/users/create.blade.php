@@ -62,7 +62,16 @@
                                 @error('email')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-
+                                <!-- Password generator maydoni -->
+                                <label for="generatedPassword"
+                                    class="col-form-label col-lg-2">{{ getTranslation('password_generate') }}</label>
+                                <div class="input-group">
+                                    <input type="text" id="generatedPassword" class="form-control" readonly>
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        onclick="generatePassword()">Generate</button>
+                                    <button class="btn btn-outline-success" type="button"
+                                        onclick="copyPassword()">Copy</button>
+                                </div>
                                 <!-- Password maydoni -->
                                 <label class="col-form-label col-lg-2">{{ getTranslation('password') }}</label>
                                 <input type="password" class="form-control" name="password"
@@ -88,6 +97,7 @@
                                         <span class="custom-control-label">{{ getTranslation('status') }}</span>
                                     </label>
                                 </div>
+
                             </div>
                         </div>
                     </fieldset>
@@ -101,3 +111,24 @@
     </div>
     <!-- /content area -->
 @endsection
+<script>
+    function generatePassword(length = 25) {
+        const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        let password = "";
+
+        for (let i = 0; i < length; i++) {
+            password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+
+        document.getElementById("generatedPassword").value = password;
+    }
+
+    function copyPassword() {
+        const passwordField = document.getElementById("generatedPassword");
+        passwordField.select();
+        passwordField.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(passwordField.value).then(() => {
+
+        });
+    }
+</script>

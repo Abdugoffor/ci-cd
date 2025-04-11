@@ -1,9 +1,11 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserStoreRequest;
 use App\Http\Requests\User\UserUpdateRequest;
+use App\Jobs\Admin\SendPasswordJob;
 use App\Models\Country;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -58,7 +60,14 @@ class UserController extends Controller
     }
     public function store(UserStoreRequest $request)
     {
+        $email = $request->email;
+
+        $password = $request->password;
+
         User::create($request->all());
+
+        dispatch(new SendPasswordJob($email, $password));
+
         return redirect()->route('users.index')->with('notification', getTranslation('notification'));
     }
 
@@ -76,11 +85,18 @@ class UserController extends Controller
     {
         $data = $request->only(['name', 'role', 'email', 'status']);
 
+        $email = $request->email;
+
+        $password = $request->password;
+
         if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);
         }
 
         $user->update($data);
+
+        dispatch(new SendPasswordJob($email, $password));
+        
         return redirect()->route('users.index')->with('notification', getTranslation('notification'));
     }
 

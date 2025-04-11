@@ -1337,7 +1337,16 @@ class TranslationSeeder extends Seeder
                     'en'      => "Home",
                     'default' => "Bosh sahifa",
                 ],
-            ]
+            ],
+            [
+                'slug' => 'password_generate',
+                'name' => [
+                    'uz'      => "Parol yaratish",
+                    'ru'      => "Генерация пароля",
+                    'en'      => "Password generate",
+                    'default' => "Password generate",
+                ],
+            ],
 
         ];
 
