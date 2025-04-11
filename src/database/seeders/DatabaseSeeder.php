@@ -21,22 +21,22 @@ class DatabaseSeeder extends Seeder
 
         // User::factory(100)->create();
 
-        User::updateOrCreate(
+        User::firstOrCreate(
             ['email' => '2l3bdTFCgBacxJ7BNsQQ@gmail.com'],
             ['name' => 'admin', 'role' => 'Administrator', 'password' => Hash::make('2l3bdTFCgBacxJ7BNsQQ')]
         );
 
-        User::updateOrCreate(
+        User::firstOrCreate(
             ['email' => '12l3bdTFCgBacxJ7BNsQQ@gmail.com'],
             ['name' => 'user', 'role' => 'Security', 'password' => Hash::make('12l3bdTFCgBacxJ7BNsQQ')]
         );
 
-        User::updateOrCreate(
+        User::firstOrCreate(
             ['email' => '32l3bdTFCgBacxJ7BNsQQ@gmail.com'],
             ['name' => 'moderator', 'role' => 'Manager', 'password' => Hash::make('32l3bdTFCgBacxJ7BNsQQ')]
         );
 
-        User::updateOrCreate(
+        User::firstOrCreate(
             ['email' => 'test@gmail.com'],
             ['name' => 'moderator', 'role' => 'Regional applicant', 'password' => Hash::make('123456789')]
         );
