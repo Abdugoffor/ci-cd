@@ -59,7 +59,6 @@ if (!function_exists('getMenus')) {
     }
 }
 
-
 if (!function_exists('historyCheck')) {
     function historyCheck($model)
     {
@@ -86,42 +85,72 @@ if (!function_exists('historyCheck')) {
                             <div class="list-feed">';
 
         foreach ($model->histories as $history) {
-            $userName  = optional($history->user)->name ?: '';
+            $userName = optional($history->user)->name ?: 'System';
+            $userEmail = optional($history->user)->email ? ' , ' . optional($history->user)->email : '';
             $createdAt = $history->created_at->format('d-M-Y, H:i');
+            $actionTranslation = $history->action == 'create' ? getTranslation('created') : ($history->action == 'delete' ? getTranslation('deleted') : getTranslation($history->action));
 
             $html .= '<div class="list-feed-item">
-                    <a href="#" class="text-default">' . $userName . '</a> <br>
-                    <span class="text-muted">' . $history->action . ', ' . $createdAt . '</span>
+                    <a href="#" class="text-default font-weight-semibold">' . $userName .  $userEmail . '</a><br>
+                    <span class="text-muted">' . $actionTranslation . ', ' . $createdAt . '</span>
                     <ul class="list-unstyled mt-2">';
 
-            $changes = is_string($history->changes) ? json_decode($history->changes, true) : $history->changes;
-
-            if (is_array($changes)) {
+            $changes = $history->changes ?? [];
+            if (is_array($changes) && !empty($changes)) {
                 foreach ($changes as $key => $value) {
-                    if ($key !== 'updated_at') {
-                        $formattedKey = ucfirst(str_replace('_', ' ', $key));
+                    $formattedKey = ucfirst(str_replace('_', ' ', $key));
 
-                        if (is_string($value) && $jsonDecoded = json_decode($value, true)) {
-                            $value = $jsonDecoded;
+                    $oldValue = isset($value['old']) ? $value['old'] : null;
+                    $newValue = isset($value['new']) ? $value['new'] : null;
+
+                    if (is_array($oldValue) || is_array($newValue)) {
+                        $html .= '<li><strong>' . $formattedKey . ':</strong><ul class="list-unstyled ml-3">';
+
+                        // Barcha mumkin bo‘lgan tillarni belgilash
+                        $languages = ['uz', 'ru', 'en'];
+                        foreach ($languages as $lang) {
+                            $oldLangValue = is_array($oldValue) && isset($oldValue[$lang]) ? $oldValue[$lang] : getTranslation('no-data');
+                            $newLangValue = is_array($newValue) && isset($newValue[$lang]) ? $newValue[$lang] : getTranslation('no-data');
+
+                            // Faqat o‘zgargan yoki mavjud qiymatlarni ko‘rsatish
+                            if ($oldLangValue !== $newLangValue || $oldLangValue !== getTranslation('no-data') || $newLangValue !== getTranslation('no-data')) {
+                                $html .= '<li>' . $lang . ': <del style="color: #888; margin-left: 5px;">' . htmlspecialchars($oldLangValue) . '</del> : ' . htmlspecialchars($newLangValue) . '</li>';
+                            }
                         }
 
-                        if (in_array($key, ['photo', 'logo']) && is_string($value)) {
-                            // Rasm maydoni bo‘lsa <img> bilan chiqarish
-                            $formattedValue = '<img src="' . asset($value) . '" width="100" alt="' . $formattedKey . '">';
+                        $html .= '</ul></li>';
+                    } else {
+                        // JSON bo‘lmagan maydonlar uchun
+                        if (in_array($key, ['photo', 'logo', 'qk_code', 'qk_code_path', 'passport_copy'])) {
+                            // Rasm maydonlari uchun htmlspecialchars ishlatilmaydi
+                            $formattedOldValue = $oldValue && is_string($oldValue) ? '<a href="' . asset($oldValue) . '" target="_blank" alt="' . $formattedKey . '">File</a>' : getTranslation('no-data');
+                            $formattedNewValue = $newValue && is_string($newValue) ? '<a href="' . asset($newValue) . '" target="_blank" alt="' . $formattedKey . '">File</a>' : getTranslation('no-data');
                         } elseif ($key === 'is_active') {
-                            // is_active maydoni bo‘lsa tarjimalangan qiymat chiqarish
-                            $formattedValue = $value == 1 ? getTranslation('assets') : getTranslation('not-active');
-                        } elseif (is_array($value)) {
-                            $formattedValue = implode('', array_map(fn($lang, $val) => "<strong><br>$lang</strong>: $val", array_keys($value), $value));
+
+                            $formattedOldValue = $oldValue == 1 ? getTranslation('assets') : getTranslation('not-active');
+                            $formattedNewValue = $newValue == 1 ? getTranslation('assets') : getTranslation('not-active');
+                        } elseif ($key === 'requires_visa') {
+
+                            $formattedOldValue = $oldValue == 1 ? getTranslation('yes') : getTranslation('no');
+                            $formattedNewValue = $newValue == 1 ? getTranslation('yes') : getTranslation('no');
+                        } elseif ($key === 'status') {
+
+                            $formattedOldValue = $oldValue && is_string($oldValue) ? getTranslation($oldValue) : getTranslation('no-data');
+                            $formattedNewValue = $newValue && is_string($newValue) ? getTranslation($newValue) : getTranslation('no-data');
                         } else {
-                            $formattedValue = $value;
+                            $formattedOldValue = is_scalar($oldValue) ? htmlspecialchars($oldValue) : getTranslation('no-data');
+                            $formattedNewValue = is_scalar($newValue) ? htmlspecialchars($newValue) : getTranslation('no-data');
                         }
 
-                        $html .= '<li>' . $formattedKey . ': <span style="word-wrap: break-word; white-space: normal; overflow: hidden;">' . $formattedValue . '</span></li>';
+                        $html .= '<li>
+                            <strong>' . $formattedKey . ':</strong> 
+                            <br><span style="color: #888;"><del>' . $formattedOldValue . '</del></span> : 
+                            <span style="color: #000; margin-left: 5px;">' . $formattedNewValue . '</span>
+                        </li>';
                     }
                 }
             } else {
-                $html .= '<li style="word-wrap: break-word; white-space: normal; overflow: hidden;">' . $history->changes . '</li>';
+                $html .= '<li style="word-wrap: break-word; white-space: normal; overflow: hidden;">' . getTranslation('no-data') . '</li>';
             }
 
             $html .= '</ul></div>';
@@ -131,8 +160,6 @@ if (!function_exists('historyCheck')) {
         return $html;
     }
 }
-
-
 if (! function_exists('getTranslation')) {
     function getTranslation($slug)
     {

@@ -4,7 +4,7 @@
     <!-- Content area -->
     <div class="content">
         @if (isset($zone) && $zone->parent_id != null)
-            <a href="{{ route('sub-zones.view', $zone->parent_id, false) }}" class="btn btn-sm btn-outline-secondary mb-3">
+            <a href="{{ route('sub-zones.view', $zone->parent_id, false) }}" class="btn btn-outline-secondary mb-3">
                 {{ getTranslation('back') }} 
                 {{-- {{ isset($zone) ? $zone->title : '' }} --}}
             </a>
@@ -12,7 +12,7 @@
                 {{ isset($zone) ? $zone->title : '' }}
             </a> --}}
         @elseif(isset($zone))
-            <a href="{{ route('zones.index', [], false) }}" class="btn btn-sm btn-outline-secondary mb-3">
+            <a href="{{ route('zones.index', [], false) }}" class="btn btn-outline-secondary mb-3">
                 {{ getTranslation('back') }} 
                 {{-- {{ isset($zone) ? $zone->title : '' }} --}}
             </a>

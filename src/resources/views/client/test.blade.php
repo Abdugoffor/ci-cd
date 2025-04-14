@@ -345,7 +345,7 @@
                                         ">
                                                 {{ $zone->title }}
                                             </div>
-                                            <div style="color: #176670; font-weight: bold;">|</div>
+                                            <div style="color: #176670; font-weight: bold;"></div>
                                     @endif
                                     @if ($loop->index % 2 == 0)
                                         <div

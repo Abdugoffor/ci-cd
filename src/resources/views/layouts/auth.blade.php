@@ -27,9 +27,11 @@
 
     <!-- Main navbar -->
     <div class="navbar navbar-expand-lg navbar-dark navbar-static">
-        <div class="navbar-brand ml-2 ml-lg-0">
-            <a href="/" target="_blank" class="d-inline-block">
-                <span style="color: white; font-size: 15px;">International Chess Federation</span>
+        <div class="navbar-brand text-center text-lg-left">
+            <a href="{{ route('home', [], false) }}" target="_blank" class="d-inline-block d-flex align-items-center">
+                <img src="/backend/admin_logo.webp" class="d-none d-sm-block" alt=""
+                    style="height: 35px; margin-right: 10px;">
+                <span style="color: white; font-size: 14px;">International Chess Federation</span>
             </a>
         </div>
 

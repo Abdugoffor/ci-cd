@@ -1347,6 +1347,15 @@ class TranslationSeeder extends Seeder
                     'default' => "Password generate",
                 ],
             ],
+            [
+                'slug' => 'update',
+                'name' => [
+                    'uz'      => "Oʻzgartirilgan",
+                    'ru'      => "Измененный",
+                    'en'      => "Changed",
+                    'default' => "Changed",
+                ],
+            ],
 
         ];
 

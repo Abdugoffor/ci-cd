@@ -13,8 +13,8 @@ class BadgesController extends Controller
         
         $qk_code = "{$domain}/badge-verify/{$badges}";
 
-        $participant = Participant::where('qk_code', $qk_code)->first();
-        
+        $participant = Participant::where('qk_code', $qk_code)->firstOrFail();
+
         $partners    = Partner::where('is_active', true)->orderByDesc('id')->limit(5)->get();
         
         return view('client.test', ['participant' => $participant, 'partners' => $partners]);

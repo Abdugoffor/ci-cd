@@ -6,7 +6,7 @@
     <main class="container montserrat">
         <section class="register-personal register-chack">
 
-            <div class="toast-container"></div>
+            {{-- <div class="toast-container"></div> --}}
             @if (isset($notification) && !$errors->any())
                 <div class="alert_static" id="alertBox">
                     <span>{{ $notification }}</span>

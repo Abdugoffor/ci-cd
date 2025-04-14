@@ -78,7 +78,7 @@
                                                 {{ $model->is_active ? getTranslation('assets') : getTranslation('not-active') }}
                                             </a>
                                         </td>
-                                        <td class="text-center">
+                                        <td class="">
                                             <div class="d-inline-flex gap-2">
                                                 <a href="{{ route('accreditation-categories.show', $model->id, false) }}"
                                                     class="btn btn-outline-info">
