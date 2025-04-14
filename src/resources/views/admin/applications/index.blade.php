@@ -43,7 +43,7 @@
                                                 placeholder="{{ getTranslation('fide-id') }}"
                                                 value="{{ old('fide_id', request('fide_id')) }}">
                                         </th>
-                                        <th width="20%">
+                                        <th width="18%">
                                             <select class="form-control custom-select" name="tournament_id"
                                                 id="select_date">
                                                 <option></option>
