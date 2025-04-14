@@ -1,51 +1,34 @@
 <?php
+
 namespace App\Exports;
 
 use App\Models\Participant;
 use App\Models\Translation;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithColumnWidths;
+use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ParticipantExport implements FromCollection, WithHeadings, WithStyles, WithColumnWidths
+class ParticipantExport implements FromQuery, WithHeadings, WithMapping, WithStyles, WithColumnWidths
 {
-    public function collection()
-    {
-        $participants = Participant::with(['country', 'accreditationCategory', 'accommodationDetail'])->get();
+    protected $query;
 
-        return $participants->map(function ($model) {
-            return [
-                'name'                       => $model->first_name,
-                'last_name'                  => $model->last_name,
-                'birth_date'                 => $model->date_of_birth ? $model->date_of_birth->format('d-m-Y') : '',
-                'gender'                     => $model->gender,
-                'email'                      => $model->email,
-                'email_confirmed'            => $model->email_verified_at ? $model->email_verified_at->format('d-m-Y, H:i') : '',
-                'fide_id'                    => $model->fide_id,
-                'accreditation_category'     => $model->accreditationCategory ? $this->getLocale($model->accreditationCategory->name) : '',
-                'citizenship'                => optional($model->country)->label_en ?? '',
-                'passport_number'            => $model->passport_number,
-                'passport_issue_date'        => $model->passport_issue_date,
-                'passport_validity_period'   => $model->passport_expiry_date,
-                'passport_issuing_authority' => $model->passport_issuing_authority,
-                'phone'                      => $model->phone,
-                'visa_required'              => $model->requires_visa ? 'Yes' : 'No',
-                'arrival_date'               => optional($model->arrival_details)->format('d-m-Y') ?? '',
-                'departure_date'             => optional($model->departure_details)->format('d-m-Y') ?? '',
-                'accommodation_details'      => $model->accommodationDetail ? $this->getLocale($model->accommodationDetail->title) : '',
-                'pcr_test_details'           => $model->pcr_test_details,
-                'status'                     => $this->getTranslation($model->status),
-                'created'                    => $model->created_at->format('d-m-Y, H:i'),
-                'change'                     => $model->updated_at->format('d-m-Y, H:i'),
-            ];
-        });
+    public function __construct($query)
+    {
+        $this->query = $query;
+    }
+
+    public function query()
+    {
+        return $this->query->with(['country', 'accreditationCategory', 'accommodationDetail']);
     }
 
     public function headings(): array
     {
         return [
+            '#',
             $this->getTranslation('name'),
             $this->getTranslation('last-name'),
             $this->getTranslation('birth-date'),
@@ -55,6 +38,7 @@ class ParticipantExport implements FromCollection, WithHeadings, WithStyles, Wit
             $this->getTranslation('fide-id'),
             $this->getTranslation('accreditation-category'),
             $this->getTranslation('citizenship'),
+            $this->getTranslation('competitions'),
             $this->getTranslation('passport-number'),
             $this->getTranslation('passport-issue-date'),
             $this->getTranslation('Passport-validity-period'),
@@ -71,28 +55,55 @@ class ParticipantExport implements FromCollection, WithHeadings, WithStyles, Wit
         ];
     }
 
+    public function map($model): array
+    {
+        return [
+            $model->id,
+            $model->first_name,
+            $model->last_name,
+            $model->date_of_birth ? $model->date_of_birth->format('d-m-Y') : '',
+            $model->gender,
+            $model->email,
+            $model->email_verified_at ? $model->email_verified_at->format('d-m-Y, H:i') : '',
+            $model->fide_id,
+            $model->accreditationCategory ? $this->getLocale($model->accreditationCategory->name) : '',
+            optional($model->country)->label_en ?? '',
+            $model->tournament ? $this->getLocale(optional($model->tournament)->name) : '',
+            $model->passport_number,
+            $model->passport_issue_date,
+            $model->passport_expiry_date,
+            $model->passport_issuing_authority,
+            $model->phone,
+            $model->requires_visa ? 'Yes' : 'No',
+            optional($model->arrival_details)->format('d-m-Y') ?? '',
+            optional($model->departure_details)->format('d-m-Y') ?? '',
+            $model->accommodationDetail ? $this->getLocale($model->accommodationDetail->title) : '',
+            $model->pcr_test_details,
+            $this->getTranslation($model->status),
+            $model->created_at->format('d-m-Y, H:i'),
+            $model->updated_at->format('d-m-Y, H:i'),
+        ];
+    }
+
     public function styles(Worksheet $sheet)
     {
-        // Barcha qatorlar sonini aniqlash
-        $totalRows    = $sheet->getHighestRow();
+        $totalRows = $sheet->getHighestRow();
         $totalColumns = $sheet->getHighestColumn();
 
         return [
-            // Sarlavha
-            1                                  => [
-                'font'      => [
-                    'bold'  => true,
-                    'color' => ['rgb' => 'FFFFFF'], // Oq rangdagi matn
+            1 => [
+                'font' => [
+                    'bold' => true,
+                    'color' => ['rgb' => 'FFFFFF'],
                 ],
-                'fill'      => [
-                    'fillType'   => 'solid',
-                    'startColor' => ['rgb' => '4F81BD'], // Moviy fon
+                'fill' => [
+                    'fillType' => 'solid',
+                    'startColor' => ['rgb' => '4F81BD'],
                 ],
                 'alignment' => [
-                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Markazda
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
                 ],
             ],
-            // Barcha
             'A2:' . $totalColumns . $totalRows => [
                 'alignment' => [
                     'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
@@ -132,7 +143,6 @@ class ParticipantExport implements FromCollection, WithHeadings, WithStyles, Wit
     private function getTranslation($slug)
     {
         $locale = app()->getLocale() ?? 'en';
-
         $translation = Translation::where('slug', $slug)->first();
 
         if ($translation && isset($translation->name[$locale])) {

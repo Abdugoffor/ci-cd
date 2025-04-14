@@ -4,7 +4,7 @@
     <!-- Register form -->
     <form class="login-form" action="{{ route('verify.email.post', [], false) }}" method="POST">
         @csrf
-        <div class="card mb-0">
+        <div class="card mb-0" style="width: 350px;">
             <div class="card-body">
                 <div class="text-center mb-3">
                     <i class="icon-reading icon-2x text-secondary border-secondary border-3 rounded-pill p-3 mb-3 mt-1"></i>
@@ -22,7 +22,12 @@
                         <p style="color: red;">{{ $message }}</p>
                     @enderror
                 </div>
-
+                <div class="form-group form-group-feedback form-group-feedback-left">
+                    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+                    @error('g-recaptcha-response')
+                        <p style="color: red;">{{ $message }}</p>
+                    @enderror
+                </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
                 </div>
@@ -34,4 +39,12 @@
         </div>
     </form>
     <!-- /Register form -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script type="text/javascript">
+        var onloadCallback = function() {
+            grecaptcha.render('html_element', {
+                'sitekey': {{ env('RECAPTCHA_SITE_KEY') }}
+            });
+        };
+    </script>
 @endsection

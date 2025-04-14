@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <!-- Support tickets -->
-                <a href="{{ route('participant.export', [], false) }}" class="btn btn-teal mb-2">
+                <a href="{{ route('participant.export', request()->query(), false) }}" class="btn btn-teal mb-2">
                     Export
                 </a>
                 <div class="card">
@@ -19,9 +19,9 @@
                                     <th class="text-center" width="7%">ID</th>
                                     <th class="text-center">{{ getTranslation('name') }}</th>
                                     <th class="text-center">{{ getTranslation('fide-id') }}</th>
+                                    <th class="text-center">{{ getTranslation('competitions') }}</th>
                                     <th class="text-center" width="15%">{{ getTranslation('country') }}</th>
                                     <th class="text-center">{{ getTranslation('type') }}</th>
-                                    <th class="text-center">{{ getTranslation('email') }}</th>
                                     <th class="text-center" width="10%">{{ getTranslation('status') }}</th>
                                     <th class="text-center" width="5%">{{ getTranslation('function') }}</th>
                                 </tr>
@@ -42,6 +42,19 @@
                                             <input type="text" class="form-control" name="fide_id"
                                                 placeholder="{{ getTranslation('fide-id') }}"
                                                 value="{{ old('fide_id', request('fide_id')) }}">
+                                        </th>
+                                        <th width="20%">
+                                            <select class="form-control custom-select" name="tournament_id"
+                                                id="select_date">
+                                                <option></option>
+                                                @foreach ($tournaments as $tournament)
+                                                    <option
+                                                        {{ old('tournament_id', request('tournament_id')) == $tournament->id ? 'selected' : '' }}
+                                                        value="{{ $tournament->id }}">
+                                                        {{ getLocale($tournament->name) }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </th>
                                         <th class="text-center">
                                             <select class="form-control custom-select" name="country_id"
@@ -67,11 +80,6 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                        </th>
-                                        <th class="text-center">
-                                            <input type="text" class="form-control" name="email"
-                                                placeholder="{{ getTranslation('email') }}"
-                                                value="{{ old('email', request('email')) }}">
                                         </th>
                                         <th class="text-center">
                                             <select class="form-control custom-select" name="status" id="select_date">
@@ -107,13 +115,13 @@
                                         <td>{{ $model->first_name }}</td>
                                         <td>{{ $model->fide_id }}</td>
                                         <td>
+                                            {{ $model->tournament ? getLocale($model->tournament->name) : '' }}
+                                        </td>
+                                        <td>
                                             {{ $model->country ? $model->country->label_en : '' }}
                                         </td>
                                         <td>
                                             {{ $model->accreditationCategory ? getLocale($model->accreditationCategory->name) : '' }}
-                                        </td>
-                                        <td>
-                                            {{ $model->email }}
                                         </td>
                                         <td>
                                             <span

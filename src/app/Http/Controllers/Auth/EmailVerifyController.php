@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EmailVerifaytCodeRequest;
 use App\Jobs\Admin\SendPasswordJob;
 use App\Models\Participant;
 use App\Models\User;
@@ -16,7 +17,7 @@ class EmailVerifyController extends Controller
         return view('auth.email');
     }
 
-    public function verifyEmailCode(Request $request)
+    public function verifyEmailCode(EmailVerifaytCodeRequest $request)
     {
         $email = $request->email;
 

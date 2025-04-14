@@ -11,6 +11,7 @@ use App\Models\ApplicationCancellation;
 use App\Models\Country;
 use App\Models\Participant;
 use App\Models\TestDB;
+use App\Models\Tournament;
 use App\Models\Zone;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
@@ -25,15 +26,17 @@ class ApplicationController extends Controller
     {
         $accreditationCategories = AccreditationCategory::all();
 
-        $models = Participant::with('accreditationCategory', 'country','histories')->orderBy('id', 'desc')->paginate(perPage: 10);
+        $models = Participant::with('accreditationCategory', 'tournament', 'country', 'histories')->orderBy('id', 'desc')->paginate(perPage: 10);
 
         $countrys = Country::all();
 
-        return view("admin.applications.index", ['models' => $models, 'accreditationCategories' => $accreditationCategories, 'countrys' => $countrys]);
+        $tournaments = Tournament::orderBy('id', 'desc')->get();
+
+        return view("admin.applications.index", ['models' => $models, 'tournaments' => $tournaments, 'accreditationCategories' => $accreditationCategories, 'countrys' => $countrys]);
     }
     public function search(Request $request)
     {
-        $query = Participant::query()->with('accreditationCategory', 'country','histories');
+        $query = Participant::query()->with('accreditationCategory', 'country', 'histories');
 
         if ($request->filled('id')) {
             $query->where('id', 'LIKE', "%{$request->id}%");
@@ -51,16 +54,16 @@ class ApplicationController extends Controller
             $query->where('accreditation_category_id', $request->accreditation_category_id);
         }
 
+        if ($request->filled('tournament_id')) {
+            $query->where('tournament_id', $request->tournament_id);
+        }
+
         if ($request->filled('country_id')) {
             $query->where('country_id', $request->country_id);
         }
 
         if ($request->filled('date_of_birth')) {
             $query->where('date_of_birth', $request->date_of_birth);
-        }
-
-        if ($request->filled('email')) {
-            $query->where('email', 'LIKE', "%{$request->email}%");
         }
 
         if ($request->filled('updated_at')) {
@@ -77,6 +80,7 @@ class ApplicationController extends Controller
             'first_name',
             'fide_id',
             'accreditation_category_id',
+            'tournament_id',
             'country_id',
             'date_of_birth',
             'email',
@@ -87,11 +91,13 @@ class ApplicationController extends Controller
         $accreditationCategories = AccreditationCategory::all();
 
         $countrys = Country::all();
+        $tournaments = Tournament::orderBy('id', 'desc')->get();
 
         return view("admin.applications.index", [
             'models'                  => $models,
             'accreditationCategories' => $accreditationCategories,
             'countrys'                => $countrys,
+            'tournaments'                => $tournaments,
         ]);
     }
     public function status(Participant $participant, string $status)
@@ -176,8 +182,48 @@ class ApplicationController extends Controller
         return back()->with('notification', getTranslation('notification'));
     }
 
-    public function participantExport()
+    public function participantExport(Request $request)
     {
-        return Excel::download(new ParticipantExport, 'participants.xlsx');
+        $query = Participant::query()->with(['accreditationCategory', 'country', 'accommodationDetail']);
+
+        if ($request->filled('id')) {
+            $query->where('id', 'LIKE', "%{$request->id}%");
+        }
+
+        if ($request->filled('first_name')) {
+            $query->where('first_name', 'LIKE', "%{$request->first_name}%");
+        }
+
+        if ($request->filled('fide_id')) {
+            $query->where('fide_id', 'LIKE', "%{$request->fide_id}%");
+        }
+
+        if ($request->filled('accreditation_category_id')) {
+            $query->where('accreditation_category_id', $request->accreditation_category_id);
+        }
+
+        if ($request->filled('tournament_id')) {
+            $query->where('tournament_id', $request->tournament_id);
+        }
+
+        if ($request->filled('country_id')) {
+            $query->where('country_id', $request->country_id);
+        }
+
+        if ($request->filled('date_of_birth')) {
+            $query->where('date_of_birth', $request->date_of_birth);
+        }
+
+        if ($request->filled('updated_at')) {
+            $query->whereDate('updated_at', $request->updated_at);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+        
+        $fileName = 'participants_' . now()->format('Y-m-d_H-i-s') . '.xlsx';
+
+        return Excel::download(new ParticipantExport($query), $fileName);
     }
 }
