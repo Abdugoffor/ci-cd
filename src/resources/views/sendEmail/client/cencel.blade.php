@@ -57,22 +57,40 @@
                                 Мы ценим ваше стремление принять участие и надеемся на возможность сотрудничества в
                                 будущем. Если у вас возникнут дополнительные вопросы, свяжитесь с нами:
                             </p>
-                            <p style="color: #546668; font-size: 18px;">
-                                📧 <a href="mailto:support@fide.com"
-                                    style="color: #1f3a3e; text-decoration: none;">support@fide.com</a> <br>
-                                📞 <a href="tel:+998947654321" style="color: #1f3a3e; text-decoration: none;">+998 94
-                                    765 43 21</a>
-                            </p>
+                        </td>
+                    </tr>
+                    <tr style="margin: 34px 0;">
+                        <td>
+                            <a href="mailto:support@fide.com"
+                                style="
+                    color: #0b515a;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 160%;
+                    letter-spacing: -0.18px;
+                  ">support@fide.com</a>
+                            или
+                            <a href="tel:+998947654321"
+                                style="
+                    color: #0b515a;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 160%;
+                    letter-spacing: -0.18px;
+                  ">+998
+                                94 765 43 21</a>
                         </td>
                     </tr>
                     <tr>
                         <td style="padding-top: 20px;">
-                            <p style="color: #546668; font-size: 18px; font-weight: 500;">С уважением,</p>
-                            <p style="color: #0d2022; font-size: 18px; font-weight: bold;">{{ $data['auth'] }}</p>
-                            <p style="color: #1f3a3e; font-size: 18px; font-weight: 500;">FIDE Uzbekistan Representative
+                            <p style="color: #546668; font-size: 18px; font-weight: 500;">С уважением:
+                                {{ $data['auth'] }}</p>
+                            {{-- <p style="color: #1f3a3e; font-size: 18px; font-weight: 500;">FIDE Uzbekistan Representative
                             </p>
                             <p style="color: #447177; font-size: 18px;"><a href="mailto:dilshod.a@fide.com"
-                                    style="color: #447177; text-decoration: none;">dilshod.a@fide.com</a></p>
+                                    style="color: #447177; text-decoration: none;">dilshod.a@fide.com</a></p> --}}
                         </td>
                     </tr>
                 </table>

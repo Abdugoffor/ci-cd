@@ -4,7 +4,7 @@
     <!-- Content area -->
     <div class="content">
         <div class="d-inline-flex gap-2">
-            <a href="{{ route('faqs.index', [], false) }}" class="btn btn-sm btn-outline-secondary">
+            <a href="{{ route('faqs.index', [], false) }}" class="btn btn-outline-secondary">
                 {{ getTranslation('back') }}
             </a>
             <a href="{{ route('faqs.edit', $model->id, false) }}" class="btn btn-outline-secondary ml-2">

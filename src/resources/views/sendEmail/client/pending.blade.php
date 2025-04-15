@@ -20,7 +20,7 @@
               font-family: Arial, sans-serif;
             ">
                     <tr>
-                        <td style="text-align: left; padding-bottom: 52px">
+                        <td style="text-align: left; padding-bottom: 20px">
                             <img src="{{ $message->embed(public_path('frontend/assets/1.png')) }}" alt="FIDE Logo"
                                 width="51" height="50" style="display: block" />
                             <div style="font-size: 9.5px; color: #00363f">
@@ -39,7 +39,6 @@
                     font-size: 22px;
                     font-weight: bold;
                     text-transform: uppercase;
-                    margin-bottom: 30px;
                   ">
                                 Статус вашей заявки <br />на участие в мероприятии
                             </h1>
@@ -56,50 +55,40 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="padding: 42px 0">
-                            <div style="display: flex; align-items: center; gap: 12px">
-                                <h2 style="color: #121d1f; font-size: 18px; font-weight: 600">
-                                    Сообщаем вам, что статус вашей заявки:
-                                </h2>
-                                <span
-                                    style="
-                      color: #167eb2;
-                      font-size: 18px;
-                      font-weight: 500;
-                      line-height: 160%; /* 28.8px */
-                      letter-spacing: -0.18px;
-                      border-radius: 12px;
-                      border: 1px solid #9dcae4;
-                      background: rgba(226, 244, 255, 0.54);
-                      width: 132px;
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
-                      padding: 3px;
-                    ">В
-                                    ожидании</span>
-                            </div>
+                        <td style="padding: 20px 0">
+                            <h2 style="color: #121d1f; font-size: 18px; font-weight: 600;">
+                                Сообщаем вам, что статус вашей заявки: 
+                                <span style="color: #0d9459; font-weight: 600; letter-spacing: -0.18px;">
+                                    В ожидании
+                                </span>
+                            </h2>
+                            
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="margin: 20px 0;">
                         <td>
-                            <br />
-                            <p style="color: #546668; font-size: 18px">
-                                Мы ценим ваше стремление принять участие и надеемся на
-                                возможность сотрудничества в будущем. Если у вас возникнут
-                                дополнительные вопросы, свяжитесь с нами по электронной почте
-                                или по номеру
-                                <a href="tel:+998947654321"
-                                    style="
-                      color: #27393c;
-                      font-size: 18px;
-                      font-weight: 500;
-                      line-height: 167%;
-                      letter-spacing: -0.18px;
-                      text-decoration: none;
-                    ">+998
-                                    94 765 43 21</a>
-                            </p>
+                            Если у вас возникнут дополнительные вопросы, свяжитесь с нами по
+                            электронной почте
+                            <a href="mailto:support@fide.com"
+                                style="
+                    color: #0b515a;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 160%;
+                    letter-spacing: -0.18px;
+                  ">support@fide.com</a>
+                            или
+                            <a href="tel:+998947654321"
+                                style="
+                    color: #0b515a;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 160%;
+                    letter-spacing: -0.18px;
+                  ">+998
+                                94 765 43 21</a>
                         </td>
                     </tr>
                 </table>

@@ -176,12 +176,9 @@
                     font-weight: 500;
                     margin-bottom: 40px;
                   ">
-                                С уважением,
+                                С уважением: {{ $data['auth'] }}
                             </p>
-                            <p style="color: #0d2022; font-size: 18px; font-weight: bold">
-                                {{ $data['auth'] }}
-                            </p>
-                            <p style="color: #1f3a3e; font-size: 18px; font-weight: 500">
+                            {{-- <p style="color: #1f3a3e; font-size: 18px; font-weight: 500">
                                 FIDE Uzbekistan Representative
                             </p>
                             <p style="color: #447177; font-size: 18px">
@@ -194,7 +191,7 @@
                       letter-spacing: -0.18px;
                       text-decoration: none;
                     ">dilshod.a@fide.com</a>
-                            </p>
+                            </p> --}}
                         </td>
                     </tr>
                 </table>

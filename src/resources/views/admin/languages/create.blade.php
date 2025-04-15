@@ -4,7 +4,7 @@
     <!-- Content area -->
     <div class="content">
         <div class="d-inline-flex gap-2">
-            <a href="{{ route('languages.index', [], false) }}" class="btn btn-sm btn-outline-secondary">
+            <a href="{{ route('languages.index', [], false) }}" class="btn btn-outline-secondary">
                 {{ getTranslation('back') }}
             </a>
         </div>
