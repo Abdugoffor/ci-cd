@@ -43,7 +43,7 @@
     <script type="text/javascript">
         var onloadCallback = function() {
             grecaptcha.render('html_element', {
-                'sitekey': {{ env('RECAPTCHA_SITE_KEY') }}
+                'sitekey': "{{ config('services.recaptcha.site_key') }}"
             });
         };
     </script>

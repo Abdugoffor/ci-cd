@@ -83,7 +83,7 @@
                     </a>
                 @endforeach
                 <li class="nav-item lang-selector">
-                    <a class="lang" style="text-transform: uppercase;">{{ app()->getLocale() }}</a>
+                    <a href="#" class="lang" style="text-transform: uppercase;">{{ app()->getLocale() }}</a>
                     <ul class="lang-dropdown">
                         @foreach ($languages as $language)
                             <li>
@@ -169,7 +169,7 @@
     <script type="text/javascript">
         var onloadCallback = function() {
             grecaptcha.render('html_element', {
-                'sitekey': {{ env('RECAPTCHA_SITE_KEY') }}
+                'sitekey': "{{ config('services.recaptcha.site_key') }}"
             });
         };
     </script>

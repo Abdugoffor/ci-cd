@@ -140,5 +140,6 @@ class LanguageSeeder extends Seeder
                 $language
             );
         }
+        
     }
 }

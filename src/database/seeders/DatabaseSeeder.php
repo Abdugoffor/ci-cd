@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Participant;
 use App\Models\TestDB;
 use App\Models\User;
 use App\Models\ValidationMessages;
@@ -58,8 +59,7 @@ class DatabaseSeeder extends Seeder
             // TurnirSeeder::class,
             // PartnerSeeder::class,
             // MediaSeeder::class,
-
-            // MediaSeeder::class,
         ]);
+
     }
 }
