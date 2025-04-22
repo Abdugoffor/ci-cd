@@ -1,12 +1,11 @@
-volumes:
-    fide_project:
+version: '3.8'
 
 services:
   fide_nginx:
     build:
       context: .
       dockerfile: nginx/Dockerfile
-    image: "nginx:stable-alpine"
+    image: nginx:stable-alpine
     ports:
       - "8010:80"
     volumes:
@@ -15,6 +14,8 @@ services:
     depends_on:
       - fide_postgres
       - fide_php
+    networks:
+      - app-network
 
   fide_php:
     build:
@@ -22,10 +23,13 @@ services:
       dockerfile: dockerfiles/php.Dockerfile
     volumes:
       - ./src:/var/www/laravel
+      - ./src/public/uploaded:/var/www/laravel/public/uploaded
     environment:
       - PHP_EXTENSION=pdo_pgsql,pgsql
     depends_on:
       - fide_postgres
+    networks:
+      - app-network
 
   fide_postgres:
     image: postgres:15
@@ -34,3 +38,17 @@ services:
       - env/postgres.env
     volumes:
       - ./fide_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  fide_db:
