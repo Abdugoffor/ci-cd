@@ -187,7 +187,8 @@
                                     <th
                                         style="width: 45%; text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
                                         {{ getTranslation('passport-number') }}</th>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">{{ $participant->passport_number }}
+                                    <td style="padding: 8px; border: 1px solid #ddd;">
+                                        {{ $participant->passport_number }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -195,15 +196,18 @@
                                         style="width: 45%; text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
                                         {{ getTranslation('passport-issue-date') }}</th>
                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                        {{ $participant->passport_issue_date }}
+
+                                        {{ optional($participant->passport_expiry_date)->format('d-m-Y') }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th
                                         style="width: 45%; text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
-                                        {{ getTranslation('Passport-validity-period') }}</th>
+                                        {{ getTranslation('passport-validity-period') }}
+                                    </th>
                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                        {{ $participant->passport_expiry_date }}
+
+                                        {{ optional($participant->passport_expiry_date)->format('d-m-Y') }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -268,7 +272,8 @@
                                     <th
                                         style="width: 45%; text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
                                         {{ getTranslation('pcr-test-details') }}</th>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">{{ $participant->pcr_test_details }}
+                                    <td style="padding: 8px; border: 1px solid #ddd;">
+                                        {{ getTranslation($participant->pcr_test_details) }}
                                     </td>
                                 </tr>
                                 <tr>
