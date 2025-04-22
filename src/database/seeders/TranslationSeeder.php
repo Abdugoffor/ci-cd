@@ -1365,6 +1365,15 @@ class TranslationSeeder extends Seeder
                     'default' => "No active tournament",
                 ],
             ],
+            [
+                'slug' => 'edit_application',
+                'name' => [
+                    'uz'      => "Talabni o'zgartirish",
+                    'ru'      => "Редактировать заявку",
+                    'en'      => "Edit application",
+                    'default' => "Edit application",
+                ],
+            ],
 
         ];
 

@@ -26,4 +26,22 @@ class ChackApplication extends Controller
             return back()->withErrors(['key' => getTranslation('invalid_key')])->withInput();
         }
     }
+
+    public function participantEdit(Participant $participant)
+    {
+        $isRegistrationActive = $participant->tournament()
+            ->where('registration_start', '<=', now())
+            ->where('registration_end', '>=', now())
+            ->exists();
+
+        if ($isRegistrationActive) {
+            if ($participant->status != 'approved') {
+                if (in_array($participant->status, ['unfinished', 'pending', 'canceled'])) {
+                    dd($participant->tournament);
+                }
+            }
+        } else {
+            return back()->withErrors('notification', "Turnir ro‘yxatdan o‘tish davri faol emas.");
+        }
+    }
 }

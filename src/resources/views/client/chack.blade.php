@@ -45,6 +45,11 @@
                     </div>
                 </div>
             </form>
+            @if ($errors->has('notification'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('notification') }}
+                </div>
+            @endif
             @if (isset($participant))
                 <div style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin-top: 10px;">
                     @if (isset($participant->playerInfo))
@@ -291,6 +296,21 @@
                                         {{ getTranslation('change') }}</th>
                                     <td style="padding: 8px; border: 1px solid #ddd;">
                                         {{ $participant->updated_at->format('d-m-Y, H:i') }}</td>
+                                </tr>
+                                <tr>
+                                    <th
+                                        style="width: 45%; text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                        {{ getTranslation('edit_application') }}
+                                    </th>
+                                    <td style="padding: 8px;">
+                                        <form action="{{ route('participant.edit', $participant->id, false) }}"
+                                            method="post">
+                                            @csrf
+                                            <button type="submit" class="btn" style="margin: 10px;">
+                                                {{ getTranslation('edit_application') }}
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
