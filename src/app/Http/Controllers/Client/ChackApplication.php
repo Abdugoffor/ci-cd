@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckApplicationRequest;
+use App\Models\AccreditationCategory;
+use App\Models\Country;
+use App\Models\Hotel;
 use App\Models\Participant;
 
 class ChackApplication extends Controller
@@ -21,6 +24,9 @@ class ChackApplication extends Controller
         $participant = Participant::where('id', $id)->where('key', $key)->first();
 
         if ($participant) {
+
+            session()->put('participant_key', $participant->key);
+
             return view('client.chack', ['participant' => $participant]);
         } else {
             return back()->withErrors(['key' => getTranslation('invalid_key')])->withInput();
@@ -29,16 +35,31 @@ class ChackApplication extends Controller
 
     public function participantEdit(Participant $participant)
     {
-        $isRegistrationActive = $participant->tournament()
-            ->where('registration_start', '<=', now())
-            ->where('registration_end', '>=', now())
-            ->exists();
+        if ($participant->status != 'approved') {
 
-        if ($isRegistrationActive) {
-            if ($participant->status != 'approved') {
+            $isRegistrationActive = $participant->tournament()
+                ->where('registration_start', '<=', now())
+                ->where('registration_end', '>=', now())
+                ->exists();
+
+            if ($isRegistrationActive) {
+
                 if (in_array($participant->status, ['unfinished', 'pending', 'canceled'])) {
-                    dd($participant->tournament);
+                    
+                    if (session()->has('participant_key') && session()->get('participant_key') == $participant->key) {
+
+                        $countries = Country::all();
+
+                        $accreditationCategories = AccreditationCategory::where('is_active', true)->get();
+
+                        $hotels = Hotel::where('is_active', true)->get();
+
+                        return view('client.applications.additional', ['model' => $participant, 'hotels' => $hotels, 'notification' => getTranslation('notification'), 'countries' => $countries, 'accreditationCategories' => $accreditationCategories]);
+                    }
+
+                    return back()->withErrors('notification', "Turnir ro‘yxatdan o‘tish davri faol emas.");
                 }
+                return back()->withErrors('notification', "Turnir ro‘yxatdan o‘tish davri faol emas.");
             }
         } else {
             return back()->withErrors('notification', "Turnir ro‘yxatdan o‘tish davri faol emas.");

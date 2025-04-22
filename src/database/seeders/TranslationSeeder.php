@@ -1374,6 +1374,15 @@ class TranslationSeeder extends Seeder
                     'default' => "Edit application",
                 ],
             ],
+            [
+                'slug' => 'registration_period_is_over',
+                'name' => [
+                    'uz'      => "Ro‘yxatdan o‘tish davri yakunlangan",
+                    'ru'      => "Период регистрации завершен",
+                    'en'      => "Registration period is over",
+                    'default' => "Registration period is over",
+                ],
+            ],
 
         ];
 
