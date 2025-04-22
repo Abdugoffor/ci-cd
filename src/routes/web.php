@@ -78,7 +78,7 @@ Route::prefix('{lang}')->middleware(LangMiddleware::class)->group(function () {
     Route::get('/chack-application', [ChackApplication::class, 'chack'])->name('chack.application');
     Route::get('/chack-application-srach', [ChackApplication::class, 'search'])->name('chack.application.srach');
 
-    Route::post('/participant-edit/{participant}', [ChackApplication::class, 'participantEdit'])->name('participant.edit');
+    Route::get('/participant-edit/{participant}', [ChackApplication::class, 'participantEdit'])->name('participant.edit');
 
     Route::get('/content/{content}', [PageController::class, 'index'])->name('page.index');
     Route::get('/hotel/{hotel}', [ClientHotelController::class, 'index'])->name('hotel.index');

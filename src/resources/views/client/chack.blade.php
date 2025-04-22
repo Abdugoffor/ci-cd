@@ -303,13 +303,21 @@
                                         {{ getTranslation('edit_application') }}
                                     </th>
                                     <td style="padding: 8px;">
-                                        <form action="{{ route('participant.edit', $participant->id, false) }}"
-                                            method="post">
-                                            @csrf
-                                            <button type="submit" class="btn" style="margin: 10px;">
-                                                {{ getTranslation('edit_application') }}
-                                            </button>
-                                        </form>
+                                        @if ($participant->status != 'approved')
+
+                                            @if ($participant->tournament()->where('registration_start', '<=', now())->where('registration_end', '>=', now())->exists())
+                                                <form action="{{ route('participant.edit', $participant->id, false) }}"
+                                                    method="get">
+                                                    @csrf
+                                                    <button type="submit" class="btn" style="margin: 10px;">
+                                                        {{ getTranslation('edit_application') }}
+                                                    </button>
+                                                </form>
+                                            @else
+                                                {{ getTranslation('registration_period_is_over') }}
+                                            @endif
+
+                                        @endif
                                     </td>
                                 </tr>
                             </tbody>
