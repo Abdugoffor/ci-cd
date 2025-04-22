@@ -64,11 +64,16 @@
                                 <select name="tournament_id" id="" class="form-control">
                                     <option value="" disabled selected>
                                     </option>
-                                    @foreach ($tournaments as $tournament)
-                                        <option value="{{ $tournament->id }}"
-                                            {{ old('tournament_id') == $tournament->id ? 'selected' : '' }}>
-                                            {{ getLocale($tournament->name) }}</option>
-                                    @endforeach
+                                    @if ($tournaments->count() > 0)
+                                        @foreach ($tournaments as $tournament)
+                                            <option value="{{ $tournament->id }}"
+                                                {{ old('tournament_id') == $tournament->id ? 'selected' : '' }}>
+                                                {{ getLocale($tournament->name) }}</option>
+                                        @endforeach
+                                    @else
+                                        <option value="">{{ getTranslation('no_tournament') }}</option>
+                                    @endif
+
                                 </select>
                                 @error('tournament_id')
                                     <p style="color: red;">{{ $message }}</p>

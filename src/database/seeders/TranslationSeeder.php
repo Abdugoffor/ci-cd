@@ -1356,6 +1356,15 @@ class TranslationSeeder extends Seeder
                     'default' => "Changed",
                 ],
             ],
+            [
+                'slug' => 'no_tournament',
+                'name' => [
+                    'uz'      => "Aktiv turnir mavjud emas",
+                    'ru'      => "Нет активных турниров",
+                    'en'      => "No active tournament",
+                    'default' => "No active tournament",
+                ],
+            ],
 
         ];
 

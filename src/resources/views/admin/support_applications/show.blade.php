@@ -185,7 +185,7 @@
                                 {{ getTranslation('visa-required') }}?
                             </th>
                             <td>
-                                {{ $model->requires_visa ? getTranslation('yes') : getTranslation('no') }}
+                                {{ $model->requires_visa ? getTranslation('yes_vise') : getTranslation('no_visa') }}
                             </td>
                         </tr>
                         <tr>
@@ -217,7 +217,7 @@
                             <th width="45%">
                                 {{ getTranslation('pcr-test-details') }}
                             </th>
-                            <td>{{ $model->pcr_test_details }}</td>
+                            <td>{{ getTranslation($model->pcr_test_details) }}</td>
                         </tr>
                         <tr>
                             <th width="45%">

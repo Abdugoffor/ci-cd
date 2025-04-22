@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use App\Traits\HasHistory;
@@ -7,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Hotel extends Model
 {
-    use HasHistory,SoftDeletes;
+    use HasHistory, SoftDeletes;
     protected $fillable = [
         'title',
         'description',

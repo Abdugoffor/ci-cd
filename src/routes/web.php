@@ -59,7 +59,7 @@ Route::get('/content/{content}', function ($content) {
         session()->put('lang', $lang);
         App::setLocale($lang);
     }
-    
+
     return redirect("/{$lang}/content/{$content}");
 });
 

@@ -14,7 +14,10 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $model = Tournament::with('category', 'country')->where('is_active', true)->orderByDesc('id')->first();
+        $model = Tournament::with('category', 'country')
+            ->where('registration_start', '<=', now())
+            ->where('registration_end', '>=', now())
+            ->where('is_active', true)->orderByDesc('id')->first();
 
         $news = News::where('is_active', true)->orderByDesc('id')->limit(3)->get();
 
@@ -70,7 +73,7 @@ class IndexController extends Controller
         //     App::setLocale($lang->slug);
         // }
         // return redirect()->back();
-        
+
 
         // $language = Language::where('slug', $lang)->where('is_active', true)->first();
 

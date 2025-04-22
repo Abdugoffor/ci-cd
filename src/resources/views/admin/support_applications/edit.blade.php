@@ -71,12 +71,17 @@
                                 <label class="col-form-label col-lg-2 mt-2">{{ getTranslation('competitions') }}</label>
                                 <select name="tournament_id" class="form-control">
                                     <option value="" disabled>{{ getTranslation('select_competition') }}</option>
-                                    @foreach ($tournaments as $tournament)
-                                        <option value="{{ $tournament->id }}"
-                                            {{ $model->tournament_id == $tournament->id ? 'selected' : '' }}>
-                                            {{ getLocale($tournament->name) }}
-                                        </option>
-                                    @endforeach
+
+                                    @if ($tournaments->count() > 0)
+                                        @foreach ($tournaments as $tournament)
+                                            <option value="{{ $tournament->id }}"
+                                                {{ $model->tournament_id == $tournament->id ? 'selected' : '' }}>
+                                                {{ getLocale($tournament->name) }}</option>
+                                        @endforeach
+                                    @else
+                                        <option value="">{{ getTranslation('no_tournament') }}</option>
+                                    @endif
+
                                 </select>
                                 @error('tournament_id')
                                     <p style="color: red;">{{ $message }}</p>

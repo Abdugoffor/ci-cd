@@ -27,9 +27,9 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('translations.create', [], false) }}" class="btn btn-teal">
+                            {{-- <a href="{{ route('translations.create', [], false) }}" class="btn btn-teal">
                                 <i class="icon-plus3 icon-1x mr-1"></i> {{ getTranslation('add') }}
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
                     <div class="table-responsive">

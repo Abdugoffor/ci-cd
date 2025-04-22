@@ -33,7 +33,7 @@
 
                     <div class="input-group input-groupGrid">
                         <div class="input-wrapper">
-                            <label for="first-name" class="input-label">{{ getTranslation('name') }} 
+                            <label for="first-name" class="input-label">{{ getTranslation('name') }}
                                 <span>( {{ getTranslation('in_passport') }} )</span></label>
                             <input type="text" id="first-name" name="first_name" value="{{ old('first_name') }}"
                                 class="input-text" placeholder="{{ getTranslation('name') }}" />
@@ -85,10 +85,14 @@
                             <label for="first-name" class="input-label">{{ getTranslation('competitions') }}</label>
                             <select name="tournament_id" class="input-select">
                                 <option></option>
-                                @foreach ($tournaments as $tournament)
-                                    <option {{ old('tournament_id') == $tournament->id ? 'selected' : '' }}
-                                        value="{{ $tournament->id }}">{{ getLocale($tournament->name) }}</option>
-                                @endforeach
+                                @if ($tournaments->count() > 0)
+                                    @foreach ($tournaments as $tournament)
+                                        <option {{ old('tournament_id') == $tournament->id ? 'selected' : '' }}
+                                            value="{{ $tournament->id }}">{{ getLocale($tournament->name) }}</option>
+                                    @endforeach
+                                @else
+                                    <option value="">{{ getTranslation('no_tournament') }}</option>
+                                @endif
                             </select>
                             @error('tournament_id')
                                 <p style="color: red; font-size:12px;font-weight: 500">{{ $message }}</p>

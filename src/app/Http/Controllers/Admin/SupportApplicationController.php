@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -16,7 +17,7 @@ class SupportApplicationController extends Controller
 {
     public function index()
     {
-        $models = Participant::where('user_id', auth()->user()->id)->orderByDesc('id')->paginate(10);
+        $models = Participant::with('accreditationCategory', 'tournament', 'country', 'histories')->where('user_id', auth()->user()->id)->orderByDesc('id')->paginate(10);
 
         return view('admin.support_applications.index', data: ['models' => $models]);
     }
@@ -43,7 +44,7 @@ class SupportApplicationController extends Controller
         if ($request->filled('status') && $request->status !== '') {
             $query->where('status', filter_var($request->status, FILTER_VALIDATE_BOOLEAN));
         }
-        
+
         $query->where('user_id', auth()->user()->id);
 
         $models = $query->paginate(10);
@@ -60,7 +61,10 @@ class SupportApplicationController extends Controller
 
         $hotels = Hotel::where('is_active', true)->get();
 
-        $tournaments = Tournament::all();
+        $tournaments = Tournament::where('status', 'pending')
+            ->where('registration_start', '<=', now())
+            ->where('registration_end', '>=', now())
+            ->get();
 
         return view('admin.support_applications.create', ['countrys' => $countrys, 'accreditationCategories' => $accreditationCategories, 'hotels' => $hotels, 'tournaments' => $tournaments]);
     }
@@ -99,7 +103,10 @@ class SupportApplicationController extends Controller
 
         $hotels = Hotel::where('is_active', true)->get();
 
-        $tournaments = Tournament::all();
+        $tournaments = Tournament::where('status', 'pending')
+            ->where('registration_start', '<=', now())
+            ->where('registration_end', '>=', now())
+            ->get();
 
         return view('admin.support_applications.edit', ['model' => $support_application, 'countrys' => $countrys, 'accreditationCategories' => $accreditationCategories, 'hotels' => $hotels, 'tournaments' => $tournaments]);
     }

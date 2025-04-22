@@ -46,7 +46,10 @@ class ApplicationController extends Controller
 
                     session()->put('player', $player);
 
-                    $tournaments = Tournament::where('status', 'pending')->get();
+                    $tournaments = Tournament::where('status', 'pending')
+                        ->where('registration_start', '<=', now())
+                        ->where('registration_end', '>=', now())
+                        ->get();
 
                     return view('client.applications.application', ['tournaments' => $tournaments, 'fide_id_success' => getTranslation('fide_id_success')]);
                 } else {
@@ -58,13 +61,17 @@ class ApplicationController extends Controller
             }
         }
 
-        $tournaments = Tournament::where('status', 'pending')->get();
+        $tournaments = Tournament::where('status', 'pending')
+            ->where('registration_start', '<=', now())
+            ->where('registration_end', '>=', now())
+            ->get();
 
         return view('client.applications.application', ['tournaments' => $tournaments]);
     }
     public function store(ApplicationStoreRequest $request)
     {
         $data = $request->all();
+        
         $key  = Str::random(8);
 
         $data['fide_id'] = session()->get('player')['id_number'] ?? null;
@@ -177,7 +184,7 @@ class ApplicationController extends Controller
             'name' => getLocale($model->tournament->name),
             'title' => getLocale($model->tournament->title),
             'first_name' => $model->first_name,
-            'email' => $model->email, 
+            'email' => $model->email,
         ];
 
 
