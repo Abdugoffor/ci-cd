@@ -376,13 +376,13 @@
                                 <input type="radio" name="requires_visa"
                                     {{ old('requires_visa') == 1 ? 'checked' : '' }} value="1" />
                                 <span class="custom-radio"></span>
-                                {{ getTranslation('yes') }}
+                                {{ getTranslation('yes_vise') }}
                             </label>
                             <label class="radio-label">
                                 <input type="radio" name="requires_visa"
                                     {{ old('requires_visa') == 0 ? 'checked' : '' }} value="0" />
                                 <span class="custom-radio"></span>
-                                {{ getTranslation('no') }}
+                                {{ getTranslation('no_visa') }}
                             </label>
                         </div>
                         @error('requires_visa')

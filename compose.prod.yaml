@@ -20,7 +20,7 @@ services:
       - fide_php
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.fide_nginx.rule=Host(`api.uzchess.sriss.uz`)"
+      - "traefik.http.routers.fide_nginx.rule=Host(`regsys098801.fide.com`)"
       - "traefik.http.routers.fide_nginx.entryPoints=web"
       - "traefik.http.routers.fide_nginx.service=fide_nginx"
       - "traefik.http.services.fide_nginx.loadbalancer.server.port=80"

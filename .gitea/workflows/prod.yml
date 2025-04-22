@@ -12,6 +12,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Stop and Remove Existing Containers
+        run: |
+          docker compose -f compose.prod.yaml down -v 2>&1 | awk '!seen[$0]++'
+
       - name: Build and Start Containers
         run: |
-          docker compose -f compose.prod.yaml up --build --force-recreate -d 2>&1 | awk '!seen[$0]++'          
+          docker compose -f compose.prod.yaml up --build --force-recreate -d 2>&1 | awk '!seen[$0]++'
