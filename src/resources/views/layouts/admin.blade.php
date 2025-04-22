@@ -36,6 +36,7 @@
     <script src="/backend/global_assets/js/plugins/editors/summernote/summernote.min.js"></script>
 
     <script src="/backend/global_assets/js/demo_pages/editor_summernote.js"></script>
+    <!-- test-->
     <style>
         .list-feed-item li span {
             word-wrap: break-word;
