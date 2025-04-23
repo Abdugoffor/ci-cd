@@ -58,7 +58,8 @@
         <nav class="nav container" style="flex-wrap: nowrap">
             <div class="nav-left">
                 <div class="logo-wrapper">
-                    <a href="{{ route('home', [],false) }}" class="logo" style="height: 60px;">
+                    <a href="{{ route('home', ['lang' => app()->getLocale()], false) }}" class="logo"
+                        style="height: 60px;">
                         <img src="{{ asset('frontend/assets/header_banner/chess_logo.svg') }}"
                             alt="Chess Olympiad 2025" />
                     </a>
@@ -148,7 +149,8 @@
                 <ul>
                     @foreach ($menus as $menu)
                         <li>
-                            <a href="{{ route('page.index', $menu->id, false) }}">
+                            <a
+                                href="{{ route('page.index', ['lang' => app()->getLocale(), 'content' => $menu->id], false) }}">
                                 {{ getLocale($menu->name) }}
                             </a>
                         </li>

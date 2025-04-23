@@ -1383,6 +1383,33 @@ class TranslationSeeder extends Seeder
                     'default' => "Registration period is over",
                 ],
             ],
+            [
+                'slug' => 'registration_period_is_over',
+                'name' => [
+                    'uz'      => "Ro‘yxatdan o‘tish davri yakunlangan",
+                    'ru'      => "Период регистрации завершен",
+                    'en'      => "Registration period is over",
+                    'default' => "Registration period is over",
+                ],
+            ],
+            [
+                'slug' => 'page_not_found_message',
+                'name' => [
+                    'uz'      => "Kechirasiz, xatolik yuz berdi. Sahifa topilmadi!",
+                    'ru'      => "К сожалению, произошла ошибка, Запрошенная Вами страница не найдена!",
+                    'en'      => "Sorry, an error has occured, Requested page not found!",
+                    'default' => "Sorry, an error has occured, Requested page not found!",
+                ],
+            ],
+            [
+                'slug' => 'page_not_found',
+                'name' => [
+                    'uz'      => "Sahifa Topilmadi",
+                    'ru'      => "Страница не найдена",
+                    'en'      => "Page Not Found",
+                    'default' => "Page Not Found",
+                ],
+            ],
 
         ];
 
