@@ -123,14 +123,19 @@
         @yield('banner')
     </header>
     <div class="container">
-        @if (Route::currentRouteName() &&
-                Breadcrumbs::exists(Route::currentRouteName()) &&
-                !app('request')->is('*/404') &&
-                !app('request')->is('*/news-latest/*') &&
-                !app('request')->is('*/hotel/*') &&
-                !app('request')->is('*/content/*'))
-            {{ Breadcrumbs::render(Route::currentRouteName(), Route::current()->parameters()) }}
+        @if (Route::currentRouteName() && Breadcrumbs::exists(Route::currentRouteName()))
+            @php
+                $parameters = Route::current()->parameters();
+                
+                $param = $parameters['currentNews'] ?? ($parameters['hotel'] ?? ($parameters['content'] ?? null));
+            @endphp
+            {{ Breadcrumbs::render(Route::currentRouteName(), $param) }}
         @endif
+        
+        {{-- @if (Route::currentRouteName() && Breadcrumbs::exists(Route::currentRouteName()) && !app('request')->is('*/404') && !app('request')->is('*/news-latest/*') && !app('request')->is('*/hotel/*') && !app('request')->is('*/content/*'))
+            {{ Breadcrumbs::render(Route::currentRouteName(), Route::current()->parameters()) }}
+        @endif --}}
+
         {{-- @if (Breadcrumbs::exists(Route::currentRouteName()))
             {{ Breadcrumbs::render(Route::currentRouteName(), Route::current()->parameters()) }}
         @endif --}}

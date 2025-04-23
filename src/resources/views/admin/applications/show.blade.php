@@ -82,6 +82,14 @@
                         </tr>
                         <tr>
                             <th width="45%">
+                                {{ getTranslation('competitions') }}
+                            </th>
+                            <td>
+                                {{ optional($model->tournament)->name ? getLocale($model->tournament->name) : '' }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="45%">
                                 {{ getTranslation('qk_code') }}
                             </th>
                             <td>
@@ -314,7 +322,7 @@
 
                                 <!-- Zone Modal  -->
                                 <div id="zoneModal{{ $model->id }}" class="modal fade" tabindex="-1">
-                                    <div class="modal-dialog modal-lg"> 
+                                    <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title">
