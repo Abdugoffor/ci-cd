@@ -111,15 +111,6 @@
                                 <tr>
                                     <th
                                         style="width: 45%; text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
-                                        {{ getTranslation('competitions') }}
-                                    </th>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">
-                                        {{ optional($participant->tournament)->name ? getLocale($participant->tournament->name) : '' }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th
-                                        style="width: 45%; text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
                                         {{ getTranslation('qk_code') }}</th>
                                     <td style="padding: 8px; border: 1px solid #ddd;">
                                         @if ($participant->qk_code_path)
@@ -130,6 +121,15 @@
                                         @else
                                             {{ getTranslation('no-photo') }}
                                         @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th
+                                        style="width: 45%; text-align: left; padding: 8px; border: 1px solid #ddd; background: #f8f8f8;">
+                                        {{ getTranslation('competitions') }}
+                                    </th>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">
+                                        {{ optional($participant->tournament)->name ? getLocale($participant->tournament->name) : '' }}
                                     </td>
                                 </tr>
                                 <tr>

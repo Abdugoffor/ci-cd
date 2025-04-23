@@ -82,14 +82,6 @@
                         </tr>
                         <tr>
                             <th width="45%">
-                                {{ getTranslation('competitions') }}
-                            </th>
-                            <td>
-                                {{ optional($model->tournament)->name ? getLocale($model->tournament->name) : '' }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="45%">
                                 {{ getTranslation('qk_code') }}
                             </th>
                             <td>
@@ -109,6 +101,14 @@
                                     {{ getTranslation('no-photo') }}
                                 @endif
 
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="45%">
+                                {{ getTranslation('competitions') }}
+                            </th>
+                            <td>
+                                {{ optional($model->tournament)->name ? getLocale($model->tournament->name) : '' }}
                             </td>
                         </tr>
                         <tr>
