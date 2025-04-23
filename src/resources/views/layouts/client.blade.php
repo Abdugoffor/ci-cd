@@ -123,10 +123,17 @@
         @yield('banner')
     </header>
     <div class="container">
-
-        @if (Breadcrumbs::exists(Route::currentRouteName()))
+        @if (Route::currentRouteName() &&
+                Breadcrumbs::exists(Route::currentRouteName()) &&
+                !app('request')->is('*/404') &&
+                !app('request')->is('*/news-latest/*') &&
+                !app('request')->is('*/hotel/*') &&
+                !app('request')->is('*/content/*'))
             {{ Breadcrumbs::render(Route::currentRouteName(), Route::current()->parameters()) }}
         @endif
+        {{-- @if (Breadcrumbs::exists(Route::currentRouteName()))
+            {{ Breadcrumbs::render(Route::currentRouteName(), Route::current()->parameters()) }}
+        @endif --}}
     </div>
     @yield('content')
     <footer class="footer">
