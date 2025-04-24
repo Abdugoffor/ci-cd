@@ -20,7 +20,7 @@
                     <span>{{ $message_notifay }}</span>
                     <button class="close" onclick="closeAlert()">×</button>
                 </div>
-                <script>
+                <script nonce="{{ request()->attributes->get('csp_nonce') }}">
                     function closeAlert() {
                         document.getElementById("alertBox").style.display = "none";
                     }

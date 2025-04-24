@@ -2,7 +2,7 @@
 @section('title', getTranslation('faqs'))
 @section('banner')
 @endsection
-<script>
+<script nonce="{{ request()->attributes->get('csp_nonce') }}">
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll(".faq-question").forEach((question) => {
             question.addEventListener("click", () => {

@@ -134,7 +134,7 @@
                     <div class="sidebar-section-body">
                         <div class="media">
                             <a href="{{ route('home', [], false) }}" target="_blank" class="mr-3">
-                                <img src="https://cdn-icons-png.flaticon.com/512/8664/8664801.png"
+                                <img src="/backend/admin_user.png"
                                     class="rounded-circle" alt="">
                                 {{-- <img src="{{ asset('frontend/assets/1.png') }}" class="rounded-circle" alt=""> --}}
                             </a>
@@ -442,7 +442,7 @@
 </body>
 
 
-<script>
+<script nonce="{{ request()->attributes->get('csp_nonce') }}">
     function previewImage(event, id) {
         var input = event.target;
         var reader = new FileReader();

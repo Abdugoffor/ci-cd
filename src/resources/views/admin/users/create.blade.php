@@ -111,7 +111,7 @@
     </div>
     <!-- /content area -->
 @endsection
-<script>
+<script nonce="{{ request()->attributes->get('csp_nonce') }}">
     function generatePassword(length = 25) {
         const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         let password = "";

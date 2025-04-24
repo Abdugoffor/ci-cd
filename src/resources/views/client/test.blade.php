@@ -421,7 +421,7 @@
     </div>
     <div class="download-btn" onclick="downloadPDF()">Скачать PDF</div>
 </body>
-<script>
+<script nonce="{{ request()->attributes->get('csp_nonce') }}">
     async function downloadPDF() {
         const {
             jsPDF
