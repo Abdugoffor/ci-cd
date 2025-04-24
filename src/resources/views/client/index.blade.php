@@ -234,7 +234,7 @@
         </section>
     </main>
 @endsection
-<script>
+<script nonce="{{ request()->attributes->get('csp_nonce') }}">
     document.addEventListener('DOMContentLoaded', function() {
         // Agar validatsiya xatoliklari bo'lsa, formaga fokuslash
         @if ($errors->has('fide_id'))

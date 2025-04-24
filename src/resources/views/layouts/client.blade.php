@@ -188,7 +188,7 @@
         };
     </script>
 </body>
-<script>
+<script nonce="{{ request()->attributes->get('csp_nonce') }}">
     const toast = {
         create: function(message, type = 'error', duration = 5000) {
             const toastContainer = document.querySelector('.toast-container');
@@ -228,7 +228,7 @@
         }
     };
 </script>
-<script>
+<script nonce="{{ request()->attributes->get('csp_nonce') }}">
     document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll(".lang-dropdown a").forEach(function(el) {
             el.addEventListener("click", function(event) {

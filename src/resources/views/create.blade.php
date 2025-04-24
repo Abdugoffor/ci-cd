@@ -27,7 +27,7 @@
     </div>
 
     <!-- CKEditor-ni sozlash -->
-    <script>
+    <script nonce="{{ request()->attributes->get('csp_nonce') }}">
         document.addEventListener('DOMContentLoaded', function() {
             // CKEditor-ni textarea bilan almashtirish
             CKEDITOR.replace('editor', {

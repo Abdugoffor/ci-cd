@@ -153,7 +153,7 @@
     </div>
     <!-- /content area -->
 @endsection
-<script>
+<script nonce="{{ request()->attributes->get('csp_nonce') }}">
     $(document).ready(function() {
         $('.summernote').summernote({
             height: 300,

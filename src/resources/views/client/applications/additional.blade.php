@@ -169,7 +169,7 @@
                 <span>{{ $notification }}</span>
                 <button class="close" onclick="closeAlert()">×</button>
             </div>
-            <script>
+            <script nonce="{{ request()->attributes->get('csp_nonce') }}">
                 function closeAlert() {
                     document.getElementById("alertBox").style.display = "none";
                 }
@@ -510,7 +510,7 @@
     <div class="toast-container"></div>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
-<script>
+<script nonce="{{ request()->attributes->get('csp_nonce') }}">
     let cropper;
     let croppedImageData = null;
     let currentFileName = "";

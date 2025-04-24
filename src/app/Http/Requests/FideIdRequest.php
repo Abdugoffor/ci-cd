@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -21,6 +22,7 @@ class FideIdRequest extends FormRequest
     public function rules(): array
     {
         return [
+            '_token' => 'required|string',
             'fide_id' => 'nullable|numeric',
         ];
     }
