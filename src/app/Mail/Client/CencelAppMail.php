@@ -28,7 +28,7 @@ class CencelAppMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Cencel App Mail',
+            subject: 'Cancel App Mail',
         );
     }
 
