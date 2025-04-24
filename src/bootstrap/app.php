@@ -18,7 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => ChackRole::class,
         ]);
         $middleware->append([
-            SecurityHeaders::class,
+            // SecurityHeaders::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
