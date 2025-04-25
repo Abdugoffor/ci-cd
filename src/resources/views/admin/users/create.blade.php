@@ -62,16 +62,7 @@
                                 @error('email')
                                     <p style="color: red;">{{ $message }}</p>
                                 @enderror
-                                <!-- Password generator maydoni -->
-                                <label for="generatedPassword"
-                                    class="col-form-label col-lg-2">{{ getTranslation('password_generate') }}</label>
-                                <div class="input-group">
-                                    <input type="text" id="generatedPassword" class="form-control" readonly>
-                                    <button class="btn btn-outline-secondary" type="button"
-                                        onclick="generatePassword()">Generate</button>
-                                    <button class="btn btn-outline-success" type="button"
-                                        onclick="copyPassword()">Copy</button>
-                                </div>
+
                                 <!-- Password maydoni -->
                                 <label class="col-form-label col-lg-2">{{ getTranslation('password') }}</label>
                                 <input type="password" class="form-control" name="password"
@@ -96,6 +87,17 @@
                                             checked>
                                         <span class="custom-control-label">{{ getTranslation('status') }}</span>
                                     </label>
+                                </div>
+
+                                <!-- Password generator maydoni -->
+                                <label for="generatedPassword"
+                                    class="col-form-label col-lg-2 mt-2">{{ getTranslation('password_generate') }}</label>
+                                <div class="input-group">
+                                    <input type="text" id="generatedPassword" class="form-control" readonly>
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        onclick="generatePassword()">Generate</button>
+                                    <button class="btn btn-outline-success" type="button"
+                                        onclick="copyPassword()">Copy</button>
                                 </div>
 
                             </div>
