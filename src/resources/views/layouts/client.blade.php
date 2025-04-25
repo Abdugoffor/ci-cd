@@ -46,7 +46,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> --}}
+    <link href="/frontend/cdn/css/swiper-bundle.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="/frontend/css/style.css?v=1.3" />
     <link rel="stylesheet" href="/frontend/css/media.css?v=1.3" />
@@ -176,7 +177,8 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> --}}
+    <script src="/frontend/cdn/js/swiper-bundle.min.js"></script>
     <script src="/frontend/js/main.js"></script>
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>

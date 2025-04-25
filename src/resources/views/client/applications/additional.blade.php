@@ -3,8 +3,8 @@
 @section('banner')
 @endsection
 @section('content')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
-<link rel="stylesheet" href="../css/style.css" />
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" /> --}}
+<link rel="stylesheet" href="/frontend/cdn/css/cropper.min.css" />
 <style>
     .cropper-modal {
         display: none;
@@ -509,7 +509,8 @@
     </section>
     <div class="toast-container"></div>
 </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script> --}}
+<script src="/frontend/cdn/js/cropper.min.js"></script>
 <script nonce="{{ request()->attributes->get('csp_nonce') }}">
     let cropper;
     let croppedImageData = null;

@@ -22,12 +22,12 @@ class SecurityHeaders
 
         // CSP sozlamasi
         $csp = "default-src 'self'; " .
-            "script-src 'self' 'nonce-{$nonce}' https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com https://www.recaptcha.net https://cdnjs.cloudflare.com; " .
-            "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://cdnjs.cloudflare.com; " .
-            "font-src 'self' https://fonts.gstatic.com; " .
-            "img-src 'self' data: https://cdn.jsdelivr.net https://www.google.com https://www.recaptcha.net; " .
+            "script-src 'self' 'nonce-{$nonce}' /frontend/cdn/js/ https://www.google.com https://www.gstatic.com https://www.recaptcha.net; " .
+            "style-src 'self' 'unsafe-inline' /frontend/cdn/css/ https://fonts.googleapis.com; " .
+            "font-src 'self' https://fonts.gstatic.com /frontend/cdn/font/ /backend/cdn/font/; " .
+            "img-src 'self' data: blob: file: /frontend/cdn/images/ /frontend/assets/ https://www.google.com https://www.recaptcha.net; " .
             "frame-src https://www.google.com https://www.recaptcha.net; " .
-            "connect-src 'self' https://www.google.com https://www.recaptcha.net; " .
+            "connect-src 'self' data: blob: file: https://www.google.com https://www.recaptcha.net; " .
             "base-uri 'self'; " .
             "form-action 'self';";
 
