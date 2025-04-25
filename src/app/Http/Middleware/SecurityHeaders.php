@@ -26,6 +26,16 @@ class SecurityHeaders
         // После next() — когда response уже собран — достаём один и тот же nonce
         $nonce = $request->attributes->get('csp_nonce');
 
+        // $csp = "default-src 'self'; " .
+        //     "script-src 'self' 'nonce-{$nonce}' https://www.google.com https://www.gstatic.com https://www.recaptcha.net; " .
+        //     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " .
+        //     "font-src 'self' data: https://fonts.gstatic.com; " .
+        //     "img-src 'self' data: blob: file: https://www.google.com https://www.recaptcha.net; " .
+        //     "frame-src https://www.google.com https://www.recaptcha.net; " .
+        //     "connect-src 'self' data: blob: file: https://www.google.com https://www.recaptcha.net; " .
+        //     "base-uri 'self'; " .
+        //     "form-action 'self';";
+        
         $csp = "default-src 'self'; " .
             "script-src 'self' 'nonce-{$nonce}' https://www.google.com https://www.gstatic.com https://www.recaptcha.net; " .
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " .
@@ -34,7 +44,7 @@ class SecurityHeaders
             "frame-src https://www.google.com https://www.recaptcha.net; " .
             "connect-src 'self' data: blob: file: https://www.google.com https://www.recaptcha.net; " .
             "base-uri 'self'; " .
-            "form-action 'self';";
+            "form-action 'self' https://api.uzchess.sriss.uz;"; // Tashqi API manzilini qo'shish
 
         $response->header('Content-Security-Policy', $csp);
         $response->header('X-Frame-Options', 'DENY', false);
@@ -43,7 +53,7 @@ class SecurityHeaders
 
         return $response;
 
-        
+
         // 1. CSRF token bilan xatolikni kamaytirish
         // if ($request->has('_token') && strpos($request->input('_token'), '../') !== false) {
         //     abort(403, 'Unauthorized action.');
