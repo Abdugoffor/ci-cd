@@ -53,7 +53,7 @@
     <!-- /Register form -->
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script type="text/javascript">
+    <script type="text/javascript" nonce="{{ request()->attributes->get('csp_nonce') }}">
         var onloadCallback = function() {
             grecaptcha.render('html_element', {
                 'sitekey': "{{ config('services.recaptcha.site_key') }}"
