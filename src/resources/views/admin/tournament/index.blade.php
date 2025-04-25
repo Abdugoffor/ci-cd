@@ -103,6 +103,10 @@
                                                     {{ old('status', request('status')) === 'pending' ? 'selected' : '' }}>
                                                     {{ getTranslation('pending') }}
                                                 </option>
+                                                <option value="ongoing"
+                                                    {{ old('status', request('status')) === 'ongoing' ? 'selected' : '' }}>
+                                                    {{ getTranslation('ongoing') }}
+                                                </option>
                                                 <option value="approved"
                                                     {{ old('status', request('status')) === 'approved' ? 'selected' : '' }}>
                                                     {{ getTranslation('approved') }}
