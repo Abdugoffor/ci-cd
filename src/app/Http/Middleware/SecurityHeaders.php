@@ -10,35 +10,36 @@ class SecurityHeaders
 {
     public function handle(Request $request, Closure $next)
     {
-        // Path Traversal tekshiruvi
         if ($request->has('_token') && strpos($request->input('_token'), '../') !== false) {
             abort(403, 'Unauthorized action.');
+        }
+        // Nonce генерация (сразу в начале запроса!)
+        if (!$request->attributes->has('csp_nonce')) {
+            $nonce = base64_encode(random_bytes(16));
+            $request->attributes->set('csp_nonce', $nonce);
+        } else {
+            $nonce = $request->attributes->get('csp_nonce');
         }
 
         $response = $next($request);
 
-        // Nonce generatsiyasi
-        $nonce = base64_encode(Str::random(16));
+        // После next() — когда response уже собран — достаём один и тот же nonce
+        $nonce = $request->attributes->get('csp_nonce');
 
-        // CSP sozlamasi
         $csp = "default-src 'self'; " .
-            "script-src 'self' 'nonce-{$nonce}' /frontend/cdn/js/ https://www.google.com https://www.gstatic.com https://www.recaptcha.net; " .
-            "style-src 'self' 'unsafe-inline' /frontend/cdn/css/ https://fonts.googleapis.com; " .
-            "font-src 'self' https://fonts.gstatic.com /frontend/cdn/font/ /backend/cdn/font/; " .
-            "img-src 'self' data: blob: file: /frontend/cdn/images/ /frontend/assets/ https://www.google.com https://www.recaptcha.net; " .
+            "script-src 'self' 'nonce-{$nonce}' https://www.google.com https://www.gstatic.com https://www.recaptcha.net; " .
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " .
+            "font-src 'self' data: https://fonts.gstatic.com; " .
+            "img-src 'self' data: blob: file: https://www.google.com https://www.recaptcha.net; " .
             "frame-src https://www.google.com https://www.recaptcha.net; " .
             "connect-src 'self' data: blob: file: https://www.google.com https://www.recaptcha.net; " .
             "base-uri 'self'; " .
             "form-action 'self';";
 
-        // Sarlavhalar
         $response->header('Content-Security-Policy', $csp);
         $response->header('X-Frame-Options', 'DENY', false);
         $response->header('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload', false);
         $response->header('X-Content-Type-Options', 'nosniff', false);
-
-        // Nonce’ni Blade uchun request’ga qo‘shish
-        $request->attributes->set('csp_nonce', $nonce);
 
         return $response;
     }
