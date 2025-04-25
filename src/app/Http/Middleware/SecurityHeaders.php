@@ -35,7 +35,7 @@ class SecurityHeaders
         //     "connect-src 'self' data: blob: file: https://www.google.com https://www.recaptcha.net; " .
         //     "base-uri 'self'; " .
         //     "form-action 'self';";
-        
+
         $csp = "default-src 'self'; " .
             "script-src 'self' 'nonce-{$nonce}' https://www.google.com https://www.gstatic.com https://www.recaptcha.net; " .
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " .
